@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>정통 사주풀이 | 마음캐치</title>
+<meta name="description" content="생년월일시로 알아보는 진짜 사주팔자. 절기 기준으로 정확하게 계산한 년주·월주·일주·시주와 오행 분석, 일간 성격풀이까지." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="정통 사주풀이" />
+<meta property="og:description" content="생년월일시로 알아보는 진짜 사주팔자. 나의 사주를 확인해보세요." />
+<meta property="og:image" content="../../assets/img/og/saju-intro.png" />
+<meta property="og:url" content="./" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☯️</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="../../index.html">🧠 마음캐치</a>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div style="font-size:56px;margin-bottom:8px;">☯️</div>
+    <h1>정통 사주풀이</h1>
+    <p>태어난 년월일시로 계산하는 진짜 사주팔자<br />절기 기준 만세력으로 정확하게 계산해드려요</p>
+  </section>
+
+  <div class="card">
+    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 년주·월주·일주·시주 사주팔자 전체 계산</p>
+    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 24절기 기준 만세력으로 계산 (입춘 기준 년도 적용)</p>
+    <p style="margin:0;font-size:14px;color:var(--text-sub);">✅ 오행 분석 + 일간 성격 풀이 + 궁합까지</p>
+  </div>
+
+  <div class="card">
+    <div class="saju-form-group">
+      <label for="birthDate">생년월일 (양력)</label>
+      <input class="saju-input" type="date" id="birthDate" min="1900-01-01" max="2050-12-31" required />
+    </div>
+
+    <div class="saju-form-group">
+      <label for="birthTime">태어난 시간</label>
+      <input class="saju-input" type="time" id="birthTime" />
+      <label class="saju-checkbox-row">
+        <input type="checkbox" id="timeUnknown" />
+        태어난 시간을 몰라요 (시주 제외하고 계산)
+      </label>
+    </div>
+
+    <button class="btn btn-primary" id="submitBtn" type="button" style="margin-top:20px;">내 사주 보기</button>
+    <p id="errorMsg" style="display:none;color:#dc2626;font-size:13px;margin-top:10px;text-align:center;"></p>
+  </div>
+
+  <p class="notice">
+    ⚠️ 사주팔자 계산은 24절기 기준 만세력 알고리즘으로 정확하게 계산하지만, 해석 내용은 재미로 즐기는 콘텐츠예요. 중요한 의사결정의 근거로 사용하지 마세요. 1900~2050년생만 계산 가능해요.
+  </p>
+
+  <div class="footer">
+    <p><a href="../../index.html">← 다른 테스트도 보러가기</a></p>
+    <p><a href="../../privacy.html">개인정보처리방침</a> · <a href="../../terms.html">이용약관</a></p>
+  </div>
+</main>
+
+<script src="../../assets/js/vendor/manseryeok.min.js"></script>
+<script>
+  (function () {
+    var dateInput = document.getElementById("birthDate");
+    var timeInput = document.getElementById("birthTime");
+    var timeUnknown = document.getElementById("timeUnknown");
+    var submitBtn = document.getElementById("submitBtn");
+    var errorMsg = document.getElementById("errorMsg");
+
+    timeUnknown.addEventListener("change", function () {
+      timeInput.disabled = timeUnknown.checked;
+      if (timeUnknown.checked) timeInput.value = "";
+    });
+
+    submitBtn.addEventListener("click", function () {
+      errorMsg.style.display = "none";
+      var dateVal = dateInput.value;
+      if (!dateVal) {
+        errorMsg.textContent = "생년월일을 입력해주세요.";
+        errorMsg.style.display = "block";
+        return;
+      }
+      var parts = dateVal.split("-");
+      var y = parseInt(parts[0], 10);
+      var m = parseInt(parts[1], 10);
+      var d = parseInt(parts[2], 10);
+
+      if (!Manseryeok.isSupportedYear(y)) {
+        errorMsg.textContent = "1900~2050년생만 계산할 수 있어요.";
+        errorMsg.style.display = "block";
+        return;
+      }
+
+      var query = "y=" + y + "&m=" + m + "&d=" + d;
+      if (!timeUnknown.checked && timeInput.value) {
+        var tParts = timeInput.value.split(":");
+        query += "&h=" + parseInt(tParts[0], 10) + "&mi=" + parseInt(tParts[1], 10);
+      }
+      window.location.href = "result.html?" + query;
+    });
+  })();
+</script>
+
+</body>
+</html>

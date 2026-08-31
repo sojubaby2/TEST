@@ -101,4 +101,20 @@
   <url><loc>https://YOUR-DOMAIN.com/tests/nunchi/result-3.html</loc></url>
   <url><loc>https://YOUR-DOMAIN.com/tests/nunchi/result-4.html</loc></url>
   <url><loc>https://YOUR-DOMAIN.com/tests/nunchi/result-5.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-rat.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-ox.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-tiger.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-rabbit.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-dragon.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-snake.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-horse.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-goat.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-monkey.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-rooster.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-dog.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-pig.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/saju/</loc></url>
 </urlset>

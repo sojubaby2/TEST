@@ -28,6 +28,11 @@ animal = load_module("generate_animal_face_results", "generate_animal_face_resul
 lovelang = load_module("generate_love_language_results", "generate_love_language_results.py")
 pastlife = load_module("generate_past_life_results", "generate_past_life_results.py")
 mbti = load_module("mbti_common", "mbti_common.py")
+selfesteem = load_module("generate_self_esteem_results", "generate_self_esteem_results.py")
+attention = load_module("generate_attention_results", "generate_attention_results.py")
+darkside = load_module("generate_dark_side_results", "generate_dark_side_results.py")
+insaassa = load_module("generate_insa_assa_results", "generate_insa_assa_results.py")
+nunchi = load_module("generate_nunchi_results", "generate_nunchi_results.py")
 
 CARD_DIR = os.path.join(BASE_DIR, "assets", "img", "card")
 
@@ -40,6 +45,11 @@ JOBS = [
     (lovelang.RESULTS, "love-language-{}.png", "사랑의 언어 테스트"),
     (pastlife.RESULTS, "past-life-{}.png", "전생 테스트"),
     (mbti.RESULTS, "mbti-{}.png", "MBTI 테스트"),
+    (selfesteem.RESULTS, "self-esteem-{}.png", "자존감 테스트"),
+    (attention.RESULTS, "attention-{}.png", "관종력 테스트"),
+    (darkside.RESULTS, "dark-side-{}.png", "흑화 지수 테스트"),
+    (insaassa.RESULTS, "insa-assa-{}.png", "인싸-아싸 지수 테스트"),
+    (nunchi.RESULTS, "nunchi-{}.png", "눈치 테스트"),
 ]
 
 for results, filename_pattern, test_label in JOBS:

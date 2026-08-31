@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>나의 결과는 '천재 전략가형' | 마음캐치 IQ/EQ 테스트</title>
+<meta name="description" content="똑똑한 두뇌 + 따뜻한 마음까지 - 마음캐치 IQ/EQ 테스트 결과" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="나의 결과는 '천재 전략가형' 🦉" />
+<meta property="og:description" content="똑똑한 두뇌 + 따뜻한 마음까지 너의 IQ/EQ 결과도 확인해봐!" />
+<meta property="og:image" content="../../assets/img/og/iqeq-iq-hi-eq-hi.png" />
+<meta property="og:url" content="./result-iq-hi-eq-hi.html" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦉</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="../../index.html">🧠 마음캐치</a>
+</header>
+
+<main class="wrap">
+  <div class="result-hero" style="background:#1E3A5F;">
+    <div class="emoji">🦉</div>
+    <h1>천재 전략가형</h1>
+    <p class="subtitle">똑똑한 두뇌 + 따뜻한 마음까지</p>
+  </div>
+
+  <div class="card index-card">
+    <div class="dual-index-grid">
+      <div class="index-mini">
+        <p class="index-title">IQ 지수</p>
+        <p class="index-percent-sm" id="iqPercent">-</p>
+        <div class="index-gauge-outer">
+          <div class="index-gauge-inner" id="iqGauge" style="width:0%;"></div>
+        </div>
+      </div>
+      <div class="index-mini">
+        <p class="index-title">EQ 지수</p>
+        <p class="index-percent-sm" id="eqPercent">-</p>
+        <div class="index-gauge-outer">
+          <div class="index-gauge-inner" id="eqGauge" style="width:0%;"></div>
+        </div>
+      </div>
+    </div>
+    <p class="index-sub" id="indexSub" style="margin-top:14px;"></p>
+  </div>
+
+  <div class="card">
+    <p style="margin:0;font-size:15px;">논리적으로 문제를 잘 풀어내면서도 사람의 감정까지 세심하게 살필 줄 아는 타입이에요. 일도 관계도 다 챙기는 만능형이라 어디서든 신뢰받는 사람이 될 가능성이 높아요. 다만 너무 완벽하려다 스스로를 몰아붙이지 않게 조심하세요.</p>
+    <p class="section-title">이런 특징이 있어요</p>
+    <ul class="trait-list">
+      <li>논리적 문제 해결력</li>
+      <li>뛰어난 공감능력</li>
+      <li>일과 관계 모두 잘 챙김</li>
+    </ul>
+  </div>
+
+  <p class="section-title" style="margin-top:28px;">나와 잘 맞는 유형은?</p>
+  <div id="compatSection"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" id="shareBtn" type="button">결과 공유하기</button>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-secondary" id="copyBtn" type="button">🔗 링크 복사</button>
+    <button class="btn btn-secondary" id="downloadBtn" type="button">🖼️ 이미지 저장</button>
+  </div>
+
+  <a class="btn btn-secondary" href="index.html" style="margin-top:20px;">🔄 테스트 다시 하기</a>
+  <a class="btn btn-secondary" href="../../index.html">🏠 다른 테스트 보러가기</a>
+
+  <div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
+
+  <p class="notice">
+    ⚠️ 이 결과는 재미로 즐기는 콘텐츠이며, 공인된 IQ/EQ 검사가 아니에요. 실제 지능·정서 지수와는 차이가 있을 수 있어요.
+  </p>
+
+  <div class="footer">
+    <p><a href="../../privacy.html">개인정보처리방침</a> · <a href="../../terms.html">이용약관</a></p>
+  </div>
+</main>
+
+<script src="../../assets/js/iqeq-data.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script>
+  (function () {
+    var result = getIqEqById("iq-hi-eq-hi");
+    var params = new URLSearchParams(window.location.search);
+    var iqParam = params.get("iq");
+    var eqParam = params.get("eq");
+    var hasScore = iqParam !== null && eqParam !== null && !isNaN(Number(iqParam)) && !isNaN(Number(eqParam));
+
+    var iqNum = hasScore ? Number(iqParam) : 5;
+    var eqNum = hasScore ? Number(eqParam) : 9;
+    var iqPercent = Math.round((iqNum / IQEQ_MAX_IQ) * 100);
+    var eqPercent = Math.round((eqNum / IQEQ_MAX_EQ) * 100);
+
+    document.getElementById("iqPercent").textContent = iqPercent + "%";
+    document.getElementById("iqPercent").style.color = result.color;
+    document.getElementById("eqPercent").textContent = eqPercent + "%";
+    document.getElementById("eqPercent").style.color = result.color;
+
+    requestAnimationFrame(function () {
+      document.getElementById("iqGauge").style.width = iqPercent + "%";
+      document.getElementById("eqGauge").style.width = eqPercent + "%";
+    });
+    document.getElementById("iqGauge").style.background = result.color;
+    document.getElementById("eqGauge").style.background = result.color;
+
+    document.getElementById("indexSub").textContent = hasScore
+      ? "IQ " + iqNum + "/" + IQEQ_MAX_IQ + "문제 정답 · EQ " + eqNum + "/" + IQEQ_MAX_EQ + "점"
+      : result.title + " 유형의 평균적인 지수예요 (테스트를 하면 내 점수로 정확히 나와요)";
+
+    renderCompatSection("compatSection", IQEQ_RESULTS, result.compat);
+
+    document.getElementById("shareBtn").addEventListener("click", function () {
+      shareCurrentPage(
+        "나는 '" + result.title + "' " + result.emoji,
+        "너의 IQ/EQ 결과는? 마음캐치에서 확인해봐!"
+      );
+    });
+    document.getElementById("copyBtn").addEventListener("click", function () {
+      copyLinkToClipboard();
+    });
+    document.getElementById("downloadBtn").addEventListener("click", function () {
+      downloadImage(
+        "../../assets/img/card/iqeq-iq-hi-eq-hi.png",
+        "마음캐치_" + result.title + ".png"
+      );
+    });
+  })();
+</script>
+
+</body>
+</html>

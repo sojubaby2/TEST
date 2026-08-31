@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://YOUR-DOMAIN.com/</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/teto-egen/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/teto-egen/result-teto-m.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/teto-egen/result-teto-f.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/teto-egen/result-egen-m.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/teto-egen/result-egen-f.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-INTJ.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-INTP.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ENTJ.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ENTP.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-INFJ.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-INFP.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ENFJ.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ENFP.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ISTJ.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ISFJ.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ESTJ.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ESFJ.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ISTP.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ISFP.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ESTP.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/mbti/result-ESFP.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/sociopath/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/sociopath/result-1.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/sociopath/result-2.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/sociopath/result-3.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/sociopath/result-4.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/sociopath/result-5.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-style/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-style/result-1.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-style/result-2.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-style/result-3.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-style/result-4.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-style/result-5.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-language/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-language/result-words.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-language/result-time.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-language/result-gifts.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-language/result-acts.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/love-language/result-touch.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/animal-face/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/animal-face/result-dog.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/animal-face/result-cat.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/animal-face/result-fox.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/animal-face/result-bear.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/animal-face/result-rabbit.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/past-life/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/past-life/result-pharaoh.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/past-life/result-viking.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/past-life/result-scholar.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/past-life/result-merchant.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/past-life/result-artist.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/iqeq/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/iqeq/result-iq-hi-eq-hi.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/iqeq/result-iq-hi-eq-lo.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/iqeq/result-iq-lo-eq-hi.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/iqeq/result-iq-lo-eq-lo.html</loc></url>
+</urlset>

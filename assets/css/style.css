@@ -822,14 +822,17 @@ a {
 
 .tarot-magician {
   position: absolute;
-  top: 4px;
+  top: -18px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 40px;
+  width: 108px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(76, 29, 149, 0.3);
   opacity: 0;
   pointer-events: none;
   z-index: 20;
-  transform-origin: 70% 90%;
+  transform-origin: 50% 100%;
 }
 
 .tarot-deck-wrap.active .tarot-magician {

@@ -66,4 +66,39 @@
   <url><loc>https://YOUR-DOMAIN.com/tests/iqeq/result-iq-hi-eq-lo.html</loc></url>
   <url><loc>https://YOUR-DOMAIN.com/tests/iqeq/result-iq-lo-eq-hi.html</loc></url>
   <url><loc>https://YOUR-DOMAIN.com/tests/iqeq/result-iq-lo-eq-lo.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/self-esteem/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/self-esteem/result-1.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/self-esteem/result-2.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/self-esteem/result-3.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/self-esteem/result-4.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/self-esteem/result-5.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/attention/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/attention/result-1.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/attention/result-2.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/attention/result-3.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/attention/result-4.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/attention/result-5.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/dark-side/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/dark-side/result-1.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/dark-side/result-2.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/dark-side/result-3.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/dark-side/result-4.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/dark-side/result-5.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/insa-assa/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/insa-assa/result-1.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/insa-assa/result-2.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/insa-assa/result-3.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/insa-assa/result-4.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/insa-assa/result-5.html</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/nunchi/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/nunchi/result-1.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/nunchi/result-2.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/nunchi/result-3.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/nunchi/result-4.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/nunchi/result-5.html</loc></url>
 </urlset>

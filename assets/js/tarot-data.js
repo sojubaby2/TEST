@@ -1114,20 +1114,49 @@ function getTarotTodayDateStr() {
   return y + "-" + m + "-" + day;
 }
 
-// 방문자별 고유 시드를 로컬스토리지에 저장해서, 같은 사람이 같은 날 다시 방문해도
-// 같은 카드가 나오도록 함 (날짜가 바뀌면 자동으로 다른 카드로 갱신됨)
+// 쿠키 read/write 헬퍼 (로컬스토리지가 막힌 환경을 위한 백업 저장소)
+function tarotGetCookie(name) {
+  var match = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
+function tarotSetCookie(name, value) {
+  var oneYear = 60 * 60 * 24 * 365;
+  document.cookie =
+    name + "=" + encodeURIComponent(value) + "; max-age=" + oneYear + "; path=/; SameSite=Lax";
+}
+
+// 방문자별 고유 시드를 저장해서, 같은 사람이 같은 날 다시 방문하면 항상 같은 카드가
+// 나오도록 함(날짜가 바뀌면 자동으로 다른 카드로 갱신됨). 로컬스토리지와 쿠키 두 곳에
+// 같이 저장해서, 한쪽이 초기화되거나 막혀 있어도(예: 프라이빗 브라우징 일부 환경) 다른
+// 쪽에 남아있으면 계속 같은 카드가 유지되도록 이중으로 보강함.
+// 참고: IP 주소는 같은 와이파이/사무실 네트워크를 쓰는 다른 사람과 겹치거나, 통신사
+// 모바일 네트워크에서는 아주 많은 사람이 같은 IP를 공유하는 경우(CGNAT)가 흔해서
+// 오히려 "다른 사람인데 같은 카드"가 나오는 문제가 생길 수 있음 — 그래서 IP 대신
+// 이 방문자 고유 시드 방식을 사용함.
 function getTarotVisitorSeed() {
   var KEY = "maumcatch_tarot_seed";
+  var fromStorage = null;
+  var fromCookie = null;
   try {
-    var existing = localStorage.getItem(KEY);
-    if (existing) return existing;
-    var fresh = "v" + Date.now() + "-" + Math.floor(Math.random() * 1000000);
-    localStorage.setItem(KEY, fresh);
-    return fresh;
-  } catch (e) {
-    // 로컬스토리지를 못 쓰는 환경이면 날짜만으로 결정 (그날은 모두 같은 카드)
-    return "no-storage";
+    fromStorage = localStorage.getItem(KEY);
+  } catch (e) {}
+  try {
+    fromCookie = tarotGetCookie(KEY);
+  } catch (e) {}
+
+  var existing = fromStorage || fromCookie;
+  if (existing) {
+    // 한쪽에만 남아있었다면 다른 쪽도 같이 채워서 앞으로 더 안정적으로 유지되게 함
+    try { if (!fromStorage) localStorage.setItem(KEY, existing); } catch (e) {}
+    try { if (!fromCookie) tarotSetCookie(KEY, existing); } catch (e) {}
+    return existing;
   }
+
+  var fresh = "v" + Date.now() + "-" + Math.floor(Math.random() * 1000000);
+  try { localStorage.setItem(KEY, fresh); } catch (e) {}
+  try { tarotSetCookie(KEY, fresh); } catch (e) {}
+  return fresh;
 }
 
 function getTodayTarotDraw() {

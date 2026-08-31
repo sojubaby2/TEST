@@ -29,8 +29,19 @@
   </section>
 
   <div id="drawStage">
-    <div class="tarot-deck-wrap">
+    <div class="tarot-deck-wrap" id="tarotDeckWrap">
+      <div class="tarot-magician" id="tarotMagician">🧙‍♂️</div>
+      <span class="tarot-sparkle s1">✨</span>
+      <span class="tarot-sparkle s2">⭐</span>
+      <span class="tarot-sparkle s3">✨</span>
+      <span class="tarot-sparkle s4">💫</span>
+      <span class="tarot-sparkle s5">⭐</span>
+      <span class="tarot-sparkle s6">✨</span>
       <div class="tarot-deck" id="tarotDeck">
+        <div class="tarot-back-card deco"></div>
+        <div class="tarot-back-card deco"></div>
+        <div class="tarot-back-card deco"></div>
+        <div class="tarot-back-card deco"></div>
         <div class="tarot-back-card" id="tarotBackCard">🔮</div>
       </div>
     </div>
@@ -81,12 +92,14 @@
     var reversed = draw.reversed;
 
     var deck = document.getElementById("tarotDeck");
+    var deckWrap = document.getElementById("tarotDeckWrap");
     var backCard = document.getElementById("tarotBackCard");
     var drawStage = document.getElementById("drawStage");
     var tarotStage = document.getElementById("tarotStage");
     var flipCard = document.getElementById("tarotFlipCard");
     var frontFace = document.getElementById("tarotFrontFace");
     var resultSection = document.getElementById("tarotResultSection");
+    var tarotHint = document.getElementById("tarotHint");
 
     function buildFrontFace() {
       frontFace.style.background =
@@ -126,10 +139,18 @@
       resultSection.classList.add("show");
     }
 
+    var drawing = false;
+
     function startDraw() {
+      if (drawing) return;
+      drawing = true;
+      backCard.style.pointerEvents = "none";
+      tarotHint.textContent = "마법사가 카드를 섞고 있어요 🔮✨";
+      deckWrap.classList.add("active");
       deck.classList.add("shuffling");
       setTimeout(function () {
         deck.classList.remove("shuffling");
+        deckWrap.classList.remove("active");
         deck.classList.add("drawing");
         setTimeout(function () {
           drawStage.style.display = "none";
@@ -143,7 +164,7 @@
           });
           setTimeout(showResult, 780);
         }, 480);
-      }, 550);
+      }, 1300);
     }
 
     backCard.addEventListener("click", startDraw);

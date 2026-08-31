@@ -109,6 +109,121 @@ function getDaystemResult(stemChar) {
   return DAYSTEM_RESULTS.find(function (r) { return r.id === stemChar; });
 }
 
+// ============================================================
+// 4주(년주/월주/일주/시주) 클릭 시 보여주는 "시간대별 운세"
+// 시주=오늘, 일주=이번달, 월주=올해, 년주=평생 으로 매핑함
+// (작은 단위인 시주는 가장 짧은 오늘, 가장 큰 단위인 년주는 평생으로 매칭)
+// ============================================================
+
+const PILLAR_SCALE_META = {
+  hour: { key: "hour", label: "오늘", desc: "오늘 하루의 흐름", refresh: "매일 새로 바뀌어요" },
+  day: { key: "day", label: "이번달", desc: "이번 달의 전반적인 흐름", refresh: "매달 새로 바뀌어요" },
+  month: { key: "month", label: "올해", desc: "올 한 해의 큰 흐름", refresh: "매년 새로 바뀌어요" },
+  year: { key: "year", label: "평생", desc: "타고난 사주가 인생 전반에 미치는 흐름", refresh: "태어난 사주 자체라 변하지 않아요" },
+};
+
+const SCALE_FORTUNE = {
+  today: [
+    "오늘은 뜻밖의 좋은 소식이 들려올 수 있는 날이에요.",
+    "평소보다 컨디션이 안정적이라 무슨 일이든 무난하게 풀려요.",
+    "작은 실수가 생길 수 있지만 크게 번지지 않으니 여유를 가지세요.",
+    "주변 사람의 말 한마디에서 힌트를 얻을 수 있는 날이에요.",
+    "오늘은 새로운 시도를 하기에 나쁘지 않은 타이밍이에요.",
+    "생각이 많아지는 하루예요. 중요한 결정은 내일로 미뤄도 괜찮아요.",
+    "예상치 못한 지출이나 일정 변경에 대비해 여유를 남겨두세요.",
+    "직감이 유독 잘 맞는 날이라 마음이 가는 쪽을 믿어도 좋아요.",
+    "괜히 예민해질 수 있으니 사소한 일에는 너그럽게 넘어가세요.",
+    "오늘 베푼 친절이 생각보다 크게 돌아올 수 있어요.",
+    "가벼운 만남이나 대화 속에서 좋은 인연의 씨앗이 생길 수 있어요.",
+    "묵혀뒀던 고민이 뜻밖에 쉽게 풀리는 하루예요.",
+  ],
+  month: [
+    "이번 달은 그동안의 노력이 서서히 드러나기 시작하는 시기예요.",
+    "인간관계에서 오해가 생기기 쉬우니 말을 조금 더 신경 써서 하면 좋아요.",
+    "재정적으로는 무리한 지출보다 계획적인 관리가 필요한 달이에요.",
+    "새로운 사람이나 기회가 자연스럽게 다가올 수 있는 시기예요.",
+    "일이 조금 더디게 느껴질 수 있지만 방향은 나쁘지 않아요.",
+    "몸 상태를 잘 챙기면 이번 달 컨디션을 좋게 유지할 수 있어요.",
+    "미뤄둔 일을 정리하기 좋은 흐름이 이어지는 달이에요.",
+    "주변의 도움을 받기 좋은 시기이니 혼자 끙끙대지 마세요.",
+    "감정 기복이 있을 수 있지만 한 주만 지나면 안정을 찾아요.",
+    "생각지 못한 곳에서 작은 성과가 나타날 수 있는 달이에요.",
+    "이번 달은 속도보다 방향을 점검하는 게 더 중요해요.",
+    "가까운 사람과의 관계에 조금 더 시간을 투자하면 좋은 결실이 있어요.",
+  ],
+  year: [
+    "올해는 그동안 쌓아온 것들이 결실을 맺기 시작하는 해예요.",
+    "변화의 기운이 강한 해라 새로운 환경에 놓일 가능성이 높아요.",
+    "재물운의 흐름이 나쁘지 않지만 큰 지출은 신중하게 결정하세요.",
+    "인간관계의 폭이 넓어지고, 그중 의미 있는 인연도 생길 수 있어요.",
+    "건강 관리를 미루지 않는다면 무난하게 흘러가는 한 해예요.",
+    "커리어나 학업 면에서 한 단계 성장할 기회가 찾아오는 해예요.",
+    "예상치 못한 변수가 생길 수 있으니 계획에 여유를 두는 게 좋아요.",
+    "올해는 안정보다 도전 쪽으로 마음이 기우는 흐름이에요.",
+    "주변 사람들과의 협업에서 좋은 결과가 나올 가능성이 높아요.",
+    "감정적으로 성숙해지는 계기가 되는 사건이 있을 수 있어요.",
+    "재충전이 필요한 시기가 한 번쯤 찾아오니 무리하지 마세요.",
+    "올해의 선택이 앞으로 몇 년의 방향을 결정할 수 있는 해예요.",
+  ],
+  lifetime: [
+    "타고난 기질을 살려서 꾸준히 나아간다면 늦더라도 확실하게 원하는 것을 이루는 사주예요.",
+    "인생의 굴곡이 아예 없지는 않지만, 그때마다 스스로 다시 일어서는 힘을 가진 사주예요.",
+    "사람 복이 있는 편이라 어려운 순간마다 주변의 도움을 받는 경우가 많은 사주예요.",
+    "초반보다 중후반에 더 크게 빛을 발하는 대기만성형 흐름을 가진 사주예요.",
+    "직감과 재능이 뛰어나지만, 그걸 꾸준히 밀고 나가는 끈기를 기르면 더 큰 성취를 이루는 사주예요.",
+    "변화와 이동이 잦은 인생을 살 가능성이 높고, 그 변화 속에서 기회를 잘 잡는 사주예요.",
+    "겉으로 드러나는 것보다 내실을 다지는 데 강한, 실속 있는 인생을 사는 사주예요.",
+    "관계 속에서 배우고 성장하는 힘이 강해서, 좋은 인연이 인생의 중요한 전환점이 되는 사주예요.",
+  ],
+};
+
+// 각 오행별로 시간대 운세 앞에 붙는 한 줄 키워드
+const ELEMENT_KEYWORD = {
+  목: "성장과 확장의 기운",
+  화: "열정과 표현의 기운",
+  토: "안정과 신뢰의 기운",
+  금: "결단과 정리의 기운",
+  수: "지혜와 유연함의 기운",
+};
+
+function hashSeedSaju(str) {
+  var h = 0;
+  for (var i = 0; i < str.length; i++) {
+    h = (h * 31 + str.charCodeAt(i)) >>> 0;
+  }
+  return h;
+}
+
+function getPillarScaleFortune(pillarValue, scaleKey) {
+  var now = new Date();
+  var y = now.getFullYear();
+  var m = String(now.getMonth() + 1).padStart(2, "0");
+  var d = String(now.getDate()).padStart(2, "0");
+
+  var seed, pool, refreshLabel;
+  if (scaleKey === "hour") {
+    seed = pillarValue + "-" + y + "-" + m + "-" + d;
+    pool = SCALE_FORTUNE.today;
+  } else if (scaleKey === "day") {
+    seed = pillarValue + "-" + y + "-" + m;
+    pool = SCALE_FORTUNE.month;
+  } else if (scaleKey === "month") {
+    seed = pillarValue + "-" + y;
+    pool = SCALE_FORTUNE.year;
+  } else {
+    seed = pillarValue;
+    pool = SCALE_FORTUNE.lifetime;
+  }
+
+  var text = pool[hashSeedSaju(seed) % pool.length];
+  var branchChar = pillarValue.charAt(1);
+  var stemChar = pillarValue.charAt(0);
+  var element = (STEM_INFO[stemChar] && STEM_INFO[stemChar].element) || BRANCH_ELEMENT[branchChar];
+  var keyword = ELEMENT_KEYWORD[element] || "";
+
+  return { text: text, keyword: keyword, element: element };
+}
+
 // 사주 8글자(또는 시주 없으면 6글자)에서 오행 개수를 집계
 function countElements(saju) {
   var counts = { 목: 0, 화: 0, 토: 0, 금: 0, 수: 0 };

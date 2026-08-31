@@ -3,46 +3,16 @@
    ============================================================ */
 
 const NUNCHI_QUESTIONS = [
-  { text: "회의 분위기가 갑자기 싸해지면?", options: [
-      { text: "전혀 눈치 못 채고 하던 말을 계속한다", score: 0 },
-      { text: "뭔가 이상하다는 건 느낀다", score: 1 },
-      { text: "바로 분위기를 파악하고 화제를 돌린다", score: 2 } ] },
-  { text: "친구가 말은 괜찮다고 하는데 표정이 안 좋으면?", options: [
-      { text: "말 그대로 믿는다", score: 0 },
-      { text: "뭔가 있나 싶지만 넘어간다", score: 1 },
-      { text: "속마음을 바로 알아차린다", score: 2 } ] },
-  { text: "단체 대화에서 나는?", options: [
-      { text: "내 할 말만 하는 편이다", score: 0 },
-      { text: "분위기를 보긴 하지만 놓칠 때가 많다", score: 1 },
-      { text: "말하기 전에 분위기부터 살핀다", score: 2 } ] },
-  { text: "상대가 은근히 돌려서 말하면?", options: [
-      { text: "그냥 있는 그대로 받아들인다", score: 0 },
-      { text: "가끔 숨은 뜻을 눈치챈다", score: 1 },
-      { text: "바로 진짜 의도를 알아차린다", score: 2 } ] },
-  { text: "내가 실수로 분위기를 어색하게 만들면?", options: [
-      { text: "전혀 눈치채지 못한다", score: 0 },
-      { text: "나중에서야 깨닫는다", score: 1 },
-      { text: "바로 알아채고 수습한다", score: 2 } ] },
-  { text: "선물이나 이벤트를 준비할 때 나는?", options: [
-      { text: "그냥 내가 좋아하는 걸 고른다", score: 0 },
-      { text: "대충 취향을 고려한다", score: 1 },
-      { text: "상대가 은근히 흘린 힌트까지 캐치한다", score: 2 } ] },
-  { text: "사람들이 나에 대해 하는 말은?", options: [
-      { text: "눈치가 없다는 말을 자주 듣는다", score: 0 },
-      { text: "무난하다는 말을 듣는다", score: 1 },
-      { text: "눈치가 빠르다는 말을 자주 듣는다", score: 2 } ] },
-  { text: "모임에서 누군가 불편해 보이면?", options: [
-      { text: "잘 못 알아챈다", score: 0 },
-      { text: "느낌은 오지만 어떻게 할지 모른다", score: 1 },
-      { text: "바로 알아채고 자연스럽게 챙긴다", score: 2 } ] },
-  { text: "상사나 웃어른의 기분이 안 좋아 보이면?", options: [
-      { text: "평소처럼 똑같이 행동한다", score: 0 },
-      { text: "조금 조심스러워진다", score: 1 },
-      { text: "바로 알아채고 알아서 조심한다", score: 2 } ] },
-  { text: "대화 중 상대가 말을 줄이고 싶어하면?", options: [
-      { text: "눈치 못 채고 계속 이야기한다", score: 0 },
-      { text: "뭔가 이상하다 싶으면서도 계속한다", score: 1 },
-      { text: "바로 알아채고 대화를 마무리한다", score: 2 } ] },
+  { text: "회의 분위기가 갑자기 싸해지면?", options: [ { text: "바로 분위기를 파악하고 화제를 돌린다", score: 2 }, { text: "전혀 눈치 못 채고 하던 말을 계속한다", score: 0 }, { text: "뭔가 이상하다는 건 느낀다", score: 1 } ] },
+  { text: "친구가 말은 괜찮다고 하는데 표정이 안 좋으면?", options: [ { text: "말 그대로 믿는다", score: 0 }, { text: "속마음을 바로 알아차린다", score: 2 }, { text: "뭔가 있나 싶지만 넘어간다", score: 1 } ] },
+  { text: "단체 대화에서 나는?", options: [ { text: "분위기를 보긴 하지만 놓칠 때가 많다", score: 1 }, { text: "내 할 말만 하는 편이다", score: 0 }, { text: "말하기 전에 분위기부터 살핀다", score: 2 } ] },
+  { text: "상대가 은근히 돌려서 말하면?", options: [ { text: "가끔 숨은 뜻을 눈치챈다", score: 1 }, { text: "그냥 있는 그대로 받아들인다", score: 0 }, { text: "바로 진짜 의도를 알아차린다", score: 2 } ] },
+  { text: "내가 실수로 분위기를 어색하게 만들면?", options: [ { text: "전혀 눈치채지 못한다", score: 0 }, { text: "바로 알아채고 수습한다", score: 2 }, { text: "나중에서야 깨닫는다", score: 1 } ] },
+  { text: "선물이나 이벤트를 준비할 때 나는?", options: [ { text: "상대가 은근히 흘린 힌트까지 캐치한다", score: 2 }, { text: "그냥 내가 좋아하는 걸 고른다", score: 0 }, { text: "대충 취향을 고려한다", score: 1 } ] },
+  { text: "사람들이 나에 대해 하는 말은?", options: [ { text: "눈치가 빠르다는 말을 자주 듣는다", score: 2 }, { text: "무난하다는 말을 듣는다", score: 1 }, { text: "눈치가 없다는 말을 자주 듣는다", score: 0 } ] },
+  { text: "모임에서 누군가 불편해 보이면?", options: [ { text: "바로 알아채고 자연스럽게 챙긴다", score: 2 }, { text: "느낌은 오지만 어떻게 할지 모른다", score: 1 }, { text: "잘 못 알아챈다", score: 0 } ] },
+  { text: "상사나 웃어른의 기분이 안 좋아 보이면?", options: [ { text: "조금 조심스러워진다", score: 1 }, { text: "평소처럼 똑같이 행동한다", score: 0 }, { text: "바로 알아채고 알아서 조심한다", score: 2 } ] },
+  { text: "대화 중 상대가 말을 줄이고 싶어하면?", options: [ { text: "바로 알아채고 대화를 마무리한다", score: 2 }, { text: "뭔가 이상하다 싶으면서도 계속한다", score: 1 }, { text: "눈치 못 채고 계속 이야기한다", score: 0 } ] },
 ];
 
 const NUNCHI_MAX_SCORE = 20;

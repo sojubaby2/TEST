@@ -3,46 +3,16 @@
    ============================================================ */
 
 const DARKSIDE_QUESTIONS = [
-  { text: "배신을 당하면 나는?", options: [
-      { text: "그래도 이해해보려 노력한다", score: 0 },
-      { text: "거리를 두고 서서히 멀어진다", score: 1 },
-      { text: "반드시 되갚아준다", score: 2 } ] },
-  { text: "억울한 일을 당했을 때 나는?", options: [
-      { text: "그냥 참고 넘긴다", score: 0 },
-      { text: "속으로 곱씹으며 삭인다", score: 1 },
-      { text: "언젠가 반드시 갚아준다고 다짐한다", score: 2 } ] },
-  { text: "영화 속 악역을 보면 나는?", options: [
-      { text: "그래도 주인공을 응원한다", score: 0 },
-      { text: "가끔 악역 사정도 이해가 간다", score: 1 },
-      { text: "악역의 서사에 완전히 몰입한다", score: 2 } ] },
-  { text: "화가 났을 때 나는?", options: [
-      { text: "표현을 잘 못하고 삭인다", score: 0 },
-      { text: "차갑게 말수가 줄어든다", score: 1 },
-      { text: "눈빛부터 달라진다는 말을 듣는다", score: 2 } ] },
-  { text: "믿었던 사람이 뒤에서 험담했다는 걸 알면?", options: [
-      { text: "속상하지만 티내지 않는다", score: 0 },
-      { text: "그 사람과는 자연스레 멀어진다", score: 1 },
-      { text: "똑같이 갚아주거나 확실히 짚고 넘어간다", score: 2 } ] },
-  { text: "손해를 보는 상황에서 나는?", options: [
-      { text: "그냥 넘어가는 편이다", score: 0 },
-      { text: "다음엔 손해 안 보려고 조심한다", score: 1 },
-      { text: "손해 본 만큼 반드시 되찾는다", score: 2 } ] },
-  { text: "나를 무시하는 사람을 만나면?", options: [
-      { text: "굳이 신경 쓰지 않는다", score: 0 },
-      { text: "겉으론 웃지만 속으로 정리한다", score: 1 },
-      { text: "확실하게 본때를 보여준다", score: 2 } ] },
-  { text: "감정을 숨기는 능력은?", options: [
-      { text: "다 티가 나는 편이다", score: 0 },
-      { text: "웬만하면 감춘다", score: 1 },
-      { text: "속을 전혀 들키지 않는다", score: 2 } ] },
-  { text: "복수보다 중요한 건?", options: [
-      { text: "화해와 용서", score: 0 },
-      { text: "그때그때 다르다", score: 1 },
-      { text: "확실한 결과와 되갚음", score: 2 } ] },
-  { text: "주변 사람들이 나를 보고 하는 말은?", options: [
-      { text: "착하고 순하다", score: 0 },
-      { text: "은근 속을 모르겠다", score: 1 },
-      { text: "건드리면 무섭다", score: 2 } ] },
+  { text: "배신을 당하면 나는?", options: [ { text: "반드시 되갚아준다", score: 2 }, { text: "거리를 두고 서서히 멀어진다", score: 1 }, { text: "그래도 이해해보려 노력한다", score: 0 } ] },
+  { text: "억울한 일을 당했을 때 나는?", options: [ { text: "속으로 곱씹으며 삭인다", score: 1 }, { text: "언젠가 반드시 갚아준다고 다짐한다", score: 2 }, { text: "그냥 참고 넘긴다", score: 0 } ] },
+  { text: "영화 속 악역을 보면 나는?", options: [ { text: "악역의 서사에 완전히 몰입한다", score: 2 }, { text: "가끔 악역 사정도 이해가 간다", score: 1 }, { text: "그래도 주인공을 응원한다", score: 0 } ] },
+  { text: "화가 났을 때 나는?", options: [ { text: "표현을 잘 못하고 삭인다", score: 0 }, { text: "눈빛부터 달라진다는 말을 듣는다", score: 2 }, { text: "차갑게 말수가 줄어든다", score: 1 } ] },
+  { text: "믿었던 사람이 뒤에서 험담했다는 걸 알면?", options: [ { text: "그 사람과는 자연스레 멀어진다", score: 1 }, { text: "속상하지만 티내지 않는다", score: 0 }, { text: "똑같이 갚아주거나 확실히 짚고 넘어간다", score: 2 } ] },
+  { text: "손해를 보는 상황에서 나는?", options: [ { text: "손해 본 만큼 반드시 되찾는다", score: 2 }, { text: "그냥 넘어가는 편이다", score: 0 }, { text: "다음엔 손해 안 보려고 조심한다", score: 1 } ] },
+  { text: "나를 무시하는 사람을 만나면?", options: [ { text: "확실하게 본때를 보여준다", score: 2 }, { text: "굳이 신경 쓰지 않는다", score: 0 }, { text: "겉으론 웃지만 속으로 정리한다", score: 1 } ] },
+  { text: "감정을 숨기는 능력은?", options: [ { text: "웬만하면 감춘다", score: 1 }, { text: "속을 전혀 들키지 않는다", score: 2 }, { text: "다 티가 나는 편이다", score: 0 } ] },
+  { text: "복수보다 중요한 건?", options: [ { text: "화해와 용서", score: 0 }, { text: "확실한 결과와 되갚음", score: 2 }, { text: "그때그때 다르다", score: 1 } ] },
+  { text: "주변 사람들이 나를 보고 하는 말은?", options: [ { text: "착하고 순하다", score: 0 }, { text: "건드리면 무섭다", score: 2 }, { text: "은근 속을 모르겠다", score: 1 } ] },
 ];
 
 const DARKSIDE_MAX_SCORE = 20;

@@ -68,34 +68,34 @@ const IQEQ_EQ_QUESTIONS = [
     text: "친구가 우울한 표정으로 대화 중 자꾸 말을 흐린다면 나는?",
     options: [
       { text: "별생각 없이 그냥 넘어간다", score: 0 },
-      { text: "이상하다고 느끼지만 먼저 묻지는 않는다", score: 1 },
       { text: "\"무슨 일 있어? 괜찮아?\" 하고 먼저 물어본다", score: 2 },
+      { text: "이상하다고 느끼지만 먼저 묻지는 않는다", score: 1 },
     ],
   },
   {
     type: "eq",
     text: "화가 나는 상황에서 나는 주로?",
     options: [
-      { text: "감정이 격해져서 바로 표출한다", score: 0 },
-      { text: "잠깐 참지만 티가 난다", score: 1 },
       { text: "잠시 감정을 가라앉히고 차분하게 표현한다", score: 2 },
+      { text: "잠깐 참지만 티가 난다", score: 1 },
+      { text: "감정이 격해져서 바로 표출한다", score: 0 },
     ],
   },
   {
     type: "eq",
     text: "상대방이 나에게 서운한 티를 낼 때 나는?",
     options: [
-      { text: "왜 그러는지 잘 모르겠고 신경 안 쓴다", score: 0 },
-      { text: "눈치는 채지만 어떻게 반응해야 할지 모르겠다", score: 1 },
       { text: "상대의 감정을 먼저 살피고 대화로 풀어간다", score: 2 },
+      { text: "눈치는 채지만 어떻게 반응해야 할지 모르겠다", score: 1 },
+      { text: "왜 그러는지 잘 모르겠고 신경 안 쓴다", score: 0 },
     ],
   },
   {
     type: "eq",
     text: "스트레스를 받을 때 나는?",
     options: [
-      { text: "주변 사람들에게 짜증을 내기도 한다", score: 0 },
       { text: "티 내지 않으려 하지만 속으로 쌓인다", score: 1 },
+      { text: "주변 사람들에게 짜증을 내기도 한다", score: 0 },
       { text: "스스로 감정을 잘 조절하고 해소하는 방법을 안다", score: 2 },
     ],
   },
@@ -103,8 +103,8 @@ const IQEQ_EQ_QUESTIONS = [
     type: "eq",
     text: "팀 회의에서 의견 충돌이 생기면 나는?",
     options: [
-      { text: "내 의견을 강하게 밀어붙인다", score: 0 },
       { text: "일단 상황을 지켜본다", score: 1 },
+      { text: "내 의견을 강하게 밀어붙인다", score: 0 },
       { text: "양쪽 입장을 듣고 중재하려 한다", score: 2 },
     ],
   },
@@ -112,9 +112,9 @@ const IQEQ_EQ_QUESTIONS = [
     type: "eq",
     text: "다른 사람의 성공 소식을 들었을 때 내 감정은?",
     options: [
-      { text: "솔직히 질투나 비교하는 마음이 먼저 든다", score: 0 },
-      { text: "무덤덤하다", score: 1 },
       { text: "진심으로 축하해주는 마음이 먼저 든다", score: 2 },
+      { text: "무덤덤하다", score: 1 },
+      { text: "솔직히 질투나 비교하는 마음이 먼저 든다", score: 0 },
     ],
   },
 ];

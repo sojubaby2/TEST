@@ -4,46 +4,16 @@
    ============================================================ */
 
 const SELFESTEEM_QUESTIONS = [
-  { text: "다른 사람과 나를 비교할 때 나는?", options: [
-      { text: "자주 비교하며 위축된다", score: 0 },
-      { text: "가끔 비교하지만 크게 신경 쓰지 않는다", score: 1 },
-      { text: "비교보다는 내 페이스를 지킨다", score: 2 } ] },
-  { text: "실수를 했을 때 나는?", options: [
-      { text: "며칠씩 곱씹으며 자책한다", score: 0 },
-      { text: "잠깐 속상해하다 넘어간다", score: 1 },
-      { text: "그럴 수 있다고 넘기고 바로 회복한다", score: 2 } ] },
-  { text: "칭찬을 받으면 나는?", options: [
-      { text: "괜히 부담스럽고 못 믿겠다", score: 0 },
-      { text: "고맙긴 한데 어색하다", score: 1 },
-      { text: "기분 좋게 그대로 받아들인다", score: 2 } ] },
-  { text: "거절을 해야 할 때 나는?", options: [
-      { text: "미안해서 거절을 잘 못한다", score: 0 },
-      { text: "눈치 보면서도 겨우 거절한다", score: 1 },
-      { text: "필요하면 편하게 거절한다", score: 2 } ] },
-  { text: "SNS에서 다른 사람의 화려한 일상을 보면?", options: [
-      { text: "나만 뒤처진 것 같아 초조하다", score: 0 },
-      { text: "부럽긴 하지만 곧 잊는다", score: 1 },
-      { text: "그냥 그 사람 일상이라고 생각한다", score: 2 } ] },
-  { text: "누군가 나를 비판하면 나는?", options: [
-      { text: "그 말이 계속 맴돌며 힘들다", score: 0 },
-      { text: "속상하지만 하루 정도면 괜찮아진다", score: 1 },
-      { text: "필요한 부분만 받아들이고 넘어간다", score: 2 } ] },
-  { text: "결정을 내릴 때 나는?", options: [
-      { text: "다른 사람 의견에 많이 휘둘린다", score: 0 },
-      { text: "참고는 하되 결국 고민을 많이 한다", score: 1 },
-      { text: "내 판단을 믿고 결정한다", score: 2 } ] },
-  { text: "혼자 있는 시간에 나는?", options: [
-      { text: "괜히 불안하고 외롭다", score: 0 },
-      { text: "가끔 심심하지만 견딜만하다", score: 1 },
-      { text: "온전히 편안하고 좋다", score: 2 } ] },
-  { text: "거울 속 내 모습을 보면?", options: [
-      { text: "단점만 먼저 눈에 띈다", score: 0 },
-      { text: "그냥 그런가보다 한다", score: 1 },
-      { text: "나름 괜찮다고 생각한다", score: 2 } ] },
-  { text: "목표를 이루지 못했을 때 나는?", options: [
-      { text: "나는 역시 안 된다고 생각한다", score: 0 },
-      { text: "아쉽지만 다음을 기약한다", score: 1 },
-      { text: "과정에서 배운 걸 찾으려 한다", score: 2 } ] },
+  { text: "다른 사람과 나를 비교할 때 나는?", options: [ { text: "비교보다는 내 페이스를 지킨다", score: 2 }, { text: "자주 비교하며 위축된다", score: 0 }, { text: "가끔 비교하지만 크게 신경 쓰지 않는다", score: 1 } ] },
+  { text: "실수를 했을 때 나는?", options: [ { text: "그럴 수 있다고 넘기고 바로 회복한다", score: 2 }, { text: "잠깐 속상해하다 넘어간다", score: 1 }, { text: "며칠씩 곱씹으며 자책한다", score: 0 } ] },
+  { text: "칭찬을 받으면 나는?", options: [ { text: "고맙긴 한데 어색하다", score: 1 }, { text: "괜히 부담스럽고 못 믿겠다", score: 0 }, { text: "기분 좋게 그대로 받아들인다", score: 2 } ] },
+  { text: "거절을 해야 할 때 나는?", options: [ { text: "눈치 보면서도 겨우 거절한다", score: 1 }, { text: "필요하면 편하게 거절한다", score: 2 }, { text: "미안해서 거절을 잘 못한다", score: 0 } ] },
+  { text: "SNS에서 다른 사람의 화려한 일상을 보면?", options: [ { text: "부럽긴 하지만 곧 잊는다", score: 1 }, { text: "그냥 그 사람 일상이라고 생각한다", score: 2 }, { text: "나만 뒤처진 것 같아 초조하다", score: 0 } ] },
+  { text: "누군가 나를 비판하면 나는?", options: [ { text: "속상하지만 하루 정도면 괜찮아진다", score: 1 }, { text: "그 말이 계속 맴돌며 힘들다", score: 0 }, { text: "필요한 부분만 받아들이고 넘어간다", score: 2 } ] },
+  { text: "결정을 내릴 때 나는?", options: [ { text: "다른 사람 의견에 많이 휘둘린다", score: 0 }, { text: "내 판단을 믿고 결정한다", score: 2 }, { text: "참고는 하되 결국 고민을 많이 한다", score: 1 } ] },
+  { text: "혼자 있는 시간에 나는?", options: [ { text: "가끔 심심하지만 견딜만하다", score: 1 }, { text: "괜히 불안하고 외롭다", score: 0 }, { text: "온전히 편안하고 좋다", score: 2 } ] },
+  { text: "거울 속 내 모습을 보면?", options: [ { text: "그냥 그런가보다 한다", score: 1 }, { text: "단점만 먼저 눈에 띈다", score: 0 }, { text: "나름 괜찮다고 생각한다", score: 2 } ] },
+  { text: "목표를 이루지 못했을 때 나는?", options: [ { text: "과정에서 배운 걸 찾으려 한다", score: 2 }, { text: "아쉽지만 다음을 기약한다", score: 1 }, { text: "나는 역시 안 된다고 생각한다", score: 0 } ] },
 ];
 
 const SELFESTEEM_MAX_SCORE = 20;

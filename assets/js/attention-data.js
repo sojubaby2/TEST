@@ -3,46 +3,16 @@
    ============================================================ */
 
 const ATTENTION_QUESTIONS = [
-  { text: "SNS에 사진을 올렸는데 좋아요가 안 눌리면?", options: [
-      { text: "신경 안 쓴다, 원래 그런거지", score: 0 },
-      { text: "괜히 몇 번 더 들어가본다", score: 1 },
-      { text: "안절부절 못하고 계속 확인한다", score: 2 } ] },
-  { text: "단체 사진을 찍을 때 나는?", options: [
-      { text: "구석에 조용히 서 있는다", score: 0 },
-      { text: "적당한 자리에 자연스럽게 선다", score: 1 },
-      { text: "가운데 자리를 은근히 노린다", score: 2 } ] },
-  { text: "회식이나 모임에서 나는?", options: [
-      { text: "말수가 적고 듣는 편이다", score: 0 },
-      { text: "분위기 봐가며 적당히 이야기한다", score: 1 },
-      { text: "분위기를 주도하며 계속 말한다", score: 2 } ] },
-  { text: "새 옷이나 헤어스타일을 하면?", options: [
-      { text: "아무도 몰라도 상관없다", score: 0 },
-      { text: "누가 알아봐주면 기분 좋다", score: 1 },
-      { text: "알아봐줄 때까지 은근히 티를 낸다", score: 2 } ] },
-  { text: "특별한 일이 생기면 나는?", options: [
-      { text: "가까운 사람에게만 조용히 말한다", score: 0 },
-      { text: "친한 친구들에게는 이야기한다", score: 1 },
-      { text: "SNS에 바로 올려서 다같이 알았으면 한다", score: 2 } ] },
-  { text: "사람들 앞에서 노래방 마이크를 잡으면?", options: [
-      { text: "빨리 넘기고 싶다", score: 0 },
-      { text: "분위기 맞춰 한 곡 정도는 부른다", score: 1 },
-      { text: "마이크를 놓기 싫어한다", score: 2 } ] },
-  { text: "내 이야기를 할 때 나는?", options: [
-      { text: "굳이 먼저 꺼내지 않는다", score: 0 },
-      { text: "물어보면 편하게 이야기한다", score: 1 },
-      { text: "먼저 나서서 이야기하는 걸 좋아한다", score: 2 } ] },
-  { text: "길에서 시선이 느껴지면?", options: [
-      { text: "괜히 불편하고 신경쓰인다", score: 0 },
-      { text: "그런가보다 하고 넘긴다", score: 1 },
-      { text: "은근히 기분이 좋다", score: 2 } ] },
-  { text: "친구들 사이에서 나의 포지션은?", options: [
-      { text: "조용히 분위기를 맞추는 편", score: 0 },
-      { text: "적당히 나서고 적당히 듣는 편", score: 1 },
-      { text: "분위기 메이커, 시선을 즐기는 편", score: 2 } ] },
-  { text: "많은 사람 앞에서 발표를 해야 한다면?", options: [
-      { text: "너무 떨리고 피하고 싶다", score: 0 },
-      { text: "긴장되지만 무난하게 해낸다", score: 1 },
-      { text: "오히려 신나고 잘 해낼 자신이 있다", score: 2 } ] },
+  { text: "SNS에 사진을 올렸는데 좋아요가 안 눌리면?", options: [ { text: "신경 안 쓴다, 원래 그런거지", score: 0 }, { text: "안절부절 못하고 계속 확인한다", score: 2 }, { text: "괜히 몇 번 더 들어가본다", score: 1 } ] },
+  { text: "단체 사진을 찍을 때 나는?", options: [ { text: "구석에 조용히 서 있는다", score: 0 }, { text: "가운데 자리를 은근히 노린다", score: 2 }, { text: "적당한 자리에 자연스럽게 선다", score: 1 } ] },
+  { text: "회식이나 모임에서 나는?", options: [ { text: "분위기를 주도하며 계속 말한다", score: 2 }, { text: "말수가 적고 듣는 편이다", score: 0 }, { text: "분위기 봐가며 적당히 이야기한다", score: 1 } ] },
+  { text: "새 옷이나 헤어스타일을 하면?", options: [ { text: "누가 알아봐주면 기분 좋다", score: 1 }, { text: "아무도 몰라도 상관없다", score: 0 }, { text: "알아봐줄 때까지 은근히 티를 낸다", score: 2 } ] },
+  { text: "특별한 일이 생기면 나는?", options: [ { text: "친한 친구들에게는 이야기한다", score: 1 }, { text: "가까운 사람에게만 조용히 말한다", score: 0 }, { text: "SNS에 바로 올려서 다같이 알았으면 한다", score: 2 } ] },
+  { text: "사람들 앞에서 노래방 마이크를 잡으면?", options: [ { text: "마이크를 놓기 싫어한다", score: 2 }, { text: "빨리 넘기고 싶다", score: 0 }, { text: "분위기 맞춰 한 곡 정도는 부른다", score: 1 } ] },
+  { text: "내 이야기를 할 때 나는?", options: [ { text: "먼저 나서서 이야기하는 걸 좋아한다", score: 2 }, { text: "굳이 먼저 꺼내지 않는다", score: 0 }, { text: "물어보면 편하게 이야기한다", score: 1 } ] },
+  { text: "길에서 시선이 느껴지면?", options: [ { text: "그런가보다 하고 넘긴다", score: 1 }, { text: "은근히 기분이 좋다", score: 2 }, { text: "괜히 불편하고 신경쓰인다", score: 0 } ] },
+  { text: "친구들 사이에서 나의 포지션은?", options: [ { text: "분위기 메이커, 시선을 즐기는 편", score: 2 }, { text: "적당히 나서고 적당히 듣는 편", score: 1 }, { text: "조용히 분위기를 맞추는 편", score: 0 } ] },
+  { text: "많은 사람 앞에서 발표를 해야 한다면?", options: [ { text: "오히려 신나고 잘 해낼 자신이 있다", score: 2 }, { text: "긴장되지만 무난하게 해낸다", score: 1 }, { text: "너무 떨리고 피하고 싶다", score: 0 } ] },
 ];
 
 const ATTENTION_MAX_SCORE = 20;

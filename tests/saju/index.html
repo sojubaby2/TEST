@@ -41,8 +41,15 @@
     </div>
 
     <div class="saju-form-group">
-      <label for="birthTime">태어난 시간</label>
-      <input class="saju-input" type="time" id="birthTime" />
+      <label for="ampmSelect">태어난 시간</label>
+      <div class="saju-time-row">
+        <select class="saju-input saju-select-sm" id="ampmSelect">
+          <option value="am">오전</option>
+          <option value="pm">오후</option>
+        </select>
+        <select class="saju-input saju-select-sm" id="hourSelect"></select>
+        <select class="saju-input saju-select-sm" id="minuteSelect"></select>
+      </div>
       <label class="saju-checkbox-row">
         <input type="checkbox" id="timeUnknown" />
         태어난 시간을 몰라요 (시주 제외하고 계산)
@@ -67,15 +74,46 @@
 <script>
   (function () {
     var dateInput = document.getElementById("birthDate");
-    var timeInput = document.getElementById("birthTime");
+    var ampmSelect = document.getElementById("ampmSelect");
+    var hourSelect = document.getElementById("hourSelect");
+    var minuteSelect = document.getElementById("minuteSelect");
     var timeUnknown = document.getElementById("timeUnknown");
     var submitBtn = document.getElementById("submitBtn");
     var errorMsg = document.getElementById("errorMsg");
 
+    // 시(1~12) / 분(0~59) 옵션 채우기
+    for (var hh = 1; hh <= 12; hh++) {
+      var hOpt = document.createElement("option");
+      hOpt.value = hh;
+      hOpt.textContent = hh + "시";
+      if (hh === 12) hOpt.selected = true; // 기본값: 오전 12시(자정 근처)보다는 일반적인 낮 시간대가 자연스러움
+      hourSelect.appendChild(hOpt);
+    }
+    for (var mm = 0; mm <= 59; mm++) {
+      var mOpt = document.createElement("option");
+      mOpt.value = mm;
+      mOpt.textContent = mm + "분";
+      minuteSelect.appendChild(mOpt);
+    }
+
+    function setTimeSelectsDisabled(disabled) {
+      ampmSelect.disabled = disabled;
+      hourSelect.disabled = disabled;
+      minuteSelect.disabled = disabled;
+    }
+
     timeUnknown.addEventListener("change", function () {
-      timeInput.disabled = timeUnknown.checked;
-      if (timeUnknown.checked) timeInput.value = "";
+      setTimeSelectsDisabled(timeUnknown.checked);
     });
+
+    // 오전/오후 12시간제를 24시간제로 변환
+    function to24Hour(ampm, hour12) {
+      hour12 = parseInt(hour12, 10);
+      if (ampm === "am") {
+        return hour12 === 12 ? 0 : hour12;
+      }
+      return hour12 === 12 ? 12 : hour12 + 12;
+    }
 
     submitBtn.addEventListener("click", function () {
       errorMsg.style.display = "none";
@@ -97,9 +135,10 @@
       }
 
       var query = "y=" + y + "&m=" + m + "&d=" + d;
-      if (!timeUnknown.checked && timeInput.value) {
-        var tParts = timeInput.value.split(":");
-        query += "&h=" + parseInt(tParts[0], 10) + "&mi=" + parseInt(tParts[1], 10);
+      if (!timeUnknown.checked) {
+        var hour24 = to24Hour(ampmSelect.value, hourSelect.value);
+        var minute = parseInt(minuteSelect.value, 10);
+        query += "&h=" + hour24 + "&mi=" + minute;
       }
       window.location.href = "result.html?" + query;
     });

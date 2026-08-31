@@ -8,80 +8,80 @@ const TETOEGEN_QUESTIONS = [
     text: "친구들 사이에서 나는 주로?",
     options: [
       { text: "조용히 분위기를 맞추는 편", score: 0 },
-      { text: "상황 봐가며 나설 때는 나선다", score: 1 },
       { text: "앞장서서 이끄는 편", score: 2 },
+      { text: "상황 봐가며 나설 때는 나선다", score: 1 },
     ],
   },
   {
     text: "스타일링 할 때 나는?",
     options: [
       { text: "꾸미는 걸 좋아하고 디테일에 신경 쓴다", score: 0 },
-      { text: "편한 대로 적당히 신경 쓴다", score: 1 },
       { text: "심플하고 터프한 스타일을 선호한다", score: 2 },
+      { text: "편한 대로 적당히 신경 쓴다", score: 1 },
     ],
   },
   {
     text: "감정 표현 방식은?",
     options: [
       { text: "섬세하고 감정을 잘 드러내는 편", score: 0 },
-      { text: "상황에 따라 다르다", score: 1 },
       { text: "웬만해선 티 안 내는 편", score: 2 },
+      { text: "상황에 따라 다르다", score: 1 },
     ],
   },
   {
     text: "연애할 때 나는?",
     options: [
-      { text: "상대에게 잘 맞춰주고 배려하는 편", score: 0 },
-      { text: "서로 맞춰가는 편", score: 1 },
       { text: "내가 먼저 이끌고 리드하는 편", score: 2 },
+      { text: "서로 맞춰가는 편", score: 1 },
+      { text: "상대에게 잘 맞춰주고 배려하는 편", score: 0 },
     ],
   },
   {
     text: "힘든 일이 생기면?",
     options: [
-      { text: "주변에 털어놓고 위로받고 싶다", score: 0 },
       { text: "상황 봐서 털어놓거나 참는다", score: 1 },
       { text: "혼자 해결하고 넘어가는 편", score: 2 },
+      { text: "주변에 털어놓고 위로받고 싶다", score: 0 },
     ],
   },
   {
     text: "운동/액티비티에 대한 내 취향은?",
     options: [
-      { text: "격렬한 운동보다 산책 같은 가벼운 활동", score: 0 },
       { text: "종류 상관없이 적당히 좋아함", score: 1 },
       { text: "몸을 쓰는 격한 운동을 좋아함", score: 2 },
+      { text: "격렬한 운동보다 산책 같은 가벼운 활동", score: 0 },
     ],
   },
   {
     text: "목소리 톤이나 말투는?",
     options: [
       { text: "부드럽고 조곤조곤한 편", score: 0 },
-      { text: "보통", score: 1 },
       { text: "시원시원하고 직설적인 편", score: 2 },
+      { text: "보통", score: 1 },
     ],
   },
   {
     text: "인간관계에서 나는 주로 어떤 말을 들을까?",
     options: [
       { text: "잘 챙겨주고 다정하다는 말", score: 0 },
-      { text: "그때그때 다르다는 말", score: 1 },
       { text: "쿨하고 터프하다는 말", score: 2 },
+      { text: "그때그때 다르다는 말", score: 1 },
     ],
   },
   {
     text: "갈등 상황에서 나는?",
     options: [
       { text: "최대한 부드럽게 풀려고 한다", score: 0 },
-      { text: "상황에 따라 다르게 대처한다", score: 1 },
       { text: "할 말은 하고 직진하는 편", score: 2 },
+      { text: "상황에 따라 다르게 대처한다", score: 1 },
     ],
   },
   {
     text: "나를 한마디로 표현한다면?",
     options: [
+      { text: "상남자st, 걸크러시", score: 2 },
       { text: "여리여리, 다정", score: 0 },
       { text: "무난, 중간", score: 1 },
-      { text: "상남자st, 걸크러시", score: 2 },
     ],
   },
 ];

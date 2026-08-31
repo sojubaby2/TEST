@@ -6,40 +6,40 @@ const LOVESTYLE_QUESTIONS = [
   {
     text: "좋아하는 사람이 생기면 나는?",
     options: [
-      { text: "티 안 내고 조심스럽게 다가간다", score: 0 },
-      { text: "친해지면서 자연스럽게 마음을 표현한다", score: 1 },
       { text: "적극적으로 대시한다", score: 2 },
+      { text: "친해지면서 자연스럽게 마음을 표현한다", score: 1 },
+      { text: "티 안 내고 조심스럽게 다가간다", score: 0 },
     ],
   },
   {
     text: "연인과 매일 연락하는 것에 대해?",
     options: [
-      { text: "자주 연락 안 해도 괜찮다, 각자 시간이 중요", score: 0 },
-      { text: "적당히 주고받으면 좋겠다", score: 1 },
       { text: "하루종일 붙어있고 싶다", score: 2 },
+      { text: "적당히 주고받으면 좋겠다", score: 1 },
+      { text: "자주 연락 안 해도 괜찮다, 각자 시간이 중요", score: 0 },
     ],
   },
   {
     text: "다투고 나면 나는?",
     options: [
-      { text: "시간을 두고 감정이 가라앉으면 얘기한다", score: 0 },
       { text: "상황 봐서 먼저 풀거나 기다린다", score: 1 },
       { text: "바로 연락해서 풀어야 마음이 편하다", score: 2 },
+      { text: "시간을 두고 감정이 가라앉으면 얘기한다", score: 0 },
     ],
   },
   {
     text: "기념일에 대한 내 생각은?",
     options: [
       { text: "특별히 안 챙겨도 괜찮다", score: 0 },
-      { text: "챙기면 좋지만 부담은 싫다", score: 1 },
       { text: "꼭 특별하게 챙기고 싶다", score: 2 },
+      { text: "챙기면 좋지만 부담은 싫다", score: 1 },
     ],
   },
   {
     text: "썸 타는 상대에게 나는?",
     options: [
-      { text: "계속 밀당하며 신중하게 접근한다", score: 0 },
       { text: "어느 정도 밀당은 하되 진심도 보여준다", score: 1 },
+      { text: "계속 밀당하며 신중하게 접근한다", score: 0 },
       { text: "마음이 다 티 나게 직진한다", score: 2 },
     ],
   },
@@ -47,40 +47,40 @@ const LOVESTYLE_QUESTIONS = [
     text: "연애할 때 가장 중요한 건?",
     options: [
       { text: "서로의 자유와 독립성", score: 0 },
-      { text: "균형잡힌 소통", score: 1 },
       { text: "서로에게 몰입하는 깊은 애정", score: 2 },
+      { text: "균형잡힌 소통", score: 1 },
     ],
   },
   {
     text: "상대방의 SNS를 챙겨보는 편인가?",
     options: [
       { text: "거의 신경 안 쓴다", score: 0 },
-      { text: "가끔 확인한다", score: 1 },
       { text: "자주 확인하고 반응도 잘 남긴다", score: 2 },
+      { text: "가끔 확인한다", score: 1 },
     ],
   },
   {
     text: "데이트 코스는 주로?",
     options: [
-      { text: "즉흥적으로 정해도 좋다", score: 0 },
-      { text: "적당히 계획하고 적당히 즉흥적으로", score: 1 },
       { text: "미리 꼼꼼하게 계획한다", score: 2 },
+      { text: "적당히 계획하고 적당히 즉흥적으로", score: 1 },
+      { text: "즉흥적으로 정해도 좋다", score: 0 },
     ],
   },
   {
     text: "질투심이 생기는 상황이라면?",
     options: [
       { text: "크게 신경 안 쓰고 넘긴다", score: 0 },
-      { text: "신경은 쓰이지만 티는 안 낸다", score: 1 },
       { text: "솔직하게 질투난다고 표현한다", score: 2 },
+      { text: "신경은 쓰이지만 티는 안 낸다", score: 1 },
     ],
   },
   {
     text: "이상형에게 가장 바라는 건?",
     options: [
-      { text: "나만의 공간을 존중해주는 사람", score: 0 },
       { text: "편안하게 소통이 잘 되는 사람", score: 1 },
       { text: "뜨겁게 사랑해주는 사람", score: 2 },
+      { text: "나만의 공간을 존중해주는 사람", score: 0 },
     ],
   },
 ];

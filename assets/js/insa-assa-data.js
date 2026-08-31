@@ -3,46 +3,16 @@
    ============================================================ */
 
 const INSAASSA_QUESTIONS = [
-  { text: "새로운 모임에 초대받으면 나는?", options: [
-      { text: "웬만하면 안 나가고 싶다", score: 0 },
-      { text: "고민하다가 마지못해 나간다", score: 1 },
-      { text: "일단 무조건 나가고 본다", score: 2 } ] },
-  { text: "주말 계획은 주로?", options: [
-      { text: "집에서 혼자 쉬는 게 최고다", score: 0 },
-      { text: "그때그때 다르다", score: 1 },
-      { text: "사람들과 약속으로 꽉 차 있다", score: 2 } ] },
-  { text: "단체 채팅방에서 나는?", options: [
-      { text: "읽기만 하고 거의 말이 없다", score: 0 },
-      { text: "필요할 때만 대답한다", score: 1 },
-      { text: "먼저 말을 걸고 분위기를 만든다", score: 2 } ] },
-  { text: "새로운 사람을 만나면?", options: [
-      { text: "먼저 다가가기 어렵다", score: 0 },
-      { text: "상대가 다가오면 편하게 받아준다", score: 1 },
-      { text: "내가 먼저 다가가서 친해진다", score: 2 } ] },
-  { text: "인맥에 대한 생각은?", options: [
-      { text: "소수의 깊은 관계면 충분하다", score: 0 },
-      { text: "적당히 넓고 적당히 깊으면 좋다", score: 1 },
-      { text: "아는 사람이 많을수록 좋다", score: 2 } ] },
-  { text: "축제나 행사에 가면 나는?", options: [
-      { text: "구경만 하다 조용히 나온다", score: 0 },
-      { text: "적당히 즐기다 온다", score: 1 },
-      { text: "끝까지 놀고 사람들과 어울린다", score: 2 } ] },
-  { text: "연락처가 많이 저장된 걸 보면?", options: [
-      { text: "부담스럽다, 정리하고 싶다", score: 0 },
-      { text: "그런가보다 한다", score: 1 },
-      { text: "뿌듯하고 자랑스럽다", score: 2 } ] },
-  { text: "즉흥적인 약속 제안을 받으면?", options: [
-      { text: "웬만하면 거절한다", score: 0 },
-      { text: "상황 봐서 나갈 때도 있다", score: 1 },
-      { text: "웬만하면 나간다", score: 2 } ] },
-  { text: "에너지가 채워지는 방법은?", options: [
-      { text: "혼자만의 시간", score: 0 },
-      { text: "상황에 따라 다르다", score: 1 },
-      { text: "사람들과 함께 어울리는 시간", score: 2 } ] },
-  { text: "SNS 팔로워/친구 수는?", options: [
-      { text: "많지 않아도 상관없다", score: 0 },
-      { text: "적당히 있으면 좋다", score: 1 },
-      { text: "많을수록 좋다고 생각한다", score: 2 } ] },
+  { text: "새로운 모임에 초대받으면 나는?", options: [ { text: "일단 무조건 나가고 본다", score: 2 }, { text: "웬만하면 안 나가고 싶다", score: 0 }, { text: "고민하다가 마지못해 나간다", score: 1 } ] },
+  { text: "주말 계획은 주로?", options: [ { text: "그때그때 다르다", score: 1 }, { text: "사람들과 약속으로 꽉 차 있다", score: 2 }, { text: "집에서 혼자 쉬는 게 최고다", score: 0 } ] },
+  { text: "단체 채팅방에서 나는?", options: [ { text: "먼저 말을 걸고 분위기를 만든다", score: 2 }, { text: "읽기만 하고 거의 말이 없다", score: 0 }, { text: "필요할 때만 대답한다", score: 1 } ] },
+  { text: "새로운 사람을 만나면?", options: [ { text: "상대가 다가오면 편하게 받아준다", score: 1 }, { text: "먼저 다가가기 어렵다", score: 0 }, { text: "내가 먼저 다가가서 친해진다", score: 2 } ] },
+  { text: "인맥에 대한 생각은?", options: [ { text: "아는 사람이 많을수록 좋다", score: 2 }, { text: "적당히 넓고 적당히 깊으면 좋다", score: 1 }, { text: "소수의 깊은 관계면 충분하다", score: 0 } ] },
+  { text: "축제나 행사에 가면 나는?", options: [ { text: "끝까지 놀고 사람들과 어울린다", score: 2 }, { text: "구경만 하다 조용히 나온다", score: 0 }, { text: "적당히 즐기다 온다", score: 1 } ] },
+  { text: "연락처가 많이 저장된 걸 보면?", options: [ { text: "그런가보다 한다", score: 1 }, { text: "부담스럽다, 정리하고 싶다", score: 0 }, { text: "뿌듯하고 자랑스럽다", score: 2 } ] },
+  { text: "즉흥적인 약속 제안을 받으면?", options: [ { text: "웬만하면 나간다", score: 2 }, { text: "웬만하면 거절한다", score: 0 }, { text: "상황 봐서 나갈 때도 있다", score: 1 } ] },
+  { text: "에너지가 채워지는 방법은?", options: [ { text: "사람들과 함께 어울리는 시간", score: 2 }, { text: "혼자만의 시간", score: 0 }, { text: "상황에 따라 다르다", score: 1 } ] },
+  { text: "SNS 팔로워/친구 수는?", options: [ { text: "많을수록 좋다고 생각한다", score: 2 }, { text: "많지 않아도 상관없다", score: 0 }, { text: "적당히 있으면 좋다", score: 1 } ] },
 ];
 
 const INSAASSA_MAX_SCORE = 20;

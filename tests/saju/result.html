@@ -37,9 +37,16 @@
     </div>
 
     <p class="section-title" style="margin-top:24px;">나의 사주팔자</p>
+    <p style="margin:-2px 0 8px;font-size:12px;color:var(--text-sub);">👆 각 기둥을 눌러보면 시간대별 운세를 볼 수 있어요</p>
     <div class="card">
       <div class="pillar-grid" id="pillarGrid"></div>
       <p id="birthInfoLabel" style="margin:14px 0 0;font-size:12px;color:var(--text-sub);text-align:center;"></p>
+    </div>
+
+    <div class="card" id="scaleFortuneCard" style="display:none;">
+      <p class="fortune-label" id="scaleFortuneLabel" style="color:var(--brand-1);"></p>
+      <p style="margin:6px 0 0;font-size:15px;line-height:1.6;" id="scaleFortuneText"></p>
+      <p style="margin:12px 0 0;font-size:11px;color:var(--text-sub);" id="scaleFortuneRefresh"></p>
     </div>
 
     <p class="section-title" style="margin-top:24px;">오행 분석</p>
@@ -127,27 +134,57 @@
     document.getElementById("resultTitle").textContent = daystem.title;
     document.getElementById("resultSubtitle").textContent = daystem.subtitle;
 
-    // 사주팔자 4주(또는 3주) 그리드
+    // 사주팔자 4주(또는 3주) 그리드 - 각 기둥은 클릭하면 시간대별 운세를 보여줌
+    // 매핑: 시주=오늘 / 일주=이번달 / 월주=올해 / 년주=평생
     var pillarGrid = document.getElementById("pillarGrid");
     var pillars = [
-      { label: "년주", hanja: saju.yearPillarHanja, hangul: saju.yearPillar },
-      { label: "월주", hanja: saju.monthPillarHanja, hangul: saju.monthPillar },
-      { label: "일주", hanja: saju.dayPillarHanja, hangul: saju.dayPillar },
+      { label: "년주", hanja: saju.yearPillarHanja, hangul: saju.yearPillar, scale: "year" },
+      { label: "월주", hanja: saju.monthPillarHanja, hangul: saju.monthPillar, scale: "month" },
+      { label: "일주", hanja: saju.dayPillarHanja, hangul: saju.dayPillar, scale: "day" },
     ];
     if (saju.hourPillar) {
-      pillars.push({ label: "시주", hanja: saju.hourPillarHanja, hangul: saju.hourPillar });
+      pillars.push({ label: "시주", hanja: saju.hourPillarHanja, hangul: saju.hourPillar, scale: "hour" });
     } else {
       pillarGrid.classList.add("cols-3");
     }
-    pillars.forEach(function (p) {
-      var cell = document.createElement("div");
-      cell.className = "pillar-cell";
+
+    var scaleFortuneCard = document.getElementById("scaleFortuneCard");
+    var scaleFortuneLabel = document.getElementById("scaleFortuneLabel");
+    var scaleFortuneText = document.getElementById("scaleFortuneText");
+    var scaleFortuneRefresh = document.getElementById("scaleFortuneRefresh");
+    var pillarCellEls = [];
+
+    function selectPillar(p, cellEl) {
+      pillarCellEls.forEach(function (el) { el.classList.remove("active"); });
+      cellEl.classList.add("active");
+
+      var meta = PILLAR_SCALE_META[p.scale];
+      var fortune = getPillarScaleFortune(p.hangul, p.scale);
+
+      scaleFortuneLabel.textContent = "🔮 " + p.label + "(" + p.hangul + ") 기준 " + meta.label + " 운세";
+      scaleFortuneText.textContent =
+        (fortune.keyword ? "[" + fortune.keyword + "] " : "") + fortune.text;
+      scaleFortuneRefresh.textContent = meta.desc + " · " + meta.refresh;
+      scaleFortuneCard.style.display = "block";
+    }
+
+    pillars.forEach(function (p, idx) {
+      var cell = document.createElement("button");
+      cell.type = "button";
+      cell.className = "pillar-cell pillar-cell-btn";
       cell.innerHTML =
         '<p class="pillar-label">' + p.label + "</p>" +
         '<p class="pillar-hanja">' + p.hanja + "</p>" +
         '<p class="pillar-hangul">' + p.hangul + "</p>";
+      cell.addEventListener("click", function () { selectPillar(p, cell); });
       pillarGrid.appendChild(cell);
+      pillarCellEls.push(cell);
     });
+
+    // 기본 선택: 시주(오늘)가 있으면 그걸, 없으면 일주(이번달)를 기본으로 보여줌
+    var defaultIdx = pillars.findIndex(function (p) { return p.scale === "hour"; });
+    if (defaultIdx === -1) defaultIdx = pillars.findIndex(function (p) { return p.scale === "day"; });
+    if (defaultIdx !== -1) selectPillar(pillars[defaultIdx], pillarCellEls[defaultIdx]);
 
     var birthLabel = y + "년 " + m + "월 " + d + "일";
     if (hasTime) {

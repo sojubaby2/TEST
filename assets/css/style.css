@@ -1161,6 +1161,20 @@ a {
 }
 
 /* 카테고리 탭 (총운/연애운/금전운/건강운/직장운) */
+.tarot-tabs-hint {
+  text-align: center;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--brand-1);
+  margin: 0 0 6px;
+  animation: tarotHintBlink 1.6s ease-in-out infinite;
+}
+
+@keyframes tarotHintBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
 .tarot-category-tabs {
   display: flex;
   gap: 8px;
@@ -1207,6 +1221,30 @@ a {
 .tarot-category-chip[data-cat="money"].active { background: linear-gradient(135deg, #15803d, #22c55e); }
 .tarot-category-chip[data-cat="health"].active { background: linear-gradient(135deg, #0d9488, #2dd4bf); }
 .tarot-category-chip[data-cat="career"].active { background: linear-gradient(135deg, #475569, #64748b); }
+
+/* 처음 진입 시 카테고리 탭이 눌러볼 수 있는 버튼이라는 걸 눈에 띄게 알려주는 펄스 효과.
+   탭 하나를 실제로 누르거나(클릭 핸들러) 9초가 지나면 pulse-hint 클래스가 빠지면서 멈춤. */
+.tarot-category-tabs.pulse-hint .tarot-category-chip:not(.active) {
+  animation: tarotChipPulse 1.7s ease-in-out infinite;
+}
+
+.tarot-category-tabs.pulse-hint .tarot-category-chip[data-cat="love"]:not(.active) { animation-delay: 0.12s; }
+.tarot-category-tabs.pulse-hint .tarot-category-chip[data-cat="money"]:not(.active) { animation-delay: 0.24s; }
+.tarot-category-tabs.pulse-hint .tarot-category-chip[data-cat="health"]:not(.active) { animation-delay: 0.36s; }
+.tarot-category-tabs.pulse-hint .tarot-category-chip[data-cat="career"]:not(.active) { animation-delay: 0.48s; }
+
+@keyframes tarotChipPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.35);
+    transform: scale(1) translateY(0);
+    border-color: rgba(76, 29, 149, 0.15);
+  }
+  35% {
+    box-shadow: 0 0 0 6px rgba(124, 58, 237, 0);
+    transform: scale(1.06) translateY(-2px);
+    border-color: rgba(124, 58, 237, 0.55);
+  }
+}
 
 .tarot-grid-hint {
   text-align: center;

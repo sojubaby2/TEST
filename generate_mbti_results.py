@@ -16,8 +16,8 @@ TEMPLATE = """<!doctype html>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>나의 결과는 '{title}' | 마음캐치 MBTI 테스트</title>
-<meta name="description" content="{subtitle} - 마음캐치 MBTI 간단 테스트 결과" />
+<title>나의 결과는 '{title}' | 테스트맛집 MBTI 테스트</title>
+<meta name="description" content="{subtitle} - 테스트맛집 MBTI 간단 테스트 결과" />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="나는 '{title}' {emoji}" />
@@ -32,7 +32,7 @@ TEMPLATE = """<!doctype html>
 <body>
 
 <header class="site-header">
-  <a class="logo" href="../../index.html">🧠 마음캐치</a>
+  <a class="logo" href="../../index.html">🔥 테스트맛집</a>
 </header>
 
 <main class="wrap">
@@ -154,7 +154,7 @@ TEMPLATE = """<!doctype html>
     document.getElementById("shareBtn").addEventListener("click", function () {{
       shareCurrentPage(
         "나는 '" + result.title + "' " + result.emoji,
-        "너의 MBTI는? 마음캐치에서 확인해봐!"
+        "너의 MBTI는? 테스트맛집에서 확인해봐!"
       );
     }});
     document.getElementById("copyBtn").addEventListener("click", function () {{
@@ -163,7 +163,7 @@ TEMPLATE = """<!doctype html>
     document.getElementById("downloadBtn").addEventListener("click", function () {{
       downloadImage(
         "../../assets/img/card/mbti-{id}.png",
-        "마음캐치_" + result.id + ".png"
+        "테스트맛집_" + result.id + ".png"
       );
     }});
   }})();

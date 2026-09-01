@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>꿈해몽 검색 | 테스트맛집</title>
+<meta name="description" content="낚시, 등산, 쫓기는 꿈, 칼, 총맞는 꿈, 떨어지는 꿈, 똥꿈까지! 키워드로 검색하는 꿈해몽 사전. 150가지 꿈풀이를 확인해보세요." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="꿈해몽 검색 🔮" />
+<meta property="og:description" content="꿈에 나온 키워드를 검색하면 바로 풀이가 나와요. 150가지 꿈해몽 사전!" />
+<meta property="og:image" content="../../assets/img/og/dream-interpretation-intro.png" />
+<meta property="og:url" content="./" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="../../index.html">🔥 테스트맛집</a>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div style="font-size:56px;margin-bottom:8px;">🌙</div>
+    <h1>꿈해몽 검색</h1>
+    <p>어떤 꿈을 꾸셨나요?<br />키워드만 검색하면 바로 풀이가 나와요</p>
+  </section>
+
+  <div class="dream-search-box">
+    <input
+      type="text"
+      id="dreamSearchInput"
+      class="dream-search-input"
+      placeholder="예: 낚시, 쫓기는 꿈, 칼, 똥..."
+      autocomplete="off"
+    />
+    <div class="dream-search-icon">🔍</div>
+  </div>
+
+  <div class="dream-chip-row" id="dreamChipRow"></div>
+
+  <p class="section-title" id="dreamResultTitle" style="margin-top:20px;">전체 꿈풀이</p>
+  <div class="dream-result-list" id="dreamResultList"></div>
+  <p class="dream-empty-state" id="dreamEmptyState" style="display:none;">
+    앗, 해당하는 꿈풀이를 찾지 못했어요.<br />다른 단어로 검색해보세요!
+  </p>
+
+  <div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
+
+  <p class="notice">
+    🌙 이 콘텐츠는 전통 해몽을 재미로 풀어낸 참고용 콘텐츠이며, 실제 길흉을 예언하거나 중요한 의사결정의 근거로 사용하기 위한 것이 아니에요.
+  </p>
+
+  <div class="footer">
+    <p><a href="../../index.html">← 다른 테스트도 보러가기</a></p>
+    <p><a href="../../privacy.html">개인정보처리방침</a> · <a href="../../terms.html">이용약관</a></p>
+  </div>
+</main>
+
+<script src="../../assets/js/dream-fortune-data.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script>
+  (function () {
+    var searchInput = document.getElementById("dreamSearchInput");
+    var chipRow = document.getElementById("dreamChipRow");
+    var resultList = document.getElementById("dreamResultList");
+    var resultTitle = document.getElementById("dreamResultTitle");
+    var emptyState = document.getElementById("dreamEmptyState");
+
+    var activeCategory = "all";
+
+    var fortuneBadgeClass = {
+      "길몽": "dream-badge-good",
+      "흉몽": "dream-badge-bad",
+      "길흉반반": "dream-badge-mixed"
+    };
+
+    function renderChips() {
+      chipRow.innerHTML = "";
+      var allChip = document.createElement("button");
+      allChip.type = "button";
+      allChip.className = "dream-chip" + (activeCategory === "all" ? " active" : "");
+      allChip.textContent = "전체";
+      allChip.addEventListener("click", function () {
+        activeCategory = "all";
+        searchInput.value = "";
+        renderChips();
+        renderResults();
+      });
+      chipRow.appendChild(allChip);
+
+      DREAM_CATEGORIES.forEach(function (cat) {
+        var chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "dream-chip" + (activeCategory === cat.id ? " active" : "");
+        chip.textContent = cat.emoji + " " + cat.label;
+        chip.addEventListener("click", function () {
+          activeCategory = cat.id;
+          searchInput.value = "";
+          renderChips();
+          renderResults();
+        });
+        chipRow.appendChild(chip);
+      });
+    }
+
+    function buildResultItem(item) {
+      var a = document.createElement("a");
+      a.className = "dream-result-item";
+      a.href = "result-" + item.id + ".html";
+
+      var badgeClass = fortuneBadgeClass[item.fortune] || "dream-badge-mixed";
+
+      a.innerHTML =
+        '<div class="dream-result-emoji">' + item.emoji + "</div>" +
+        '<div class="dream-result-info">' +
+        '<h3>' + item.keyword + '<span class="dream-badge ' + badgeClass + '">' + item.fortune + "</span></h3>" +
+        '<p>' + item.summary + "</p>" +
+        "</div>" +
+        '<div class="arrow">›</div>';
+      return a;
+    }
+
+    function renderResults() {
+      var query = searchInput.value.trim();
+      var items;
+
+      if (query) {
+        items = searchDreams(query);
+        resultTitle.textContent = '"' + query + '" 검색 결과 (' + items.length + "개)";
+      } else if (activeCategory !== "all") {
+        items = getDreamsByCategory(activeCategory);
+        var meta = getDreamCategoryMeta(activeCategory);
+        resultTitle.textContent = meta.emoji + " " + meta.label + " 꿈풀이 (" + items.length + "개)";
+      } else {
+        items = DREAM_LIST;
+        resultTitle.textContent = "전체 꿈풀이 (" + items.length + "개)";
+      }
+
+      resultList.innerHTML = "";
+      if (items.length === 0) {
+        emptyState.style.display = "block";
+      } else {
+        emptyState.style.display = "none";
+        items.forEach(function (item) {
+          resultList.appendChild(buildResultItem(item));
+        });
+      }
+    }
+
+    searchInput.addEventListener("input", function () {
+      if (searchInput.value.trim()) {
+        activeCategory = "all";
+        renderChips();
+      }
+      renderResults();
+    });
+
+    renderChips();
+    renderResults();
+  })();
+</script>
+
+</body>
+</html>

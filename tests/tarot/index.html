@@ -136,17 +136,22 @@
     var CARD_BACK_IMG = "../../assets/img/tarot/card-back.jpg";
 
     // 78장 전체를 수트 구분(라벨) 없이 부채꼴로 펼친다 — 스크롤 없이 한 번에 노출.
-    // 한 줄에 다 펼치면 카드끼리 너무 겹쳐서 낱장이 구분 안 되길래(거의 다 가려진 부채 모양),
-    // 보이지 않는 여러 줄로만 나눠서(제목/구분선 없음) 각 줄이 살짝 곡선으로 펼쳐지게 함
+    // 4~5줄 정도로만 나누고, 줄 사이는 아래 줄이 위 줄 밑단과 살짝 겹치도록 붙여서
+    // 하나로 이어진 부채 더미처럼 보이게 함(z-index는 카드 전체 순서를 그대로 써서
+    // 겹치는 부분에서 아래쪽 줄이 항상 위 줄 위로 자연스럽게 겹쳐 보이게 함)
     function buildGrid() {
-      var ROW_SIZE = 13; // 78 = 13 x 6
+      var ROWS = 5; // 78장을 5줄로 (16,16,16,15,15)
+      var base = Math.floor(TAROT_CARDS.length / ROWS);
+      var extra = TAROT_CARDS.length % ROWS;
       var html = "";
-      for (var start = 0; start < TAROT_CARDS.length; start += ROW_SIZE) {
-        var n = Math.min(ROW_SIZE, TAROT_CARDS.length - start);
+      var start = 0;
+      for (var r = 0; r < ROWS; r++) {
+        var n = base + (r < extra ? 1 : 0);
         var arc = 30;
         var edgeMargin = 9; // 양 끝 카드가 줄 밖으로 잘려나가지 않도록 여백(%)
+        var rowStyle = r === 0 ? "" : ' style="margin-top:-30px;"';
 
-        html += '<div class="tarot-fan-row">';
+        html += "<div class=\"tarot-fan-row\"" + rowStyle + ">";
         for (var pos = 0; pos < n; pos++) {
           var idx = start + pos;
           var t = n === 1 ? 0.5 : pos / (n - 1);
@@ -155,11 +160,12 @@
           var leftPct = edgeMargin + t * (100 - edgeMargin * 2);
           html +=
             '<button type="button" class="tarot-grid-card" data-idx="' + idx + '" ' +
-            'style="--x:' + leftPct.toFixed(2) + '%; --rot:' + angle.toFixed(1) + 'deg; --bump:' + bump.toFixed(1) + 'px; --z:' + (pos + 1) + ';">' +
+            'style="--x:' + leftPct.toFixed(2) + '%; --rot:' + angle.toFixed(1) + 'deg; --bump:' + bump.toFixed(1) + 'px; --z:' + (idx + 1) + ';">' +
             '<img class="tarot-card-back-img" src="' + CARD_BACK_IMG + '" alt="" />' +
             "</button>";
         }
         html += "</div>";
+        start += n;
       }
       gridEl.innerHTML = html;
       gridEl.classList.remove("disabled");

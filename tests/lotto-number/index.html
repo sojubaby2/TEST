@@ -103,6 +103,31 @@
       return el;
     }
 
+    function copyNumbersToClipboard(nums) {
+      var text = nums.join(", ");
+      function done() {
+        showToast("번호가 복사됐어요! (" + text + ")");
+      }
+      function fallback() {
+        var input = document.createElement("input");
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        try {
+          document.execCommand("copy");
+          done();
+        } catch (e) {
+          showToast("복사에 실패했어요. 번호를 직접 선택해서 복사해주세요.");
+        }
+        document.body.removeChild(input);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(fallback);
+      } else {
+        fallback();
+      }
+    }
+
     function renderHistory() {
       if (history.length === 0) {
         historyCard.style.display = "none";
@@ -128,6 +153,14 @@
           ballsWrap.appendChild(b);
         });
         row.appendChild(ballsWrap);
+        var copyBtn = document.createElement("button");
+        copyBtn.type = "button";
+        copyBtn.className = "lotto-copy-btn";
+        copyBtn.textContent = "복사";
+        copyBtn.addEventListener("click", function () {
+          copyNumbersToClipboard(nums);
+        });
+        row.appendChild(copyBtn);
         historyList.appendChild(row);
       });
     }

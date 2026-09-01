@@ -940,6 +940,26 @@ a {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
+  flex: 1;
+}
+
+.lotto-copy-btn {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  color: var(--brand-1);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.lotto-copy-btn:active {
+  transform: scale(0.94);
+  background: var(--bg);
 }
 
 .lotto-ball-sm {

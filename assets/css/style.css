@@ -127,6 +127,33 @@ a {
 .cat-tab[data-target="testSection"].active { background: linear-gradient(135deg, var(--brand-1), var(--brand-2)); }
 .cat-tab[data-target="fortuneSection"].active { background: linear-gradient(135deg, #7c3aed, #a855f7); }
 
+/* HOT 탭 불타는 효과: 불꽃 이모지가 살짝 흔들리고, 탭 전체에 이글거리는 그림자가 맥동함 */
+.hot-flame {
+  display: inline-block;
+  transform-origin: bottom center;
+  animation: hotFlameFlicker 0.9s ease-in-out infinite;
+}
+
+@keyframes hotFlameFlicker {
+  0%, 100% { transform: scale(1) rotate(-4deg); }
+  25% { transform: scale(1.12) rotate(4deg); }
+  50% { transform: scale(0.9) rotate(-6deg); }
+  75% { transform: scale(1.08) rotate(3deg); }
+}
+
+.cat-tab[data-target="hotSection"].active {
+  animation: hotTabGlow 1.3s ease-in-out infinite;
+}
+
+@keyframes hotTabGlow {
+  0%, 100% {
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.32), 0 0 10px rgba(249, 115, 22, 0.35);
+  }
+  50% {
+    box-shadow: 0 8px 26px rgba(239, 68, 68, 0.62), 0 0 22px rgba(249, 115, 22, 0.75);
+  }
+}
+
 /* 카드 */
 .card {
   background: var(--card-bg);

@@ -805,6 +805,39 @@ a {
   text-align: right;
 }
 
+/* 궁합보기 - 두 사람 입력/결과 공통 */
+.compat-person-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.compat-vs-divider {
+  text-align: center;
+  font-size: 26px;
+  margin: 22px 0;
+  position: relative;
+}
+
+.compat-vs-divider::before,
+.compat-vs-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: calc(50% - 30px);
+  height: 1px;
+  background: var(--border);
+}
+
+.compat-vs-divider::before {
+  left: 0;
+}
+
+.compat-vs-divider::after {
+  right: 0;
+}
+
 /* 정적 정보 페이지(약관 등) */
 .legal h2 {
   font-size: 18px;

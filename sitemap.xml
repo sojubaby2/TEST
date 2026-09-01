@@ -119,6 +119,10 @@
   <url><loc>https://YOUR-DOMAIN.com/tests/saju/</loc></url>
 
   <url><loc>https://YOUR-DOMAIN.com/tests/tarot/</loc></url>
+
+  <url><loc>https://YOUR-DOMAIN.com/tests/compat-simple/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/saju-compat/</loc></url>
+
   <url><loc>https://YOUR-DOMAIN.com/tests/narcissist-index/</loc></url>
   <url><loc>https://YOUR-DOMAIN.com/tests/narcissist-index/result-1.html</loc></url>
   <url><loc>https://YOUR-DOMAIN.com/tests/narcissist-index/result-2.html</loc></url>

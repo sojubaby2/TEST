@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>사주명리학 궁합 | 마음캐치</title>
+<meta name="description" content="두 사람의 생년월일시로 계산하는 진짜 사주 궁합. 절기 기준 만세력으로 일간 오행 상생상극 궁합을 확인해보세요." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="사주명리학 궁합" />
+<meta property="og:description" content="두 사람의 사주팔자로 보는 진짜 궁합. 일간 오행 상생상극으로 계산해드려요." />
+<meta property="og:image" content="../../assets/img/og/saju-compat-intro.png" />
+<meta property="og:url" content="./" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☯️</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="../../index.html">🧠 마음캐치</a>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div style="font-size:56px;margin-bottom:8px;">☯️💕</div>
+    <h1>사주명리학 궁합</h1>
+    <p>두 사람의 생년월일시로 계산하는 진짜 사주 궁합<br />절기 기준 만세력 + 일간 오행 상생상극으로 분석해요</p>
+  </section>
+
+  <div class="card">
+    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 두 사람의 사주팔자를 각각 정확히 계산</p>
+    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 일간(日干) 오행 상생상극 원리로 진짜 궁합 분석</p>
+    <p style="margin:0;font-size:14px;color:var(--text-sub);">✅ 두 사람의 오행 밸런스 비교까지 함께 확인</p>
+  </div>
+
+  <div class="card">
+    <p class="compat-person-title">🙋 첫 번째 사람</p>
+    <div class="saju-form-group" style="margin-top:10px;">
+      <label for="nameA">이름</label>
+      <input class="saju-input" type="text" id="nameA" maxlength="20" placeholder="이름을 입력해주세요" />
+    </div>
+    <div class="saju-form-group">
+      <label for="birthDateA">생년월일 (양력)</label>
+      <input class="saju-input" type="date" id="birthDateA" min="1900-01-01" max="2050-12-31" required />
+    </div>
+    <div class="saju-form-group">
+      <label for="ampmSelectA">태어난 시간</label>
+      <div class="saju-time-row">
+        <select class="saju-input saju-select-sm" id="ampmSelectA">
+          <option value="am">오전</option>
+          <option value="pm">오후</option>
+        </select>
+        <select class="saju-input saju-select-sm" id="hourSelectA"></select>
+        <select class="saju-input saju-select-sm" id="minuteSelectA"></select>
+      </div>
+      <label class="saju-checkbox-row">
+        <input type="checkbox" id="timeUnknownA" />
+        태어난 시간을 몰라요 (시주 제외하고 계산)
+      </label>
+    </div>
+
+    <div class="compat-vs-divider">💗</div>
+
+    <p class="compat-person-title">🙋 두 번째 사람</p>
+    <div class="saju-form-group" style="margin-top:10px;">
+      <label for="nameB">이름</label>
+      <input class="saju-input" type="text" id="nameB" maxlength="20" placeholder="이름을 입력해주세요" />
+    </div>
+    <div class="saju-form-group">
+      <label for="birthDateB">생년월일 (양력)</label>
+      <input class="saju-input" type="date" id="birthDateB" min="1900-01-01" max="2050-12-31" required />
+    </div>
+    <div class="saju-form-group">
+      <label for="ampmSelectB">태어난 시간</label>
+      <div class="saju-time-row">
+        <select class="saju-input saju-select-sm" id="ampmSelectB">
+          <option value="am">오전</option>
+          <option value="pm">오후</option>
+        </select>
+        <select class="saju-input saju-select-sm" id="hourSelectB"></select>
+        <select class="saju-input saju-select-sm" id="minuteSelectB"></select>
+      </div>
+      <label class="saju-checkbox-row">
+        <input type="checkbox" id="timeUnknownB" />
+        태어난 시간을 몰라요 (시주 제외하고 계산)
+      </label>
+    </div>
+
+    <button class="btn btn-primary" id="submitBtn" type="button" style="margin-top:20px;">궁합 결과 보기</button>
+    <p id="errorMsg" style="display:none;color:#dc2626;font-size:13px;margin-top:10px;text-align:center;"></p>
+  </div>
+
+  <p class="notice">
+    ⚠️ 사주팔자 계산은 24절기 기준 만세력 알고리즘으로 정확하게 계산하지만, 해석 내용은 재미로 즐기는 콘텐츠예요. 중요한 의사결정의 근거로 사용하지 마세요. 1900~2050년생만 계산 가능해요.
+  </p>
+
+  <div class="footer">
+    <p><a href="../../index.html">← 다른 테스트도 보러가기</a></p>
+    <p><a href="../../privacy.html">개인정보처리방침</a> · <a href="../../terms.html">이용약관</a></p>
+  </div>
+</main>
+
+<script src="../../assets/js/vendor/manseryeok.min.js"></script>
+<script>
+  (function () {
+    function setupTimePicker(suffix) {
+      var hourSelect = document.getElementById("hourSelect" + suffix);
+      var minuteSelect = document.getElementById("minuteSelect" + suffix);
+      var timeUnknown = document.getElementById("timeUnknown" + suffix);
+      var ampmSelect = document.getElementById("ampmSelect" + suffix);
+
+      for (var hh = 1; hh <= 12; hh++) {
+        var hOpt = document.createElement("option");
+        hOpt.value = hh;
+        hOpt.textContent = hh + "시";
+        if (hh === 12) hOpt.selected = true;
+        hourSelect.appendChild(hOpt);
+      }
+      for (var mm = 0; mm <= 59; mm++) {
+        var mOpt = document.createElement("option");
+        mOpt.value = mm;
+        mOpt.textContent = mm + "분";
+        minuteSelect.appendChild(mOpt);
+      }
+
+      timeUnknown.addEventListener("change", function () {
+        ampmSelect.disabled = timeUnknown.checked;
+        hourSelect.disabled = timeUnknown.checked;
+        minuteSelect.disabled = timeUnknown.checked;
+      });
+    }
+
+    setupTimePicker("A");
+    setupTimePicker("B");
+
+    function to24Hour(ampm, hour12) {
+      hour12 = parseInt(hour12, 10);
+      if (ampm === "am") return hour12 === 12 ? 0 : hour12;
+      return hour12 === 12 ? 12 : hour12 + 12;
+    }
+
+    function readPerson(suffix, label, errors) {
+      var name = document.getElementById("name" + suffix).value.trim();
+      var dateVal = document.getElementById("birthDate" + suffix).value;
+      if (!name) {
+        errors.push(label + "의 이름을 입력해주세요.");
+        return null;
+      }
+      if (!dateVal) {
+        errors.push(label + "의 생년월일을 입력해주세요.");
+        return null;
+      }
+      var parts = dateVal.split("-");
+      var y = parseInt(parts[0], 10);
+      var m = parseInt(parts[1], 10);
+      var d = parseInt(parts[2], 10);
+      if (!Manseryeok.isSupportedYear(y)) {
+        errors.push(label + "는 1900~2050년생만 계산할 수 있어요.");
+        return null;
+      }
+
+      var person = { name: name, y: y, m: m, d: d };
+      var timeUnknown = document.getElementById("timeUnknown" + suffix).checked;
+      if (!timeUnknown) {
+        var ampm = document.getElementById("ampmSelect" + suffix).value;
+        var hour12 = document.getElementById("hourSelect" + suffix).value;
+        var minute = document.getElementById("minuteSelect" + suffix).value;
+        person.h = to24Hour(ampm, hour12);
+        person.mi = parseInt(minute, 10);
+      }
+      return person;
+    }
+
+    document.getElementById("submitBtn").addEventListener("click", function () {
+      var errorMsg = document.getElementById("errorMsg");
+      errorMsg.style.display = "none";
+
+      var errors = [];
+      var personA = readPerson("A", "첫 번째 사람", errors);
+      var personB = readPerson("B", "두 번째 사람", errors);
+
+      if (errors.length > 0) {
+        errorMsg.textContent = errors[0];
+        errorMsg.style.display = "block";
+        return;
+      }
+
+      var query =
+        "nameA=" + encodeURIComponent(personA.name) + "&yA=" + personA.y + "&mA=" + personA.m + "&dA=" + personA.d +
+        (personA.h !== undefined ? "&hA=" + personA.h + "&miA=" + personA.mi : "") +
+        "&nameB=" + encodeURIComponent(personB.name) + "&yB=" + personB.y + "&mB=" + personB.m + "&dB=" + personB.d +
+        (personB.h !== undefined ? "&hB=" + personB.h + "&miB=" + personB.mi : "");
+
+      window.location.href = "result.html?" + query;
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -824,8 +824,10 @@ a {
 }
 
 .tarot-mascot-full img {
+  display: block;
   width: 200px;
   max-width: 70%;
+  margin: 0 auto;
   border-radius: 20px;
   box-shadow: 0 10px 26px rgba(76, 29, 149, 0.22);
 }
@@ -1184,9 +1186,9 @@ a {
   color: var(--text-main);
 }
 
-/* 78장 카드 - 수트별로 줄을 나눠 부채꼴(fan)로 펼쳐서 스크롤 없이 한 번에 노출 */
+/* 78장 카드를 (구분 라벨 없이) 여러 줄의 부채꼴로 나눠 펼침 - 스크롤 없이 한 번에 노출 */
 .tarot-grid-wrap {
-  padding: 4px 2px 8px;
+  padding: 6px 2px 2px;
   margin-bottom: 6px;
   border-radius: var(--radius-md);
   background: rgba(124, 58, 237, 0.04);
@@ -1196,27 +1198,16 @@ a {
   display: block;
 }
 
-.tarot-fan-row-label {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--text-sub);
-  margin: 10px 6px 2px;
-}
-
-.tarot-fan-row-label:first-child {
-  margin-top: 4px;
-}
-
 .tarot-fan-row {
   position: relative;
-  height: 108px;
+  height: 96px;
 }
 
 .tarot-grid-card {
   position: absolute;
   top: 50%;
   left: var(--x, 50%);
-  width: 42px;
+  width: 40px;
   aspect-ratio: 2 / 3;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -1244,7 +1235,7 @@ a {
 }
 
 .tarot-grid-card.picked {
-  transform: translate(-50%, calc(-50% - var(--bump, 0px))) rotate(var(--rot, 0deg)) scale(1.22) translateY(-10px);
+  transform: translate(-50%, calc(-50% - var(--bump, 0px))) rotate(var(--rot, 0deg)) scale(1.25) translateY(-8px);
   box-shadow: 0 0 0 2px #fff, 0 10px 22px rgba(76, 29, 149, 0.55);
   z-index: 999 !important;
 }

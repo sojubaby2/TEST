@@ -135,41 +135,32 @@
     var currentDraw = null;
     var CARD_BACK_IMG = "../../assets/img/tarot/card-back.jpg";
 
-    // 78장을 메이저/수트별로 나눠서 각 줄을 부채꼴(fan)로 펼친다 — 스크롤 없이 전부 노출
-    var FAN_GROUPS = [
-      { label: "🌙 메이저 아르카나", test: function (c) { return c.arcana === "major"; } },
-      { label: "🔥 완드", test: function (c) { return c.suit === "wands"; } },
-      { label: "💧 컵", test: function (c) { return c.suit === "cups"; } },
-      { label: "⚔️ 소드", test: function (c) { return c.suit === "swords"; } },
-      { label: "🪙 펜타클", test: function (c) { return c.suit === "pentacles"; } },
-    ];
-
+    // 78장 전체를 수트 구분(라벨) 없이 부채꼴로 펼친다 — 스크롤 없이 한 번에 노출.
+    // 한 줄에 다 펼치면 카드끼리 너무 겹쳐서 낱장이 구분 안 되길래(거의 다 가려진 부채 모양),
+    // 보이지 않는 여러 줄로만 나눠서(제목/구분선 없음) 각 줄이 살짝 곡선으로 펼쳐지게 함
     function buildGrid() {
+      var ROW_SIZE = 13; // 78 = 13 x 6
       var html = "";
-      FAN_GROUPS.forEach(function (group) {
-        var indices = [];
-        for (var i = 0; i < TAROT_CARDS.length; i++) {
-          if (group.test(TAROT_CARDS[i])) indices.push(i);
-        }
-        var n = indices.length;
-        var arc = Math.min(46, 16 + n * 1.15); // 카드 수가 많을수록 더 넓게 펼침
-        var edgeMargin = 8; // 양 끝 카드가 줄 밖으로 잘려나가지 않도록 여백(%)
+      for (var start = 0; start < TAROT_CARDS.length; start += ROW_SIZE) {
+        var n = Math.min(ROW_SIZE, TAROT_CARDS.length - start);
+        var arc = 30;
+        var edgeMargin = 9; // 양 끝 카드가 줄 밖으로 잘려나가지 않도록 여백(%)
 
-        html += '<div class="tarot-fan-row-label">' + group.label + " · " + n + "장</div>";
         html += '<div class="tarot-fan-row">';
-        indices.forEach(function (idx, pos) {
+        for (var pos = 0; pos < n; pos++) {
+          var idx = start + pos;
           var t = n === 1 ? 0.5 : pos / (n - 1);
           var angle = -arc + t * arc * 2;
-          var bump = Math.sin(t * Math.PI) * 12; // 가운데가 살짝 위로 볼록해지는 부채꼴 곡선
+          var bump = Math.sin(t * Math.PI) * 10; // 가운데가 살짝 위로 볼록해지는 부채꼴 곡선
           var leftPct = edgeMargin + t * (100 - edgeMargin * 2);
           html +=
             '<button type="button" class="tarot-grid-card" data-idx="' + idx + '" ' +
             'style="--x:' + leftPct.toFixed(2) + '%; --rot:' + angle.toFixed(1) + 'deg; --bump:' + bump.toFixed(1) + 'px; --z:' + (pos + 1) + ';">' +
             '<img class="tarot-card-back-img" src="' + CARD_BACK_IMG + '" alt="" />' +
             "</button>";
-        });
+        }
         html += "</div>";
-      });
+      }
       gridEl.innerHTML = html;
       gridEl.classList.remove("disabled");
       Array.prototype.forEach.call(gridEl.querySelectorAll(".tarot-grid-card"), function (el) {

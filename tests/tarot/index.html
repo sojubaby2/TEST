@@ -51,7 +51,9 @@
 
   <div class="tarot-stage hidden" id="tarotStage">
     <div class="tarot-flip-card" id="tarotFlipCard">
-      <div class="tarot-flip-face tarot-flip-face-back">🔮</div>
+      <div class="tarot-flip-face tarot-flip-face-back">
+        <img class="tarot-card-back-img" src="../../assets/img/tarot/card-back.jpg" alt="" />
+      </div>
       <div class="tarot-flip-face tarot-flip-face-front" id="tarotFrontFace"></div>
     </div>
   </div>
@@ -131,13 +133,43 @@
     var currentCategory = "all";
     var drawing = false;
     var currentDraw = null;
+    var CARD_BACK_IMG = "../../assets/img/tarot/card-back.jpg";
 
-    // 78장 카드 그리드를 만든다 (앞면은 안 보이고 전부 같은 뒷면)
+    // 78장을 메이저/수트별로 나눠서 각 줄을 부채꼴(fan)로 펼친다 — 스크롤 없이 전부 노출
+    var FAN_GROUPS = [
+      { label: "🌙 메이저 아르카나", test: function (c) { return c.arcana === "major"; } },
+      { label: "🔥 완드", test: function (c) { return c.suit === "wands"; } },
+      { label: "💧 컵", test: function (c) { return c.suit === "cups"; } },
+      { label: "⚔️ 소드", test: function (c) { return c.suit === "swords"; } },
+      { label: "🪙 펜타클", test: function (c) { return c.suit === "pentacles"; } },
+    ];
+
     function buildGrid() {
       var html = "";
-      for (var i = 0; i < TAROT_CARDS.length; i++) {
-        html += '<button type="button" class="tarot-grid-card" data-idx="' + i + '">🔮</button>';
-      }
+      FAN_GROUPS.forEach(function (group) {
+        var indices = [];
+        for (var i = 0; i < TAROT_CARDS.length; i++) {
+          if (group.test(TAROT_CARDS[i])) indices.push(i);
+        }
+        var n = indices.length;
+        var arc = Math.min(46, 16 + n * 1.15); // 카드 수가 많을수록 더 넓게 펼침
+        var edgeMargin = 8; // 양 끝 카드가 줄 밖으로 잘려나가지 않도록 여백(%)
+
+        html += '<div class="tarot-fan-row-label">' + group.label + " · " + n + "장</div>";
+        html += '<div class="tarot-fan-row">';
+        indices.forEach(function (idx, pos) {
+          var t = n === 1 ? 0.5 : pos / (n - 1);
+          var angle = -arc + t * arc * 2;
+          var bump = Math.sin(t * Math.PI) * 12; // 가운데가 살짝 위로 볼록해지는 부채꼴 곡선
+          var leftPct = edgeMargin + t * (100 - edgeMargin * 2);
+          html +=
+            '<button type="button" class="tarot-grid-card" data-idx="' + idx + '" ' +
+            'style="--x:' + leftPct.toFixed(2) + '%; --rot:' + angle.toFixed(1) + 'deg; --bump:' + bump.toFixed(1) + 'px; --z:' + (pos + 1) + ';">' +
+            '<img class="tarot-card-back-img" src="' + CARD_BACK_IMG + '" alt="" />' +
+            "</button>";
+        });
+        html += "</div>";
+      });
       gridEl.innerHTML = html;
       gridEl.classList.remove("disabled");
       Array.prototype.forEach.call(gridEl.querySelectorAll(".tarot-grid-card"), function (el) {
@@ -165,16 +197,18 @@
     function buildFrontFace(draw) {
       var card = draw.card;
       var reversed = draw.reversed;
+      // 역방향이어도 카드 "그림"만 뒤집어서 보여주고, 카드 이름/뱃지 텍스트는 항상 똑바로 읽히게 함
+      var revClass = reversed ? " is-reversed" : "";
       frontFace.innerHTML =
         (card.img
-          ? '<img class="tarot-card-img" src="' + card.img + '" alt="' + card.name + ' 타로카드" loading="lazy" ' +
-            'onerror="this.replaceWith(Object.assign(document.createElement(\'div\'),{className:\'tarot-emoji\',textContent:\'' + card.emoji + '\'}))" />'
-          : '<div class="tarot-emoji">' + card.emoji + "</div>") +
+          ? '<img class="tarot-card-img' + revClass + '" src="' + card.img + '" alt="' + card.name + ' 타로카드" loading="lazy" ' +
+            'onerror="this.replaceWith(Object.assign(document.createElement(\'div\'),{className:\'tarot-emoji' + revClass + '\',textContent:\'' + card.emoji + '\'}))" />'
+          : '<div class="tarot-emoji' + revClass + '">' + card.emoji + "</div>") +
         '<div class="tarot-name-en">' + card.nameEn + "</div>" +
         '<div class="tarot-name-ko">' + card.name + "</div>" +
         '<div class="tarot-orientation" style="background:' + card.color + ';">' +
         (reversed ? "역방향 · 조심스러운 기운" : "정방향 · 좋은 기운") + "</div>";
-      frontFace.style.transform = reversed ? "rotateY(180deg) rotate(180deg)" : "rotateY(180deg)";
+      frontFace.style.transform = "rotateY(180deg)";
     }
 
     function showResult(draw) {
@@ -224,11 +258,11 @@
       var originRect = originEl.getBoundingClientRect();
       var flying = document.createElement("div");
       flying.className = "tarot-flying-card";
-      flying.textContent = "🔮";
       flying.style.width = originRect.width + "px";
       flying.style.height = originRect.height + "px";
       flying.style.left = originRect.left + "px";
       flying.style.top = originRect.top + "px";
+      flying.style.backgroundImage = "url('" + CARD_BACK_IMG + "')";
       document.body.appendChild(flying);
 
       var targetW = 220;

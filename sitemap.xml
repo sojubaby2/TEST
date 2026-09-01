@@ -116,6 +116,20 @@
   <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-dog.html</loc></url>
   <url><loc>https://YOUR-DOMAIN.com/tests/today-fortune/result-pig.html</loc></url>
 
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-aries.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-taurus.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-gemini.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-cancer.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-leo.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-virgo.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-libra.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-scorpio.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-sagittarius.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-capricorn.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-aquarius.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN.com/tests/zodiac-fortune/result-pisces.html</loc></url>
+
   <url><loc>https://YOUR-DOMAIN.com/tests/saju/</loc></url>
 
   <url><loc>https://YOUR-DOMAIN.com/tests/tarot/</loc></url>

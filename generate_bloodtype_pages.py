@@ -12,7 +12,7 @@ TEMPLATE = """<!doctype html>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>{name} 성격 궁합 | 테스트맛집</title>
+<title>{name} 성격 궁합 | 알아볼괘</title>
 <meta name="description" content="{name}의 성격 특징과 나와 잘 맞는 혈액형 궁합을 확인해보세요." />
 
 <meta property="og:type" content="website" />
@@ -28,7 +28,7 @@ TEMPLATE = """<!doctype html>
 <body>
 
 <header class="site-header">
-  <a class="logo" href="../../index.html">🔥 테스트맛집</a>
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
 </header>
 
 <main class="wrap">
@@ -119,7 +119,7 @@ TEMPLATE = """<!doctype html>
     document.getElementById("shareBtn").addEventListener("click", function () {{
       shareCurrentPage(
         "나는 " + b.name + " " + b.emoji + " " + b.oneLiner,
-        "테스트맛집에서 내 혈액형 성격 궁합도 확인해봐!"
+        "알아볼괘에서 내 혈액형 성격 궁합도 확인해봐!"
       );
     }});
     document.getElementById("copyBtn").addEventListener("click", function () {{

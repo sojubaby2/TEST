@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>오늘의 타로 점괘 | 테스트맛집</title>
+<title>오늘의 타로 점괘 | 알아볼괘</title>
 <meta name="description" content="카드 한 장을 뽑아서 확인하는 오늘의 타로 메시지. 연애운, 금전운, 건강운, 직장운까지 원하는 주제로 골라 78장 중 오늘의 카드를 만나보세요." />
 
 <meta property="og:type" content="website" />
@@ -18,7 +18,7 @@
 <body>
 
 <header class="site-header">
-  <a class="logo" href="../../index.html">🔥 테스트맛집</a>
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
 </header>
 
 <main class="wrap">
@@ -325,7 +325,7 @@
       var card = currentDraw.card;
       shareCurrentPage(
         "오늘의 " + CATEGORY_LABELS[currentCategory] + "는 '" + card.name + "' " + card.emoji,
-        "오늘의 타로 메시지, 너도 확인해봐! 테스트맛집에서 카드 한 장 뽑아보기"
+        "오늘의 타로 메시지, 너도 확인해봐! 알아볼괘에서 카드 한 장 뽑아보기"
       );
     });
     document.getElementById("copyBtn").addEventListener("click", function () {
@@ -335,7 +335,7 @@
       var card = currentDraw.card;
       downloadImage(
         "../../assets/img/og/tarot-" + card.id + ".png",
-        "테스트맛집_오늘의타로_" + card.name + ".png"
+        "알아볼괘_오늘의타로_" + card.name + ".png"
       );
     });
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>나의 결과는 '상황별 인싸형' | 테스트맛집 인싸/아싸 테스트</title>
-<meta name="description" content="상황에 따라 텐션을 자유자재로 조절하는 타입 - 테스트맛집 인싸/아싸 테스트 결과" />
+<title>나의 결과는 '상황별 인싸형' | 알아볼괘 인싸/아싸 테스트</title>
+<meta name="description" content="상황에 따라 텐션을 자유자재로 조절하는 타입 - 알아볼괘 인싸/아싸 테스트 결과" />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="나의 결과는 '상황별 인싸형' 🎭" />
@@ -19,7 +19,7 @@
 <body>
 
 <header class="site-header">
-  <a class="logo" href="../../index.html">🔥 테스트맛집</a>
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
 </header>
 
 <main class="wrap">
@@ -103,7 +103,7 @@
     document.getElementById("shareBtn").addEventListener("click", function () {
       shareCurrentPage(
         "나의 인싸력 지수는 '" + result.title + "' " + result.emoji,
-        "너의 결과는? 테스트맛집에서 확인해봐!"
+        "너의 결과는? 알아볼괘에서 확인해봐!"
       );
     });
     document.getElementById("copyBtn").addEventListener("click", function () {
@@ -112,7 +112,7 @@
     document.getElementById("downloadBtn").addEventListener("click", function () {
       downloadImage(
         "../../assets/img/card/insa-assa-3.png",
-        "테스트맛집_" + result.title + ".png"
+        "알아볼괘_" + result.title + ".png"
       );
     });
   })();

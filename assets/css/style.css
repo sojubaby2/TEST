@@ -1,5 +1,5 @@
 /* ============================================================
-   마음캐치 - 공통 스타일시트 (모바일 우선)
+   알아볼괘 - 공통 스타일시트 (모바일 우선)
    ============================================================ */
 
 :root {
@@ -64,6 +64,9 @@ a {
 }
 
 .site-header .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-weight: 800;
   font-size: 18px;
   letter-spacing: -0.02em;
@@ -71,6 +74,22 @@ a {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.site-header .logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 /* 히어로 영역 */

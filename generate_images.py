@@ -90,7 +90,7 @@ def add_decoration(img, color_hex):
 
 
 def brand_mark(draw):
-    draw.text((56, 46), "테스트맛집", font=font(FONT_BLACK, 34), fill=(255, 255, 255, 235))
+    draw.text((56, 46), "알아볼괘", font=font(FONT_BLACK, 34), fill=(255, 255, 255, 235))
 
 
 def make_card(filename, color_hex, emoji, title, subtitle, badge=None):
@@ -131,7 +131,7 @@ make_card(
     "home.png",
     "#7C3AED",
     "🧠",
-    "테스트맛집",
+    "알아볼괘",
     "재미로 보는 심리테스트 모음 · MBTI · 연애운 · IQ/EQ",
     badge="무료 · 30초 완성",
 )
@@ -271,7 +271,7 @@ def make_share_card(filename, out_dir, color_hex, emoji, title, subtitle, summar
     draw = ImageDraw.Draw(img)
 
     # 브랜드 + 테스트명
-    draw.text((PAD, 44), "테스트맛집", font=font(FONT_BLACK, 32), fill=(255, 255, 255))
+    draw.text((PAD, 44), "알아볼괘", font=font(FONT_BLACK, 32), fill=(255, 255, 255))
     draw.text((PAD, 90), test_label, font=font(FONT_MEDIUM, 24), fill=(255, 255, 255, 220))
 
     # 이모지 + 타이틀 + 서브타이틀 (히어로 영역, 중앙 정렬)
@@ -324,7 +324,7 @@ def make_share_card(filename, out_dir, color_hex, emoji, title, subtitle, summar
     y = render_compat_card(y, "⚡", "상극 주의", (220, 38, 38), (254, 242, 242), worst)
 
     y += 50
-    draw_text_centered(draw, "테스트맛집에서 나도 테스트하기 →", y, font(FONT_BOLD, 26), (140, 142, 156), canvas_w=CARD_W)
+    draw_text_centered(draw, "알아볼괘에서 나도 테스트하기 →", y, font(FONT_BOLD, 26), (140, 142, 156), canvas_w=CARD_W)
     y += 60
 
     final_img = img.crop((0, 0, CARD_W, min(int(y), canvas_h)))

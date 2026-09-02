@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>로또 번호 추천 | 테스트맛집</title>
+<title>로또 번호 추천 | 알아볼괘</title>
 <meta name="description" content="1부터 45까지 무작위로 뽑는 오늘의 행운 번호 6개. 버튼 한 번으로 계속 다시 뽑을 수 있어요." />
 
 <meta property="og:type" content="website" />
@@ -18,7 +18,7 @@
 <body>
 
 <header class="site-header">
-  <a class="logo" href="../../index.html">🔥 테스트맛집</a>
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
 </header>
 
 <main class="wrap">
@@ -224,7 +224,7 @@
       if (!latestNumbers) return;
       shareCurrentPage(
         "오늘의 행운 번호는 " + latestNumbers.join(", ") + " 이에요 🍀",
-        "테스트맛집에서 나도 행운 번호 뽑아보기!"
+        "알아볼괘에서 나도 행운 번호 뽑아보기!"
       );
     });
 
@@ -245,7 +245,7 @@
       ctx.fillStyle = "#ffffff";
       ctx.font = "bold 26px sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText("🔥 테스트맛집 · 오늘의 행운 번호", W / 2, 54);
+      ctx.fillText("🔥 알아볼괘 · 오늘의 행운 번호", W / 2, 54);
 
       var ballR = 34;
       var gap = 18;
@@ -274,7 +274,7 @@
       var dataUrl = canvas.toDataURL("image/png");
       var a = document.createElement("a");
       a.href = dataUrl;
-      a.download = "테스트맛집_행운번호_" + latestNumbers.join("-") + ".png";
+      a.download = "알아볼괘_행운번호_" + latestNumbers.join("-") + ".png";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

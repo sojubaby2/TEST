@@ -35,8 +35,8 @@ TEMPLATE = """<!doctype html>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>{keyword} 해몽 | 테스트맛집</title>
-<meta name="description" content="{keyword} 의미가 궁금하다면? {summary} 테스트맛집 꿈해몽 사전에서 확인해보세요." />
+<title>{keyword} 해몽 | 알아볼괘</title>
+<meta name="description" content="{keyword} 의미가 궁금하다면? {summary} 알아볼괘 꿈해몽 사전에서 확인해보세요." />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="{keyword} 해몽 {emoji}" />
@@ -51,7 +51,7 @@ TEMPLATE = """<!doctype html>
 <body>
 
 <header class="site-header">
-  <a class="logo" href="../../index.html">🔥 테스트맛집</a>
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
 </header>
 
 <main class="wrap">
@@ -135,7 +135,7 @@ TEMPLATE = """<!doctype html>
     document.getElementById("shareBtn").addEventListener("click", function () {{
       shareCurrentPage(
         "{keyword} 해몽 {emoji} " + "{summary}",
-        "테스트맛집 꿈해몽 사전에서 내 꿈도 검색해봐!"
+        "알아볼괘 꿈해몽 사전에서 내 꿈도 검색해봐!"
       );
     }});
     document.getElementById("copyBtn").addEventListener("click", function () {{

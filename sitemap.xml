@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://arabol.co.kr/</loc></url>
+  <url><loc>https://arabol.co.kr/about.html</loc></url>
+  <url><loc>https://arabol.co.kr/contact.html</loc></url>
 
   <url><loc>https://arabol.co.kr/tests/teto-egen/</loc></url>
   <url><loc>https://arabol.co.kr/tests/teto-egen/result-teto-m.html</loc></url>

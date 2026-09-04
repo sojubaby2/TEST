@@ -1871,6 +1871,33 @@ function getTarotVisitorSeed() {
   return fresh;
 }
 
+// 타로 결과 화면의 "행운 포인트" 섹션에 쓰이는 결정론적 행운 속성.
+// 카드+카테고리+날짜 조합으로 시드를 만들어서, 같은 조건이면 항상 같은 행운 속성이 나오게 함.
+const TAROT_LUCKY_COLORS = [
+  { name: "미드나잇 퍼플", hex: "#4C1D95" },
+  { name: "로즈 핑크", hex: "#DB2777" },
+  { name: "골드", hex: "#D4A017" },
+  { name: "딥 틸", hex: "#0F766E" },
+  { name: "아이보리", hex: "#F5F0E6" },
+  { name: "가넷 레드", hex: "#9F1239" },
+  { name: "실버 그레이", hex: "#94A3B8" },
+  { name: "인디고 블루", hex: "#3730A3" },
+];
+
+const TAROT_LUCKY_ITEMS = [
+  "향초", "손거울", "은반지", "카드지갑", "손편지", "수정 원석",
+  "만년필", "책갈피", "동전 지갑", "말린 꽃", "찻잔", "열쇠고리",
+];
+
+function getTarotLuck(cardId, category, dateStr) {
+  const base = dateStr + "-" + cardId + "-" + category;
+  const pick = (salt, arr) => arr[tarotHashSeed(base + "-" + salt) % arr.length];
+  const color = pick("color", TAROT_LUCKY_COLORS);
+  const item = pick("item", TAROT_LUCKY_ITEMS);
+  const number = (tarotHashSeed(base + "-number") % 45) + 1;
+  return { color: color, item: item, number: number };
+}
+
 // category: "all" | "love" | "money" | "health" | "career"
 // 카테고리별로 다른 카드가 나오도록 시드에 카테고리를 포함시킴 — 즉 하루에
 // "총운/연애운/금전운/건강운/직장운" 각각 서로 다른 카드가 배정되고, 같은 카테고리를

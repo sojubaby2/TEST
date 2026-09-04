@@ -31,11 +31,17 @@
     <p>30초면 끝나는 재미있는 심리테스트로<br />숨겨진 내 모습을 확인해보세요</p>
   </section>
 
+  <div class="search-bar-wrap">
+    <input type="search" id="testSearchInput" class="search-input" placeholder="🔍 테스트 이름으로 검색해보세요" />
+  </div>
+
   <div class="cat-tabs" id="catTabs">
     <button type="button" class="cat-tab active" data-target="hotSection"><span class="hot-flame">🔥</span> HOT</button>
     <button type="button" class="cat-tab" data-target="testSection">🧩 테스트모음</button>
     <button type="button" class="cat-tab" data-target="fortuneSection">🔮 운세모음</button>
   </div>
+
+  <div id="searchResultsSection" style="display:none;"></div>
 
   <div id="hotSection">
 
@@ -228,6 +234,24 @@
     <div class="info">
       <h3>눈치 테스트</h3>
       <p>나의 눈치 지수는 몇 %? (10문항 · 30초)</p>
+    </div>
+    <div class="arrow">›</div>
+  </a>
+
+  <a class="test-card" href="tests/kkondae/index.html">
+    <div class="emoji">📢</div>
+    <div class="info">
+      <h3>꼰대력 테스트</h3>
+      <p>나의 꼰대력 지수는 몇 %? (10문항 · 30초)</p>
+    </div>
+    <div class="arrow">›</div>
+  </a>
+
+  <a class="test-card" href="tests/slang-quiz/index.html">
+    <div class="emoji">🔥</div>
+    <div class="info">
+      <h3>신조어 지식퀴즈</h3>
+      <p>요즘 신조어 얼마나 알아? (10문항 · 1분)</p>
     </div>
     <div class="arrow">›</div>
   </a>
@@ -542,6 +566,15 @@
     <div class="arrow">›</div>
   </a>
 
+  <a class="test-card" href="tests/name-compat/index.html">
+    <div class="emoji">💌</div>
+    <div class="info">
+      <h3>이름궁합 테스트</h3>
+      <p>생년월일 필요 없이 이름 두 개만 입력하면 바로 나와요</p>
+    </div>
+    <div class="arrow">›</div>
+  </a>
+
   <a class="test-card" href="tests/today-fortune/index.html">
     <div class="emoji">🔮</div>
     <div class="info">
@@ -601,6 +634,7 @@
   </div>
 </main>
 
+<script src="assets/js/main.js"></script>
 <script>
   (function () {
     var tabs = document.querySelectorAll(".cat-tab");
@@ -609,8 +643,13 @@
       testSection: document.getElementById("testSection"),
       fortuneSection: document.getElementById("fortuneSection")
     };
+    var catTabs = document.getElementById("catTabs");
+    var searchInput = document.getElementById("testSearchInput");
+    var searchSection = document.getElementById("searchResultsSection");
+    var currentTarget = "hotSection";
 
     function setTab(target) {
+      currentTarget = target;
       tabs.forEach(function (t) {
         t.classList.toggle("active", t.getAttribute("data-target") === target);
       });
@@ -624,6 +663,58 @@
         setTab(t.getAttribute("data-target"));
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
+    });
+
+    /* ===== 테스트 검색 ===== */
+    // HOT 섹션엔 다른 섹션과 중복되는 카드가 있어서, href 기준으로 중복 제거한
+    // 검색용 인덱스를 미리 한 번만 만들어둠.
+    var seenHref = {};
+    var searchIndex = [];
+    Object.keys(sections).forEach(function (key) {
+      Array.prototype.forEach.call(sections[key].querySelectorAll(".test-card"), function (card) {
+        var href = card.getAttribute("href");
+        if (seenHref[href]) return;
+        seenHref[href] = true;
+        searchIndex.push(card);
+      });
+    });
+
+    function runSearch(query) {
+      query = query.trim().toLowerCase();
+      if (!query) {
+        searchSection.style.display = "none";
+        searchSection.innerHTML = "";
+        catTabs.style.display = "";
+        setTab(currentTarget);
+        return;
+      }
+      catTabs.style.display = "none";
+      Object.keys(sections).forEach(function (key) {
+        sections[key].style.display = "none";
+      });
+
+      var matches = searchIndex.filter(function (card) {
+        var h3 = card.querySelector("h3");
+        var title = h3 ? h3.textContent.toLowerCase() : "";
+        var descEl = card.querySelector("p");
+        var desc = descEl ? descEl.textContent.toLowerCase() : "";
+        return title.indexOf(query) !== -1 || desc.indexOf(query) !== -1;
+      });
+
+      if (matches.length === 0) {
+        searchSection.innerHTML =
+          '<p style="text-align:center;color:var(--text-sub);padding:48px 0;">🔍 검색 결과가 없어요<br />다른 키워드로 찾아보세요</p>';
+      } else {
+        searchSection.innerHTML = "";
+        matches.forEach(function (card) {
+          searchSection.appendChild(card.cloneNode(true));
+        });
+      }
+      searchSection.style.display = "block";
+    }
+
+    searchInput.addEventListener("input", function () {
+      runSearch(searchInput.value);
     });
   })();
 </script>

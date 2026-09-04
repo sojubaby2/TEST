@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="ko">
 <head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1329092235174593"
+     crossorigin="anonymous"></script>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>오늘의 타로 점괘 | 알아볼괘</title>
@@ -62,15 +65,26 @@
   <div class="tarot-result-section" id="tarotResultSection">
     <div class="card" style="text-align:center;">
       <span class="tarot-keyword-badge" id="tarotKeywordBadge"></span>
-      <p class="tarot-meaning-text" id="tarotMeaningText"></p>
 
-      <div id="tarotCategoryMeaningBlock"></div>
+      <div class="tarot-info-section">
+        <span class="tarot-info-pill">🔑 오늘의 메시지</span>
+        <div class="tarot-info-card">
+          <p id="tarotMeaningText"></p>
+          <span class="tarot-info-sub" id="tarotMeaningSub"></span>
+        </div>
+      </div>
 
-      <div class="tarot-tip-box" id="tarotTipBox">
-        <span class="icon">💡</span>
-        <div>
-          <b>안 좋게 느껴져도 괜찮아요, 이렇게 해보세요</b>
-          <span id="tarotTipText"></span>
+      <div class="tarot-info-section">
+        <span class="tarot-info-pill">💡 조심할 점 &amp; 이렇게 해보세요</span>
+        <div class="tarot-info-card">
+          <p id="tarotTipText"></p>
+        </div>
+      </div>
+
+      <div class="tarot-info-section">
+        <span class="tarot-info-pill">🍀 오늘의 행운 포인트</span>
+        <div class="tarot-info-card">
+          <div class="tarot-luck-row" id="tarotLuckRow"></div>
         </div>
       </div>
 
@@ -216,28 +230,34 @@
       var orientation = reversed ? "reversed" : "upright";
       var orientationLabel = reversed ? "역방향" : "정방향";
       var generalMeaning = card[orientation];
+      var mainMeaning =
+        currentCategory === "all" ? generalMeaning : card.meanings[currentCategory][orientation];
 
       document.getElementById("tarotKeywordBadge").textContent = "🔑 " + card.keyword;
       document.getElementById("tarotKeywordBadge").style.background = card.color;
 
-      var catBlock = document.getElementById("tarotCategoryMeaningBlock");
-      var meaningTextEl = document.getElementById("tarotMeaningText");
-
-      if (currentCategory === "all") {
-        meaningTextEl.textContent = card.name + " (" + orientationLabel + ") — " + generalMeaning;
-        catBlock.innerHTML = "";
-      } else {
-        var catMeaning = card.meanings[currentCategory][orientation];
-        meaningTextEl.textContent = card.name + " (" + orientationLabel + ")";
-        catBlock.innerHTML =
-          '<div class="tarot-category-meaning cat-' + currentCategory + '">' +
-          '<span class="label">' + ATTR_LABELS[currentCategory] + " 관점으로 본 오늘의 카드</span>" +
-          catMeaning +
-          "</div>" +
-          '<p class="tarot-general-meaning"><b>총운으로는</b> ' + generalMeaning + "</p>";
-      }
+      document.getElementById("tarotMeaningText").textContent = mainMeaning;
+      document.getElementById("tarotMeaningSub").textContent =
+        card.name +
+        " · " +
+        orientationLabel +
+        (currentCategory !== "all" ? " · " + ATTR_LABELS[currentCategory] + " 관점" : "");
 
       document.getElementById("tarotTipText").textContent = card.tip;
+
+      var luck = getTarotLuck(card.id, currentCategory, draw.dateStr);
+      document.getElementById("tarotLuckRow").innerHTML =
+        '<div class="tarot-luck-chip"><span class="luck-label">행운의 색</span><span class="luck-value"><span class="luck-swatch" style="background:' +
+        luck.color.hex +
+        ';"></span>' +
+        luck.color.name +
+        "</span></div>" +
+        '<div class="tarot-luck-chip"><span class="luck-label">행운의 숫자</span><span class="luck-value">' +
+        luck.number +
+        "</span></div>" +
+        '<div class="tarot-luck-chip"><span class="luck-label">행운의 아이템</span><span class="luck-value">' +
+        luck.item +
+        "</span></div>";
 
       var badgesEl = document.getElementById("tarotAttrBadges");
       badgesEl.innerHTML = card.categories

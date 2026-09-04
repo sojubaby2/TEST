@@ -104,6 +104,15 @@
   <url><loc>https://arabol.co.kr/tests/nunchi/result-4.html</loc></url>
   <url><loc>https://arabol.co.kr/tests/nunchi/result-5.html</loc></url>
 
+  <url><loc>https://arabol.co.kr/tests/kkondae/</loc></url>
+  <url><loc>https://arabol.co.kr/tests/kkondae/result-1.html</loc></url>
+  <url><loc>https://arabol.co.kr/tests/kkondae/result-2.html</loc></url>
+  <url><loc>https://arabol.co.kr/tests/kkondae/result-3.html</loc></url>
+  <url><loc>https://arabol.co.kr/tests/kkondae/result-4.html</loc></url>
+  <url><loc>https://arabol.co.kr/tests/kkondae/result-5.html</loc></url>
+
+  <url><loc>https://arabol.co.kr/tests/slang-quiz/</loc></url>
+
   <url><loc>https://arabol.co.kr/tests/today-fortune/</loc></url>
   <url><loc>https://arabol.co.kr/tests/today-fortune/result-rat.html</loc></url>
   <url><loc>https://arabol.co.kr/tests/today-fortune/result-ox.html</loc></url>
@@ -137,6 +146,7 @@
   <url><loc>https://arabol.co.kr/tests/tarot/</loc></url>
 
   <url><loc>https://arabol.co.kr/tests/compat-simple/</loc></url>
+  <url><loc>https://arabol.co.kr/tests/name-compat/</loc></url>
   <url><loc>https://arabol.co.kr/tests/saju-compat/</loc></url>
   <url><loc>https://arabol.co.kr/tests/lotto-number/</loc></url>
 

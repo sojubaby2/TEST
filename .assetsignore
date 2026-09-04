@@ -1,2 +1,10 @@
 .git
 .git/**
+*.py
+*.pyc
+__pycache__
+__pycache__/**
+README_시작가이드.txt
+.gitignore
+.assetsignore
+wrangler.toml

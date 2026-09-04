@@ -111,6 +111,38 @@ a {
   margin: 0;
 }
 
+/* 홈 검색창 */
+.search-bar-wrap {
+  margin: 18px 0 12px;
+}
+
+.search-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-size: 14.5px;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search-input::placeholder {
+  color: var(--text-sub);
+}
+
+.search-input:focus {
+  border-color: var(--brand-1);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+/* 검색 입력 지우기(x) 버튼도 살짝 눌러보기 좋게 */
+.search-input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
 /* 홈 대분류 탭 (HOT / 테스트모음 / 운세모음) */
 .cat-tabs {
   display: flex;
@@ -283,6 +315,17 @@ a {
   margin-top: 10px;
 }
 
+.btn-kakao {
+  background: #fee500;
+  color: #391b1b;
+  margin-top: 10px;
+  box-shadow: 0 6px 14px rgba(254, 229, 0, 0.35);
+}
+
+.btn-kakao:active {
+  transform: scale(0.98);
+}
+
 .btn-row {
   display: flex;
   gap: 10px;
@@ -364,6 +407,22 @@ a {
 .option-btn:active {
   background: #f5f3ff;
   border-color: var(--brand-1);
+}
+
+.option-btn.correct {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: #10b981;
+  color: #047857;
+}
+
+.option-btn.wrong {
+  background: rgba(220, 38, 38, 0.08);
+  border-color: #dc2626;
+  color: #b91c1c;
+}
+
+.option-btn:disabled {
+  cursor: default;
 }
 
 /* 결과 페이지 */
@@ -1609,6 +1668,89 @@ a {
 
 .tarot-redraw-row {
   margin-top: 16px;
+}
+
+/* ===== 타로 결과 상세 섹션 (오늘의 메시지 / 조심할 점 / 행운 포인트) ===== */
+.tarot-info-section {
+  margin-top: 26px;
+  text-align: center;
+}
+
+.tarot-info-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(124, 58, 237, 0.28);
+  position: relative;
+  z-index: 1;
+}
+
+.tarot-info-card {
+  background: #faf9fd;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 22px 18px 18px;
+  margin-top: -14px;
+}
+
+.tarot-info-card p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text-main);
+}
+
+.tarot-info-card .tarot-info-sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: var(--text-sub);
+}
+
+.tarot-luck-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tarot-luck-chip {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  min-width: 88px;
+  text-align: center;
+}
+
+.tarot-luck-chip .luck-label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+
+.tarot-luck-chip .luck-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.tarot-luck-chip .luck-swatch {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 /* ===== 꿈해몽 검색 페이지 ===== */

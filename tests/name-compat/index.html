@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1329092235174593"
+     crossorigin="anonymous"></script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>이름궁합 테스트 | 알아볼괘</title>
+<meta name="description" content="이름 두 개만 입력하면 바로 나오는 이름궁합. 생년월일 필요 없이 30초 만에 확인하는 우리 둘의 이름궁합 점수." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="이름궁합 테스트" />
+<meta property="og:description" content="이름 두 개만 입력하면 바로 나오는 이름궁합, 너도 확인해봐!" />
+<meta property="og:image" content="../../assets/img/og/name-compat-intro.png" />
+<meta property="og:url" content="./" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div style="font-size:56px;margin-bottom:8px;">💌</div>
+    <h1>이름궁합 테스트</h1>
+    <p>생년월일 필요 없이<br />이름 두 개만 입력하면 바로 나와요</p>
+  </section>
+
+  <div class="card">
+    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 이름만 입력하면 5초 만에 바로 확인</p>
+    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 순서 상관없이 항상 같은 결과가 나와요</p>
+    <p style="margin:0;font-size:14px;color:var(--text-sub);">✅ 친구, 썸, 커플 누구든 편하게 테스트</p>
+  </div>
+
+  <div class="card">
+    <p class="compat-person-title">🙋 첫 번째 이름</p>
+    <div class="saju-form-group" style="margin-top:10px;">
+      <label for="nameA">이름</label>
+      <input class="saju-input" type="text" id="nameA" maxlength="20" placeholder="이름을 입력해주세요" />
+    </div>
+
+    <div class="compat-vs-divider">💌</div>
+
+    <p class="compat-person-title">🙋 두 번째 이름</p>
+    <div class="saju-form-group" style="margin-top:10px;">
+      <label for="nameB">이름</label>
+      <input class="saju-input" type="text" id="nameB" maxlength="20" placeholder="이름을 입력해주세요" />
+    </div>
+
+    <button class="btn btn-primary" id="submitBtn" type="button" style="margin-top:20px;">이름궁합 확인하기</button>
+    <p id="errorMsg" style="display:none;color:#dc2626;font-size:13px;margin-top:10px;text-align:center;"></p>
+  </div>
+
+  <p class="notice">
+    ⚠️ 이 결과는 재미로 즐기는 콘텐츠이며, 실제 성명학이나 통계에 근거하지 않아요. 중요한 의사결정의 근거로 사용하지 마세요.
+  </p>
+
+  <div class="footer">
+    <p><a href="../../index.html">← 다른 테스트도 보러가기</a></p>
+    <p><a href="../../privacy.html">개인정보처리방침</a> · <a href="../../terms.html">이용약관</a></p>
+  </div>
+</main>
+
+<script>
+  (function () {
+    var nameA = document.getElementById("nameA");
+    var nameB = document.getElementById("nameB");
+    var submitBtn = document.getElementById("submitBtn");
+    var errorMsg = document.getElementById("errorMsg");
+
+    submitBtn.addEventListener("click", function () {
+      errorMsg.style.display = "none";
+      if (!nameA.value.trim() || !nameB.value.trim()) {
+        errorMsg.textContent = "두 사람의 이름을 모두 입력해주세요.";
+        errorMsg.style.display = "block";
+        return;
+      }
+      var query =
+        "nameA=" + encodeURIComponent(nameA.value.trim()) +
+        "&nameB=" + encodeURIComponent(nameB.value.trim());
+      window.location.href = "result.html?" + query;
+    });
+  })();
+</script>
+
+</body>
+</html>

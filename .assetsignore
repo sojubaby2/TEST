@@ -8,3 +8,6 @@ README_시작가이드.txt
 .gitignore
 .assetsignore
 wrangler.toml
+worker.js
+setup-view-counter.js
+*.bat

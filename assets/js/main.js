@@ -319,9 +319,53 @@ function injectHotRecommendations() {
   target.replaceWith(section);
 }
 
+/* ============================================================
+   테스트별 조회수 표시 (신규)
+   - .result-hero가 있는 모든 결과 페이지(대부분의 테스트) 하단에
+     "OOO명이 참여했어요" 문구를 자동으로 보여줌.
+   - 처음엔 테스트마다 고정된(가짜) 기본 숫자를 바로 보여주고,
+     그 뒤로 실제 방문 때마다 Cloudflare Worker(/api/view)가 KV에
+     쌓는 진짜 카운트를 더해서 표시함(기본 숫자 + 실제 방문수).
+   - Worker/KV가 아직 설정 전이거나 API 호출이 실패해도
+     기본 숫자만으로 자연스럽게 보이도록 처리(에러 무시).
+   ============================================================ */
+function formatCount(n) {
+  return n.toLocaleString("ko-KR");
+}
+
+function initViewCounter() {
+  var hero = document.querySelector(".result-hero") || document.querySelector(".hero");
+  if (!hero) return;
+  if (hero.querySelector(".view-counter")) return;
+
+  var slug = (location.pathname.match(/\/tests\/([^\/]+)\//) || [])[1];
+  if (!slug) return;
+
+  var baseline = hashToPercent(slug, 800, 15000);
+
+  var el = document.createElement("p");
+  el.className = "view-counter";
+  el.textContent = "👀 지금까지 " + formatCount(baseline) + "명이 참여했어요";
+  hero.appendChild(el);
+
+  fetch("/api/view?slug=" + encodeURIComponent(slug), { method: "POST" })
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (data && typeof data.count === "number") {
+        el.textContent = "👀 지금까지 " + formatCount(baseline + data.count) + "명이 참여했어요";
+      }
+    })
+    .catch(function () {
+      // API가 아직 없거나 실패해도 기본 숫자 그대로 자연스럽게 보임
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   initKakaoShareButton();
   injectResultPercentBadge();
   injectHotRecommendations();
+  initViewCounter();
 });
 initPWA();

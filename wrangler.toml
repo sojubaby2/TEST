@@ -1,6 +1,11 @@
 name = "test"
 compatibility_date = "2026-09-02"
+main = "worker.js"
 
 [assets]
 directory = "./"
 not_found_handling = "404-page"
+
+[[kv_namespaces]]
+binding = "VIEW_COUNTS"
+id = "5d05723feac549a0ad7b871d8a56692e"

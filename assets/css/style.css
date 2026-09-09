@@ -2012,3 +2012,78 @@ a {
   background: rgba(217, 119, 6, 0.1);
   color: #b45309;
 }
+
+/* ============================================================
+   홈 화면 전용 레이아웃 (카테고리별 가로스크롤 + PC 넓은 화면 대응)
+   .wrap-home 은 index.html 에만 붙는 클래스라 다른 페이지엔 영향 없음
+   ============================================================ */
+.wrap-home {
+  max-width: var(--max-width);
+}
+
+@media (min-width: 640px) {
+  .wrap-home { max-width: 720px; }
+}
+
+@media (min-width: 900px) {
+  .wrap-home { max-width: 960px; }
+}
+
+@media (min-width: 1200px) {
+  .wrap-home { max-width: 1120px; }
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 800;
+  margin: 22px 2px 10px;
+}
+
+.card-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 2px 20px 6px;
+  margin: 0 -20px;
+  scroll-snap-type: x proximity;
+}
+
+.card-row::-webkit-scrollbar {
+  display: none;
+}
+
+.card-row .test-card {
+  scroll-snap-align: start;
+  flex: 0 0 132px;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  margin-top: 0;
+  padding: 14px;
+}
+
+.card-row .test-card .emoji {
+  width: 44px;
+  height: 44px;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.card-row .test-card .info h3 {
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.card-row .test-card .info p {
+  display: none;
+}
+
+.card-row .test-card .arrow {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .card-row .test-card { flex-basis: 150px; }
+}
+
+}

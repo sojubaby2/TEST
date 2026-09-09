@@ -205,6 +205,50 @@ a {
   75% { transform: scale(1.08) rotate(3deg); }
 }
 
+/* 홈 상단 블로그 배너 (스크롤 없이 바로 보이는 위치) */
+.blog-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 16px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #f5f3ff, #fdf2f8);
+  border: 1.5px solid var(--border);
+  transition: transform 0.15s ease;
+}
+
+.blog-banner:active {
+  transform: scale(0.98);
+}
+
+.blog-banner-emoji {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.blog-banner-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.blog-banner-info strong {
+  font-size: 14px;
+}
+
+.blog-banner-info span {
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+.blog-banner-arrow {
+  color: var(--text-sub);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
 .cat-tab[data-target="hotSection"].active {
   animation: hotTabGlow 1.3s ease-in-out infinite;
 }

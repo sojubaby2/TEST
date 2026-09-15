@@ -11,3 +11,9 @@ wrangler.toml
 worker.js
 setup-view-counter.js
 *.bat
+content
+content/**
+tools
+tools/**
+Claude outputs
+Claude outputs/**

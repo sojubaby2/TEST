@@ -2087,3 +2087,135 @@ a {
 }
 
 }
+
+
+/* ============================================================
+   테스트 소개 읽을거리 (아티클)
+   ============================================================ */
+.article {
+  margin-top: 36px;
+  text-align: left;
+}
+
+.article-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--brand-1);
+  margin: 0 0 14px;
+}
+
+.article-head::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.article h2 {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin: 26px 0 10px;
+  padding-left: 11px;
+  border-left: 4px solid var(--brand-1);
+}
+
+.article p {
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--text-sub);
+  margin: 0 0 12px;
+}
+
+.article strong {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.article ul {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+
+.article li {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--text-sub);
+  margin-bottom: 7px;
+}
+
+.article-lead {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+}
+
+.article-lead p:last-child {
+  margin-bottom: 0;
+}
+
+/* 자주 묻는 질문 */
+.faq-item {
+  border-top: 1px solid var(--border);
+  padding: 14px 2px;
+}
+
+.faq-item:last-of-type {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-q {
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--text-main);
+  margin: 0 0 6px;
+}
+
+.faq-q::before {
+  content: "Q. ";
+  color: var(--brand-1);
+}
+
+.faq-a {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-sub);
+  margin: 0;
+}
+
+/* 관련 읽을거리 / 관련 테스트 */
+.article-more {
+  margin-top: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.06), rgba(236, 72, 153, 0.06));
+  padding: 15px 16px 9px;
+}
+
+.article-more p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.article-more a {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand-1);
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  border-radius: 999px;
+  padding: 6px 12px;
+  margin: 0 6px 6px 0;
+}

@@ -50,11 +50,19 @@ Get-ChildItem $articlesDir -Filter '*.html' | Sort-Object Name | ForEach-Object 
   $fragment = [System.IO.File]::ReadAllText($_.FullName, $utf8NoBom).TrimEnd()
   $html     = [System.IO.File]::ReadAllText($target, $utf8NoBom)
 
-  $block = "$startMark`r`n$fragment`r`n$endMark`r`n`r`n"
+  # 대상 파일이 쓰는 줄바꿈을 그대로 따라갑니다.
+  # 고정으로 CRLF 를 쓰면 LF 파일 안에 CRLF 가 섞여 git 이 매번 수정된 것으로 봐요.
+  $nl = if ($html -match "`r`n") { "`r`n" } else { "`n" }
+  $fragment = $fragment -replace "`r`n", "`n"
+  if ($nl -eq "`r`n") { $fragment = $fragment -replace "`n", "`r`n" }
+
+  $block = "$startMark$nl$fragment$nl$endMark$nl$nl"
 
   if ($html -match [regex]::Escape($startMark)) {
-    # 이미 들어있으면 그 구간만 통째로 교체
-    $pattern = [regex]::Escape($startMark) + '[\s\S]*?' + [regex]::Escape($endMark) + '\s*'
+    # 이미 들어있으면 그 구간만 통째로 교체.
+    # 뒤쪽은 '개행만' 먹어야 합니다. \s* 로 두면 다음 줄(앵커)의 들여쓰기까지
+    # 지워버려서 돌릴 때마다 결과가 달라져요.
+    $pattern = [regex]::Escape($startMark) + '[\s\S]*?' + [regex]::Escape($endMark) + '(?:\r?\n)*'
     $updated = [regex]::Replace($html, $pattern, { $block })
   }
   else {

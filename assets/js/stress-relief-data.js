@@ -1,0 +1,166 @@
+/* ============================================================
+   나의 스트레스 해소 유형 - 문항 및 결과 데이터
+   ※ 본 콘텐츠는 재미 목적의 심리테스트이며 전문적인 진단이 아닙니다.
+   tools/new-test.ps1 로 생성됨 - content/tests/stress-relief.json 을 고치세요
+   ============================================================ */
+
+const STRESSRELIEF_QUESTIONS = [
+  {
+    text: "힘든 하루가 끝났다. 집에 오자마자 하는 일은?",
+    options: [
+      { text: "일단 먹을 걸 찾는다", key: "eat" },
+      { text: "그대로 침대에 눕는다", key: "sleep" },
+    ],
+  },
+  {
+    text: "속상한 일이 생겼을 때 제일 먼저 드는 생각은?",
+    options: [
+      { text: "\"나가서 좀 움직여야겠다\"", key: "move" },
+      { text: "\"누구한테 말해야 풀리겠다\"", key: "talk" },
+    ],
+  },
+  {
+    text: "주말에 진짜 쉬었다는 느낌이 드는 건?",
+    options: [
+      { text: "아무도 안 만나고 혼자 보낸 날", key: "alone" },
+      { text: "맛있는 걸 제대로 챙겨 먹은 날", key: "eat" },
+    ],
+  },
+  {
+    text: "잠이 안 올 만큼 신경 쓰이는 일이 있다.",
+    options: [
+      { text: "그래도 자면 내일은 낫더라", key: "sleep" },
+      { text: "몸이 피곤해야 생각이 멈춘다", key: "move" },
+    ],
+  },
+  {
+    text: "친구가 \"무슨 일 있어?\"라고 물었다.",
+    options: [
+      { text: "기다렸다는 듯 처음부터 다 말한다", key: "talk" },
+      { text: "\"별일 아니야\" 하고 혼자 정리한다", key: "alone" },
+    ],
+  },
+  {
+    text: "스트레스가 쌓였을 때 몸이 먼저 원하는 건?",
+    options: [
+      { text: "달거나 매운 음식", key: "eat" },
+      { text: "땀 나는 운동", key: "move" },
+    ],
+  },
+  {
+    text: "회복에 가장 필요한 건?",
+    options: [
+      { text: "충분한 수면 시간", key: "sleep" },
+      { text: "마음 편한 사람과의 대화", key: "talk" },
+    ],
+  },
+  {
+    text: "사람들과 있다가 갑자기 지칠 때 나는?",
+    options: [
+      { text: "잠깐 혼자 바람 쐬러 나간다", key: "alone" },
+      { text: "자리를 옮겨서 몸을 움직인다", key: "move" },
+    ],
+  },
+  {
+    text: "기분이 가라앉은 날 나를 살리는 건?",
+    options: [
+      { text: "좋아하는 음식 한 끼", key: "eat" },
+      { text: "누군가와 나눈 긴 통화", key: "talk" },
+    ],
+  },
+  {
+    text: "긴 휴가가 생겼다면?",
+    options: [
+      { text: "일단 밀린 잠부터 실컷 잔다", key: "sleep" },
+      { text: "연락 다 끄고 나만의 시간을 보낸다", key: "alone" },
+    ],
+  },
+];
+
+const STRESSRELIEF_APPEARANCES = 4;
+
+const STRESSRELIEF_RESULTS = [
+  {
+    id: "eat",
+    emoji: "🍰",
+    title: "먹어서 푸는형",
+    subtitle: "맛있는 한 끼가 하루를 되돌리는 타입",
+    summary: "좋아하는 음식 한 끼로 기분이 실제로 회복되는 타입이에요. 즉각적이고 확실한 방법이라 효과가 빠릅니다. 다만 스트레스가 클수록 자극적인 음식으로 기울기 쉬우니, '무엇을 먹느냐'보다 '어떻게 먹느냐'를 챙겨보세요. 폰 보면서 먹으면 같은 음식도 위로가 덜 됩니다.",
+    traits: ["기분과 식욕이 같이 움직임", "좋아하는 음식이 확실함", "먹고 나면 실제로 기분이 풀림"],
+    color: "#F59E0B",
+    compat: {
+      best: { id: "talk", reason: "맛있는 걸 먹으며 수다 떠는 조합이 서로에게 제일 잘 통해요" },
+      worst: { id: "move", reason: "회복 방식이 정반대라 같이 풀려고 하면 어긋나기 쉬워요" },
+    },
+  },
+  {
+    id: "sleep",
+    emoji: "😴",
+    title: "자면 해결형",
+    subtitle: "일단 자고 나면 반은 풀리는 타입",
+    summary: "잠이 최고의 회복 수단인 타입이에요. 실제로 수면 부족은 감정 조절 능력을 눈에 띄게 떨어뜨리니, 이건 꽤 과학적인 선택이기도 합니다. 다만 잠으로 미룬 문제가 그대로 남아 있는 경우도 있어요. 자고 일어나서 한 번은 마주 보는 시간을 만들어두면 좋습니다.",
+    traits: ["자고 나면 감정이 정리됨", "수면 시간이 컨디션을 좌우함", "피곤하면 판단이 흐려지는 걸 앎"],
+    color: "#6366F1",
+    compat: {
+      best: { id: "alone", reason: "둘 다 조용한 회복을 좋아해서 서로를 방해하지 않아요" },
+      worst: { id: "talk", reason: "쉬고 싶은 나와 말하고 싶은 상대의 타이밍이 자주 어긋나요" },
+    },
+  },
+  {
+    id: "move",
+    emoji: "🏃",
+    title: "몸으로 푸는형",
+    subtitle: "생각은 뛰면서 정리되는 타입",
+    summary: "머리로 고민하기보다 몸을 움직여 푸는 타입이에요. 운동이 기분에 실제로 도움이 된다는 건 여러 연구에서 반복 확인된 사실이라, 아주 효율적인 방식입니다. 다만 몸이 지쳐 있을 때까지 밀어붙이면 회복이 아니라 소모가 돼요. 가벼운 산책도 충분히 효과가 있습니다.",
+    traits: ["앉아서 고민하는 걸 답답해함", "땀을 흘리면 생각이 정리됨", "몸이 피곤해야 잠이 잘 옴"],
+    color: "#16A34A",
+    compat: {
+      best: { id: "alone", reason: "각자 방식대로 충전한 뒤 만나면 서로 편해요" },
+      worst: { id: "eat", reason: "한쪽은 나가자 하고 한쪽은 눕자 해서 계속 엇갈려요" },
+    },
+  },
+  {
+    id: "talk",
+    emoji: "🗣️",
+    title: "말해야 풀리는형",
+    subtitle: "입 밖으로 꺼내야 정리되는 타입",
+    summary: "말로 옮기는 순간 감정이 정리되는 타입이에요. 머릿속에만 두면 계속 돌아가지만, 밖으로 나오면 한 번에 끝나는 경우가 많죠. 이건 실제로 잘 알려진 효과입니다. 다만 듣는 사람도 에너지를 쓴다는 걸 기억하고, 상대가 여유 있을 때를 골라주면 관계가 오래가요.",
+    traits: ["말하면서 생각이 정리됨", "혼자 삭이면 더 답답해짐", "들어주는 사람이 있으면 회복이 빠름"],
+    color: "#EC4899",
+    compat: {
+      best: { id: "eat", reason: "밥 먹으며 이야기하는 조합이라 자연스럽게 잘 맞아요" },
+      worst: { id: "sleep", reason: "말하고 싶은 나와 자고 싶은 상대의 리듬이 안 맞아요" },
+    },
+  },
+  {
+    id: "alone",
+    emoji: "🎧",
+    title: "혼자 충전형",
+    subtitle: "아무도 없어야 채워지는 타입",
+    summary: "사람을 싫어해서가 아니라 혼자 있는 시간에 충전되는 타입이에요. 사람을 만나는 건 즐거워도 끝나면 방전되죠. 이건 내향성의 전형적인 특징이고 전혀 이상한 게 아닙니다. 다만 힘들 때 아무에게도 말하지 않는 습관이 되면 회복이 더 오래 걸릴 수 있어요.",
+    traits: ["혼자 있는 시간에 에너지가 채워짐", "감정을 혼자 정리하는 편", "약속이 연달아 있으면 빨리 지침"],
+    color: "#0E7490",
+    compat: {
+      best: { id: "sleep", reason: "서로의 조용한 시간을 존중해줘서 편한 조합이에요" },
+      worst: { id: "talk", reason: "혼자 있고 싶은 나에게 상대의 대화 요청이 부담이 될 수 있어요" },
+    },
+  },
+];
+
+function getStressReliefById(id) {
+  return STRESSRELIEF_RESULTS.find((r) => r.id === id);
+}
+
+function tallyToStressReliefResult(tally) {
+  let best = null;
+  let bestCount = -1;
+  const order = ["eat", "sleep", "move", "talk", "alone"]; // 동점 시 우선순위
+  order.forEach((key) => {
+    const count = tally[key] || 0;
+    if (count > bestCount) {
+      bestCount = count;
+      best = key;
+    }
+  });
+  return getStressReliefById(best);
+}

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1329092235174593"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>내 얼굴형은 '긴 얼굴형' | 알아볼괘 얼굴 비율 측정</title>
+<meta name="description" content="세로로 시원하게 뻗은 비율 - 사진에서 얼굴 특징점 68개를 찾아 실제로 잰 얼굴 비율 결과입니다." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="내 얼굴형은 '긴 얼굴형' 📏" />
+<meta property="og:description" content="세로로 시원하게 뻗은 비율 너는 무슨 얼굴형일까?" />
+<meta property="og:image" content="../../assets/img/og/face-ratio-long.png" />
+<meta property="og:url" content="./result-long.html" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📏</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
+</header>
+
+<main class="wrap">
+  <div class="result-hero" style="background:#7C3AED;">
+    <div class="emoji" id="heroEmoji">📏</div>
+    <img id="faceShot" class="face-shot" alt="분석한 내 사진" />
+    <h1>긴 얼굴형</h1>
+    <p class="subtitle">세로로 시원하게 뻗은 비율</p>
+  </div>
+
+  <div class="card index-card">
+    <p class="index-title">이 얼굴형에 가까운 정도</p>
+    <p class="index-percent" id="indexPercent">-</p>
+    <div class="index-gauge-outer">
+      <div class="index-gauge-inner" id="indexGauge" style="width:0%;"></div>
+    </div>
+    <p class="index-sub" id="indexSub">잰 비율이 이 얼굴형 기준에 가까운 정도예요</p>
+  </div>
+
+  <p class="blend-note" id="blendNote" style="display:none;"></p>
+
+  <div class="card">
+    <p class="section-title" style="margin-top:0;">📏 실제로 잰 내 얼굴 비율</p>
+    <div id="metricBox"></div>
+    <p class="metric-foot">사진에서 얼굴 특징점 68개를 찾아 계산한 값이에요. 사진은 이 기기 밖으로 나가지 않습니다.</p>
+  </div>
+
+  <div class="card" id="alsoCard" style="display:none;">
+    <p class="section-title" style="margin-top:0;">이런 얼굴형도 섞여 있어요</p>
+    <div class="metric-list" id="alsoBox"></div>
+  </div>
+
+  <div class="card">
+    <p style="margin:0;font-size:15px;">광대 폭보다 얼굴 길이가 뚜렷하게 긴 비율이에요. 이목구비가 세로로 여유 있게 배치돼 정면에서 단정하고 시원한 인상을 줍니다. 가로 폭이 좁아 얼굴이 실제보다 작아 보이는 이점이 있어요. 다만 표정이 작으면 무표정하게 읽히기 쉬우니, 사진에서는 평소보다 조금 크게 웃는 편이 실제 분위기에 가깝게 나옵니다.</p>
+    <p class="section-title">이 얼굴형의 특징</p>
+    <ul class="trait-list">
+      <li>세로 길이가 광대 폭의 1.6배 이상</li>
+      <li>이목구비가 여유 있게 배치됨</li>
+      <li>얼굴이 작아 보이는 비율</li>
+    </ul>
+  </div>
+
+  <p class="section-title" style="margin-top:28px;">나란히 두면 대비되는 얼굴형은?</p>
+  <div id="compatSection"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" id="shareBtn" type="button">결과 공유하기</button>
+  </div>
+  <label class="card-photo-toggle" id="photoToggleWrap" style="display:none;">
+    <input type="checkbox" id="withPhoto" />
+    <span>저장할 이미지에 내 사진 넣기</span>
+  </label>
+  <div class="btn-row">
+    <button class="btn btn-secondary" id="copyBtn" type="button">🔗 링크 복사</button>
+    <button class="btn btn-secondary" id="downloadBtn" type="button">🖼️ 이미지 저장</button>
+  </div>
+
+  <a class="btn btn-secondary" href="photo.html" style="margin-top:20px;">🔄 다른 사진으로 다시 재기</a>
+  <a class="btn btn-secondary" href="../king-face/index.html">👑 내가 왕이 될 상인가?</a>
+  <a class="btn btn-secondary" href="../animal-face/index.html">🐾 동물상도 보러가기</a>
+
+<!-- RESULT-ARTICLE:START (tools/build-result-articles.ps1 이 관리하는 영역 - 직접 수정하지 마세요) -->
+
+  <section class="article">
+    <p class="article-head">📖 긴 얼굴형에 대해 조금 더</p>
+
+    <h2>어떤 비율일 때 이렇게 나오나</h2>
+    <p>
+      광대에서 광대까지의 폭을 1로 놓았을 때, 얼굴 길이가 <strong>1.6배를 넘으면</strong>
+      긴 얼굴형으로 분류됩니다. 옆으로 퍼지지 않고 위아래로 뻗은 직사각형에 가까운 윤곽이에요.
+      "얼굴이 작아 보인다"는 말을 자주 듣는 것도 이 비율 때문입니다.
+      정면에서 차지하는 면적이 실제보다 작게 느껴지거든요.
+    </p>
+
+    <h2>사진에서 손해 보지 않으려면</h2>
+    <p>
+      세로로 긴 얼굴은 정면 사진에서 <strong>표정이 덜 드러납니다.</strong>
+      가로 폭이 좁아 입꼬리와 눈가가 움직이는 폭도 함께 좁아지기 때문이에요.
+      평소 표정 그대로 찍으면 실제보다 무뚝뚝하게 나오는 이유가 여기 있습니다.
+    </p>
+    <p>
+      해법은 단순합니다. <strong>평소보다 조금 크게 웃는 것</strong>과,
+      카메라를 눈높이보다 아주 살짝 높이는 것. 둘 다 세로 길이를 시각적으로 줄여줘요.
+      반대로 아래에서 올려 찍으면 얼굴이 더 길어 보이니 피하는 편이 좋습니다.
+    </p>
+
+    <h2>스타일링 참고</h2>
+    <p>
+      일반적으로는 옆으로 볼륨을 주는 쪽이 균형을 맞춰줍니다.
+      가르마를 한쪽으로 크게 넘기거나 옆머리에 두께를 두는 식이에요.
+      반대로 전체를 위로 넘겨 이마를 다 드러내면 세로선이 더 강조됩니다.
+      다만 이건 출발점일 뿐이고, 실제로는 모발 굵기와 이목구비 위치가 더 크게 작용해요.
+    </p>
+
+    <div class="article-more">
+      <p>🔗 함께 보면 좋아요</p>
+      <a href="photo.html">다른 사진으로 다시 재기</a>
+      <a href="../king-face/index.html">관상으로 풀어보려면</a>
+      <a href="../animal-face/index.html">동물상으로도 보기</a>
+    </div>
+  </section>
+<!-- RESULT-ARTICLE:END -->
+
+  <div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
+
+  <p class="notice">
+    ⚠️ 얼굴형은 사진 각도에 따라 달라질 수 있어요. 정면에서 찍은 사진이 가장 정확합니다. 얼굴 비율로 성격이나 운명을 알 수 있다는 근거는 없습니다.
+  </p>
+
+  <div class="footer">
+    <p><a href="../../privacy.html">개인정보처리방침</a> · <a href="../../terms.html">이용약관</a></p>
+  </div>
+</main>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/face-analyze.js"></script>
+<script src="../../assets/js/face-classify.js"></script>
+<script src="../../assets/js/face-result.js"></script>
+<script>
+  (function () {
+    var result = FaceClassify.FACE_TYPES["long"];
+    renderCompatSection("compatSection", FaceClassify.FACE_LIST, result.compat, "result-",
+                        { best: "↔️ 대비되는 얼굴형", worst: "🔁 비슷해 보이는 얼굴형" });
+    FaceResult.init({
+      id:        result.id,
+      color:     result.color,
+      emoji:     result.emoji,
+      title:     result.title,
+      subtitle:  result.subtitle,
+      testName:  "내 얼굴 비율은?",
+      shareLead: "내 얼굴형은",
+      nameOf: function (rid) { var r = FaceClassify.FACE_TYPES[rid]; return r ? r.title : rid; },
+    });
+  })();
+</script>
+
+</body>
+</html>

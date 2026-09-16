@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1329092235174593"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>관상 보는 중 | 내가 왕이 될 상인가?</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div style="font-size:52px;margin-bottom:8px;">👑</div>
+    <h1>얼굴을 한번 봅시다</h1>
+    <p>삼정·관록궁·명궁·감찰관·재백궁·지각<br />여섯 자리를 차례로 짚어드리리다</p>
+  </section>
+
+  <div class="photo-guide" id="guideBox">
+    <p><strong>이런 사진이라야 제대로 봅니다</strong></p>
+    <p>✅ 정면을 보고 찍은 사진<br />
+       ✅ 얼굴이 크게 나온 사진<br />
+       ✅ 안경·마스크 없이, 앞머리로 눈썹이 가려지지 않은 사진<br />
+       ✅ 한 사람만 나온 사진</p>
+
+    <div class="photo-privacy">
+      <span>🔒</span>
+      <p><strong>사진은 이 기기 밖으로 나가지 않습니다.</strong><br />
+         분석은 브라우저 안에서만 이뤄지고, 서버로 보내거나 저장하지 않아요.
+         결과 링크를 공유해도 사진은 포함되지 않습니다.</p>
+    </div>
+  </div>
+
+  <input type="file" id="photoInput" accept="image/*" style="display:none;" />
+  <button class="btn btn-secondary" id="pickBtn" type="button" style="margin-top:18px;">📷 사진 고르기</button>
+
+  <div class="photo-preview" id="previewWrap" style="display:none;">
+    <img id="previewImg" alt="선택한 사진 미리보기" />
+  </div>
+
+  <button class="btn btn-primary" id="runBtn" type="button" style="margin-top:14px;" disabled>내 얼굴을 봐주시오</button>
+  <p class="photo-status" id="statusText" style="display:none;"></p>
+
+  <p class="notice">
+    ⚠️ 얼굴로 사람의 운명이나 성격을 알 수 있다는 과학적 근거는 없어요. 실제로 잰 얼굴 비율을 전통 관상의 화법으로 풀어낸 재미 콘텐츠입니다. 중요한 결정의 근거로 삼지 마세요.
+  </p>
+
+  <div class="footer">
+    <p><a href="index.html">← 소개로 돌아가기</a></p>
+    <p><a href="../../privacy.html">개인정보처리방침</a> · <a href="../../terms.html">이용약관</a></p>
+  </div>
+</main>
+
+<script src="../../assets/vendor/face-api/face-api.js"></script>
+<script src="../../assets/js/face-analyze.js"></script>
+<script src="../../assets/js/face-classify.js"></script>
+<script src="../../assets/js/face-photo-ui.js"></script>
+<script>
+  FacePhotoUI.init({ mode: "king" });
+</script>
+
+</body>
+</html>

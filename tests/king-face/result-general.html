@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1329092235174593"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>내 얼굴은 '장군상 將軍相' | 내가 왕이 될 상인가?</title>
+<meta name="description" content="앞에 서서 밀고 나가야 할 상 - 사진으로 얼굴 비율을 재서 전통 관상으로 풀어본 결과입니다." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="내 얼굴은 '장군상 將軍相' ⚔" />
+<meta property="og:description" content="그 얼굴로 어찌 뒤에 앉아 있으려 하오? 너는 무슨 상인지 봐줄까?" />
+<meta property="og:image" content="../../assets/img/og/king-face-general.png" />
+<meta property="og:url" content="./result-general.html" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
+</header>
+
+<main class="wrap">
+  <div class="result-hero" style="background:#7F1D1D;">
+    <div class="emoji" id="heroEmoji">⚔</div>
+    <img id="faceShot" class="face-shot" alt="분석한 내 사진" />
+    <h1>장군상 將軍相</h1>
+    <p class="subtitle">앞에 서서 밀고 나가야 할 상</p>
+  </div>
+
+  <p class="hook-line">"그 얼굴로 어찌 뒤에 앉아 있으려 하오?"</p>
+
+  <div class="card index-card">
+    <p class="index-title">이 상에 가까운 정도</p>
+    <p class="index-percent" id="indexPercent">-</p>
+    <div class="index-gauge-outer">
+      <div class="index-gauge-inner" id="indexGauge" style="width:0%;"></div>
+    </div>
+    <p class="index-sub" id="indexSub">얼굴 비율이 이 상의 기준에 가까운 정도예요</p>
+  </div>
+
+  <p class="blend-note" id="blendNote" style="display:none;"></p>
+
+  <p class="section-title" style="margin-top:28px;">📜 관상가의 소견</p>
+  <div class="reading" id="readingBox"></div>
+  <p class="closing-line" id="closingBox" style="display:none;"></p>
+
+  <div class="card">
+    <p class="section-title" style="margin-top:0;">📏 소견의 근거가 된 수치</p>
+    <div id="metricBox"></div>
+    <p class="metric-foot">사진에서 얼굴 특징점 68개를 찾아 계산한 값이에요. 위 소견은 이 숫자들을 전통 관상의 부위 이름에 대입해 풀어낸 것입니다. 사진은 이 기기 밖으로 나가지 않습니다.</p>
+  </div>
+
+  <div class="card" id="alsoCard" style="display:none;">
+    <p class="section-title" style="margin-top:0;">이런 상도 섞여 있소</p>
+    <div class="metric-list" id="alsoBox"></div>
+  </div>
+
+  <div class="card">
+    <p style="margin:0;font-size:15px;">턱이 넓고 각이 살아 있으며 눈매에 힘이 있는 배치예요. 관상에서 턱은 버티는 힘을, 눈은 결단을 본다고 했는데 그 둘이 동시에 강하게 나온 얼굴입니다. 가만히 있어도 만만해 보이지 않는 것이 가장 큰 자산이에요. 다만 그 힘이 늘 켜져 있으면 곁이 피로해지니, 풀 때를 아는 것이 이 상의 숙제입니다.</p>
+    <p class="section-title">이 상의 특징</p>
+    <ul class="trait-list">
+      <li>넓고 각진 턱선</li>
+      <li>힘이 실린 눈매</li>
+      <li>가만히 있어도 밀리지 않는 존재감</li>
+    </ul>
+  </div>
+
+  <p class="section-title" style="margin-top:28px;">곁에 두면 좋은 상은?</p>
+  <div id="compatSection"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" id="shareBtn" type="button">결과 공유하기</button>
+  </div>
+  <label class="card-photo-toggle" id="photoToggleWrap" style="display:none;">
+    <input type="checkbox" id="withPhoto" />
+    <span>저장할 이미지에 내 사진 넣기</span>
+  </label>
+  <div class="btn-row">
+    <button class="btn btn-secondary" id="copyBtn" type="button">🔗 링크 복사</button>
+    <button class="btn btn-secondary" id="downloadBtn" type="button">🖼️ 이미지 저장</button>
+  </div>
+
+  <a class="btn btn-secondary" href="photo.html" style="margin-top:20px;">🔄 다른 사진으로 다시 보기</a>
+  <a class="btn btn-secondary" href="../animal-face/index.html">🐾 동물상도 보러가기</a>
+  <a class="btn btn-secondary" href="../../index.html">🏠 다른 테스트 보러가기</a>
+
+<!-- RESULT-ARTICLE:START (tools/build-result-articles.ps1 이 관리하는 영역 - 직접 수정하지 마세요) -->
+
+  <section class="article">
+    <p class="article-head">📖 장군상(將軍相)에 대해 조금 더</p>
+
+    <h2>턱과 눈, 두 자리가 동시에 강한 얼굴</h2>
+    <p>
+      관상에서 턱(지각)은 버티는 힘을, 눈(감찰관)은 결단을 봤습니다.
+      장군상은 그 둘이 함께 강하게 나오는 배치예요.
+      턱 폭이 광대 폭의 90%를 넘어 아래로 좁아지지 않고,
+      눈은 가로로 길어 쉽게 속을 내보이지 않습니다.
+    </p>
+    <p>
+      옛 글에서 이런 얼굴을 두고 <strong>"앉아 있어도 서 있는 것 같다"</strong>고 했어요.
+      가만히 있어도 존재감이 눌리지 않는다는 뜻입니다.
+      실제로 각진 윤곽은 정면 사진에서 차지하는 면적이 커서 시선을 먼저 가져갑니다.
+    </p>
+
+    <h2>강한 인상의 비용</h2>
+    <p>
+      문제는 <strong>그 힘이 늘 켜져 있다는 것</strong>이에요.
+      본인은 평범하게 있는데 상대는 화가 났나 싶어 눈치를 봅니다.
+      각진 턱과 가는 눈이 만나면 무표정이 곧 정색으로 읽히거든요.
+    </p>
+    <p>
+      해법은 의외로 간단합니다. 눈매를 조금 푸는 것만으로 인상이 크게 부드러워져요.
+      윤곽이 단단한 사람의 미소는 <strong>낙차가 커서 훨씬 크게 전달됩니다.</strong>
+      가진 힘을 줄일 게 아니라 켜고 끄는 법을 익히는 쪽이 맞아요.
+    </p>
+
+    <h2>인상을 다루는 법</h2>
+    <p>
+      증명사진, 프로필, 발표처럼 <strong>신뢰가 먼저 필요한 자리에서는 손댈 것이 없습니다.</strong>
+      반대로 처음 만나는 사적인 자리에서는 먼저 말을 거는 편이 좋아요.
+      얼굴이 이미 충분히 말하고 있으니, 목소리는 한 톤 낮춰도 충분합니다.
+    </p>
+
+    <div class="article-more">
+      <p>🔗 함께 보면 좋아요</p>
+      <a href="photo.html">다른 사진으로 다시 보기</a>
+      <a href="../animal-face/index.html">동물상으로도 보기</a>
+      <a href="../../blog/face-reading-science.html">관상은 과학일까</a>
+    </div>
+  </section>
+<!-- RESULT-ARTICLE:END -->
+
+  <div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
+
+  <p class="notice">
+    ⚠️ 얼굴로 사람의 운명이나 성격을 알 수 있다는 과학적 근거는 없어요. 실제로 잰 얼굴 비율을 전통 관상의 화법으로 풀어낸 재미 콘텐츠입니다. 중요한 결정의 근거로 삼지 마세요.
+  </p>
+
+  <div class="footer">
+    <p><a href="../../privacy.html">개인정보처리방침</a> · <a href="../../terms.html">이용약관</a></p>
+  </div>
+</main>
+
+<script src="../../assets/js/king-face-data.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/face-analyze.js"></script>
+<script src="../../assets/js/face-classify.js"></script>
+<script src="../../assets/js/king-face-reading.js"></script>
+<script src="../../assets/js/face-result.js"></script>
+<script>
+  (function () {
+    var result = getKingFaceById("general");
+    renderCompatSection("compatSection", KINGFACE_RESULTS, result.compat, "result-",
+                        { best: "🤝 곁에 두면 좋은 상", worst: "⚡ 부딪히는 상" });
+    FaceResult.init({
+      id:        result.id,
+      color:     result.color,
+      emoji:     result.emoji,
+      title:     result.title,
+      subtitle:  result.subtitle,
+      testName:  "내가 왕이 될 상인가?",
+      shareLead: "내 얼굴은",
+      nameOf: function (rid) { var r = getKingFaceById(rid); return r ? r.title : rid; },
+    });
+  })();
+</script>
+
+</body>
+</html>

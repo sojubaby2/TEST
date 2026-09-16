@@ -70,10 +70,12 @@ function fallbackCopy(text) {
  * @param {Object} compat       현재 결과의 compat 객체 { best: {id, reason}, worst: {id, reason} }
  * @param {string} linkPrefix   결과 페이지 파일명 접두사 (기본값 "result-")
  */
-function renderCompatSection(containerId, resultsArray, compat, linkPrefix) {
+function renderCompatSection(containerId, resultsArray, compat, linkPrefix, labels) {
   var container = document.getElementById(containerId);
   if (!container || !compat) return;
   linkPrefix = linkPrefix || "result-";
+  // 연애형 테스트가 아닌 경우(예: 관상) 다른 문구를 쓸 수 있게 열어둡니다.
+  labels = labels || { best: "💘 천생연분", worst: "⚡ 상극 주의" };
 
   function findById(id) {
     return resultsArray.find(function (r) {
@@ -107,8 +109,8 @@ function renderCompatSection(containerId, resultsArray, compat, linkPrefix) {
   }
 
   var html = "";
-  html += cardHtml("best", "💘 천생연분", compat.best, findById(compat.best.id));
-  html += cardHtml("worst", "⚡ 상극 주의", compat.worst, findById(compat.worst.id));
+  html += cardHtml("best", labels.best, compat.best, findById(compat.best.id));
+  html += cardHtml("worst", labels.worst, compat.worst, findById(compat.worst.id));
   container.innerHTML = html;
 }
 

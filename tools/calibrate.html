@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>얼굴 비율 측정 점검 (배포 안 되는 내부 도구)</title>
+<style>
+  body { font-family: -apple-system, "Malgun Gothic", sans-serif; margin: 0; padding: 20px;
+         background: #f7f7fa; color: #1f2029; }
+  h1 { font-size: 19px; margin: 0 0 4px; }
+  .sub { font-size: 13px; color: #6b6d7c; margin: 0 0 18px; line-height: 1.7; }
+  .box { background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 14px;
+         box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  button { font: inherit; padding: 10px 16px; border-radius: 9px; border: 0;
+           background: #7c3aed; color: #fff; font-weight: 700; cursor: pointer; }
+  button.sec { background: #e8e8ef; color: #333; }
+  button:disabled { opacity: .5; cursor: default; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; margin-top: 10px; }
+  th, td { border-bottom: 1px solid #ececf2; padding: 7px 6px; text-align: right;
+           white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: #6b6d7c; font-weight: 700; font-size: 12px; }
+  .ok   { color: #15803d; font-weight: 700; }
+  .off  { color: #dc2626; font-weight: 700; }
+  canvas.viz { width: 100%; max-width: 320px; border-radius: 10px; display: block; margin-top: 10px; }
+  #out { font-family: Consolas, monospace; font-size: 12px; white-space: pre; overflow-x: auto;
+         background: #1f2029; color: #d8d8e0; padding: 14px; border-radius: 10px; }
+  .status { font-size: 13px; color: #6b6d7c; margin-top: 10px; }
+  .shots { display: flex; flex-wrap: wrap; gap: 14px; }
+  .shot { flex: 1 1 300px; }
+</style>
+</head>
+<body>
+
+<h1>얼굴 비율 측정 점검</h1>
+<p class="sub">
+  사이트에 배포되지 않는 내부 도구입니다(<code>tools/</code>는 <code>.assetsignore</code>에 있어요).<br />
+  사진을 <strong>여러 장 한꺼번에</strong> 고르면, 경량 모델과 정밀 모델을 같은 사진에 각각 돌려
+  수치를 나란히 보여줍니다. 사진은 여기서도 기기 밖으로 나가지 않습니다.
+</p>
+
+<div class="box">
+  <input type="file" id="files" accept="image/*" multiple />
+  <div class="status" id="status">사진을 고르면 시작합니다.</div>
+</div>
+
+<div id="results"></div>
+
+<div class="box">
+  <p style="margin:0 0 8px;font-size:13px;color:#6b6d7c;">아래 내용을 그대로 복사해 전달해주세요.</p>
+  <button class="sec" id="copyBtn" type="button">📋 결과 복사</button>
+  <div id="out" style="margin-top:10px;">(아직 없음)</div>
+</div>
+
+<script src="../assets/vendor/face-api/face-api.js"></script>
+<script src="../assets/js/face-analyze.js"></script>
+<script>
+/* 해부학 문헌에서 흔히 쓰는 정상 범위 — 이 범위 밖이면 계산 쪽을 의심합니다 */
+const EXPECT = {
+  faceRatio:  [1.25, 1.55, "얼굴 세로/가로"],
+  jawRatio:   [0.70, 0.95, "턱폭/광대폭"],
+  chinAngle:  [ 95,   140, "턱 끝 각도"],
+  eyeGap:     [0.85, 1.20, "눈사이/눈폭 (≈1.0)"],
+  eyeOpen:    [0.25, 0.45, "눈 세로/가로"],
+  noseRatio:  [0.22, 0.32, "코폭/얼굴폭"],
+  mouthRatio: [0.35, 0.48, "입폭/얼굴폭"],
+};
+
+const MODEL_BASE = new URL("../assets/vendor/face-api/model", location.href).href;
+let logLines = [];
+
+function log(s) { logLines.push(s); document.getElementById("out").textContent = logLines.join("\n"); }
+
+// 정밀(350KB) 모델은 경량과 차이가 평균 1.8% 뿐이라 쓰지 않기로 했습니다(파일도 지웠어요).
+async function loadNets() {
+  await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_BASE);
+  await faceapi.nets.faceLandmark68TinyNet.loadFromUri(MODEL_BASE);
+}
+
+/* 얼굴이 여러 개면 가장 큰 것을 씁니다 (본인이 제일 크게 나오는 게 보통) */
+function biggest(list) {
+  return list.reduce(function (a, b) {
+    return (b.detection.box.width > a.detection.box.width) ? b : a;
+  }, list[0]);
+}
+
+/* 얼굴폭과 무관한 교차검증값 — 계산이 맞는지 보는 데 이쪽이 더 믿을 만합니다 */
+function crossCheck(p) {
+  const d = function (a, b) { return Math.hypot(p[a].x - p[b].x, p[a].y - p[b].y); };
+  const eyeW = (d(36,39) + d(42,45)) / 2;
+  return {
+    faceW: d(0,16), cheekW: d(2,14), noseW: d(31,35), mouthW: d(48,54),
+    innerGap: d(39,42), eyeR: d(36,39), eyeL: d(42,45),
+    noseOverGap:  d(31,35) / d(39,42),   // 해부학적으로 ≈1.0
+    mouthOverNose: d(48,54) / d(31,35),  // ≈1.5~1.6
+    eyeAsym: Math.max(d(36,39), d(42,45)) / Math.min(d(36,39), d(42,45)), // 정면이면 ≈1.0
+    contourRatio: d(0,16) / d(2,14),
+    eyeW: eyeW,
+  };
+}
+
+/* 랜드마크를 그려서 점이 실제로 어디 찍혔는지 눈으로 봅니다.
+   얼굴 부분만 잘라 크게 확대해야 코·눈 점이 제자리인지 보입니다. */
+function drawViz(srcCanvas, pts, label, box) {
+  const OUT = 420;
+  let sx = 0, sy = 0, sw = srcCanvas.width, sh = srcCanvas.height, k = 1;
+  if (box) {
+    const pad = box.width * 0.35;
+    sx = Math.max(0, box.x - pad);
+    sy = Math.max(0, box.y - pad);
+    sw = Math.min(srcCanvas.width  - sx, box.width  + pad * 2);
+    sh = Math.min(srcCanvas.height - sy, box.height + pad * 2);
+    k = OUT / sw;
+  }
+  const c = document.createElement("canvas");
+  c.className = "viz";
+  c.width = Math.round(sw * k); c.height = Math.round(sh * k);
+  const g = c.getContext("2d");
+  g.imageSmoothingEnabled = true;
+  g.drawImage(srcCanvas, sx, sy, sw, sh, 0, 0, c.width, c.height);
+  // 잘라낸 좌표계로 랜드마크를 옮깁니다
+  pts = pts.map(function (p) { return { x: (p.x - sx) * k, y: (p.y - sy) * k }; });
+  // 부위별로 색을 달리해 잘못 찍힌 곳을 찾기 쉽게
+  const groups = [[0,17,"#22d3ee"],[17,27,"#a3e635"],[27,36,"#f97316"],[36,48,"#ef4444"],[48,68,"#e879f9"]];
+  groups.forEach(function (gr) {
+    g.fillStyle = gr[2];
+    for (let i = gr[0]; i < gr[1]; i++) {
+      g.beginPath(); g.arc(pts[i].x, pts[i].y, 2.6, 0, Math.PI*2); g.fill();
+    }
+  });
+  // 계산에 실제로 쓰는 선들
+  function line(a,b,col){ g.strokeStyle=col; g.lineWidth=1.2; g.beginPath();
+    g.moveTo(pts[a].x,pts[a].y); g.lineTo(pts[b].x,pts[b].y); g.stroke(); }
+  line(0,16,"#22d3ee");   // faceWidth
+  line(31,35,"#f97316");  // noseWidth
+  line(48,54,"#e879f9");  // mouthWidth
+  line(39,42,"#ef4444");  // innerGap
+  const cap = document.createElement("div");
+  cap.style.cssText = "font-size:12px;color:#6b6d7c;margin-top:4px;";
+  cap.textContent = label;
+  const wrap = document.createElement("div");
+  wrap.appendChild(c); wrap.appendChild(cap);
+  return wrap;
+}
+
+function cell(key, v) {
+  const e = EXPECT[key];
+  if (!e) return '<td>' + v.toFixed(2) + '</td>';
+  const inRange = v >= e[0] && v <= e[1];
+  const txt = key === "chinAngle" ? Math.round(v) + "°" : v.toFixed(2);
+  return '<td class="' + (inRange ? "ok" : "off") + '">' + txt + '</td>';
+}
+
+document.getElementById("files").addEventListener("change", async function (ev) {
+  const files = Array.from(ev.target.files || []);
+  if (!files.length) return;
+  const statusEl = document.getElementById("status");
+  const resultsEl = document.getElementById("results");
+  resultsEl.innerHTML = ""; logLines = [];
+
+  statusEl.textContent = "모델 불러오는 중...";
+  try { await loadNets(); } catch (e) { statusEl.textContent = "모델 로드 실패: " + e.message; return; }
+
+  const keys = ["faceRatio","jawRatio","chinAngle","eyeGap","eyeOpen","noseRatio","mouthRatio"];
+  const agg = {};   // 모델별로 모아서 마지막에 안정성을 봅니다
+  log("파일수\t" + files.length);
+  log("항목\t기대범위\t" + keys.join("\t"));
+  log("기대\t\t" + keys.map(function(k){ return EXPECT[k][0]+"~"+EXPECT[k][1]; }).join("\t"));
+
+  for (let i = 0; i < files.length; i++) {
+    const f = files[i];
+    statusEl.textContent = "(" + (i+1) + "/" + files.length + ") " + f.name + " 분석 중...";
+
+    let canvas;
+    try {
+      const bmp = await createImageBitmap(f, { imageOrientation: "from-image" });
+      const sc = Math.min(1, 640 / Math.max(bmp.width, bmp.height));
+      canvas = document.createElement("canvas");
+      canvas.width = Math.round(bmp.width*sc); canvas.height = Math.round(bmp.height*sc);
+      canvas.getContext("2d").drawImage(bmp, 0, 0, canvas.width, canvas.height);
+    } catch (e) { log(f.name + "\t디코딩 실패 " + e.message); continue; }
+
+    const opts = new faceapi.TinyFaceDetectorOptions({ inputSize: 416, scoreThreshold: 0.35 });
+    // ★ 반드시 얼굴 박스로 잘라서 랜드마크를 뽑아야 합니다.
+    //   사진 전체를 그냥 넣으면 좌표가 엉망으로 나와요(예전 버전의 실수).
+    const tinyRes = await faceapi.detectAllFaces(canvas, opts).withFaceLandmarks(true);
+    if (!tinyRes.length) { log(f.name + "\t얼굴 못 찾음"); continue; }
+    if (tinyRes.length > 1) log(f.name + "\t※ 얼굴 " + tinyRes.length + "개 — 가장 큰 얼굴을 씁니다");
+
+    const tinyBest = biggest(tinyRes);
+    const box  = tinyBest.detection.box;
+    const tiny = tinyBest.landmarks;
+
+    const box2 = document.createElement("div");
+    box2.className = "box";
+    let html = '<strong style="font-size:14px;">' + f.name + '</strong>'
+             + '<div style="font-size:12px;color:#6b6d7c;">얼굴 박스 폭 ' + Math.round(box.width) + 'px'
+             + ' / 이미지 ' + canvas.width + '×' + canvas.height + '</div>';
+    html += '<table><tr><th>모델</th>' + keys.map(function(k){
+              return '<th>' + EXPECT[k][2] + '</th>'; }).join("") + '</tr>';
+
+    const rows = [["경량(현재 사용중)", tiny]];
+    rows.forEach(function (r) {
+      const m = FaceAnalyze.measure(r[1].positions);
+      html += '<tr><td>' + r[0] + '</td>' + keys.map(function(k){ return cell(k, m[k]); }).join("") + '</tr>';
+      log(f.name + "\t" + r[0] + "\t" + keys.map(function(k){
+        return (k==="chinAngle" ? Math.round(m[k]) : m[k].toFixed(3)); }).join("\t"));
+      // 얼굴폭에 의존하지 않는 교차검증 값도 같이 남깁니다
+      const x = crossCheck(r[1].positions);
+      log("  ↳ 원시px\t얼굴폭=" + x.faceW.toFixed(1) + "  광대폭=" + x.cheekW.toFixed(1)
+        + "  코폭=" + x.noseW.toFixed(1) + "  입폭=" + x.mouthW.toFixed(1)
+        + "  눈사이=" + x.innerGap.toFixed(1) + "  눈폭R=" + x.eyeR.toFixed(1) + "  눈폭L=" + x.eyeL.toFixed(1));
+      log("  ↳ 교차검증\t코폭/눈사이=" + x.noseOverGap.toFixed(2) + "(≈1.0)"
+        + "  입폭/코폭=" + x.mouthOverNose.toFixed(2) + "(≈1.5~1.6)"
+        + "  좌우눈비대칭=" + x.eyeAsym.toFixed(2) + "(≈1.0)"
+        + "  윤곽비=" + x.contourRatio.toFixed(2));
+      (agg[r[0]] = agg[r[0]] || []).push(x);
+    });
+    html += '</table>';
+    box2.innerHTML = html;
+
+    const shots = document.createElement("div");
+    shots.className = "shots";
+    [["경량", tiny, box]].forEach(function (r) {
+      const w = document.createElement("div"); w.className = "shot";
+      w.appendChild(drawViz(canvas, r[1].positions, r[0] + " 모델 랜드마크 (주황선=코폭, 분홍=입폭, 빨강=눈사이)", r[2]));
+      shots.appendChild(w);
+    });
+    box2.appendChild(shots);
+    resultsEl.appendChild(box2);
+  }
+
+  /* ---- 같은 사람 여러 장이면, 안 변해야 할 값이 실제로 안 변하는지 ---- */
+  if (files.length > 1) {
+    log("");
+    log("=== 안정성 (같은 사람이면 변동폭이 작아야 정상) ===");
+    // ★ 원시 px 는 사진마다 얼굴 크기가 달라 그대로 비교하면 안 됩니다.
+    //   반드시 얼굴폭으로 나눈 '비율'로 비교해요.
+    Object.keys(agg).forEach(function (model) {
+      const list = agg[model];
+      if (list.length < 2) return;
+      [["코폭","noseW"],["입폭","mouthW"],["눈사이","innerGap"],["눈폭","eyeW"]].forEach(function (kk) {
+        const v = list.map(function (x) { return x[kk[1]] / x.faceW; });
+        const mn = Math.min.apply(null, v), mx = Math.max.apply(null, v);
+        const spread = ((mx - mn) / mn * 100);
+        log(model + "\t" + kk[0] + "/얼굴폭\t" + mn.toFixed(4) + "~" + mx.toFixed(4)
+            + "\t변동 " + spread.toFixed(0) + "%" + (spread > 15 ? "  ← 흔들림" : "  안정"));
+      });
+    });
+  }
+  statusEl.textContent = "끝났습니다. 초록 = 정상 범위, 빨강 = 범위 밖.";
+});
+
+document.getElementById("copyBtn").addEventListener("click", function () {
+  navigator.clipboard.writeText(logLines.join("\n")).then(function () {
+    document.getElementById("copyBtn").textContent = "✅ 복사됨";
+  });
+});
+</script>
+
+</body>
+</html>

@@ -27,7 +27,8 @@
 
 <main class="wrap">
   <div class="result-hero" style="background:#92400E;">
-    <div class="emoji">🐻</div>
+    <div class="emoji" id="heroEmoji">🐻</div>
+    <img id="faceShot" class="face-shot" alt="분석한 내 사진" />
     <h1>곰상</h1>
     <p class="subtitle">듬직하고 순박한 든든이 타입</p>
   </div>
@@ -38,7 +39,24 @@
     <div class="index-gauge-outer">
       <div class="index-gauge-inner" id="indexGauge" style="width:0%;"></div>
     </div>
-    <p class="index-sub" id="indexSub">10문항 중 '곰상'에 가장 가깝게 답한 비율이에요</p>
+    <p class="index-sub" id="indexSub">얼굴 비율이 이 동물상 기준에 가까운 정도예요</p>
+  </div>
+
+  <p class="blend-note" id="blendNote" style="display:none;"></p>
+
+   <p class="blend-note" id="blendNote" style="display:none;"></p>
+
+   <p class="blend-note" id="blendNote" style="display:none;"></p>
+
+<div class="card">
+    <p class="section-title" style="margin-top:0;">📏 실제로 잰 내 얼굴 비율</p>
+    <div id="metricBox"></div>
+    <p class="metric-foot">사진에서 얼굴 특징점 68개를 찾아 계산한 값이에요. 사진은 이 기기 밖으로 나가지 않습니다.</p>
+  </div>
+
+  <div class="card" id="alsoCard" style="display:none;">
+    <p class="section-title" style="margin-top:0;">이런 면도 섞여 있어요</p>
+    <div class="metric-list" id="alsoBox"></div>
   </div>
 
   <div class="card">
@@ -57,12 +75,17 @@
   <div class="btn-row">
     <button class="btn btn-primary" id="shareBtn" type="button">결과 공유하기</button>
   </div>
+  <label class="card-photo-toggle" id="photoToggleWrap" style="display:none;">
+    <input type="checkbox" id="withPhoto" />
+    <span>저장할 이미지에 내 사진 넣기</span>
+  </label>
   <div class="btn-row">
     <button class="btn btn-secondary" id="copyBtn" type="button">🔗 링크 복사</button>
     <button class="btn btn-secondary" id="downloadBtn" type="button">🖼️ 이미지 저장</button>
   </div>
 
   <a class="btn btn-secondary" href="index.html" style="margin-top:20px;">🔄 테스트 다시 하기</a>
+  <a class="btn btn-secondary" href="../king-face/index.html">👑 내가 왕이 될 상인가?</a>
   <a class="btn btn-secondary" href="../../index.html">🏠 다른 테스트 보러가기</a>
 
 <!-- RESULT-ARTICLE:START (tools/build-result-articles.ps1 이 관리하는 영역 - 직접 수정하지 마세요) -->
@@ -103,7 +126,7 @@
   <div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
 
   <p class="notice">
-    ⚠️ 이 테스트는 사진 분석이 아닌 성격 기반 설문형 테스트예요. 재미로 즐겨주세요!
+    ⚠️ 얼굴 비율로 성격이나 운명을 알 수 있다는 과학적 근거는 없어요. 실제로 잰 비율을 동물상 분류에 대입한 재미 콘텐츠입니다.
   </p>
 
   <div class="footer">
@@ -113,38 +136,21 @@
 
 <script src="../../assets/js/animal-face-data.js"></script>
 <script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/face-analyze.js"></script>
+<script src="../../assets/js/face-classify.js"></script>
+<script src="../../assets/js/face-result.js"></script>
 <script>
   (function () {
     var result = getAnimalFaceById("bear");
-    var params = new URLSearchParams(window.location.search);
-    var percentParam = params.get("percent");
-    var percent = percentParam !== null && !isNaN(Number(percentParam)) ? Number(percentParam) : 50;
-
-    var indexPercent = document.getElementById("indexPercent");
-    var indexGauge = document.getElementById("indexGauge");
-    indexPercent.textContent = percent + "%";
-    indexPercent.style.color = result.color;
-    requestAnimationFrame(function () {
-      indexGauge.style.width = percent + "%";
-    });
-    indexGauge.style.background = result.color;
-
     renderCompatSection("compatSection", ANIMALFACE_RESULTS, result.compat);
-
-    document.getElementById("shareBtn").addEventListener("click", function () {
-      shareCurrentPage(
-        "나는 '" + result.title + "' " + result.emoji,
-        "너의 동물상은? 알아볼괘에서 확인해봐!"
-      );
-    });
-    document.getElementById("copyBtn").addEventListener("click", function () {
-      copyLinkToClipboard();
-    });
-    document.getElementById("downloadBtn").addEventListener("click", function () {
-      downloadImage(
-        "../../assets/img/card/animal-face-bear.png",
-        "알아볼괘_" + result.title + ".png"
-      );
+    FaceResult.init({
+      color:     result.color,
+      emoji:     result.emoji,
+      title:     result.title,
+      subtitle:  result.subtitle,
+      testName:  "사진으로 보는 동물상",
+      shareLead: "내 얼굴은",
+      nameOf: function (rid) { var r = getAnimalFaceById(rid); return r ? r.title : rid; },
     });
   })();
 </script>

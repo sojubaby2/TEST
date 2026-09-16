@@ -2217,3 +2217,221 @@ a {
   padding: 6px 12px;
   margin: 0 6px 6px 0;
 }
+
+
+/* ============================================================
+   사진 분석 (관상 / 동물상)
+   ============================================================ */
+.photo-guide {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  text-align: left;
+  box-shadow: var(--shadow);
+}
+
+.photo-guide p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-sub);
+}
+
+.photo-guide p:last-child { margin-bottom: 0; }
+
+.photo-privacy {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 14px;
+  padding: 13px 15px;
+  border-radius: var(--radius-sm);
+  background: rgba(21, 128, 61, 0.08);
+  border: 1px solid rgba(21, 128, 61, 0.2);
+}
+
+.photo-privacy strong { color: #15803d; }
+
+.photo-privacy p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #166534;
+}
+
+.photo-preview {
+  margin-top: 18px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+.photo-preview img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  display: block;
+}
+
+.photo-status {
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-sub);
+  text-align: center;
+  white-space: pre-line;   /* 안내 문구의 줄바꿈을 살립니다 */
+}
+
+.photo-status-detail {
+  font-size: 12px;
+  opacity: 0.7;
+  word-break: break-all;
+}
+
+/* 측정치 표 */
+.metric-list {
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+
+.metric-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--border);
+}
+
+.metric-label {
+  flex: 1 1 auto;
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+.metric-value {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.metric-note {
+  flex-basis: 100%;
+  font-size: 12px;
+  color: var(--text-sub);
+  opacity: 0.85;
+  margin-top: -6px;
+}
+
+/* ===== 관상 소견 ('내가 왕이 될 상인가?') ===== */
+.hook-line {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.reading {
+  margin-top: 4px;
+}
+
+.gung {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 18px 18px 20px;
+  margin-bottom: 12px;
+  border-left: 4px solid #B45309;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.gung-name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  color: #B45309;
+  letter-spacing: -0.01em;
+}
+
+.gung-where {
+  margin: 2px 0 10px;
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+.gung-body {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--text-main);
+  word-break: keep-all;
+}
+
+.gung-body b {
+  font-weight: 800;
+  background: linear-gradient(transparent 62%, #FDE68A 62%);
+}
+
+.closing-line {
+  margin: 18px 0 0;
+  padding: 20px 18px;
+  border-radius: var(--radius-md);
+  background: #1F2029;
+  color: #F3F4F6;
+  font-size: 15px;
+  line-height: 1.9;
+  word-break: keep-all;
+}
+
+.closing-line b {
+  color: #FCD34D;
+  font-weight: 800;
+}
+
+/* 1·2위가 붙어 있을 때 '혼합형'이라고 알려주는 안내 */
+.blend-note {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: #FEF9C3;
+  border: 1px solid #FDE68A;
+  color: #854D0E;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.metric-foot {
+  margin: 14px 0 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-sub);
+  opacity: 0.85;
+}
+
+/* 결과 화면의 내 사진 (사진 분석으로 들어온 경우에만 보입니다) */
+.face-shot {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 12px;
+  display: none;
+  border: 3px solid rgba(255, 255, 255, 0.85);
+}
+
+.card-photo-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.card-photo-toggle input { width: 16px; height: 16px; }

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1329092235174593"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>내 얼굴은 '은일상 隱逸相' | 내가 왕이 될 상인가?</title>
+<meta name="description" content="매이지 않아야 할 상 - 사진으로 얼굴 비율을 재서 전통 관상으로 풀어본 결과입니다." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="내 얼굴은 '은일상 隱逸相' 🍃" />
+<meta property="og:description" content="남의 밑에 오래 두면 얼굴이 먼저 상하겠소. 너는 무슨 상인지 봐줄까?" />
+<meta property="og:image" content="../../assets/img/og/king-face-hermit.png" />
+<meta property="og:url" content="./result-hermit.html" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍃</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
+</header>
+
+<main class="wrap">
+  <div class="result-hero" style="background:#0F766E;">
+    <div class="emoji" id="heroEmoji">🍃</div>
+    <img id="faceShot" class="face-shot" alt="분석한 내 사진" />
+    <h1>은일상 隱逸相</h1>
+    <p class="subtitle">매이지 않아야 할 상</p>
+  </div>
+
+  <p class="hook-line">"남의 밑에 오래 두면 얼굴이 먼저 상하겠소."</p>
+
+  <div class="card index-card">
+    <p class="index-title">이 상에 가까운 정도</p>
+    <p class="index-percent" id="indexPercent">-</p>
+    <div class="index-gauge-outer">
+      <div class="index-gauge-inner" id="indexGauge" style="width:0%;"></div>
+    </div>
+    <p class="index-sub" id="indexSub">얼굴 비율이 이 상의 기준에 가까운 정도예요</p>
+  </div>
+
+  <p class="blend-note" id="blendNote" style="display:none;"></p>
+
+  <p class="section-title" style="margin-top:28px;">📜 관상가의 소견</p>
+  <div class="reading" id="readingBox"></div>
+  <p class="closing-line" id="closingBox" style="display:none;"></p>
+
+  <div class="card">
+    <p class="section-title" style="margin-top:0;">📏 소견의 근거가 된 수치</p>
+    <div id="metricBox"></div>
+    <p class="metric-foot">사진에서 얼굴 특징점 68개를 찾아 계산한 값이에요. 위 소견은 이 숫자들을 전통 관상의 부위 이름에 대입해 풀어낸 것입니다. 사진은 이 기기 밖으로 나가지 않습니다.</p>
+  </div>
+
+  <div class="card" id="alsoCard" style="display:none;">
+    <p class="section-title" style="margin-top:0;">이런 상도 섞여 있소</p>
+    <div class="metric-list" id="alsoBox"></div>
+  </div>
+
+  <div class="card">
+    <p style="margin:0;font-size:15px;">얼굴선이 부드럽고 갸름하게 떨어지며 어느 부위도 크게 튀지 않는 배치예요. 관상에서는 이런 얼굴을 세상과 각을 세우지 않는 상으로 봤습니다. 크게 이름을 얻는 상은 아니지만, 제 뜻대로 사는 복은 아무나 가지는 것이 아니라고도 했어요. 억지로 경쟁의 한복판에 서면 가장 빨리 지치는 얼굴이기도 합니다.</p>
+    <p class="section-title">이 상의 특징</p>
+    <ul class="trait-list">
+      <li>부드럽게 이어지는 얼굴선</li>
+      <li>갸름하게 떨어지는 턱</li>
+      <li>모나지 않은 이목구비</li>
+    </ul>
+  </div>
+
+  <p class="section-title" style="margin-top:28px;">곁에 두면 좋은 상은?</p>
+  <div id="compatSection"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" id="shareBtn" type="button">결과 공유하기</button>
+  </div>
+  <label class="card-photo-toggle" id="photoToggleWrap" style="display:none;">
+    <input type="checkbox" id="withPhoto" />
+    <span>저장할 이미지에 내 사진 넣기</span>
+  </label>
+  <div class="btn-row">
+    <button class="btn btn-secondary" id="copyBtn" type="button">🔗 링크 복사</button>
+    <button class="btn btn-secondary" id="downloadBtn" type="button">🖼️ 이미지 저장</button>
+  </div>
+
+  <a class="btn btn-secondary" href="photo.html" style="margin-top:20px;">🔄 다른 사진으로 다시 보기</a>
+  <a class="btn btn-secondary" href="../animal-face/index.html">🐾 동물상도 보러가기</a>
+  <a class="btn btn-secondary" href="../../index.html">🏠 다른 테스트 보러가기</a>
+
+<!-- RESULT-ARTICLE:START (tools/build-result-articles.ps1 이 관리하는 영역 - 직접 수정하지 마세요) -->
+
+  <section class="article">
+    <p class="article-head">📖 은일상(隱逸相)에 대해 조금 더</p>
+
+    <h2>'귀하지 않은 상'이 아니다</h2>
+    <p>
+      은일(隱逸)은 세상에 나서지 않고 물러나 사는 것을 말합니다.
+      관상서에서 이 상을 두고 크게 이름을 얻지는 않는다고 했지만,
+      낮춰 본 것은 아니었어요. 오히려 <strong>제 뜻대로 사는 복</strong>은
+      아무나 가지는 것이 아니라고 덧붙인 대목이 많습니다.
+    </p>
+    <p>
+      선이 부드럽고 어느 부위도 크게 튀지 않는 배치라,
+      누구와도 각을 세우지 않는 인상을 만들어요.
+      경쟁의 한복판에서 두각을 내기보다 <strong>제 자리에서 오래 가는</strong> 쪽에 가깝습니다.
+    </p>
+
+    <h2>측정으로는 어떤 얼굴인가</h2>
+    <p>
+      턱 폭이 광대 폭의 75% 아래로 좁고, 턱 끝 각도가 130도 근처로 완만하며,
+      코와 입이 작은 편일 때 은일상으로 분류됩니다.
+      한마디로 <strong>이목구비가 조용한 얼굴</strong>이에요.
+    </p>
+    <p>
+      다만 조용한 수치는 <strong>다른 유형과 점수가 가까워지기 쉽습니다.</strong>
+      1위와 2위가 붙어 나오면 화면에서 혼합형이라고 알려드리니,
+      그럴 땐 두 상을 같이 읽어주시는 편이 정확해요.
+    </p>
+
+    <h2>인상을 다루는 법</h2>
+    <p>
+      부드러운 윤곽의 강점은 <strong>처음 보는 사람이 경계하지 않는다는 것</strong>입니다.
+      약점은 또렷함이 필요한 자리에서 인상이 흐릿하게 읽힌다는 점이에요.
+      살짝 턱을 당긴 각도와 또렷한 눈맞춤, 이 둘만으로 간격이 꽤 메워집니다.
+      목소리를 키울 필요는 없어요. 끝맺음만 분명하면 됩니다.
+    </p>
+
+    <div class="article-more">
+      <p>🔗 함께 보면 좋아요</p>
+      <a href="photo.html">다른 사진으로 다시 보기</a>
+      <a href="../face-ratio/index.html">숫자만 깔끔하게 보려면</a>
+      <a href="../../blog/face-reading-science.html">관상은 과학일까</a>
+    </div>
+  </section>
+<!-- RESULT-ARTICLE:END -->
+
+  <div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
+
+  <p class="notice">
+    ⚠️ 얼굴로 사람의 운명이나 성격을 알 수 있다는 과학적 근거는 없어요. 실제로 잰 얼굴 비율을 전통 관상의 화법으로 풀어낸 재미 콘텐츠입니다. 중요한 결정의 근거로 삼지 마세요.
+  </p>
+
+  <div class="footer">
+    <p><a href="../../privacy.html">개인정보처리방침</a> · <a href="../../terms.html">이용약관</a></p>
+  </div>
+</main>
+
+<script src="../../assets/js/king-face-data.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/face-analyze.js"></script>
+<script src="../../assets/js/face-classify.js"></script>
+<script src="../../assets/js/king-face-reading.js"></script>
+<script src="../../assets/js/face-result.js"></script>
+<script>
+  (function () {
+    var result = getKingFaceById("hermit");
+    renderCompatSection("compatSection", KINGFACE_RESULTS, result.compat, "result-",
+                        { best: "🤝 곁에 두면 좋은 상", worst: "⚡ 부딪히는 상" });
+    FaceResult.init({
+      id:        result.id,
+      color:     result.color,
+      emoji:     result.emoji,
+      title:     result.title,
+      subtitle:  result.subtitle,
+      testName:  "내가 왕이 될 상인가?",
+      shareLead: "내 얼굴은",
+      nameOf: function (rid) { var r = getKingFaceById(rid); return r ? r.title : rid; },
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1329092235174593"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>내 얼굴은 '거지상 乞人相' | 내가 왕이 될 상인가?</title>
+<meta name="description" content="가진 것으로 재지 않는 상 - 사진으로 얼굴 비율을 재서 전통 관상으로 풀어본 결과입니다." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="내 얼굴은 '거지상 乞人相' 🥣" />
+<meta property="og:description" content="재물은 손에 안 남아도, 사람은 끊이지 않겠소. 너는 무슨 상인지 봐줄까?" />
+<meta property="og:image" content="../../assets/img/og/king-face-beggar.png" />
+<meta property="og:url" content="./result-beggar.html" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥣</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
+</header>
+
+<main class="wrap">
+  <div class="result-hero" style="background:#78716C;">
+    <div class="emoji" id="heroEmoji">🥣</div>
+    <img id="faceShot" class="face-shot" alt="분석한 내 사진" />
+    <h1>거지상 乞人相</h1>
+    <p class="subtitle">가진 것으로 재지 않는 상</p>
+  </div>
+
+  <p class="hook-line">"재물은 손에 안 남아도, 사람은 끊이지 않겠소."</p>
+
+  <div class="card index-card">
+    <p class="index-title">이 상에 가까운 정도</p>
+    <p class="index-percent" id="indexPercent">-</p>
+    <div class="index-gauge-outer">
+      <div class="index-gauge-inner" id="indexGauge" style="width:0%;"></div>
+    </div>
+    <p class="index-sub" id="indexSub">얼굴 비율이 이 상의 기준에 가까운 정도예요</p>
+  </div>
+
+  <p class="blend-note" id="blendNote" style="display:none;"></p>
+
+  <p class="section-title" style="margin-top:28px;">📜 관상가의 소견</p>
+  <div class="reading" id="readingBox"></div>
+  <p class="closing-line" id="closingBox" style="display:none;"></p>
+
+  <div class="card">
+    <p class="section-title" style="margin-top:0;">📏 소견의 근거가 된 수치</p>
+    <div id="metricBox"></div>
+    <p class="metric-foot">사진에서 얼굴 특징점 68개를 찾아 계산한 값이에요. 위 소견은 이 숫자들을 전통 관상의 부위 이름에 대입해 풀어낸 것입니다. 사진은 이 기기 밖으로 나가지 않습니다.</p>
+  </div>
+
+  <div class="card" id="alsoCard" style="display:none;">
+    <p class="section-title" style="margin-top:0;">이런 상도 섞여 있소</p>
+    <div class="metric-list" id="alsoBox"></div>
+  </div>
+
+  <div class="card">
+    <p style="margin:0;font-size:15px;">코는 작은데 입은 크고 이마가 좁게 잡히는 배치예요. 관상에서 코는 재물이 고이는 창고라 했으니 그 창고는 아담한 셈인데, 대신 입이 크면 말로 사람을 얻는다고 봤습니다. 쥐고 쌓는 재주는 덜해도 어디를 가나 굶지는 않는 얼굴이에요. 발 닿는 곳이 곧 집이 되는 상이라, 한자리에 묶어두면 오히려 시드는 편입니다.</p>
+    <p class="section-title">이 상의 특징</p>
+    <ul class="trait-list">
+      <li>아담하게 자리 잡은 코</li>
+      <li>시원하게 큰 입</li>
+      <li>좁게 잡히는 이마</li>
+    </ul>
+  </div>
+
+  <p class="section-title" style="margin-top:28px;">곁에 두면 좋은 상은?</p>
+  <div id="compatSection"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" id="shareBtn" type="button">결과 공유하기</button>
+  </div>
+  <label class="card-photo-toggle" id="photoToggleWrap" style="display:none;">
+    <input type="checkbox" id="withPhoto" />
+    <span>저장할 이미지에 내 사진 넣기</span>
+  </label>
+  <div class="btn-row">
+    <button class="btn btn-secondary" id="copyBtn" type="button">🔗 링크 복사</button>
+    <button class="btn btn-secondary" id="downloadBtn" type="button">🖼️ 이미지 저장</button>
+  </div>
+
+  <a class="btn btn-secondary" href="photo.html" style="margin-top:20px;">🔄 다른 사진으로 다시 보기</a>
+  <a class="btn btn-secondary" href="../animal-face/index.html">🐾 동물상도 보러가기</a>
+  <a class="btn btn-secondary" href="../../index.html">🏠 다른 테스트 보러가기</a>
+
+<!-- RESULT-ARTICLE:START (tools/build-result-articles.ps1 이 관리하는 영역 - 직접 수정하지 마세요) -->
+
+  <section class="article">
+    <p class="article-head">📖 거지상(乞人相)에 대해 조금 더</p>
+
+    <h2>이름에 겁먹지 마세요</h2>
+    <p>
+      옛 관상서의 분류명을 그대로 가져온 것이라 이름이 사납지만,
+      뜻은 <strong>"재물로 재는 상이 아니다"</strong>에 가깝습니다.
+      관상에서 코는 재물이 고이는 창고(재백궁)라 했는데 그 창고가 아담하고,
+      대신 입이 크면 <strong>말로 사람을 얻는다</strong>고 봤어요.
+      쌓는 재주는 덜해도 어디를 가나 굶지는 않는다는 것이 이 상의 요지입니다.
+    </p>
+
+    <h2>측정으로는 어떤 얼굴인가</h2>
+    <p>
+      코 폭이 작고 입 폭이 크며 이마 구간(상정)이 좁게 잡히는 조합이에요.
+      세 가지가 동시에 나와야 하니 생각보다 흔한 얼굴은 아닙니다.
+      시뮬레이션에서 열한 상 중 여덟 번째로 자주 나오는 정도였어요.
+    </p>
+    <p>
+      참고로 <strong>이마 높이는 추정치</strong>입니다. 얼굴 특징점 68개에
+      헤어라인이 포함되지 않아 눈썹부터 턱까지의 길이에서 역산하거든요.
+      앞머리가 있으면 이 값이 특히 흔들리니, 결과가 애매하면 이마를 드러낸 사진으로 다시 해보세요.
+    </p>
+
+    <h2>인상을 다루는 법</h2>
+    <p>
+      입이 크고 표정이 시원한 얼굴은 <strong>처음 보는 사람이 편하게 말을 겁니다.</strong>
+      영업이나 접객처럼 사람이 계속 오가는 자리에서 확실한 강점이에요.
+      대신 진지한 자리에서는 가볍게 읽힐 수 있으니,
+      중요한 말을 할 땐 속도를 늦추고 끝맺음을 분명히 하면 균형이 맞습니다.
+    </p>
+
+    <div class="article-more">
+      <p>🔗 함께 보면 좋아요</p>
+      <a href="photo.html">다른 사진으로 다시 보기</a>
+      <a href="../animal-face/index.html">동물상으로도 보기</a>
+      <a href="../../blog/face-reading-science.html">관상은 과학일까</a>
+    </div>
+  </section>
+<!-- RESULT-ARTICLE:END -->
+
+  <div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
+
+  <p class="notice">
+    ⚠️ 얼굴로 사람의 운명이나 성격을 알 수 있다는 과학적 근거는 없어요. 실제로 잰 얼굴 비율을 전통 관상의 화법으로 풀어낸 재미 콘텐츠입니다. 중요한 결정의 근거로 삼지 마세요.
+  </p>
+
+  <div class="footer">
+    <p><a href="../../privacy.html">개인정보처리방침</a> · <a href="../../terms.html">이용약관</a></p>
+  </div>
+</main>
+
+<script src="../../assets/js/king-face-data.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/face-analyze.js"></script>
+<script src="../../assets/js/face-classify.js"></script>
+<script src="../../assets/js/king-face-reading.js"></script>
+<script src="../../assets/js/face-result.js"></script>
+<script>
+  (function () {
+    var result = getKingFaceById("beggar");
+    renderCompatSection("compatSection", KINGFACE_RESULTS, result.compat, "result-",
+                        { best: "🤝 곁에 두면 좋은 상", worst: "⚡ 부딪히는 상" });
+    FaceResult.init({
+      id:        result.id,
+      color:     result.color,
+      emoji:     result.emoji,
+      title:     result.title,
+      subtitle:  result.subtitle,
+      testName:  "내가 왕이 될 상인가?",
+      shareLead: "내 얼굴은",
+      nameOf: function (rid) { var r = getKingFaceById(rid); return r ? r.title : rid; },
+    });
+  })();
+</script>
+
+</body>
+</html>

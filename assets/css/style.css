@@ -2326,6 +2326,139 @@ a {
   margin-top: -6px;
 }
 
+/* 읽을거리 안의 설명용 그림 (관상 부위 지도 등) */
+.chart-figure {
+  margin: 18px 0 20px;
+}
+
+.chart-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.chart-figure figcaption {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-sub);
+  text-align: center;
+}
+
+/* ===== 분석 중 로딩 애니메이션 =====
+   얼굴 윤곽을 그리고, 스캔선이 훑고 지나가면서 부위별 점이 차례로 찍힙니다.
+   삼정(상정·중정·하정) 경계선도 같이 보여줘서 뭘 재고 있는지 알 수 있게 했어요. */
+.face-scan {
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.face-scan.on { display: block; }
+
+.face-scan-stage {
+  position: relative;
+  width: 190px;
+  margin: 0 auto;
+}
+
+.face-scan svg { width: 100%; height: auto; display: block; }
+
+/* 얼굴 윤곽이 그려지는 효과 */
+.scan-outline {
+  fill: none;
+  stroke: var(--primary, #7c3aed);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: scanDraw 1.2s ease-out forwards;
+}
+
+.scan-feature {
+  fill: none;
+  stroke: var(--primary, #7c3aed);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: scanFade 0.5s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+/* 삼정 경계선 */
+.scan-court {
+  stroke: #c4b5fd;
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+  opacity: 0;
+  animation: scanFade 0.5s ease-out forwards;
+  animation-delay: 1.1s;
+}
+
+.scan-court-label {
+  font-size: 9px;
+  fill: #a78bfa;
+  opacity: 0;
+  animation: scanFade 0.5s ease-out forwards;
+  animation-delay: 1.35s;
+}
+
+/* 특징점이 하나씩 찍힘 */
+.scan-dot {
+  fill: #ec4899;
+  opacity: 0;
+  transform-origin: center;
+  animation: scanDot 2.4s ease-in-out infinite;
+}
+
+/* 위아래로 훑는 스캔선 */
+.scan-beam {
+  animation: scanSweep 2.4s ease-in-out infinite;
+}
+
+.scan-caption {
+  margin: 14px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+  min-height: 21px;
+  transition: opacity 0.25s;
+}
+
+.scan-sub {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+@keyframes scanDraw { to { stroke-dashoffset: 0; } }
+@keyframes scanFade { to { opacity: 1; } }
+@keyframes scanSweep {
+  0%   { transform: translateY(6px);   opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { transform: translateY(218px); opacity: 0; }
+}
+@keyframes scanDot {
+  0%, 40%  { opacity: 0; transform: scale(0.4); }
+  55%      { opacity: 1; transform: scale(1.35); }
+  70%, 100%{ opacity: 0.9; transform: scale(1); }
+}
+
+/* 접근성: 애니메이션을 줄이도록 설정한 기기에서는 정지된 그림만 보여줍니다 */
+@media (prefers-reduced-motion: reduce) {
+  .scan-outline, .scan-feature, .scan-court, .scan-court-label {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  .scan-beam { display: none; }
+  .scan-dot { animation: none; opacity: 0.9; }
+}
+
 /* ===== 관상 소견 ('내가 왕이 될 상인가?') ===== */
 .hook-line {
   margin: 18px 0 0;

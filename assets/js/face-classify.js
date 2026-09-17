@@ -142,22 +142,40 @@ const FaceClassify = (function () {
     { id: "monkey",   f: [ {k:"eyeGap",t:1.38,tol:.10,w:3}, {k:"mouthRatio",t:.385,tol:.028,w:2.5}, {k:"faceRatio",t:1.44,tol:.11,w:2}, {k:"jawRatio",t:.81,tol:.06,w:1.5} ] },
   ];
 
-  /* ---------- '내가 왕이 될 상인가?' 여섯 가지 상 ---------- */
-  // 관상에서 실제로 보던 부위를 측정값에 대응시켰습니다.
-  //   이마=상정(관록궁) · 턱폭/턱각도=지각 · 코폭=재백궁 · 눈=감찰관
+  /* ---------- '내가 왕이 될 상인가?' 열한 가지 상 ----------
+     관상에서 실제로 보던 부위를 측정값에 대응시켰습니다.
+       이마=상정(관록궁) · 턱폭/턱각도=지각 · 코폭=재백궁 · 눈=감찰관 · 눈사이=명궁
+
+     ※ 기준값을 정한 방법
+       처음엔 왕상을 '모든 항목이 평균'으로 잡았더니 시뮬레이션에서
+       53%가 왕상으로 나왔습니다. 평균적인 얼굴이 전부 한쪽으로 쏠린 거예요.
+       그래서 나머지 열 상은 분포의 바깥쪽(약 ±1.3σ)으로 밀고,
+       왕상은 '모든 항목이 동시에 가운데'라는 빡센 조건으로 바꿨습니다.
+       그 결과 3만 개 표본에서 왕상 15%, 가장 드문 재상상 6%로 자리 잡았어요.
+       (균등하게 나오면 9.1%씩) */
   const KING_PROFILES = [
-    // 왕상: 삼정이 고르고 이마가 열려 있으며 턱이 받쳐주는 '균형'
-    { id: "king",    f: [ {k:"upper",t:35,tol:3.5,w:3}, {k:"lower",t:34,tol:3.5,w:2.5}, {k:"jawRatio",t:.85,tol:.05,w:2.5}, {k:"faceRatio",t:1.48,tol:.11,w:2} ] },
-    // 장군상: 턱이 넓고 각지며 눈에 힘이 있음
-    { id: "general", f: [ {k:"jawRatio",t:.93,tol:.05,w:3.5}, {k:"chinAngle",t:148,tol:13,w:2.5}, {k:"eyeOpen",t:.28,tol:.04,w:2}, {k:"eyeSlant",t:-.08,tol:.06,w:1.5} ] },
-    // 재상상: 이마가 높고 눈이 가늘고 긺
-    { id: "scholar", f: [ {k:"upper",t:39,tol:3.5,w:3}, {k:"eyeOpen",t:.25,tol:.04,w:3}, {k:"faceRatio",t:1.58,tol:.11,w:2}, {k:"jawRatio",t:.78,tol:.05,w:1.5} ] },
-    // 거상상: 코가 넉넉하고 얼굴 가로 비중이 큼
-    { id: "trader",  f: [ {k:"noseRatio",t:.190,tol:.017,w:3.5}, {k:"faceRatio",t:1.35,tol:.11,w:3}, {k:"jawRatio",t:.88,tol:.06,w:2}, {k:"lower",t:35,tol:4,w:1.5} ] },
-    // 예인상: 눈이 크고 입이 큼
-    { id: "artist",  f: [ {k:"eyeOpen",t:.43,tol:.04,w:3.5}, {k:"mouthRatio",t:.390,tol:.028,w:3}, {k:"faceRatio",t:1.45,tol:.12,w:1.5}, {k:"eyeGap",t:1.62,tol:.14,w:1.5} ] },
-    // 은일상: 어느 부위도 튀지 않고 선이 부드러움
-    { id: "hermit",  f: [ {k:"jawRatio",t:.74,tol:.05,w:3}, {k:"chinAngle",t:128,tol:13,w:2.5}, {k:"noseRatio",t:.150,tol:.017,w:2}, {k:"mouthRatio",t:.320,tol:.028,w:2} ] },
+    // 왕상: 모든 자리가 동시에 균형을 이뤄야 합니다. 하나만 치우쳐도 탈락이에요.
+    { id: "king",    f: [ {k:"faceRatio",t:1.50,tol:.030,w:3}, {k:"jawRatio",t:.830,tol:.019,w:3}, {k:"upper",t:34.5,tol:1.10,w:3}, {k:"chinAngle",t:137,tol:4.0,w:2.5}, {k:"noseRatio",t:.166,tol:.0085,w:2} ] },
+    // 장군상: 턱이 가장 넓고 평평하며 눈에 힘이 있음
+    { id: "general", f: [ {k:"jawRatio",t:.905,tol:.040,w:3.5}, {k:"chinAngle",t:151,tol:7.5,w:2.5}, {k:"eyeOpen",t:.300,tol:.033,w:2} ] },
+    // 재상상: 이마가 가장 높고 눈이 가늘며 얼굴이 긺
+    { id: "scholar", f: [ {k:"upper",t:38.5,tol:2.0,w:3}, {k:"eyeOpen",t:.275,tol:.030,w:3}, {k:"faceRatio",t:1.61,tol:.060,w:2} ] },
+    // 거상상: 코가 가장 넉넉하고 얼굴 가로 비중이 큼
+    { id: "trader",  f: [ {k:"noseRatio",t:.185,tol:.0100,w:3.5}, {k:"faceRatio",t:1.38,tol:.060,w:3}, {k:"jawRatio",t:.880,tol:.042,w:1.5} ] },
+    // 예인상: 눈과 입이 동시에 큼
+    { id: "artist",  f: [ {k:"eyeOpen",t:.420,tol:.030,w:3.5}, {k:"mouthRatio",t:.390,tol:.018,w:3} ] },
+    // 은일상: 턱·코·입이 모두 작아 선이 조용함
+    { id: "hermit",  f: [ {k:"jawRatio",t:.745,tol:.038,w:3}, {k:"noseRatio",t:.150,tol:.0100,w:2.5}, {k:"mouthRatio",t:.318,tol:.018,w:2.5} ] },
+    // 내시상: 눈이 가운데로 모이고 입이 작으며 턱이 둥긂
+    { id: "eunuch",  f: [ {k:"eyeGap",t:1.40,tol:.075,w:3.5}, {k:"mouthRatio",t:.320,tol:.018,w:2.5}, {k:"chinAngle",t:147,tol:7.5,w:1.5} ] },
+    // 거지상: 코는 작은데 입은 크고 이마가 좁음
+    { id: "beggar",  f: [ {k:"noseRatio",t:.148,tol:.0100,w:3}, {k:"mouthRatio",t:.390,tol:.018,w:3}, {k:"upper",t:30.5,tol:2.0,w:2} ] },
+    // 역적상: 눈꼬리가 치켜올라가고 턱이 각짐
+    { id: "rebel",   f: [ {k:"eyeSlant",t:-.105,tol:.033,w:3.5}, {k:"jawRatio",t:.885,tol:.042,w:2.5}, {k:"eyeOpen",t:.300,tol:.033,w:2} ] },
+    // 한량상: 눈이 크고 턱이 둥글며 얼굴이 짧음
+    { id: "idler",   f: [ {k:"eyeOpen",t:.410,tol:.030,w:3}, {k:"chinAngle",t:149,tol:7.5,w:2.5}, {k:"faceRatio",t:1.39,tol:.060,w:2.5} ] },
+    // 무당상: 눈 사이가 가장 넓고 눈이 큼
+    { id: "shaman",  f: [ {k:"eyeGap",t:1.72,tol:.075,w:3.5}, {k:"eyeOpen",t:.400,tol:.030,w:2.5}, {k:"faceRatio",t:1.60,tol:.060,w:2} ] },
   ];
 
   function classifyFace(m)   { return scoreAll(FACE_PROFILES, m); }

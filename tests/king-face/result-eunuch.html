@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1329092235174593"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>내 얼굴은 '내시상 內侍相' | 내가 왕이 될 상인가?</title>
+<meta name="description" content="곁에서 판을 읽는 상 - 사진으로 얼굴 비율을 재서 전통 관상으로 풀어본 결과입니다." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="내 얼굴은 '내시상 內侍相' 🎐" />
+<meta property="og:description" content="그 얼굴은 궁 안에서 쓰였을 상이오. 너는 무슨 상인지 봐줄까?" />
+<meta property="og:image" content="../../assets/img/og/king-face-eunuch.png" />
+<meta property="og:url" content="./result-eunuch.html" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎐</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
+</header>
+
+<main class="wrap">
+  <div class="result-hero" style="background:#6D28D9;">
+    <div class="emoji" id="heroEmoji">🎐</div>
+    <img id="faceShot" class="face-shot" alt="분석한 내 사진" />
+    <h1>내시상 內侍相</h1>
+    <p class="subtitle">곁에서 판을 읽는 상</p>
+  </div>
+
+  <p class="hook-line">"그 얼굴은 궁 안에서 쓰였을 상이오."</p>
+
+  <div class="card index-card">
+    <p class="index-title">이 상에 가까운 정도</p>
+    <p class="index-percent" id="indexPercent">-</p>
+    <div class="index-gauge-outer">
+      <div class="index-gauge-inner" id="indexGauge" style="width:0%;"></div>
+    </div>
+    <p class="index-sub" id="indexSub">얼굴 비율이 이 상의 기준에 가까운 정도예요</p>
+  </div>
+
+  <p class="blend-note" id="blendNote" style="display:none;"></p>
+
+  <p class="section-title" style="margin-top:28px;">📜 관상가의 소견</p>
+  <div class="reading" id="readingBox"></div>
+  <p class="closing-line" id="closingBox" style="display:none;"></p>
+
+  <div class="card">
+    <p class="section-title" style="margin-top:0;">📏 소견의 근거가 된 수치</p>
+    <div id="metricBox"></div>
+    <p class="metric-foot">사진에서 얼굴 특징점 68개를 찾아 계산한 값이에요. 위 소견은 이 숫자들을 전통 관상의 부위 이름에 대입해 풀어낸 것입니다. 사진은 이 기기 밖으로 나가지 않습니다.</p>
+  </div>
+
+  <div class="card" id="alsoCard" style="display:none;">
+    <p class="section-title" style="margin-top:0;">이런 상도 섞여 있소</p>
+    <div class="metric-list" id="alsoBox"></div>
+  </div>
+
+  <div class="card">
+    <p style="margin:0;font-size:15px;">눈이 가운데로 모이고 입이 작으며 턱이 둥글게 마무리되는 배치예요. 조선의 내시는 왕을 가장 가까이서 모시던 자리라, 관상에서도 눈치와 처세를 보던 상으로 읽었습니다. 앞에 나서지 않으면서 안에서 일어나는 일을 가장 먼저 아는 얼굴이에요. 목소리를 높이지 않고도 원하는 방향으로 판을 미는 힘이 있습니다.</p>
+    <p class="section-title">이 상의 특징</p>
+    <ul class="trait-list">
+      <li>가운데로 모인 눈(좁은 인당)</li>
+      <li>작고 단정한 입</li>
+      <li>둥글게 마무리되는 턱</li>
+    </ul>
+  </div>
+
+  <p class="section-title" style="margin-top:28px;">곁에 두면 좋은 상은?</p>
+  <div id="compatSection"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" id="shareBtn" type="button">결과 공유하기</button>
+  </div>
+  <label class="card-photo-toggle" id="photoToggleWrap" style="display:none;">
+    <input type="checkbox" id="withPhoto" />
+    <span>저장할 이미지에 내 사진 넣기</span>
+  </label>
+  <div class="btn-row">
+    <button class="btn btn-secondary" id="copyBtn" type="button">🔗 링크 복사</button>
+    <button class="btn btn-secondary" id="downloadBtn" type="button">🖼️ 이미지 저장</button>
+  </div>
+
+  <a class="btn btn-secondary" href="photo.html" style="margin-top:20px;">🔄 다른 사진으로 다시 보기</a>
+  <a class="btn btn-secondary" href="../animal-face/index.html">🐾 동물상도 보러가기</a>
+  <a class="btn btn-secondary" href="../../index.html">🏠 다른 테스트 보러가기</a>
+
+<!-- RESULT-ARTICLE:START (tools/build-result-articles.ps1 이 관리하는 영역 - 직접 수정하지 마세요) -->
+
+  <section class="article">
+    <p class="article-head">📖 내시상(內侍相)에 대해 조금 더</p>
+
+    <h2>낮춰 부르는 말이 아니었다</h2>
+    <p>
+      '내시'라는 말이 오늘날엔 우스개로 쓰이지만, 조선에서 내시는
+      <strong>왕을 가장 가까이서 모시던 관직</strong>이었습니다.
+      내시부라는 정식 관청이 있었고 품계도 있었어요.
+      왕이 무엇을 먹고 누구를 만나는지 가장 먼저 아는 자리였으니,
+      관상에서도 이 상을 눈치와 처세를 보는 쪽으로 읽었습니다.
+    </p>
+
+    <h2>측정으로는 어떤 얼굴인가</h2>
+    <p>
+      핵심은 <strong>눈 사이 간격</strong>입니다. 두 눈이 가운데로 모이면
+      관상에서 말하는 인당(印堂)이 좁아지는데, 이를 두고
+      한 가지에 깊이 파고드는 집중의 상으로 봤어요.
+      여기에 입이 작고 턱이 둥글게 마무리되면 전체가 단정하고 조용한 인상이 됩니다.
+    </p>
+    <p>
+      말수가 적어 보이지만 실은 <strong>듣는 쪽에 가까운 얼굴</strong>이에요.
+      회의에서 끝까지 말 안 하다가 마지막에 핵심을 짚는 사람이 대개 이 인상입니다.
+    </p>
+
+    <h2>인상을 다루는 법</h2>
+    <p>
+      약점은 표정이 잘 안 드러난다는 것입니다. 이목구비가 모여 있고 작으면
+      감정이 움직이는 면적도 작아져, 실제로는 관심 있게 듣고 있어도 상대는 못 읽어요.
+      <strong>고개를 끄덕이거나 짧게 맞장구를 치는 것</strong>만으로 이 간격이 크게 메워집니다.
+      얼굴이 조용한 사람일수록 반응은 소리로 내주는 편이 좋아요.
+    </p>
+
+    <div class="article-more">
+      <p>🔗 함께 보면 좋아요</p>
+      <a href="photo.html">다른 사진으로 다시 보기</a>
+      <a href="../face-ratio/index.html">숫자만 깔끔하게 보려면</a>
+      <a href="../../blog/face-reading-science.html">관상은 과학일까</a>
+    </div>
+  </section>
+<!-- RESULT-ARTICLE:END -->
+
+  <div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
+
+  <p class="notice">
+    ⚠️ 얼굴로 사람의 운명이나 성격을 알 수 있다는 과학적 근거는 없어요. 실제로 잰 얼굴 비율을 전통 관상의 화법으로 풀어낸 재미 콘텐츠입니다. 중요한 결정의 근거로 삼지 마세요.
+  </p>
+
+  <div class="footer">
+    <p><a href="../../privacy.html">개인정보처리방침</a> · <a href="../../terms.html">이용약관</a></p>
+  </div>
+</main>
+
+<script src="../../assets/js/king-face-data.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/face-analyze.js"></script>
+<script src="../../assets/js/face-classify.js"></script>
+<script src="../../assets/js/king-face-reading.js"></script>
+<script src="../../assets/js/face-result.js"></script>
+<script>
+  (function () {
+    var result = getKingFaceById("eunuch");
+    renderCompatSection("compatSection", KINGFACE_RESULTS, result.compat, "result-",
+                        { best: "🤝 곁에 두면 좋은 상", worst: "⚡ 부딪히는 상" });
+    FaceResult.init({
+      id:        result.id,
+      color:     result.color,
+      emoji:     result.emoji,
+      title:     result.title,
+      subtitle:  result.subtitle,
+      testName:  "내가 왕이 될 상인가?",
+      shareLead: "내 얼굴은",
+      nameOf: function (rid) { var r = getKingFaceById(rid); return r ? r.title : rid; },
+    });
+  })();
+</script>
+
+</body>
+</html>

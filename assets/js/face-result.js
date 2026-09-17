@@ -218,8 +218,10 @@ const FaceResult = (function () {
     if (blendEl && rank && rank.length > 1) {
       const gap = rank[0].percent - rank[1].percent;
       // 유형이 5개냐 15개냐에 따라 퍼센트 자체가 달라지므로 '몇 %p 차이'가 아니라
-      // '2위가 1위의 몇 %인가'로 봅니다. 85% 이상이면 사실상 동률이에요.
-      const close = rank[1].percent / (rank[0].percent || 1) >= 0.85;
+      // '2위가 1위의 몇 %인가'로 봅니다. 유형이 많을수록 점수가 촘촘해지니
+      // 기준도 같이 올려요 (5종 0.82 / 11종 0.92 / 15종 0.94).
+      const thr = Math.min(0.95, Math.max(0.82, 1 - 0.15 * (6 / rank.length)));
+      const close = rank[1].percent / (rank[0].percent || 1) >= thr;
       if (close) {
         blendEl.innerHTML = "이 얼굴은 <strong>" + cfg.nameOf(rank[0].id) + "</strong>과 <strong>"
           + cfg.nameOf(rank[1].id) + "</strong>의 경계에 있어요 (차이 " + gap + "%p). "

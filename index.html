@@ -35,26 +35,38 @@
     <input type="search" id="testSearchInput" class="search-input" placeholder="🔍 테스트 이름으로 검색해보세요" />
   </div>
 
+  <section class="feature-band">
+    <p class="feature-label"><span>NEW</span> 사진 한 장으로 보는 테스트</p>
+
+    <a class="feature-main" href="tests/king-face/index.html">
+      <div class="fm-emoji">👑</div>
+      <h3>내가 왕이 될 상인가?</h3>
+      <p>삼정·관록궁·재백궁까지 짚어 관상가처럼 풀어드립니다. 왕상·장군상·역적상 등 11가지 상 중 내 얼굴은?</p>
+      <span class="fm-go">사진 넣고 관상 보기 →</span>
+    </a>
+
+    <div class="feature-pair">
+      <a href="tests/animal-face/index.html">
+        <span class="fp-emoji">🐾</span>
+        <span><strong>동물상 15종</strong><small>얼굴 비율로 찾기</small></span>
+      </a>
+      <a href="tests/face-ratio/index.html">
+        <span class="fp-emoji">📏</span>
+        <span><strong>내 얼굴 비율</strong><small>숫자로 재드려요</small></span>
+      </a>
+    </div>
+  </section>
   <div class="cat-tabs" id="catTabs">
     <button type="button" class="cat-tab active" data-target="hotSection"><span class="hot-flame">🔥</span> HOT</button>
     <button type="button" class="cat-tab" data-target="testSection">🧩 테스트모음</button>
     <button type="button" class="cat-tab" data-target="fortuneSection">🔮 운세모음</button>
   </div>
 
-  <a class="blog-banner" href="blog/index.html">
-    <span class="blog-banner-emoji">📖</span>
-    <span class="blog-banner-info">
-      <strong>알아볼괘 이야기</strong>
-      <span>테스트 뒤에 숨은 유래와 과학 이야기</span>
-    </span>
-    <span class="blog-banner-arrow">›</span>
-  </a>
-
   <div id="searchResultsSection" style="display:none;"></div>
 
   <div id="hotSection">
 
-  <div class="card-row">
+  <div class="card-grid">
 
 <a class="test-card" href="tests/king-face/index.html">
     <div class="emoji">👑</div>
@@ -162,7 +174,7 @@
   <div id="testSection" style="display:none;">
 
   <div class="section-title">🆕 새로 나온 테스트</div>
-  <div class="card-row">
+  <div class="card-grid">
 
 <a class="test-card" href="tests/food-type/index.html">
     <div class="emoji">🍽️</div>
@@ -257,7 +269,7 @@
   </div>
 
   <div class="section-title">🧠 성격 유형 &amp; 나 알아보기</div>
-  <div class="card-row">
+  <div class="card-grid">
 
 <a class="test-card" href="tests/teto-egen/index.html">
     <div class="emoji">🔥</div>
@@ -370,7 +382,7 @@
   </div>
 
   <div class="section-title">💘 연애 &amp; 관계 지수</div>
-  <div class="card-row">
+  <div class="card-grid">
 
 <a class="test-card" href="tests/love-style/index.html">
     <div class="emoji">💘</div>
@@ -456,7 +468,7 @@
   </div>
 
   <div class="section-title">😎 사회성 &amp; 태도 지수</div>
-  <div class="card-row">
+  <div class="card-grid">
 
 <a class="test-card" href="tests/insa-assa/index.html">
     <div class="emoji">🕺</div>
@@ -587,7 +599,7 @@
   </div>
 
   <div class="section-title">⚡ 기질 &amp; 성향 지수</div>
-  <div class="card-row">
+  <div class="card-grid">
 
 <a class="test-card" href="tests/laziness-index/index.html">
     <div class="emoji">🛋️</div>
@@ -713,7 +725,7 @@
   <div id="fortuneSection" style="display:none;">
 
   <div class="section-title">🔮 오늘의 운세 &amp; 사주</div>
-  <div class="card-row">
+  <div class="card-grid">
 
 <a class="test-card" href="tests/tarot/index.html">
     <div class="emoji"><img src="assets/img/tarot/witch-icon.jpg" alt="타로 마법사" /></div>
@@ -781,7 +793,7 @@
   </div>
 
   <div class="section-title">💕 궁합 보기</div>
-  <div class="card-row">
+  <div class="card-grid">
 
 <a class="test-card" href="tests/saju-compat/index.html">
     <div class="emoji" style="font-size:26px;">☯️💕</div>
@@ -814,7 +826,43 @@
 
   </div>
 
-  <div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
+   <section class="story-section">
+    <div class="story-head">
+      <h2>📖 알아볼괘 이야기</h2>
+      <a href="blog/index.html">전체 보기 →</a>
+    </div>
+    <p class="story-sub">테스트 뒤에 숨은 유래와 과학 이야기, 28편</p>
+
+    <div class="story-list">
+      <a class="story-item" href="blog/face-reading-science.html">
+        <span class="si-emoji">🧐</span>
+        <span class="si-text"><strong>관상학의 유래와 과학적 근거</strong><span>이마가 넓으면 재물운이 좋다는 말, 근거가 있을까</span></span>
+      </a>
+      <a class="story-item" href="blog/mirror-self.html">
+        <span class="si-emoji">🪞</span>
+        <span class="si-text"><strong>거울 속 나와 사진 속 내가 다른 이유</strong><span>어느 쪽이 진짜 내 얼굴일까</span></span>
+      </a>
+      <a class="story-item" href="blog/mbti-origin.html">
+        <span class="si-emoji">🧠</span>
+        <span class="si-text"><strong>MBTI는 왜 이렇게 인기가 많을까?</strong><span>탄생 배경부터 알아두면 좋은 한계까지</span></span>
+      </a>
+      <a class="story-item" href="blog/personality-change.html">
+        <span class="si-emoji">🌱</span>
+        <span class="si-text"><strong>성격은 정말 안 바뀔까?</strong><span>빅파이브 연구가 말하는 것</span></span>
+      </a>
+      <a class="story-item" href="blog/placebo.html">
+        <span class="si-emoji">💊</span>
+        <span class="si-text"><strong>가짜 약인 걸 알고 먹어도 효과가?</strong><span>플라시보가 작동하는 방식</span></span>
+      </a>
+      <a class="story-item" href="blog/palmistry.html">
+        <span class="si-emoji">✋</span>
+        <span class="si-text"><strong>생명선이 짧으면 단명할까?</strong><span>손금에 대해 밝혀진 것들</span></span>
+      </a>
+    </div>
+
+    <a class="story-more" href="blog/index.html">이야기 28편 모두 보기 →</a>
+  </section>
+<div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
 
   <p class="notice">
     알아볼괘의 모든 테스트는 재미를 위해 제작된 콘텐츠이며, 전문적인 심리 진단이나 의학적 진단을 대신하지 않습니다.

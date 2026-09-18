@@ -2326,6 +2326,283 @@ a {
   margin-top: -6px;
 }
 
+/* ============================================================
+   홈 화면 개편
+   ------------------------------------------------------------
+   전에는 모든 섹션이 가로 스크롤 캐러셀(.card-row)이라
+   한 번에 2.5개만 보이고 설명도 숨겨져 있었어요.
+   테스트가 79개인데 홈에서 보이는 게 사실상 3개뿐이라
+   2열 그리드로 바꿔 한 화면에 6개씩 보이게 했습니다.
+   ============================================================ */
+
+/* 홈은 대표 배너가 첫 화면을 맡으므로 인사말 여백을 조금 줄입니다
+   (테스트 페이지의 히어로는 그대로 둡니다) */
+.wrap-home .hero { padding: 18px 0 4px; }
+.wrap-home .hero h1 { font-size: 22px; }
+.wrap-home .hero p { font-size: 14px; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.card-grid .test-card {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 0;
+  padding: 14px;
+  border-radius: var(--radius-md);
+}
+
+.card-grid .test-card .emoji {
+  width: 46px;
+  height: 46px;
+  font-size: 26px;
+  margin: 0;
+}
+
+.card-grid .test-card .info { min-width: 0; width: 100%; }
+
+.card-grid .test-card .info h3 {
+  font-size: 14px;
+  line-height: 1.35;
+  margin: 0 0 3px;
+  word-break: keep-all;
+}
+
+/* 설명은 두 줄까지만 — 예전엔 아예 숨겨져 있어서 뭘 하는 테스트인지 몰랐어요 */
+.card-grid .test-card .info p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.card-grid .test-card .arrow { display: none; }
+
+.card-grid .badge-soon {
+  display: inline-block;
+  margin-left: 0;
+  vertical-align: middle;
+}
+
+/* ---------- 대표 테스트 (사진 분석 3종) ---------- */
+.feature-band { margin: 18px 0 6px; }
+
+.feature-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 10px;
+}
+
+.feature-label span {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.feature-main {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #6d28d9, #be185d);
+  color: #fff;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease;
+}
+
+.feature-main:active { transform: scale(0.985); }
+
+.feature-main::after {
+  content: "";
+  position: absolute;
+  right: -46px;
+  top: -46px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.feature-main .fm-emoji { font-size: 34px; line-height: 1; }
+
+.feature-main h3 {
+  position: relative;
+  margin: 10px 0 5px;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.feature-main p {
+  position: relative;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+  word-break: keep-all;
+}
+
+.feature-main .fm-go {
+  position: relative;
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12.5px;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 7px 13px;
+  border-radius: 999px;
+}
+
+.feature-pair {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.feature-pair a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px;
+  border-radius: var(--radius-md);
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  transition: transform 0.15s ease;
+}
+
+.feature-pair a:active { transform: scale(0.98); }
+.feature-pair .fp-emoji { font-size: 22px; flex-shrink: 0; }
+.feature-pair strong { display: block; font-size: 13px; }
+.feature-pair small { font-size: 11px; color: var(--text-sub); }
+
+/* ---------- 알아볼괘 이야기 (읽을거리) ---------- */
+.story-section {
+  margin-top: 34px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.story-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.story-head h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.story-head a {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--brand-1);
+  white-space: nowrap;
+}
+
+.story-sub {
+  margin: 0 0 12px;
+  font-size: 12.5px;
+  color: var(--text-sub);
+}
+
+.story-list { display: grid; gap: 8px; }
+
+.story-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  border-radius: var(--radius-md);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  transition: transform 0.15s ease;
+}
+
+.story-item:active { transform: scale(0.99); }
+
+.story-item .si-emoji {
+  font-size: 22px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #f5f3ff, #fdf2f8);
+  flex-shrink: 0;
+}
+
+/* si-text 는 제목+설명을 감싸는 래퍼라 자르면 안 됩니다.
+   (선택자를 .story-item span 으로 두면 래퍼까지 잡혀 제목이 한 줄로 잘려요) */
+.story-item .si-text {
+  min-width: 0;
+  display: block;
+}
+
+.story-item .si-text strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 2px;
+  word-break: keep-all;
+}
+
+.story-item .si-text > span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-sub);
+  word-break: keep-all;
+}
+
+.story-more {
+  display: block;
+  margin-top: 10px;
+  padding: 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand-1);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--card-bg);
+}
+
+/* 스크롤해도 카테고리를 바꿀 수 있게 탭을 고정 */
+.cat-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--bg);
+  padding: 8px 20px;
+  margin: 4px -20px 6px;
+}
+
 /* 읽을거리 안의 설명용 그림 (관상 부위 지도 등) */
 .chart-figure {
   margin: 18px 0 20px;

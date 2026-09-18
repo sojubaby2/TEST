@@ -55,8 +55,8 @@ foreach ($r in $ratios) {
 }
 Write-Host "  [OK] face-ratio   이미지 $($ratios.Count + 1)개"
 
-# ---------------- 내가 왕이 될 상인가? ----------------
-$kingTitle = '내가 왕이 될 상인가?'
+# ---------------- 관상가 양반 내가 왕이 될 상인가? ----------------
+$kingTitle = '관상가 양반 내가 왕이 될 상인가?'
 Make-OG (Join-Path $ogDir 'king-face-intro.png') (HexColor '#B45309') '' '👑' `
         $kingTitle '얼굴 여섯 자리를 짚어 풀어드리리다'
 $n++

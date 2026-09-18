@@ -164,7 +164,7 @@ const FaceResult = (function () {
 
     renderMetrics(document.getElementById("metricBox"), metrics);
 
-    // 관상 소견 (내가 왕이 될 상인가? 전용)
+    // 관상 소견 (관상가 양반 내가 왕이 될 상인가? 전용)
     const readEl = document.getElementById("readingBox");
     if (readEl && typeof KingReading !== "undefined") {
       if (metrics) {

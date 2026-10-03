@@ -572,9 +572,18 @@ const SajuEngine = (function () {
     return { name: god + "격", god: god };
   }
 
-  /* ---------------- 용신 후보 ---------------- */
-  // 신강하면 기운을 덜어내는 쪽(식상·재성·관성), 신약하면 북돋는 쪽(인성·비겁)을 씁니다.
-  function suggestYongsin(dayStem, strong, elCount) {
+  /* ---------------- 용신 후보 ----------------
+     두 가지를 같이 봅니다.
+       억부 — 일간이 약하면 북돋고, 강하면 덜어낼 오행을 고릅니다.
+       조후 — 한겨울에 태어났으면 녹여줄 불, 한여름이면 식혀줄 물을 먼저 봅니다.
+     옛 글에서는 계절이 치우친 사주일수록 조후를 억부보다 앞세웠습니다.
+     (한겨울 흙에게는 북돋는 흙보다 먼저 녹여줄 불이 급하다는 뜻이에요) */
+  const SEASON_OF_BRANCH = {
+    인:"봄", 묘:"봄", 진:"봄",   사:"여름", 오:"여름", 미:"여름",
+    신:"가을", 유:"가을", 술:"가을", 해:"겨울", 자:"겨울", 축:"겨울",
+  };
+
+  function suggestYongsin(dayStem, strong, elCount, monthBranch) {
     const me = STEM[dayStem];
     let wanted, reason;
     if (strong) {
@@ -584,11 +593,32 @@ const SajuEngine = (function () {
       wanted = [GEN_BY[me.el], me.el];
       reason = "일간이 힘이 부족한 편이라, 나를 생해주거나 나와 같은 편이 되어주는 오행이 도움이 됩니다.";
     }
-    // 후보 중 사주에서 가장 약한 것을 우선으로 제안합니다
-    const sorted = wanted.slice().sort(function (a, b) {
+
+    // 억부 기준: 후보 중 사주에서 가장 약한 것
+    const byCount = wanted.slice().sort(function (a, b) {
       return (elCount.total[a] || 0) - (elCount.total[b] || 0);
     });
-    return { candidates: wanted, primary: sorted[0], reason: reason };
+
+    // 조후 기준: 겨울이면 화, 여름이면 수
+    const season = SEASON_OF_BRANCH[monthBranch] || null;
+    const climate = season === "겨울" ? "화" : season === "여름" ? "수" : null;
+
+    let primary = byCount[0];
+    let johu = false;
+    if (climate && wanted.indexOf(climate) !== -1) {
+      primary = climate;
+      johu = true;
+      reason += (season === "겨울"
+        ? " 게다가 한겨울에 태어나 사주 전체가 차가운 편이라, 녹여주는 화(火)가 가장 급합니다."
+        : " 게다가 한여름에 태어나 사주 전체가 뜨거운 편이라, 식혀주는 수(水)가 가장 급합니다.");
+    }
+
+    // 주 용신 다음으로 볼 오행
+    const second = wanted.filter(function (e) { return e !== primary; })
+      .sort(function (a, b) { return (elCount.total[a] || 0) - (elCount.total[b] || 0); })[0] || null;
+
+    return { candidates: wanted, primary: primary, second: second,
+             reason: reason, johu: johu, season: season };
   }
 
   /* ---------------- 전체 분석 ---------------- */
@@ -643,7 +673,8 @@ const SajuEngine = (function () {
       gongmangHit: branches.filter(function (b) { return gm.indexOf(b) !== -1; }),
       sinsal: findSinsal(dayStem, pillars.year.charAt(1), pillars.day.charAt(1), branches),
       gyeokguk: findGyeokguk(dayStem, pillars.month.charAt(1)),
-      yongsin: suggestYongsin(dayStem, st.isStrong, el),
+      yongsin: suggestYongsin(dayStem, st.isStrong, el, pillars.month.charAt(1)),
+      season: SEASON_OF_BRANCH[pillars.month.charAt(1)] || null,
     };
 
     if (birth && birth.gender) {

@@ -3328,3 +3328,192 @@ a {
   .fig-grid { gap: 4px; padding: 8px; }
   .opt-fig-grid { gap: 8px; }
 }
+
+/* ============================================================
+   사주풀이 - 주제별 리포트
+   ============================================================ */
+
+.sec-sub {
+  margin: -2px 0 10px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-sub);
+}
+
+/* 기둥 칸 - 역할 표시 */
+.pillar-cell .pillar-who {
+  font-size: 10.5px;
+  color: var(--text-sub);
+  margin: 6px 0 0;
+  line-height: 1.4;
+}
+
+/* 키워드 칩 */
+.kw-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.kw-chip {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: #f3f0ff;
+  color: var(--brand-1);
+}
+
+/* 강점 / 조심할 점 */
+.gb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.gb-col {
+  padding: 13px 12px;
+  border-radius: var(--radius-md);
+  background: var(--bg);
+}
+
+.gb-col.is-good { background: #f0fdf4; }
+.gb-col.is-bad { background: #fff7ed; }
+
+.gb-head {
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  font-weight: 800;
+}
+
+.gb-col .trait-list { margin: 0; }
+
+.gb-col .trait-list li {
+  font-size: 12.5px;
+  line-height: 1.6;
+  margin-top: 5px;
+}
+
+@media (max-width: 380px) {
+  .gb-grid { grid-template-columns: 1fr; }
+}
+
+/* 인생 시기 카드 */
+.stage-head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 12px;
+}
+
+.stage-head .st-emoji { font-size: 28px; }
+
+.stage-head .st-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.stage-head .st-age {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+/* 주제 카드 */
+.topic-card .tc-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 12px;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.topic-card .tc-emoji { font-size: 22px; }
+.topic-card.is-dim { opacity: 0.82; }
+
+/* 올해 / 내년 */
+.year-card .yc-head {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.year-card.is-good { border-left: 4px solid #16a34a; }
+.year-card.is-warn { border-left: 4px solid #f97316; }
+
+/* 대운 칸 - 순풍 / 역풍 */
+.daeun-cell .dc-grade {
+  margin: 4px 0 0;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-sub);
+}
+
+.daeun-cell.g-good { background: #f0fdf4; }
+.daeun-cell.g-good .dc-grade { color: #16a34a; }
+.daeun-cell.g-bad { background: #fff7ed; }
+.daeun-cell.g-bad .dc-grade { color: #ea580c; }
+
+.gd-tag.is-good { background: #dcfce7; color: #16a34a; }
+.gd-tag.is-warn { background: #ffedd5; color: #ea580c; }
+
+/* 접이식 원리 칸 */
+.fold-host { padding: 6px 16px; }
+
+.rp-fold {
+  border-bottom: 1px solid var(--border);
+}
+
+.rp-fold:last-child { border-bottom: none; }
+
+.rp-fold > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 15px 26px 15px 0;
+  font-size: 14.5px;
+  font-weight: 800;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rp-fold > summary::-webkit-details-marker { display: none; }
+
+.rp-fold > summary::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-sub);
+  border-bottom: 2px solid var(--text-sub);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.rp-fold[open] > summary::after { transform: translateY(-20%) rotate(-135deg); }
+.rp-fold[open] > summary { color: var(--brand-1); }
+
+.rp-fold-body { padding: 0 0 18px; }
+
+/* 원리 칸 안의 표 */
+.basis-table { margin-top: 12px; }
+
+.bt-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  margin-top: 6px;
+  font-size: 12.5px;
+}
+
+.bt-row .bt-k { font-weight: 800; width: 62px; flex: 0 0 auto; }
+.bt-row .bt-v { flex: 1; }
+.bt-row .bt-x { color: var(--brand-1); font-weight: 700; font-size: 11.5px; }

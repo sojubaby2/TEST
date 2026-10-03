@@ -18,58 +18,101 @@
   <div class="progress-outer">
     <div class="progress-inner" id="progressBar" style="width:0%;"></div>
   </div>
-  <div class="progress-label" id="progressLabel">0 / 12</div>
+  <div class="progress-label" id="progressLabel">0 / 16</div>
 
   <div class="card">
-    <div class="question-num" id="qNum">Q1 · 논리</div>
+    <div class="q-meta">
+      <span class="question-num" id="qNum">Q1</span>
+      <span class="q-tag" id="qTag"></span>
+    </div>
     <p class="question-text" id="qText"></p>
+    <div id="qFig"></div>
     <div id="options"></div>
   </div>
 </main>
 
+<script src="../../assets/js/iq-figures.js"></script>
 <script src="../../assets/js/iqeq-data.js"></script>
 <script>
-  let current = 0;
-  let iqScore = 0;
-  let eqScore = 0;
+  // 매번 새로 뽑습니다 (IQ 50문항 중 10문항 + EQ 6문항)
+  var QUESTIONS = buildIqEqQuiz();
+  var TOTAL = QUESTIONS.length;
 
-  const qNum = document.getElementById("qNum");
-  const qText = document.getElementById("qText");
-  const optionsEl = document.getElementById("options");
-  const progressBar = document.getElementById("progressBar");
-  const progressLabel = document.getElementById("progressLabel");
+  var current = 0;
+  var iqScore = 0;
+  var eqScore = 0;
+  var locked = false;
+
+  var qNum = document.getElementById("qNum");
+  var qTag = document.getElementById("qTag");
+  var qText = document.getElementById("qText");
+  var qFig = document.getElementById("qFig");
+  var optionsEl = document.getElementById("options");
+  var progressBar = document.getElementById("progressBar");
+  var progressLabel = document.getElementById("progressLabel");
+
+  var DIFF_LABEL = { 1: "쉬움", 2: "보통", 3: "어려움", 4: "최고난도" };
+
+  // 문항 글은 줄바꿈과 <b> 만 쓰므로 그대로 넣습니다
+  function toHtml(s) {
+    return String(s).replace(/\n/g, "<br />");
+  }
 
   function renderQuestion() {
-    const q = IQEQ_QUESTIONS[current];
-    qNum.textContent = "Q" + (current + 1) + " · " + (q.type === "iq" ? "논리" : "감성");
-    qText.textContent = q.text;
-    optionsEl.innerHTML = "";
+    var q = QUESTIONS[current];
+    locked = false;
 
-    q.options.forEach((opt) => {
-      const btn = document.createElement("button");
-      btn.className = "option-btn";
+    qNum.textContent = "Q" + (current + 1);
+    if (q.type === "iq") {
+      qTag.textContent = CAT_LABEL[q.cat] + " · " + DIFF_LABEL[q.diff];
+      qTag.className = "q-tag diff-" + q.diff;
+    } else {
+      qTag.textContent = "감성";
+      qTag.className = "q-tag diff-eq";
+    }
+
+    qText.innerHTML = toHtml(q.text);
+
+    // 문제 그림
+    qFig.innerHTML = q.fig ? IQFigure.grid(q.fig.cells, q.fig.cols) : "";
+
+    // 보기
+    var isFigOpts = q.options.some(function (o) { return o.fig; });
+    optionsEl.innerHTML = "";
+    optionsEl.className = isFigOpts ? "opt-fig-grid" : "";
+
+    q.options.forEach(function (opt, i) {
+      var btn = document.createElement("button");
       btn.type = "button";
-      btn.textContent = opt.text;
-      btn.addEventListener("click", () => selectOption(q.type, opt.score));
+
+      if (opt.fig) {
+        btn.className = "option-btn option-fig";
+        btn.innerHTML = '<span class="opt-letter">' + "ABCD".charAt(i) + "</span>" +
+                        IQFigure.cell(opt.fig, 78);
+      } else {
+        btn.className = "option-btn";
+        btn.textContent = opt.text;
+      }
+
+      btn.addEventListener("click", function () { selectOption(q, opt); });
       optionsEl.appendChild(btn);
     });
 
-    const pct = Math.round((current / IQEQ_QUESTIONS.length) * 100);
+    var pct = Math.round((current / TOTAL) * 100);
     progressBar.style.width = pct + "%";
-    progressLabel.textContent = current + " / " + IQEQ_QUESTIONS.length;
+    progressLabel.textContent = current + " / " + TOTAL;
   }
 
-  function selectOption(type, score) {
-    if (type === "iq") {
-      iqScore += score;
-    } else {
-      eqScore += score;
-    }
+  function selectOption(q, opt) {
+    if (locked) return;
+    locked = true;
+
+    if (q.type === "iq") { iqScore += opt.score; } else { eqScore += opt.score; }
     current += 1;
 
-    if (current >= IQEQ_QUESTIONS.length) {
+    if (current >= TOTAL) {
       progressBar.style.width = "100%";
-      progressLabel.textContent = IQEQ_QUESTIONS.length + " / " + IQEQ_QUESTIONS.length;
+      progressLabel.textContent = TOTAL + " / " + TOTAL;
       finishQuiz();
       return;
     }
@@ -78,12 +121,9 @@
   }
 
   function finishQuiz() {
-    const result = getIqEqResult(iqScore, eqScore);
-    const url =
-      "result-" + result.id + ".html?iq=" + iqScore + "&eq=" + eqScore;
-    setTimeout(() => {
-      window.location.href = url;
-    }, 350);
+    var result = getIqEqResult(iqScore, eqScore);
+    var url = "result-" + result.id + ".html?iq=" + iqScore + "&eq=" + eqScore;
+    setTimeout(function () { window.location.href = url; }, 350);
   }
 
   renderQuestion();

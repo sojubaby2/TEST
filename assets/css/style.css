@@ -3233,3 +3233,98 @@ a {
 }
 
 .rp-toc a:active { background: #ede9fe; color: var(--brand-1); }
+
+/* ============================================================
+   IQ 테스트 - 도형 문항
+   ============================================================ */
+
+/* 문항 머리 (번호 + 갈래/난이도 꼬리표) */
+.q-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.q-meta .question-num { margin: 0; }
+
+.q-tag {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text-sub);
+  white-space: nowrap;
+}
+
+.q-tag.diff-1 { background: #f0fdf4; color: #16a34a; }
+.q-tag.diff-2 { background: #eff6ff; color: #2563eb; }
+.q-tag.diff-3 { background: #fff7ed; color: #ea580c; }
+.q-tag.diff-4 { background: #fef2f2; color: #dc2626; }
+.q-tag.diff-eq { background: #fdf2f8; color: #db2777; }
+
+/* 문제 그림 */
+.fig-grid {
+  display: grid;
+  gap: 6px;
+  margin: 18px auto 4px;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  width: 100%;
+}
+
+.fig-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.fig-cell.is-q {
+  border-style: dashed;
+  border-color: var(--brand-1);
+  background: #faf5ff;
+}
+
+.fig-cell svg { display: block; width: 100%; height: auto; }
+
+/* 도형 보기 - 2x2 격자 */
+.opt-fig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.option-btn.option-fig {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 14px 6px 10px;
+  min-height: 104px;
+  text-align: center;
+}
+
+.option-btn.option-fig .opt-letter {
+  position: absolute;
+  top: 7px;
+  left: 9px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-sub);
+}
+
+.option-btn.option-fig svg { display: block; }
+
+@media (max-width: 360px) {
+  .fig-grid { gap: 4px; padding: 8px; }
+  .opt-fig-grid { gap: 8px; }
+}

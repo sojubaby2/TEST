@@ -6,13 +6,13 @@
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>나의 사주팔자 | 알아볼괘 정통 사주풀이</title>
-<meta name="description" content="절기 기준 만세력으로 계산한 나의 사주팔자와 일간 성격 풀이" />
+<title>나의 사주팔자 풀이 | 알아볼괘 정통 사주풀이</title>
+<meta name="description" content="절기 기준으로 계산한 나의 사주팔자와 십신·오행·용신·신강약·대운까지 담은 상세 풀이" />
 <meta name="robots" content="noindex" />
 
 <meta property="og:type" content="website" />
-<meta property="og:title" content="나의 사주팔자" />
-<meta property="og:description" content="절기 기준 만세력으로 계산한 진짜 내 사주, 너도 확인해봐!" />
+<meta property="og:title" content="나의 사주팔자 풀이" />
+<meta property="og:description" content="절기 기준으로 계산한 진짜 내 사주, 너도 확인해봐!" />
 <meta property="og:image" content="../../assets/img/og/saju-result.png" />
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☯️</text></svg>" />
@@ -40,31 +40,12 @@
     </div>
 
     <p class="section-title" style="margin-top:24px;">나의 사주팔자</p>
-    <p style="margin:-2px 0 8px;font-size:12px;color:var(--text-sub);">👆 각 기둥을 눌러보면 시간대별 운세를 볼 수 있어요</p>
-    <div class="card">
-      <div class="pillar-grid" id="pillarGrid"></div>
-      <p id="birthInfoLabel" style="margin:14px 0 0;font-size:12px;color:var(--text-sub);text-align:center;"></p>
-    </div>
+    <p style="margin:-2px 0 8px;font-size:12px;color:var(--text-sub);">
+      위아래 작은 글씨는 각 글자가 일간과 맺는 관계(십신)입니다.
+    </p>
 
-    <div class="card" id="scaleFortuneCard" style="display:none;">
-      <p class="fortune-label" id="scaleFortuneLabel" style="color:var(--brand-1);"></p>
-      <p style="margin:6px 0 0;font-size:15px;line-height:1.6;" id="scaleFortuneText"></p>
-      <p style="margin:12px 0 0;font-size:11px;color:var(--text-sub);" id="scaleFortuneRefresh"></p>
-    </div>
-
-    <p class="section-title" style="margin-top:24px;">오행 분석</p>
-    <div class="card">
-      <div class="element-bars" id="elementBars"></div>
-    </div>
-
-    <p class="section-title" style="margin-top:24px;">일간(日干) 성격 풀이</p>
-    <div class="card">
-      <p style="margin:0;font-size:15px;" id="daystemSummary"></p>
-      <ul class="trait-list" id="daystemTraits"></ul>
-    </div>
-
-    <p class="section-title" style="margin-top:28px;">일간 기준 궁합</p>
-    <div id="compatSection"></div>
+    <!-- 리포트 전체가 여기에 그려집니다 -->
+    <div id="report"></div>
 
     <div class="btn-row">
       <button class="btn btn-primary" id="shareBtn" type="button">결과 공유하기</button>
@@ -75,13 +56,16 @@
     </div>
 
     <a class="btn btn-secondary" href="index.html" style="margin-top:20px;">🔄 다시 계산하기</a>
+    <a class="btn btn-secondary" href="../saju-compat/index.html">💞 사주 궁합도 보기</a>
     <a class="btn btn-secondary" href="../../index.html">🏠 다른 테스트 보러가기</a>
 
     <div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
   </div>
 
   <p class="notice">
-    ⚠️ 사주팔자 계산은 24절기 기준 만세력 알고리즘으로 정확하게 계산하지만, 해석 내용은 재미로 즐기는 콘텐츠예요. 중요한 의사결정의 근거로 사용하지 마세요.
+    ⚠️ 여덟 글자를 뽑는 계산은 24절기 절입 시각과 진태양시까지 따져 정확하게 하지만,
+    그 글자를 성격이나 앞날로 읽는 해석은 전통적인 방식이고 과학적 근거가 있는 것은 아니에요.
+    재미로 즐기시고 중요한 의사결정의 근거로는 사용하지 마세요. 1900~2050년생만 계산 가능해요.
   </p>
 
   <div class="footer">
@@ -91,6 +75,9 @@
 
 <script src="../../assets/js/vendor/manseryeok.min.js"></script>
 <script src="../../assets/js/saju-data.js"></script>
+<script src="../../assets/js/saju-engine.js"></script>
+<script src="../../assets/js/saju-reading.js"></script>
+<script src="../../assets/js/saju-render.js"></script>
 <script src="../../assets/js/main.js"></script>
 <script>
   (function () {
@@ -103,6 +90,8 @@
     var hasTime = hStr !== null && hStr !== "";
     var h = hasTime ? parseInt(hStr, 10) : undefined;
     var mi = hasTime ? (miStr !== null ? parseInt(miStr, 10) : 0) : undefined;
+    var gParam = params.get("g");
+    var gender = (gParam === "male" || gParam === "female") ? gParam : null;
 
     var errorBox = document.getElementById("errorBox");
     var errorText = document.getElementById("errorText");
@@ -119,9 +108,16 @@
       return;
     }
 
-    var saju;
+    var raw, saju, analysis, reading;
     try {
-      saju = Manseryeok.calculateSaju(y, m, d, h, mi);
+      raw = Manseryeok.calculateSaju(y, m, d, h, mi);
+      // 만세력이 내장한 절기 표는 해마다 같은 값이라 절입 시각이 어긋납니다.
+      // 년주·월주는 태양 황경으로 다시 계산해 덮어씌웁니다. (일주·시주는 그대로)
+      saju = SajuEngine.correctPillars(raw, y, m, d, h, mi);
+      analysis = SajuEngine.analyze(saju, {
+        y: y, m: m, d: d, h: h, mi: mi, gender: gender
+      });
+      reading = SajuReading.build(analysis, { y: y, m: m, d: d, hasTime: hasTime });
     } catch (e) {
       showError("사주를 계산할 수 없어요. (1900~2050년생만 계산 가능해요) 생년월일을 다시 확인해주세요.");
       return;
@@ -129,128 +125,42 @@
 
     resultBox.style.display = "block";
 
-    var dayStemChar = saju.dayPillar.charAt(0);
-    var daystem = getDaystemResult(dayStemChar);
+    var dayStemChar = analysis.dayStem;
+    var legacy = getDaystemResult(dayStemChar);
+    var ds = reading.dayStem;
 
-    document.getElementById("resultHero").style.background = daystem.color;
-    document.getElementById("resultEmoji").textContent = daystem.emoji;
-    document.getElementById("resultTitle").textContent = daystem.title;
-    document.getElementById("resultSubtitle").textContent = daystem.subtitle;
+    document.getElementById("resultHero").style.background = legacy.color;
+    document.getElementById("resultEmoji").textContent = ds.emoji;
+    document.getElementById("resultTitle").textContent = ds.title;
+    document.getElementById("resultSubtitle").textContent =
+      ds.nick + " · " + analysis.strength.level +
+      (analysis.gyeokguk ? " · " + analysis.gyeokguk.name : "");
 
-    // 사주팔자 4주(또는 3주) 그리드 - 각 기둥은 클릭하면 시간대별 운세를 보여줌
-    // 매핑: 시주=오늘 / 일주=이번달 / 월주=올해 / 년주=평생
-    var pillarGrid = document.getElementById("pillarGrid");
-    var pillars = [
-      { label: "년주", hanja: saju.yearPillarHanja, hangul: saju.yearPillar, scale: "year" },
-      { label: "월주", hanja: saju.monthPillarHanja, hangul: saju.monthPillar, scale: "month" },
-      { label: "일주", hanja: saju.dayPillarHanja, hangul: saju.dayPillar, scale: "day" },
-    ];
-    if (saju.hourPillar) {
-      pillars.push({ label: "시주", hanja: saju.hourPillarHanja, hangul: saju.hourPillar, scale: "hour" });
-    } else {
-      pillarGrid.classList.add("cols-3");
-    }
-
-    var scaleFortuneCard = document.getElementById("scaleFortuneCard");
-    var scaleFortuneLabel = document.getElementById("scaleFortuneLabel");
-    var scaleFortuneText = document.getElementById("scaleFortuneText");
-    var scaleFortuneRefresh = document.getElementById("scaleFortuneRefresh");
-    var pillarCellEls = [];
-
-    function selectPillar(p, cellEl) {
-      pillarCellEls.forEach(function (el) { el.classList.remove("active"); });
-      cellEl.classList.add("active");
-
-      var meta = PILLAR_SCALE_META[p.scale];
-      var fortune = getPillarScaleFortune(p.hangul, p.scale);
-
-      scaleFortuneLabel.textContent = "🔮 " + p.label + "(" + p.hangul + ") 기준 " + meta.label + " 운세";
-      scaleFortuneText.textContent =
-        (fortune.keyword ? "[" + fortune.keyword + "] " : "") + fortune.text;
-      scaleFortuneRefresh.textContent = meta.desc + " · " + meta.refresh;
-      scaleFortuneCard.style.display = "block";
-    }
-
-    pillars.forEach(function (p, idx) {
-      var cell = document.createElement("button");
-      cell.type = "button";
-      cell.className = "pillar-cell pillar-cell-btn";
-      cell.innerHTML =
-        '<p class="pillar-label">' + p.label + "</p>" +
-        '<p class="pillar-hanja">' + p.hanja + "</p>" +
-        '<p class="pillar-hangul">' + p.hangul + "</p>";
-      cell.addEventListener("click", function () { selectPillar(p, cell); });
-      pillarGrid.appendChild(cell);
-      pillarCellEls.push(cell);
+    SajuRender.renderAll(analysis, reading, document.getElementById("report"), {
+      corrected: saju._corrected,
+      dayStem: dayStemChar,
+      birth: { y: y, m: m, d: d, h: h, mi: mi, gender: gender }
     });
 
-    // 기본 선택: 시주(오늘)가 있으면 그걸, 없으면 일주(이번달)를 기본으로 보여줌
-    var defaultIdx = pillars.findIndex(function (p) { return p.scale === "hour"; });
-    if (defaultIdx === -1) defaultIdx = pillars.findIndex(function (p) { return p.scale === "day"; });
-    if (defaultIdx !== -1) selectPillar(pillars[defaultIdx], pillarCellEls[defaultIdx]);
-
+    // 출생 정보 라벨 (그리드 카드 안에 렌더러가 비워둔 자리)
     var birthLabel = y + "년 " + m + "월 " + d + "일";
     if (hasTime) {
       birthLabel += " " + h + "시 " + mi + "분 출생";
       if (saju.isTimeCorrected && saju.correctedTime) {
-        birthLabel += " (진태양시 보정: " + saju.correctedTime.hour + "시 " + saju.correctedTime.minute + "분)";
+        birthLabel += " · 진태양시 " + saju.correctedTime.hour + "시 " + saju.correctedTime.minute + "분 보정";
       }
     } else {
-      birthLabel += " 출생 (시간 미입력 - 시주 제외)";
+      birthLabel += " 출생 (시간 미입력 — 시주 제외)";
     }
-    document.getElementById("birthInfoLabel").textContent = birthLabel;
-
-    // 오행 분석
-    var counts = countElements(saju);
-    var maxCount = Math.max.apply(null, Object.values(counts));
-    var elementBars = document.getElementById("elementBars");
-    ["목", "화", "토", "금", "수"].forEach(function (el) {
-      var meta = ELEMENT_META[el];
-      var count = counts[el];
-      var pct = maxCount > 0 ? Math.round((count / maxCount) * 100) : 0;
-      var row = document.createElement("div");
-      row.className = "element-row";
-      row.innerHTML =
-        '<span class="element-emoji">' + meta.emoji + "</span>" +
-        '<span class="element-name">' + meta.label + "</span>" +
-        '<span class="element-bar-outer"><span class="element-bar-inner" style="width:' + pct + "%;background:" + meta.color + ';"></span></span>' +
-        '<span class="element-count">' + count + "</span>";
-      elementBars.appendChild(row);
-    });
-
-    // 일간 성격 풀이
-    document.getElementById("daystemSummary").textContent = daystem.summary;
-    var traitsEl = document.getElementById("daystemTraits");
-    daystem.traits.forEach(function (t) {
-      var li = document.createElement("li");
-      li.textContent = t;
-      traitsEl.appendChild(li);
-    });
-
-    // 궁합 - 일간 궁합은 별도 결과 페이지가 없는 단일 페이지 구조라
-    // 공용 renderCompatSection(링크 카드) 대신 정보 카드 형태로 직접 렌더링함
-    (function renderDaystemCompat() {
-      var container = document.getElementById("compatSection");
-      function findById(id) { return DAYSTEM_RESULTS.find(function (r) { return r.id === id; }); }
-      function cardHtml(kind, label, matchInfo) {
-        var target = findById(matchInfo.id);
-        return (
-          '<div class="compat-card compat-' + kind + '">' +
-          '<div class="compat-label">' + label + "</div>" +
-          '<div class="compat-type"><span class="compat-emoji">' + target.emoji + '</span><span>' + target.title + "</span></div>" +
-          '<p class="compat-reason">' + matchInfo.reason + "</p>" +
-          "</div>"
-        );
-      }
-      container.innerHTML =
-        cardHtml("best", "💘 잘 맞는 일간", daystem.compat.best) +
-        cardHtml("worst", "⚡ 상극인 일간", daystem.compat.worst);
-    })();
+    if (gender) birthLabel += " · " + (gender === "male" ? "남성" : "여성");
+    birthLabel += " · 사주 연도 " + saju.sajuYear + "년";
+    var labelEl = document.getElementById("birthInfoLabel");
+    if (labelEl) labelEl.textContent = birthLabel;
 
     document.getElementById("shareBtn").addEventListener("click", function () {
       shareCurrentPage(
-        "나의 사주는 '" + daystem.title + "' " + daystem.emoji,
-        "내 진짜 사주는? 알아볼괘에서 확인해봐!"
+        "나의 사주는 '" + ds.title + "' " + ds.emoji,
+        "십신·오행·대운까지 풀어주는 사주풀이. 알아볼괘에서 확인해봐!"
       );
     });
     document.getElementById("copyBtn").addEventListener("click", function () {
@@ -259,7 +169,7 @@
     document.getElementById("downloadBtn").addEventListener("click", function () {
       downloadImage(
         "../../assets/img/card/saju-" + dayStemChar + ".png",
-        "알아볼괘_사주_" + daystem.title + ".png"
+        "알아볼괘_사주_" + ds.title + ".png"
       );
     });
   })();

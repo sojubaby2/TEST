@@ -2845,3 +2845,391 @@ a {
 }
 
 .card-photo-toggle input { width: 16px; height: 16px; }
+
+/* ============================================================
+   사주풀이 - 긴 풀이 리포트
+   ============================================================ */
+
+/* 문단 */
+.rp-p {
+  margin: 0 0 12px;
+  font-size: 14.5px;
+  line-height: 1.78;
+  letter-spacing: -0.01em;
+}
+
+.rp-p:last-child { margin-bottom: 0; }
+.rp-p b { font-weight: 800; color: var(--brand-1); }
+
+.rp-lead {
+  background: #f8f6ff;
+  border-left: 3px solid var(--brand-1);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 16px;
+  margin: 0 0 14px;
+}
+
+.rp-lead .rp-p { font-size: 14px; }
+
+.rp-note {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--text-sub);
+}
+
+.rp-sub {
+  margin: 18px 0 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-sub);
+  letter-spacing: -0.01em;
+}
+
+.rp-sub:first-child { margin-top: 0; }
+
+/* 보정 알림 */
+.rp-fix {
+  margin: 0 0 12px;
+  padding: 11px 14px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: #92400e;
+}
+
+/* 사주팔자 그리드 (십신 표시 포함) */
+.pillar-cell .pillar-god {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--brand-1);
+  margin: 6px 0 0;
+  line-height: 1.35;
+}
+
+.pillar-cell .pillar-god.is-me {
+  color: var(--text-main);
+  background: #ede9fe;
+  border-radius: 999px;
+  padding: 1px 0;
+}
+
+.pillar-cell .pillar-stage {
+  font-size: 10px;
+  color: var(--text-sub);
+  margin: 4px 0 0;
+}
+
+.pillar-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 10px 0;
+}
+
+/* 지장간 */
+.hidden-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  text-align: center;
+}
+
+.hidden-row.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+.hidden-row span {
+  font-size: 10.5px;
+  color: var(--text-sub);
+  line-height: 1.5;
+}
+
+/* 궁위별 해석 블록 */
+.palace-block {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-top: 12px;
+}
+
+.palace-block:first-child { margin-top: 0; }
+
+.palace-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 4px;
+}
+
+.palace-head .ph-name {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.palace-head .ph-pillar {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--brand-1);
+}
+
+.palace-head .ph-age {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-sub);
+  margin-left: auto;
+}
+
+.palace-block .rp-p { font-size: 14px; margin-bottom: 10px; }
+
+/* 득령/득지/득세 */
+.kv-list { margin-top: 12px; }
+
+.kv-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 13px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.kv-row .kv-key {
+  font-weight: 800;
+  width: 42px;
+  flex: 0 0 auto;
+}
+
+.kv-row .kv-val { color: var(--text-sub); flex: 1; }
+
+.kv-row .kv-mark {
+  font-weight: 800;
+  font-size: 12px;
+  flex: 0 0 auto;
+}
+
+.kv-row.is-ok { background: #f0fdf4; }
+.kv-row.is-ok .kv-mark { color: #16a34a; }
+.kv-row.is-no { background: #fef2f2; }
+.kv-row.is-no .kv-mark { color: #dc2626; }
+
+/* 십신 세부 설명 */
+.god-detail {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.god-detail:last-child { border-bottom: none; padding-bottom: 0; }
+.god-detail:first-child { padding-top: 0; }
+
+.god-detail .gd-head {
+  margin: 0 0 5px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.god-detail .gd-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  margin-left: 6px;
+  vertical-align: 1.5px;
+  background: #ede9fe;
+  color: var(--brand-1);
+}
+
+.god-detail .gd-tag.is-none { background: var(--border); color: var(--text-sub); }
+
+.god-detail .gd-text {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-sub);
+}
+
+/* 지지 관계 / 신살 */
+.rel-item {
+  display: flex;
+  gap: 11px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.rel-item:last-child { border-bottom: none; padding-bottom: 0; }
+.rel-item:first-child { padding-top: 0; }
+
+.rel-item .ri-mark {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.rel-item.is-good .ri-mark { background: #f0fdf4; color: #16a34a; }
+.rel-item.is-bad .ri-mark { background: #fef2f2; color: #dc2626; }
+.rel-item.is-plain .ri-mark { background: var(--bg); font-size: 16px; }
+
+.rel-item .ri-name {
+  margin: 0 0 3px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.rel-item .ri-text {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-sub);
+}
+
+/* 대운 */
+.daeun-scroll {
+  overflow-x: auto;
+  margin: 0 -16px;
+  padding: 2px 16px 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.daeun-track {
+  display: flex;
+  gap: 8px;
+  width: max-content;
+}
+
+.daeun-cell {
+  flex: 0 0 auto;
+  width: 66px;
+  text-align: center;
+  padding: 11px 4px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  border: 1.5px solid transparent;
+}
+
+.daeun-cell.is-now {
+  background: #f5f3ff;
+  border-color: var(--brand-1);
+}
+
+.daeun-cell.is-past { opacity: 0.5; }
+
+.daeun-cell .dc-age {
+  margin: 0;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.daeun-cell .dc-hanja {
+  margin: 3px 0 0;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.daeun-cell .dc-god {
+  margin: 3px 0 0;
+  font-size: 9.5px;
+  line-height: 1.4;
+  color: var(--brand-1);
+  font-weight: 700;
+}
+
+.daeun-hint {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+/* 성별 미입력 안내 */
+.gender-ask {
+  text-align: center;
+  padding: 6px 0 0;
+}
+
+.gender-ask p {
+  margin: 0 0 12px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-sub);
+}
+
+.gender-ask .ga-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* 입력 폼 - 성별 선택 */
+.saju-seg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.saju-seg label {
+  margin: 0;
+  position: relative;
+  display: block;
+}
+
+.saju-seg input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.saju-seg span {
+  display: block;
+  padding: 14px 8px;
+  text-align: center;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
+  background: var(--card-bg);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-sub);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.saju-seg input:checked + span {
+  border-color: var(--brand-1);
+  background: #f5f3ff;
+  color: var(--brand-1);
+}
+
+.saju-seg input:focus-visible + span { outline: 2px solid var(--brand-1); outline-offset: 2px; }
+
+/* 목차 */
+.rp-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.rp-toc a {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text-sub);
+  text-decoration: none;
+}
+
+.rp-toc a:active { background: #ede9fe; color: var(--brand-1); }

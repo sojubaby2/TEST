@@ -32,15 +32,28 @@
   </section>
 
   <div class="card">
-    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 년주·월주·일주·시주 사주팔자 전체 계산</p>
-    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 24절기 기준 만세력으로 계산 (입춘 기준 년도 적용)</p>
-    <p style="margin:0;font-size:14px;color:var(--text-sub);">✅ 오행 분석 + 일간 성격 풀이 + 궁합까지</p>
+    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 사주팔자 네 기둥 + 지지 속에 숨은 지장간까지</p>
+    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 절입 시각을 직접 계산해 월주를 정확하게 (입춘 기준 연도 적용)</p>
+    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 십신 분포 · 오행 균형과 용신 · 신강·신약 판정</p>
+    <p style="margin:0 0 10px;font-size:14px;color:var(--text-sub);">✅ 십이운성 · 합충형해 · 공망 · 신살 · 격국</p>
+    <p style="margin:0;font-size:14px;color:var(--text-sub);">✅ 10년 단위 <b>대운</b> 흐름과 올해의 세운까지</p>
   </div>
 
   <div class="card">
     <div class="saju-form-group">
       <label for="birthDate">생년월일 (양력)</label>
       <input class="saju-input" type="date" id="birthDate" min="1900-01-01" max="2050-12-31" required />
+    </div>
+
+    <div class="saju-form-group">
+      <label>성별</label>
+      <div class="saju-seg">
+        <label><input type="radio" name="gender" value="male" checked /><span>남성</span></label>
+        <label><input type="radio" name="gender" value="female" /><span>여성</span></label>
+      </div>
+      <p style="margin:6px 0 0;font-size:12px;color:var(--text-sub);">
+        대운(10년 단위 흐름)의 방향이 성별에 따라 달라져서 필요해요.
+      </p>
     </div>
 
     <div class="saju-form-group">
@@ -215,7 +228,9 @@
         return;
       }
 
+      var genderEl = document.querySelector('input[name="gender"]:checked');
       var query = "y=" + y + "&m=" + m + "&d=" + d;
+      query += "&g=" + (genderEl ? genderEl.value : "male");
       if (!timeUnknown.checked) {
         var hour24 = to24Hour(ampmSelect.value, hourSelect.value);
         var minute = parseInt(minuteSelect.value, 10);

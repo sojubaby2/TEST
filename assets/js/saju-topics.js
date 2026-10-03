@@ -986,9 +986,17 @@ const SajuTopics = (function () {
      5. 올해와 내년
      ============================================================ */
   function yearLook(a, offset) {
+    // 사주에서 해가 바뀌는 기준은 1월 1일이 아니라 입춘(2월 4일 무렵)입니다.
+    // 그래서 달력 연도를 그대로 쓰면 1월~입춘 사이에 한 해 앞서 나옵니다.
+    // 오늘 날짜를 그대로 넣어 '지금의 사주 연도'를 먼저 구합니다.
+    // 시각까지 넣어야 입춘 당일에도 정확히 갈립니다 (입춘은 분 단위로 정해져요)
     const now = new Date();
-    const y = now.getFullYear() + (offset || 0);
-    const ymp = SajuEngine.computeYearMonthPillar(y, 6, 15, 12, 0);
+    const today = SajuEngine.computeYearMonthPillar(
+      now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes());
+    const target = today.sajuYear + (offset || 0);
+
+    // 구한 사주 연도의 한가운데 날짜로 년주를 뽑습니다 (절기 경계에서 멀어 안전해요)
+    const ymp = SajuEngine.computeYearMonthPillar(target, 6, 15, 12, 0);
     const pillar = ymp.yearPillar;
     const stem = pillar.charAt(0), branch = pillar.charAt(1);
     const sg = SajuEngine.tenGodOfStem(a.dayStem, stem);

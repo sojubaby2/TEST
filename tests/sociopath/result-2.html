@@ -7,6 +7,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>나의 결과는 '균형잡힌 현실주의형' | 알아볼괘 소시오패스 테스트</title>
+<meta name="robots" content="noindex, follow" />
 <meta name="description" content="감정과 이성 사이 균형을 잘 잡는 당신 - 알아볼괘 소시오패스 테스트 결과" />
 
 <meta property="og:type" content="website" />
@@ -27,7 +28,7 @@
 
 <main class="wrap">
   <div class="result-hero" style="background:#3B82F6;">
-    <div class="percentile">상위 55%</div>
+    <div class="percentile">5단계 중 2단계</div>
     <div class="emoji">⚖️</div>
     <h1>균형잡힌 현실주의형</h1>
     <p class="subtitle">감정과 이성 사이 균형을 잘 잡는 당신</p>
@@ -136,7 +137,7 @@
     });
     indexGauge.style.background = result.color;
     indexSub.textContent = hasScore
-      ? "총점 " + scoreNum + " / " + SOCIOPATH_MAX_SCORE + "점 · 전체 응시자 중 " + result.percentile
+      ? "총점 " + scoreNum + " / " + SOCIOPATH_MAX_SCORE + "점 · 점수 구간 " + result.band
       : result.title + " 유형의 평균 지수예요 (테스트를 하면 내 점수로 정확히 나와요)";
 
     renderCompatSection("compatSection", SOCIOPATH_RESULTS, result.compat);

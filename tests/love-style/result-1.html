@@ -7,6 +7,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>나의 결과는 '자유로운 독립연애형' | 알아볼괘 연애 유형 테스트</title>
+<meta name="robots" content="noindex, follow" />
 <meta name="description" content="연애도 좋지만 내 공간이 더 소중해 - 알아볼괘 연애 유형 테스트 결과" />
 
 <meta property="og:type" content="website" />
@@ -27,7 +28,7 @@
 
 <main class="wrap">
   <div class="result-hero" style="background:#0EA5E9;">
-    <div class="percentile">상위 74%</div>
+    <div class="percentile">5단계 중 1단계</div>
     <div class="emoji">🦅</div>
     <h1>자유로운 독립연애형</h1>
     <p class="subtitle">연애도 좋지만 내 공간이 더 소중해</p>
@@ -135,7 +136,7 @@
     });
     indexGauge.style.background = result.color;
     indexSub.textContent = hasScore
-      ? "총점 " + scoreNum + " / " + LOVESTYLE_MAX_SCORE + "점 · 전체 응시자 중 " + result.percentile
+      ? "총점 " + scoreNum + " / " + LOVESTYLE_MAX_SCORE + "점 · 점수 구간 " + result.band
       : result.title + " 유형의 평균 지수예요 (테스트를 하면 내 점수로 정확히 나와요)";
 
     renderCompatSection("compatSection", LOVESTYLE_RESULTS, result.compat);

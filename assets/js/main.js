@@ -198,31 +198,15 @@ function initKakaoShareButton() {
 }
 
 /* ============================================================
-   "이 결과 나온 사람 X%" 뱃지 (신규)
-   - .result-hero가 있는 모든 결과 페이지에 자동으로 붙음.
-   - 이미 percentile(상위 X%)이 수동으로 들어있는 페이지는 건드리지 않음.
-   - URL 경로를 해시해서 페이지마다 항상 같은 % 값이 나오게 함(고정값).
+   [삭제됨] "이 결과, 전체의 X%만 나와요" 뱃지
+   ------------------------------------------------------------
+   이 뱃지는 URL을 해시해서 만든 숫자였습니다.
+   실제로 몇 %가 그 결과를 받았는지 센 적이 없는데도
+   센 것처럼 보여주고 있었어요. 사실이 아닌 수치라서 뺐습니다.
+
+   되살리려면 결과별 실제 집계가 먼저 있어야 합니다.
+   (Worker + KV 로 결과 아이디별 카운트를 쌓은 뒤 비율을 내는 식)
    ============================================================ */
-function hashToPercent(str, min, max) {
-  var hash = 5381;
-  for (var i = 0; i < str.length; i++) {
-    hash = (hash * 33) ^ str.charCodeAt(i);
-  }
-  hash = Math.abs(hash);
-  return min + (hash % (max - min + 1));
-}
-
-function injectResultPercentBadge() {
-  var hero = document.querySelector(".result-hero");
-  if (!hero) return;
-  if (hero.querySelector(".percentile")) return; // 이미 있으면 중복 방지
-
-  var percent = hashToPercent(location.pathname, 4, 34);
-  var badge = document.createElement("div");
-  badge.className = "percentile";
-  badge.textContent = "🔥 이 결과, 전체의 " + percent + "%만 나와요";
-  hero.insertBefore(badge, hero.firstChild);
-}
 
 /* ============================================================
    PWA (홈 화면에 추가) 지원 (신규)
@@ -322,14 +306,12 @@ function injectHotRecommendations() {
 }
 
 /* ============================================================
-   테스트별 조회수 표시 (신규)
-   - .result-hero가 있는 모든 결과 페이지(대부분의 테스트) 하단에
-     "OOO명이 참여했어요" 문구를 자동으로 보여줌.
-   - 처음엔 테스트마다 고정된(가짜) 기본 숫자를 바로 보여주고,
-     그 뒤로 실제 방문 때마다 Cloudflare Worker(/api/view)가 KV에
-     쌓는 진짜 카운트를 더해서 표시함(기본 숫자 + 실제 방문수).
-   - Worker/KV가 아직 설정 전이거나 API 호출이 실패해도
-     기본 숫자만으로 자연스럽게 보이도록 처리(에러 무시).
+   테스트별 참여자 수 표시
+   - Cloudflare Worker(/api/view)가 KV에 쌓는 실제 집계만 보여줍니다.
+   - 예전에는 여기에 테스트마다 고정된 가짜 기본 숫자(800~15000)를 더해
+     보여줬는데, 세어본 적 없는 숫자를 센 것처럼 적는 셈이라 뺐습니다.
+   - 집계가 100 미만이거나 API가 실패하면 아무것도 표시하지 않습니다.
+     (보여줄 진짜 숫자가 없으면 그냥 안 보여주는 쪽이 맞습니다)
    ============================================================ */
 function formatCount(n) {
   return n.toLocaleString("ko-KR");
@@ -343,30 +325,26 @@ function initViewCounter() {
   var slug = (location.pathname.match(/\/tests\/([^\/]+)\//) || [])[1];
   if (!slug) return;
 
-  var baseline = hashToPercent(slug, 800, 15000);
-
-  var el = document.createElement("p");
-  el.className = "view-counter";
-  el.textContent = "👀 지금까지 " + formatCount(baseline) + "명이 참여했어요";
-  hero.appendChild(el);
-
+  // 조회는 그대로 집계하되, 화면에는 '진짜로 센 수'만 보여줍니다.
+  // 예전에는 여기에 가짜 기본 숫자(800~15000)를 더해서 보여줬는데,
+  // 세어본 적 없는 숫자를 센 것처럼 적는 셈이라 뺐습니다.
   fetch("/api/view?slug=" + encodeURIComponent(slug), { method: "POST" })
-    .then(function (res) {
-      return res.ok ? res.json() : null;
-    })
+    .then(function (res) { return res.ok ? res.json() : null; })
     .then(function (data) {
-      if (data && typeof data.count === "number") {
-        el.textContent = "👀 지금까지 " + formatCount(baseline + data.count) + "명이 참여했어요";
-      }
+      if (!data || typeof data.count !== "number") return;
+      if (data.count < 100) return;          // 너무 적을 때는 굳이 보여주지 않습니다
+      var el = document.createElement("p");
+      el.className = "view-counter";
+      el.textContent = "👀 지금까지 " + formatCount(data.count) + "명이 참여했어요";
+      hero.appendChild(el);
     })
     .catch(function () {
-      // API가 아직 없거나 실패해도 기본 숫자 그대로 자연스럽게 보임
+      // 집계가 안 되면 아무것도 표시하지 않습니다
     });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   initKakaoShareButton();
-  injectResultPercentBadge();
   injectHotRecommendations();
   initViewCounter();
 });

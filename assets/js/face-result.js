@@ -153,12 +153,20 @@ const FaceResult = (function () {
     const gauge = document.getElementById("indexGauge");
     if (pctEl) {
       const v = (!isNaN(percent) && percent > 0) ? percent : null;
-      pctEl.textContent = v ? v + "%" : "-";
-      pctEl.style.color = cfg.color;
-      if (gauge) {
-        gauge.style.background = cfg.color;
-        // 백그라운드 탭에서는 requestAnimationFrame 이 멈춰서 게이지가 0 인 채로 남습니다.
-        setTimeout(function () { gauge.style.width = (v || 0) + "%"; }, 60);
+      if (v === null) {
+        // 사진 분석값이 없는 경우(공유 링크가 아니라 주소로 바로 들어온 경우)입니다.
+        // 빈 게이지에 "-" 만 떠 있으면 고장난 것처럼 보여서 카드째 숨깁니다.
+        // 아래 "실제로 잰 내 얼굴 비율" 카드가 안내 문구를 대신 보여줍니다.
+        const card = pctEl.closest(".index-card");
+        if (card) card.style.display = "none";
+      } else {
+        pctEl.textContent = v + "%";
+        pctEl.style.color = cfg.color;
+        if (gauge) {
+          gauge.style.background = cfg.color;
+          // 백그라운드 탭에서는 requestAnimationFrame 이 멈춰서 게이지가 0 인 채로 남습니다.
+          setTimeout(function () { gauge.style.width = v + "%"; }, 60);
+        }
       }
     }
 

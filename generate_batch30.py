@@ -46,7 +46,7 @@ INDEX_TEMPLATE = """<!doctype html>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>{title} | 마음캐치</title>
+<title>{title} | 알아볼괘</title>
 <meta name="description" content="{meta_description}" />
 
 <meta property="og:type" content="website" />
@@ -61,7 +61,7 @@ INDEX_TEMPLATE = """<!doctype html>
 <body>
 
 <header class="site-header">
-  <a class="logo" href="../../index.html">🧠 마음캐치</a>
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
 </header>
 
 <main class="wrap">
@@ -97,7 +97,7 @@ QUIZ_TEMPLATE = """<!doctype html>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>{title} 진행중... | 마음캐치</title>
+<title>{title} 진행중... | 알아볼괘</title>
 <meta name="robots" content="noindex" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{emoji}</text></svg>" />
 <link rel="stylesheet" href="../../assets/css/style.css" />
@@ -105,7 +105,7 @@ QUIZ_TEMPLATE = """<!doctype html>
 <body>
 
 <header class="site-header">
-  <a class="logo" href="../../index.html">🧠 마음캐치</a>
+  <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
 </header>
 
 <main class="wrap">

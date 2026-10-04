@@ -32,7 +32,8 @@
 
 <script src="../../assets/js/slang-quiz-data.js"></script>
 <script>
-  var order = shuffleArraySlang(SLANG_QUESTIONS);
+  // 전체 문항 중 난이도를 맞춰 10개만 뽑습니다 (매번 문제가 달라져요)
+  var order = pickSlangQuestions();
   var current = 0;
   var correctCount = 0;
   var locked = false;

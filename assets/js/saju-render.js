@@ -238,9 +238,11 @@ const SajuRender = (function () {
     r.topics.forEach(function (t) {
       const card = el("div", "card topic-card" + (t.incomplete ? " is-dim" : ""));
       card.innerHTML =
-        '<p class="tc-head"><span class="tc-emoji">' + t.emoji + "</span>" + t.title + "</p>";
+        '<p class="tc-head"><span class="tc-emoji">' + t.emoji + "</span>" + t.title + "</p>" +
+        (t.lede ? '<p class="tc-lede">' + t.lede + "</p>" : "");
       card.appendChild(paras(t.paras));
       if (t.tip) card.appendChild(el("p", "rp-note", "💡 " + t.tip));
+      if (t.note) card.appendChild(el("p", "rp-note is-warn", "⚠️ " + t.note));
       mount.appendChild(card);
     });
   }

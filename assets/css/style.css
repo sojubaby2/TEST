@@ -3517,3 +3517,17 @@ a {
 .bt-row .bt-k { font-weight: 800; width: 62px; flex: 0 0 auto; }
 .bt-row .bt-v { flex: 1; }
 .bt-row .bt-x { color: var(--brand-1); font-weight: 700; font-size: 11.5px; }
+
+.topic-card .tc-lede {
+  margin: -6px 0 14px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-sub);
+  padding-left: 31px;
+}
+
+.rp-note.is-warn {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}

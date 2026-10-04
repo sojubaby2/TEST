@@ -72,6 +72,13 @@ const IQFigure = (function () {
     "-":  "M18,50 L82,50",
   };
 
+  /* 표식이 놓이는 여덟 자리 (12시 방향부터 시계 방향).
+     '표식이 한 칸씩 돌아간다' 같은 문제에 씁니다. */
+  const SPOTS = [
+    [50,18],[73,27],[82,50],[73,73],
+    [50,82],[27,73],[18,50],[27,27],
+  ];
+
   /* 토큰 하나를 SVG 조각으로 */
   function draw(t) {
     const z = t.z == null ? 1 : t.z;
@@ -124,6 +131,15 @@ const IQFigure = (function () {
       case "ln":
         return '<path d="' + (LINES[t.d] || "") + '" stroke="' + INK +
                '" stroke-width="4" stroke-linecap="round" fill="none"/>';
+      case "mk": {   // 표식 하나를 여덟 자리 중 하나에
+        const p = SPOTS[((t.p || 0) % 8 + 8) % 8];
+        const open = t.f === 0;
+        return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="9" fill="' +
+               (open ? "none" : FULL) + '" stroke="' + INK + '" stroke-width="3.5"/>';
+      }
+      case "ring":   // 표식의 자리를 알려주는 연한 안내 원
+        return '<circle cx="50" cy="50" r="32" fill="none" stroke="' + FAINT +
+               '" stroke-width="2.5"/>';
       case "box":  // 연한 테두리 (보조)
         return '<rect x="18" y="18" width="64" height="64" rx="4" fill="none" stroke="' +
                FAINT + '" stroke-width="3"/>';

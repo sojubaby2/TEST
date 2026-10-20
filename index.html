@@ -91,7 +91,7 @@ body.home2 [hidden] { display: none !important; }
 .home2 .h-mini .h-ico { width: 40px; height: 40px; border-radius: 12px; font-size: 20px; }
 
 /* 가로로 넘기는 타일 줄 */
-.home2 .h-scroll { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 -20px; padding: 0 20px 2px; }
+.home2 .h-scroll { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 20px; scrollbar-width: none; margin: 0 -20px; padding: 0 20px 2px; }
 .home2 .h-scroll::-webkit-scrollbar { display: none; }
 .home2 .h-tile { flex: 0 0 128px; scroll-snap-align: start; display: flex; flex-direction: column; gap: 4px; }
 .home2 .h-tile-ico { height: 128px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 46px; line-height: 1; margin-bottom: 6px; overflow: hidden; }
@@ -221,27 +221,28 @@ body.home2 [hidden] { display: none !important; }
     <div class="h-quick-grid">
       <a class="h-quick" href="tests/tarot/index.html"><span class="h-ico t4"><img src="assets/img/tarot/witch-icon.jpg" alt="" /></span><span>타로</span></a>
       <a class="h-quick" href="tests/saju/index.html"><span class="h-ico t5" aria-hidden="true">☯️</span><span>사주</span></a>
-      <a class="h-quick" href="tests/today-fortune/index.html"><span class="h-ico t2" aria-hidden="true">🔮</span><span>띠별 운세</span></a>
-      <a class="h-quick" href="tests/zodiac-fortune/index.html"><span class="h-ico t3" aria-hidden="true">✨</span><span>별자리</span></a>
+      <a class="h-quick" href="tests/today-fortune/index.html"><span class="h-ico t3" aria-hidden="true">🔮</span><span>띠별 운세</span></a>
+      <a class="h-quick" href="tests/zodiac-fortune/index.html"><span class="h-ico t4" aria-hidden="true">✨</span><span>별자리</span></a>
       <a class="h-quick" href="tests/lotto-number/index.html"><span class="h-ico t6" aria-hidden="true">🍀</span><span>로또 번호</span></a>
-      <a class="h-quick" href="tests/blood-type/index.html"><span class="h-ico t4" aria-hidden="true">🩸</span><span>혈액형</span></a>
-      <a class="h-quick" href="tests/dream-interpretation/index.html"><span class="h-ico t5" aria-hidden="true">🌙</span><span>꿈해몽</span></a>
-      <a class="h-quick" href="tests/saju-compat/index.html"><span class="h-ico t6" aria-hidden="true">☯️</span><span>사주 궁합</span></a>
+      <a class="h-quick" href="tests/blood-type/index.html"><span class="h-ico t5" aria-hidden="true">🩸</span><span>혈액형</span></a>
+      <a class="h-quick" href="tests/dream-interpretation/index.html"><span class="h-ico t6" aria-hidden="true">🌙</span><span>꿈해몽</span></a>
+      <a class="h-quick" href="tests/saju-compat/index.html"><span class="h-ico t1" aria-hidden="true">☯️</span><span>사주 궁합</span></a>
     </div>
   </section>
   <section id="new" class="h-card">
     <div class="h-head"><h2>새로 나온 테스트</h2></div>
     <div class="h-list">
-      <a class="h-row h-item" href="tests/food-type/index.html"><span class="h-ico t2" aria-hidden="true">🍽️</span><span class="h-row-text"><strong class="h-tile-title">내가 음식이라면?</strong><span>떡볶이? 곰탕? 마라탕?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/reply-style/index.html"><span class="h-ico t3" aria-hidden="true">💬</span><span class="h-row-text"><strong class="h-tile-title">카톡 답장 유형</strong><span>읽씹? 장문? 이모티콘 폭격?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/life-genre/index.html"><span class="h-ico t4" aria-hidden="true">🎬</span><span class="h-row-text"><strong class="h-tile-title">내 인생을 드라마로 만들면?</strong><span>로맨스? 스릴러? 시트콤?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/game-position/index.html"><span class="h-ico t5" aria-hidden="true">🎮</span><span class="h-row-text"><strong class="h-tile-title">인생 게임 포지션</strong><span>탱커? 딜러? 힐러?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/ideal-type/index.html"><span class="h-ico t6" aria-hidden="true">💘</span><span class="h-row-text"><strong class="h-tile-title">내가 끌리는 사람 유형</strong><span>내 이상형 코드는 뭘까?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/travel-type/index.html"><span class="h-ico t1" aria-hidden="true">✈️</span><span class="h-row-text"><strong class="h-tile-title">나는 어떤 여행자?</strong><span>계획파? 즉흥파? 호캉스파?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/stress-relief/index.html"><span class="h-ico t2" aria-hidden="true">🧘</span><span class="h-row-text"><strong class="h-tile-title">스트레스 해소 유형</strong><span>먹어서? 자서? 뛰어서?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/sleep-type/index.html"><span class="h-ico t3" aria-hidden="true">😴</span><span class="h-row-text"><strong class="h-tile-title">나의 수면 유형</strong><span>아침형? 새벽형? 돌덩이형?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/hoesik-type/index.html"><span class="h-ico t4" aria-hidden="true">🍻</span><span class="h-row-text"><strong class="h-tile-title">회식 자리 유형</strong><span>분위기 메이커? 1차 요정?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/pet-match/index.html"><span class="h-ico t5" aria-hidden="true">🐾</span><span class="h-row-text"><strong class="h-tile-title">나와 맞는 반려동물</strong><span>생활 패턴으로 찾아보기</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/baby-type/index.html"><span class="h-ico t2" aria-hidden="true">👶</span><span class="h-row-text"><strong class="h-tile-title">우리 아기 성격 유형</strong><span>탐험대장? 애교뿜뿜? 고집장군? 엄마 아빠가 답해요</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/food-type/index.html"><span class="h-ico t3" aria-hidden="true">🍽️</span><span class="h-row-text"><strong class="h-tile-title">내가 음식이라면?</strong><span>떡볶이? 곰탕? 마라탕?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/reply-style/index.html"><span class="h-ico t4" aria-hidden="true">💬</span><span class="h-row-text"><strong class="h-tile-title">카톡 답장 유형</strong><span>읽씹? 장문? 이모티콘 폭격?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/life-genre/index.html"><span class="h-ico t5" aria-hidden="true">🎬</span><span class="h-row-text"><strong class="h-tile-title">내 인생을 드라마로 만들면?</strong><span>로맨스? 스릴러? 시트콤?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/game-position/index.html"><span class="h-ico t6" aria-hidden="true">🎮</span><span class="h-row-text"><strong class="h-tile-title">인생 게임 포지션</strong><span>탱커? 딜러? 힐러?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/ideal-type/index.html"><span class="h-ico t1" aria-hidden="true">💘</span><span class="h-row-text"><strong class="h-tile-title">내가 끌리는 사람 유형</strong><span>내 이상형 코드는 뭘까?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/travel-type/index.html"><span class="h-ico t2" aria-hidden="true">✈️</span><span class="h-row-text"><strong class="h-tile-title">나는 어떤 여행자?</strong><span>계획파? 즉흥파? 호캉스파?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/stress-relief/index.html"><span class="h-ico t3" aria-hidden="true">🧘</span><span class="h-row-text"><strong class="h-tile-title">스트레스 해소 유형</strong><span>먹어서? 자서? 뛰어서?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/sleep-type/index.html"><span class="h-ico t4" aria-hidden="true">😴</span><span class="h-row-text"><strong class="h-tile-title">나의 수면 유형</strong><span>아침형? 새벽형? 돌덩이형?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/hoesik-type/index.html"><span class="h-ico t5" aria-hidden="true">🍻</span><span class="h-row-text"><strong class="h-tile-title">회식 자리 유형</strong><span>분위기 메이커? 1차 요정?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/pet-match/index.html"><span class="h-ico t6" aria-hidden="true">🐾</span><span class="h-row-text"><strong class="h-tile-title">나와 맞는 반려동물</strong><span>생활 패턴으로 찾아보기</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
     </div>
   </section>
   <section id="personality" class="h-card">
@@ -256,68 +257,68 @@ body.home2 [hidden] { display: none !important; }
       <a class="h-tile h-item" href="tests/past-life/index.html" data-desc="나는 전생에 어떤 사람이었을까?"><span class="h-tile-ico t5" aria-hidden="true">🔮</span><span class="h-tile-title">전생 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
       <a class="h-tile h-item" href="tests/iqeq/index.html" data-desc="도형추리까지 나오는 진짜 IQ 테스트"><span class="h-tile-ico t3" aria-hidden="true">🧩</span><span class="h-tile-title">IQ / EQ 테스트</span><span class="h-tile-meta">16문항 · 3분</span></a>
       <a class="h-tile h-item" href="tests/psychopath/index.html" data-desc="나의 숨겨진 대담함 지수는?"><span class="h-tile-ico t1" aria-hidden="true">🐺</span><span class="h-tile-title">싸이코패스 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/narcissist-index/index.html" data-desc="나르시시스트 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">💅</span><span class="h-tile-title">나르시시스트 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/self-esteem/index.html" data-desc="나의 자존감 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">🪫</span><span class="h-tile-title">자존감 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/narcissist-index/index.html" data-desc="나르시시스트 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">💅</span><span class="h-tile-title">나르시시스트 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/self-esteem/index.html" data-desc="나의 자존감 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">🪫</span><span class="h-tile-title">자존감 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
       <a class="h-tile h-item" href="tests/slang-quiz/index.html" data-desc="매번 문제가 바뀌는 신조어 퀴즈"><span class="h-tile-ico t6" aria-hidden="true">🔥</span><span class="h-tile-title">신조어 지식퀴즈</span><span class="h-tile-meta">10문항 · 1분</span></a>
     </div>
   </section>
   <section id="love" class="h-card">
     <div class="h-head"><h2>연애 &amp; 관계 지수</h2><span class="h-count">9개</span></div>
     <div class="h-scroll">
-      <a class="h-tile h-item" href="tests/love-style/index.html" data-desc="나의 연애 스타일은 5가지 중 뭘까?"><span class="h-tile-ico t2" aria-hidden="true">💘</span><span class="h-tile-title">연애 유형 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/love-language/index.html" data-desc="나는 어떤 방식으로 사랑을 느낄까?"><span class="h-tile-ico t3" aria-hidden="true">🫶</span><span class="h-tile-title">사랑의 언어 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/fastlove-index/index.html" data-desc="금사빠 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">💘</span><span class="h-tile-title">금사빠 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/clingy-index/index.html" data-desc="집착 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🔗</span><span class="h-tile-title">집착 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/pushpull-index/index.html" data-desc="밀당 고수 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">💘</span><span class="h-tile-title">밀당 고수 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/romantic-index/index.html" data-desc="로맨티스트 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">💐</span><span class="h-tile-title">로맨티스트 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/tsundere-index/index.html" data-desc="츤데레 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">😤</span><span class="h-tile-title">츤데레 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/peopleluck-index/index.html" data-desc="인복 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">🍀</span><span class="h-tile-title">인복 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/empathy-index/index.html" data-desc="공감능력 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">🥹</span><span class="h-tile-title">공감능력 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/love-style/index.html" data-desc="나의 연애 스타일은 5가지 중 뭘까?"><span class="h-tile-ico t3" aria-hidden="true">💘</span><span class="h-tile-title">연애 유형 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/love-language/index.html" data-desc="나는 어떤 방식으로 사랑을 느낄까?"><span class="h-tile-ico t4" aria-hidden="true">🫶</span><span class="h-tile-title">사랑의 언어 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/fastlove-index/index.html" data-desc="금사빠 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">💘</span><span class="h-tile-title">금사빠 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/clingy-index/index.html" data-desc="집착 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🔗</span><span class="h-tile-title">집착 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/pushpull-index/index.html" data-desc="밀당 고수 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">💘</span><span class="h-tile-title">밀당 고수 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/romantic-index/index.html" data-desc="로맨티스트 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">💐</span><span class="h-tile-title">로맨티스트 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/tsundere-index/index.html" data-desc="츤데레 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">😤</span><span class="h-tile-title">츤데레 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/peopleluck-index/index.html" data-desc="인복 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">🍀</span><span class="h-tile-title">인복 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/empathy-index/index.html" data-desc="공감능력 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🥹</span><span class="h-tile-title">공감능력 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
     </div>
   </section>
   <section id="social" class="h-card">
     <div class="h-head"><h2>사회성 &amp; 태도 지수</h2><span class="h-count">14개</span></div>
     <div class="h-scroll">
-      <a class="h-tile h-item" href="tests/insa-assa/index.html" data-desc="나의 인싸력은 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🕺</span><span class="h-tile-title">인싸/아싸 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/nunchi/index.html" data-desc="나의 눈치 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🧠</span><span class="h-tile-title">눈치 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/kkondae/index.html" data-desc="나의 꼰대력 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">📢</span><span class="h-tile-title">꼰대력 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/dark-side/index.html" data-desc="나는 얼마나 흑화가 진행됐을까?"><span class="h-tile-ico t2" aria-hidden="true">🌑</span><span class="h-tile-title">흑화 지수 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/attention/index.html" data-desc="나의 숨겨진 관종력은 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">📸</span><span class="h-tile-title">관종력 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/pushover-index/index.html" data-desc="나의 호구력 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">🥺</span><span class="h-tile-title">호구력 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/vanity-index/index.html" data-desc="허세 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🎩</span><span class="h-tile-title">허세 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/nosy-index/index.html" data-desc="오지랖 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🗣️</span><span class="h-tile-title">오지랖 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/leadership-index/index.html" data-desc="리더십 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">👑</span><span class="h-tile-title">리더십 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/complainer-index/index.html" data-desc="프로불편러 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">😤</span><span class="h-tile-title">프로불편러 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/certainty-index/index.html" data-desc="답정너 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">🙄</span><span class="h-tile-title">답정너 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/shy-index/index.html" data-desc="낯가림 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">🙈</span><span class="h-tile-title">낯가림 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/positivity-index/index.html" data-desc="긍정왕 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🌈</span><span class="h-tile-title">긍정왕 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/coolness-index/index.html" data-desc="쿨함 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🧊</span><span class="h-tile-title">쿨함 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/insa-assa/index.html" data-desc="나의 인싸력은 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🕺</span><span class="h-tile-title">인싸/아싸 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/nunchi/index.html" data-desc="나의 눈치 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">🧠</span><span class="h-tile-title">눈치 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/kkondae/index.html" data-desc="나의 꼰대력 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">📢</span><span class="h-tile-title">꼰대력 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/dark-side/index.html" data-desc="나는 얼마나 흑화가 진행됐을까?"><span class="h-tile-ico t3" aria-hidden="true">🌑</span><span class="h-tile-title">흑화 지수 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/attention/index.html" data-desc="나의 숨겨진 관종력은 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">📸</span><span class="h-tile-title">관종력 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/pushover-index/index.html" data-desc="나의 호구력 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🥺</span><span class="h-tile-title">호구력 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/vanity-index/index.html" data-desc="허세 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🎩</span><span class="h-tile-title">허세 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/nosy-index/index.html" data-desc="오지랖 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">🗣️</span><span class="h-tile-title">오지랖 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/leadership-index/index.html" data-desc="리더십 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">👑</span><span class="h-tile-title">리더십 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/complainer-index/index.html" data-desc="프로불편러 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">😤</span><span class="h-tile-title">프로불편러 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/certainty-index/index.html" data-desc="답정너 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">🙄</span><span class="h-tile-title">답정너 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/shy-index/index.html" data-desc="낯가림 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🙈</span><span class="h-tile-title">낯가림 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/positivity-index/index.html" data-desc="긍정왕 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🌈</span><span class="h-tile-title">긍정왕 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/coolness-index/index.html" data-desc="쿨함 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">🧊</span><span class="h-tile-title">쿨함 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
     </div>
   </section>
   <section id="temper" class="h-card">
     <div class="h-head"><h2>기질 &amp; 성향 지수</h2><span class="h-count">13개</span></div>
     <div class="h-scroll">
-      <a class="h-tile h-item" href="tests/laziness-index/index.html" data-desc="귀차니즘 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">🛋️</span><span class="h-tile-title">귀차니즘 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/hottemper-index/index.html" data-desc="다혈질 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">🔥</span><span class="h-tile-title">다혈질 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/sensitive-index/index.html" data-desc="예민보스 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">🐚</span><span class="h-tile-title">예민보스 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/perfectionist-index/index.html" data-desc="완벽주의 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">📐</span><span class="h-tile-title">완벽주의 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/worklife-index/index.html" data-desc="워라밸 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🌇</span><span class="h-tile-title">워라밸 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/stingy-index/index.html" data-desc="짠내 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🪙</span><span class="h-tile-title">짠내 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/klutz-index/index.html" data-desc="허당 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">🌀</span><span class="h-tile-title">허당 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/jealousy-index/index.html" data-desc="질투 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">😤</span><span class="h-tile-title">질투 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/planner-index/index.html" data-desc="나는 계획형? 즉흥형?"><span class="h-tile-ico t1" aria-hidden="true">🗓️</span><span class="h-tile-title">계획형 vs 즉흥형</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/cry-index/index.html" data-desc="눈물버튼 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">😭</span><span class="h-tile-title">눈물버튼 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/energy-index/index.html" data-desc="텐션 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">⚡</span><span class="h-tile-title">텐션 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/mood-index/index.html" data-desc="갬성 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🌇</span><span class="h-tile-title">갬성 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/littlejoy-index/index.html" data-desc="소확행 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">☕</span><span class="h-tile-title">소확행 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/laziness-index/index.html" data-desc="귀차니즘 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">🛋️</span><span class="h-tile-title">귀차니즘 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/hottemper-index/index.html" data-desc="다혈질 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">🔥</span><span class="h-tile-title">다혈질 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/sensitive-index/index.html" data-desc="예민보스 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">🐚</span><span class="h-tile-title">예민보스 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/perfectionist-index/index.html" data-desc="완벽주의 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">📐</span><span class="h-tile-title">완벽주의 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/worklife-index/index.html" data-desc="워라밸 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🌇</span><span class="h-tile-title">워라밸 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/stingy-index/index.html" data-desc="짠내 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">🪙</span><span class="h-tile-title">짠내 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/klutz-index/index.html" data-desc="허당 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">🌀</span><span class="h-tile-title">허당 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/jealousy-index/index.html" data-desc="질투 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">😤</span><span class="h-tile-title">질투 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/planner-index/index.html" data-desc="나는 계획형? 즉흥형?"><span class="h-tile-ico t2" aria-hidden="true">🗓️</span><span class="h-tile-title">계획형 vs 즉흥형</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/cry-index/index.html" data-desc="눈물버튼 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">😭</span><span class="h-tile-title">눈물버튼 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/energy-index/index.html" data-desc="텐션 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">⚡</span><span class="h-tile-title">텐션 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/mood-index/index.html" data-desc="갬성 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🌇</span><span class="h-tile-title">갬성 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
+      <a class="h-tile h-item" href="tests/littlejoy-index/index.html" data-desc="소확행 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">☕</span><span class="h-tile-title">소확행 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
     </div>
   </section>
   <section id="compat" class="h-card">
     <div class="h-head"><h2>궁합 보기</h2></div>
     <div class="h-list">
-      <a class="h-row h-item" href="tests/saju-compat/index.html"><span class="h-ico t6" aria-hidden="true">☯️</span><span class="h-row-text"><strong class="h-tile-title">사주명리학 궁합</strong><span>두 사람의 생년월일시로 계산하는 사주 궁합</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/compat-simple/index.html"><span class="h-ico t1" aria-hidden="true">💕</span><span class="h-row-text"><strong class="h-tile-title">간단 궁합보기</strong><span>이름 + 생년월일로 30초 만에</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/name-compat/index.html"><span class="h-ico t2" aria-hidden="true">💌</span><span class="h-row-text"><strong class="h-tile-title">이름궁합 테스트</strong><span>이름 두 개만 입력하면 바로</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/saju-compat/index.html"><span class="h-ico t1" aria-hidden="true">☯️</span><span class="h-row-text"><strong class="h-tile-title">사주명리학 궁합</strong><span>두 사람의 생년월일시로 계산하는 사주 궁합</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/compat-simple/index.html"><span class="h-ico t2" aria-hidden="true">💕</span><span class="h-row-text"><strong class="h-tile-title">간단 궁합보기</strong><span>이름 + 생년월일로 30초 만에</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="h-row h-item" href="tests/name-compat/index.html"><span class="h-ico t3" aria-hidden="true">💌</span><span class="h-row-text"><strong class="h-tile-title">이름궁합 테스트</strong><span>이름 두 개만 입력하면 바로</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
     </div>
   </section>
   <section id="story" class="h-card">

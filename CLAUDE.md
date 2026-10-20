@@ -6,8 +6,8 @@
 
 | 경로 | 내용 |
 |---|---|
-| `index.html` | 홈. 테스트 카드 목록 |
-| `tests/` | 테스트 68종. 각 폴더에 `index.html` + `result*.html` |
+| `index.html` | 홈. 2026-10-20 "깔끔한 앱" 디자인으로 개편. 홈 전용 스타일은 파일 안 `<style>` 에 `body.home2` 범위로만 있음(공용 style.css 미수정) |
+| `tests/` | 테스트 69종. 각 폴더에 `index.html` + `result*.html` |
 | `blog/` | 블로그 83편 + `index.html` 목록 |
 | `assets/js/`, `assets/css/`, `assets/img/` | 공용 자원 |
 | `generate_*.py` (루트) | 결과 페이지·이미지 생성 스크립트 |
@@ -45,9 +45,9 @@
 
 ## 색인 정책 (중요)
 
-- `tests/**/result*.html` 493개 전부 `<meta name="robots" content="noindex, follow">`.
+- `tests/**/result*.html` 498개 전부 `<meta name="robots" content="noindex, follow">`.
   내용이 거의 같은 얇은 페이지라 색인되면 사이트 평가가 깎인다.
-- `sitemap.xml` 은 157개만: 홈·안내 5 + 테스트 `index.html` 68 + 블로그 84.
+- `sitemap.xml` 은 158개만: 홈·안내 5 + 테스트 `index.html` 69 + 블로그 84.
   **결과 페이지는 sitemap 에 넣지 않는다.**
 - 블로그와 테스트 `index.html` 에는 noindex 를 걸지 않는다.
 
@@ -77,6 +77,8 @@
 - **애드센스 재신청은 색인된 페이지가 50개를 넘긴 뒤에** 한다.
 
 ### 남은 정리거리
+
+- `baby-type`(우리 아기 성격 유형)은 new-test.ps1 형식에 맞춰 만들었지만 손댄 부분이 있다: 소개 안내 3줄, 결과 noindex, 궁합 문구("찰떡 친구/티격태격 친구"). `new-test.ps1 -Only baby-type` 을 다시 돌리면 이 부분이 사라지니 주의.
 
 - `generate_iqeq_images.py` 로 만든 OG 이미지가 옛 문구를 담고 있다(생성기 문구는 수정됨, 이미지 미재생성).
 - `assets/js/saju-data.js` 에 쓰이지 않는 `SCALE_FORTUNE` 코드가 남아 있다.

@@ -1,0 +1,166 @@
+/* ============================================================
+   우리 아기 성격 유형 - 문항 및 결과 데이터
+   ※ 본 콘텐츠는 재미 목적의 심리테스트이며 전문적인 진단이 아닙니다.
+   tools/new-test.ps1 로 생성됨 - content/tests/baby-type.json 을 고치세요
+   ============================================================ */
+
+const BABYTYPE_QUESTIONS = [
+  {
+    text: "처음 가 본 키즈카페에 들어섰다. 우리 아기는?",
+    options: [
+      { text: "들어가자마자 제일 높은 미끄럼틀로 직진", key: "explorer" },
+      { text: "엄마 아빠 다리를 붙잡고 한참 구경부터", key: "observer" },
+    ],
+  },
+  {
+    text: "엘리베이터에서 낯선 어른이 \"안녕~\" 하고 인사했다.",
+    options: [
+      { text: "방긋 웃으며 손까지 흔들어 준다", key: "charmer" },
+      { text: "빤히 보다가 별일 없다는 듯 하던 걸 한다", key: "chill" },
+    ],
+  },
+  {
+    text: "외출 전 옷 입힐 시간이다.",
+    options: [
+      { text: "\"이거 말고 저거!\" 입을 옷은 내가 고른다", key: "boss" },
+      { text: "입혀 주는 대로 순순히 팔을 쏙", key: "chill" },
+    ],
+  },
+  {
+    text: "새 장난감을 선물 받았다.",
+    options: [
+      { text: "버튼, 뚜껑, 바퀴까지 전부 눌러 보고 열어 본다", key: "explorer" },
+      { text: "한참 들여다보며 어떻게 노는 건지 살핀다", key: "observer" },
+    ],
+  },
+  {
+    text: "졸릴 시간이 됐는데…",
+    options: [
+      { text: "더 놀겠다고 끝까지 버티다 장렬하게 잠든다", key: "boss" },
+      { text: "어디서든 스르륵, 눕히면 금방 잔다", key: "chill" },
+    ],
+  },
+  {
+    text: "사진 찍으려고 휴대폰을 들었다.",
+    options: [
+      { text: "알아서 표정을 짓고 포즈까지 잡아 준다", key: "charmer" },
+      { text: "사진은 관심 없고 휴대폰을 뺏으러 온다", key: "explorer" },
+    ],
+  },
+  {
+    text: "엄마 아빠가 \"그건 안 돼!\" 했다.",
+    options: [
+      { text: "드러누워 온몸으로 항의한다", key: "boss" },
+      { text: "눈치를 보다가 애교로 슬쩍 다시 시도한다", key: "charmer" },
+    ],
+  },
+  {
+    text: "처음 보는 반찬이 올라왔다.",
+    options: [
+      { text: "만져 보고 냄새 맡고 아주 조금 맛본다", key: "observer" },
+      { text: "일단 입에 넣고 본다, 맛은 그다음", key: "explorer" },
+    ],
+  },
+  {
+    text: "놀이터에서 처음 보는 아이들을 만났다.",
+    options: [
+      { text: "먼저 다가가 장난감을 내밀며 친한 척", key: "charmer" },
+      { text: "멀찍이 지켜보다가 슬그머니 합류", key: "observer" },
+    ],
+  },
+  {
+    text: "하루 종일 나들이를 다녀온 날 저녁.",
+    options: [
+      { text: "현관에서 신발 들고 \"또 나가!\"를 외친다", key: "boss" },
+      { text: "밥 잘 먹고 꿀잠, 오늘도 무난하게 마무리", key: "chill" },
+    ],
+  },
+];
+
+const BABYTYPE_APPEARANCES = 4;
+
+const BABYTYPE_RESULTS = [
+  {
+    id: "explorer",
+    emoji: "🧭",
+    title: "탐험대장형",
+    subtitle: "세상 모든 버튼은 눌러 봐야 직성이 풀려요",
+    summary: "눈에 보이는 건 일단 만져 보고, 열어 보고, 올라가 봐야 하는 타입이에요. 처음 보는 곳에서도 겁보다 호기심이 먼저 움직이죠. 덕분에 엄마 아빠는 늘 반 박자 빨리 뛰어야 하지만, 그만큼 하루하루 새로운 걸 배워 오는 아기예요.",
+    traits: ["처음 보는 물건은 꼭 직접 확인", "높은 곳, 좁은 곳, 문 뒤가 궁금함", "넘어져도 금방 털고 다시 출발"],
+    color: "#C2410C",
+    compat: {
+      best: { id: "observer", reason: "관찰형 친구가 내 뒤를 따라오며 같이 탐험하는 든든한 조합이에요" },
+      worst: { id: "boss", reason: "가고 싶은 방향이 다르면 둘 다 물러서지 않아요" },
+    },
+  },
+  {
+    id: "charmer",
+    emoji: "🥰",
+    title: "애교뿜뿜형",
+    subtitle: "웃음 한 번이면 온 동네가 녹아요",
+    summary: "사람을 좋아하고 사람도 이 아기를 좋아하는 타입이에요. 처음 보는 어른에게도 방긋 웃어 주고, 혼날 것 같은 순간엔 애교로 분위기를 바꿀 줄 알아요. 주변 반응을 잘 읽는 만큼, 칭찬과 관심을 받으면 쑥쑥 신이 나는 아기예요.",
+    traits: ["낯선 사람에게도 웃음을 잘 보냄", "사진 찍을 때 표정이 살아 있음", "혼날 땐 애교로 협상"],
+    color: "#BE185D",
+    compat: {
+      best: { id: "chill", reason: "느긋한 친구가 내 애교를 다 받아 줘서 같이 있으면 평화로워요" },
+      worst: { id: "observer", reason: "내가 너무 빨리 다가가면 조심스러운 친구는 한 발 물러날 수 있어요" },
+    },
+  },
+  {
+    id: "observer",
+    emoji: "🔍",
+    title: "꼼꼼관찰형",
+    subtitle: "충분히 지켜본 다음에 움직여요",
+    summary: "새로운 곳이나 사람을 만나면 먼저 가만히 지켜보는 타입이에요. 겁이 많은 게 아니라 '확인'이 끝나야 움직이는 거예요. 한번 익숙해지면 누구보다 깊게 빠져들고, 작은 변화도 잘 알아채는 섬세한 아기예요.",
+    traits: ["낯선 곳에선 엄마 아빠 곁에서 먼저 구경", "새로운 음식은 조금씩 천천히", "익숙해지면 한 가지 놀이에 오래 집중"],
+    color: "#1D4ED8",
+    compat: {
+      best: { id: "explorer", reason: "탐험대장 친구가 먼저 길을 터 주면 나도 용기 내서 따라가요" },
+      worst: { id: "charmer", reason: "갑자기 훅 다가오는 친구는 조금 부담스러울 수 있어요" },
+    },
+  },
+  {
+    id: "boss",
+    emoji: "🦁",
+    title: "고집장군형",
+    subtitle: "\"내가! 내가 할 거야!\"",
+    summary: "하고 싶은 것과 하기 싫은 것이 아주 분명한 타입이에요. 옷도, 컵도, 신발도 내가 골라야 하고 내 손으로 해야 직성이 풀리죠. 엄마 아빠 체력은 쏙 빠지지만, 그만큼 자기 생각이 뚜렷하고 끝까지 해내려는 힘이 큰 아기예요.",
+    traits: ["\"내가 할래!\"가 입버릇", "마음에 안 들면 온몸으로 표현", "에너지가 마지막까지 남아 있음"],
+    color: "#7E22CE",
+    compat: {
+      best: { id: "chill", reason: "느긋한 친구는 내가 정한 놀이를 잘 따라와 줘서 다툴 일이 없어요" },
+      worst: { id: "explorer", reason: "둘 다 자기 길을 가고 싶어 해서 장난감 하나로 팽팽해질 수 있어요" },
+    },
+  },
+  {
+    id: "chill",
+    emoji: "🐼",
+    title: "느긋평화형",
+    subtitle: "잘 먹고 잘 자는 우리 집 평화 담당",
+    summary: "어디서든 크게 보채지 않고 상황에 잘 맞춰 가는 타입이에요. 잘 먹고 잘 자서 엄마 아빠에게 '이 아기 덕분에 버틴다'는 말을 듣곤 하죠. 표현이 크지 않은 만큼, 가끔은 아기가 정말 원하는 게 뭔지 한 번 더 물어봐 주면 좋아요.",
+    traits: ["눕히면 스르륵 잠드는 편", "낯선 상황에도 크게 놀라지 않음", "주는 대로 잘 받아들임"],
+    color: "#047857",
+    compat: {
+      best: { id: "charmer", reason: "애교 많은 친구와 있으면 나도 덩달아 웃음이 많아져요" },
+      worst: { id: "boss", reason: "고집장군 친구에게 늘 양보만 하게 될 수 있어요" },
+    },
+  },
+];
+
+function getBabyTypeById(id) {
+  return BABYTYPE_RESULTS.find((r) => r.id === id);
+}
+
+function tallyToBabyTypeResult(tally) {
+  let best = null;
+  let bestCount = -1;
+  const order = ["explorer", "charmer", "observer", "boss", "chill"]; // 동점 시 우선순위
+  order.forEach((key) => {
+    const count = tally[key] || 0;
+    if (count > bestCount) {
+      bestCount = count;
+      best = key;
+    }
+  });
+  return getBabyTypeById(best);
+}

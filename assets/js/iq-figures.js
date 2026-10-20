@@ -109,8 +109,14 @@ const IQFigure = (function () {
         return '<path d="M38,' + (50 - R) + ' h24 v' + (R - 12) + ' h' + (R - 12) +
                ' v24 h-' + (R - 12) + ' v' + (R - 12) + ' h-24 v-' + (R - 12) +
                ' h-' + (R - 12) + ' v-24 h' + (R - 12) + ' z"' + common + "/>";
-      case "ar":   // 화살표 (위쪽 기준)
-        return '<path d="M50,16 L74,46 H60 V84 H40 V46 H26 Z"' + common + "/>";
+      case "ar": { // 화살표 (위쪽 기준). z 로 크기를 바꿀 수 있어요.
+        // 예전엔 z 를 무시해서, 크기만 다른 보기들이 똑같이 그려지는 문제가 있었습니다.
+        const tf = ' transform="' + (rot ? 'rotate(' + rot + ' 50 50) ' : '') +
+                   'translate(50 50) scale(' + z + ') translate(-50 -50)"';
+        return '<path d="M50,16 L74,46 H60 V84 H40 V46 H26 Z" fill="' + fillOf(f) +
+               '" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"' +
+               ' vector-effect="non-scaling-stroke"' + tf + "/>";
+      }
       case "dots": {
         // z 를 주면 점들이 가운데로 모입니다.
         // 도형 안에 점을 넣을 때는 꼭 줄여야 삼각형 같은 좁은 도형 밖으로 안 나갑니다.

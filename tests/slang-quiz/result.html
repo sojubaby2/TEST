@@ -81,6 +81,9 @@
     var params = new URLSearchParams(window.location.search);
     var scoreParam = params.get("score");
     var score = scoreParam !== null && !isNaN(Number(scoreParam)) ? Number(scoreParam) : null;
+    // 한 번에 푸는 문제 수(10문항) 기준으로 점수를 냅니다. 전체 문제 은행(60개) 기준이 아니에요.
+    var total = typeof SLANG_TOTAL === "number" ? SLANG_TOTAL : 10;
+    if (score !== null) score = Math.max(0, Math.min(total, Math.round(score)));
 
     var errorBox = document.getElementById("errorBox");
     var resultBox = document.getElementById("resultBox");
@@ -100,8 +103,8 @@
 
     var indexPercent = document.getElementById("indexPercent");
     var indexGauge = document.getElementById("indexGauge");
-    var percent = Math.round((score / SLANG_QUESTIONS.length) * 100);
-    indexPercent.textContent = score + " / " + SLANG_QUESTIONS.length;
+    var percent = Math.round((score / total) * 100);
+    indexPercent.textContent = score + " / " + total;
     indexPercent.style.color = tier.color;
     indexGauge.style.background = tier.color;
     requestAnimationFrame(function () {
@@ -113,7 +116,7 @@
 
     document.getElementById("shareBtn").addEventListener("click", function () {
       shareCurrentPage(
-        "신조어 지식퀴즈 결과: '" + tier.title + "' " + tier.emoji + " (" + score + "/" + SLANG_QUESTIONS.length + "점)",
+        "신조어 지식퀴즈 결과: '" + tier.title + "' " + tier.emoji + " (" + score + "/" + total + "점)",
         "요즘 신조어 얼마나 알아? 너도 알아볼괘에서 확인해봐!"
       );
     });

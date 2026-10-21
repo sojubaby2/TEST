@@ -6,73 +6,73 @@
 
 const LOVELANG_QUESTIONS = [
   {
-    text: "연인과 있을 때 나에게 더 힘이 되는 건?",
+    text: "야근 끝난 애인에게 연락이 왔다. 더 설레는 건?",
     options: [
-      { text: "'고마워', '사랑해' 같은 말 한마디", lang: "words" },
-      { text: "바쁜 와중에도 시간 내서 함께 있어주는 것", lang: "time" },
+      { text: "'오늘 너 생각하면서 버텼어' 한 줄 톡", lang: "words" },
+      { text: "피곤할 텐데 '10분만 보자'며 집 앞에 옴", lang: "time" },
     ],
   },
   {
-    text: "기념일에 더 감동받는 건?",
+    text: "1주년 기념일 아침, 더 오래 기억에 남을 건?",
     options: [
-      { text: "진심 담긴 편지나 축하 메시지", lang: "words" },
-      { text: "센스있게 준비한 선물", lang: "gifts" },
+      { text: "우리 1년이 빼곡히 적힌 손편지", lang: "words" },
+      { text: "지나가듯 말한 그 향수가 포장돼 있다", lang: "gifts" },
     ],
   },
   {
-    text: "힘든 하루를 보냈을 때 위로가 되는 건?",
+    text: "상사한테 깨지고 녹초가 돼서 집에 왔다.",
     options: [
-      { text: "괜찮다고, 고생했다고 말해주는 것", lang: "words" },
-      { text: "말없이 집안일을 대신 해주는 것", lang: "acts" },
+      { text: "'진짜 고생했어, 넌 잘하고 있어'", lang: "words" },
+      { text: "말없이 설거지랑 빨래를 다 해 놓았다", lang: "acts" },
     ],
   },
   {
-    text: "애정을 느낄 때는?",
+    text: "한껏 꾸미고 나간 날, 약속 장소에서 애인을 만났다.",
     options: [
-      { text: "예쁘다, 멋지다는 말을 들을 때", lang: "words" },
-      { text: "꼭 안아주거나 손을 잡아줄 때", lang: "touch" },
+      { text: "'와, 오늘 왜 이렇게 멋있어?' 한마디", lang: "words" },
+      { text: "보자마자 손 깍지 끼고 걷기 시작", lang: "touch" },
     ],
   },
   {
-    text: "데이트할 때 더 중요한 건?",
+    text: "내 생일, 더 꿈꾸는 하루는?",
     options: [
-      { text: "무엇을 하든 함께 있는 시간 자체", lang: "time" },
-      { text: "정성스럽게 준비한 선물이나 이벤트", lang: "gifts" },
+      { text: "폰은 무음, 하루 종일 둘만의 코스", lang: "time" },
+      { text: "깜짝 선물 상자가 하나씩 나오는 하루", lang: "gifts" },
     ],
   },
   {
-    text: "연인이 나를 위해 이렇게 해줬으면 하는 건?",
+    text: "마감에 치여 정신없는 일주일, 애인이 해 줬으면 하는 건?",
     options: [
-      { text: "다른 일 제쳐두고 온전히 나에게 집중해주는 것", lang: "time" },
-      { text: "내가 힘든 일을 대신 처리해주는 것", lang: "acts" },
+      { text: "바빠도 매일 30분, 딴짓 없이 영상통화", lang: "time" },
+      { text: "밀린 장보기랑 은행 업무를 대신 처리", lang: "acts" },
     ],
   },
   {
-    text: "가장 편안하고 행복한 순간은?",
+    text: "비 오는 일요일, 둘이 집에 있다.",
     options: [
-      { text: "아무것도 안 해도 같이 있는 시간", lang: "time" },
-      { text: "옆에 붙어서 스킨십하는 시간", lang: "touch" },
+      { text: "각자 책을 읽어도 같은 공간이라 좋다", lang: "time" },
+      { text: "소파에 꼭 붙어서 담요 하나 같이 덮기", lang: "touch" },
     ],
   },
   {
-    text: "사랑을 표현하는 방식 중 더 끌리는 건?",
+    text: "출장 다녀온 애인, 더 감동인 건?",
     options: [
-      { text: "특별한 날 준비하는 선물", lang: "gifts" },
-      { text: "귀찮은 일을 대신 해주는 배려", lang: "acts" },
+      { text: "'너 생각나서' 하고 내민 현지 기념품", lang: "gifts" },
+      { text: "오자마자 고장 난 내 선반부터 고쳐 줌", lang: "acts" },
     ],
   },
   {
-    text: "사랑받는다고 느낄 때는?",
+    text: "평범한 화요일 퇴근길에 애인을 만났다.",
     options: [
-      { text: "작은 선물을 받을 때", lang: "gifts" },
-      { text: "다정하게 스킨십을 해줄 때", lang: "touch" },
+      { text: "편의점에서 내 최애 젤리를 쓱 건넨다", lang: "gifts" },
+      { text: "말없이 뒤에서 꼭 안아 준다", lang: "touch" },
     ],
   },
   {
-    text: "지치고 피곤한 날 가장 바라는 건?",
+    text: "몸살 기운에 하루 종일 누워 있는 날.",
     options: [
-      { text: "말없이 내 할 일을 대신 해주는 것", lang: "acts" },
-      { text: "꼭 안아주며 다독여주는 것", lang: "touch" },
+      { text: "죽 끓이고 약 챙겨서 머리맡에 둔다", lang: "acts" },
+      { text: "옆에 앉아 이마 짚고 손잡아 준다", lang: "touch" },
     ],
   },
 ];

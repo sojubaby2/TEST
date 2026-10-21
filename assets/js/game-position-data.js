@@ -6,73 +6,73 @@
 
 const GAMEPOSITION_QUESTIONS = [
   {
-    text: "팀 프로젝트가 시작됐다. 내가 먼저 하는 일은?",
+    text: "조별과제 첫 회의, 화이트보드에 역할 분담표가 붙었다.",
     options: [
-      { text: "제일 골치 아픈 파트를 가져온다", key: "tank" },
-      { text: "성과가 크게 나는 파트를 노린다", key: "dealer" },
+      { text: "다들 피하는 '발표+질의응답' 칸에 이름을 쓴다", key: "tank" },
+      { text: "점수 제일 큰 '핵심 분석' 칸부터 찜한다", key: "dealer" },
     ],
   },
   {
-    text: "팀원이 실수해서 분위기가 가라앉았다.",
+    text: "후배가 거래처 메일에 오타를 내서 팀 분위기가 싸해졌다.",
     options: [
-      { text: "\"괜찮아\"부터 하고 멘탈을 챙긴다", key: "healer" },
-      { text: "조용히 그 사람 몫을 메워둔다", key: "support" },
+      { text: "탕비실로 데려가 \"나도 작년에 그랬어\" 한다", key: "healer" },
+      { text: "말없이 정정 메일 초안을 써서 보내 준다", key: "support" },
     ],
   },
   {
-    text: "회의에서 내 스타일은?",
+    text: "2시간째 결론 없는 회의, 다들 눈치만 보고 있다.",
     options: [
-      { text: "핵심만 짚고 결정적일 때 한마디", key: "assassin" },
-      { text: "반대 의견도 내가 먼저 받아낸다", key: "tank" },
+      { text: "끝나기 5분 전 \"그럼 B안으로 가죠\" 한마디", key: "assassin" },
+      { text: "\"제가 먼저 깨질게요\" 하고 반대 의견을 받는다", key: "tank" },
     ],
   },
   {
-    text: "성과가 났을 때 내 반응은?",
+    text: "프로젝트 대성공, 회식 자리에서 내가 건배사를 하게 됐다.",
     options: [
-      { text: "내가 낸 숫자가 확실히 보여야 한다", key: "dealer" },
-      { text: "\"다들 고생했다\"가 먼저 나온다", key: "healer" },
+      { text: "\"제가 맡은 매출 30% 상승을 위하여!\"", key: "dealer" },
+      { text: "\"밤샌 우리 팀 다크서클을 위하여!\"", key: "healer" },
     ],
   },
   {
-    text: "팀에 문제가 생겼을 때 나는?",
+    text: "출시 하루 전날 밤, 서버가 갑자기 버벅이기 시작했다.",
     options: [
-      { text: "필요한 걸 미리 챙겨서 대기한다", key: "support" },
-      { text: "원인 하나를 찾아 정확히 끊는다", key: "assassin" },
+      { text: "야식이랑 체크리스트 챙겨서 옆에 대기한다", key: "support" },
+      { text: "로그를 뒤져 범인 코드 한 줄을 찾아낸다", key: "assassin" },
     ],
   },
   {
-    text: "내가 제일 못 견디는 상황은?",
+    text: "팀장 보고 자리, 둘 중 더 속 터지는 장면은?",
     options: [
-      { text: "아무도 총대를 안 메는 상황", key: "tank" },
-      { text: "내 기여가 드러나지 않는 상황", key: "dealer" },
+      { text: "\"누가 맡을래요?\"에 30초째 다들 침묵", key: "tank" },
+      { text: "내가 낸 성과가 '팀 전체 노력'으로 퉁쳐짐", key: "dealer" },
     ],
   },
   {
-    text: "동료가 힘들어 보인다. 나는?",
+    text: "옆자리 동료가 오늘따라 한숨을 벌써 열 번째 쉬고 있다.",
     options: [
-      { text: "\"무슨 일 있어?\" 하고 먼저 묻는다", key: "healer" },
-      { text: "말은 안 걸고 일을 덜어준다", key: "support" },
+      { text: "메신저로 \"커피 콜? 무슨 일 있어?\" 보낸다", key: "healer" },
+      { text: "그 사람 오늘 마감 하나를 슬쩍 가져간다", key: "support" },
     ],
   },
   {
-    text: "새 프로젝트에서 내가 맡고 싶은 자리는?",
+    text: "회사 TF 팀에 차출됐다. 내가 탐나는 자리는?",
     options: [
-      { text: "판을 바꿀 결정적인 한 방", key: "assassin" },
-      { text: "성과를 끌어올리는 최전선", key: "dealer" },
+      { text: "막판 뒤집기용 비장의 카드 담당", key: "assassin" },
+      { text: "실적 숫자를 제일 많이 뽑는 최전방", key: "dealer" },
     ],
   },
   {
-    text: "팀이 위기일 때 나에게 기대되는 역할은?",
+    text: "축제 부스 운영 중, 손님 컴플레인이 크게 터졌다.",
     options: [
-      { text: "앞에 서서 막아주는 사람", key: "tank" },
-      { text: "빠진 자리를 채워주는 사람", key: "support" },
+      { text: "\"제가 책임자입니다\" 하고 앞에 나선다", key: "tank" },
+      { text: "빈 계산대로 가서 밀린 줄부터 줄인다", key: "support" },
     ],
   },
   {
-    text: "끝나고 나서 사람들이 하는 말은?",
+    text: "프로젝트가 끝나고 팀원들이 써 준 롤링페이퍼, 내 칸의 한 줄은?",
     options: [
-      { text: "\"네가 있어서 멘탈 잡혔어\"", key: "healer" },
-      { text: "\"그 타이밍 진짜 좋았어\"", key: "assassin" },
+      { text: "\"네 덕분에 멘탈 안 터지고 버텼어\"", key: "healer" },
+      { text: "\"그날 그 한마디가 판을 다 바꿨지\"", key: "assassin" },
     ],
   },
 ];

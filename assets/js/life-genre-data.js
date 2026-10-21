@@ -6,73 +6,73 @@
 
 const LIFEGENRE_QUESTIONS = [
   {
-    text: "내 하루를 한 장면으로 요약한다면?",
+    text: "오늘 하루를 드라마 예고편 15초로 자른다면, 들어갈 장면은?",
     options: [
-      { text: "누군가와 나눈 짧은 대화", key: "romance" },
-      { text: "예상 못한 사건 하나", key: "thriller" },
+      { text: "퇴근길 누군가와 눈이 마주친 3초", key: "romance" },
+      { text: "책상 위 정체불명 택배를 발견한 순간", key: "thriller" },
     ],
   },
   {
-    text: "친구들이 내 얘기를 들을 때 반응은?",
+    text: "친구들한테 지난 주말 얘기를 해 줬다. 친구들 반응은?",
     options: [
-      { text: "\"넌 왜 맨날 이런 일이 생겨?\" 하고 웃는다", key: "sitcom" },
-      { text: "\"그래서 그다음엔 어떻게 됐어?\" 하고 몰입한다", key: "documentary" },
+      { text: "\"넌 왜 맨날 이런 일이 생기냐\" 박장대소", key: "sitcom" },
+      { text: "\"넌 주말도 참 한결같다\" 고개를 끄덕인다", key: "documentary" },
     ],
   },
   {
-    text: "인생에서 제일 중요한 순간은?",
+    text: "인생 사진첩에서 딱 한 장만 남길 수 있다면?",
     options: [
-      { text: "현실에서 벗어나 있던 시간", key: "fantasy" },
-      { text: "누군가를 만난 날", key: "romance" },
+      { text: "혼자 떠난 여행에서 현실을 잊었던 그 밤", key: "fantasy" },
+      { text: "그 사람을 처음 만난 날 찍힌 사진", key: "romance" },
     ],
   },
   {
-    text: "계획이 틀어졌을 때 내 머릿속은?",
+    text: "여행 첫날, 예약한 숙소가 사진이랑 완전히 다르다.",
     options: [
-      { text: "\"이거 뭔가 이상한데\" 하고 원인을 캔다", key: "thriller" },
-      { text: "\"또 시작이네\" 하고 웃어넘긴다", key: "sitcom" },
+      { text: "\"이거 뭔가 수상한데\" 후기부터 파헤친다", key: "thriller" },
+      { text: "\"역시 내 인생\" 하고 인증샷부터 찍는다", key: "sitcom" },
     ],
   },
   {
-    text: "내 인생을 영상으로 남긴다면 어떤 식일까?",
+    text: "내 인생이 OTT에 올라간다면, 썸네일 문구는?",
     options: [
-      { text: "담담한 내레이션이 깔린 기록물", key: "documentary" },
-      { text: "현실인지 상상인지 모를 장면들", key: "fantasy" },
+      { text: "\"한 사람의 평범하고 꾸준한 기록\"", key: "documentary" },
+      { text: "\"이건 꿈일까, 현실일까\"", key: "fantasy" },
     ],
   },
   {
-    text: "사람들과 있을 때 나는 주로?",
+    text: "친구 다섯 명 모임, 갑자기 정적이 흘렀다.",
     options: [
-      { text: "관계의 미묘한 변화를 느낀다", key: "romance" },
-      { text: "어색한 순간을 웃음으로 바꾼다", key: "sitcom" },
+      { text: "누가 누구한테 서운한지 공기로 느낀다", key: "romance" },
+      { text: "아무 말 대잔치로 정적을 깨 버린다", key: "sitcom" },
     ],
   },
   {
-    text: "지난 1년을 돌아보면?",
+    text: "연말에 올해 사진첩을 넘겨 본다.",
     options: [
-      { text: "예상 못한 반전이 몇 번 있었다", key: "thriller" },
-      { text: "묵묵히 쌓아온 기록이 남았다", key: "documentary" },
+      { text: "\"이때 이런 일이 터질 줄이야\" 반전투성이", key: "thriller" },
+      { text: "비슷한 하루가 차곡차곡, 그게 뿌듯하다", key: "documentary" },
     ],
   },
   {
-    text: "내가 자주 하는 상상은?",
+    text: "샤워하다가 나도 모르게 빠지는 상상은?",
     options: [
-      { text: "전혀 다른 삶을 사는 나", key: "fantasy" },
-      { text: "웃긴 상황에서 내가 할 대사", key: "sitcom" },
+      { text: "다른 세계에서 전혀 다른 직업으로 사는 나", key: "fantasy" },
+      { text: "아까 했어야 할 웃긴 받아치기 대사", key: "sitcom" },
     ],
   },
   {
-    text: "내 인생의 명대사를 고른다면?",
+    text: "새벽 2시, 잠이 안 올 때 머릿속에 맴도는 대사는?",
     options: [
       { text: "\"그때 그 말을 했어야 했는데\"", key: "romance" },
-      { text: "\"이건 그냥 넘어갈 일이 아니야\"", key: "thriller" },
+      { text: "\"잠깐, 그때 그 사람 왜 그랬지?\"", key: "thriller" },
     ],
   },
   {
-    text: "마지막 화의 엔딩은 어땠으면 좋겠나요?",
+    text: "내 드라마 마지막 화, 엔딩 크레딧 직전 장면은?",
     options: [
-      { text: "담담하게 다음 날이 시작되는 장면", key: "documentary" },
-      { text: "모든 게 뒤집히는 열린 결말", key: "fantasy" },
+      { text: "평소처럼 알람 끄고 출근하는 뒷모습", key: "documentary" },
+      { text: "눈 떠 보니 1화 첫 장면으로 돌아와 있다", key: "fantasy" },
     ],
   },
 ];

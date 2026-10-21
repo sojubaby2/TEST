@@ -6,73 +6,73 @@
 
 const SLEEPTYPE_QUESTIONS = [
   {
-    text: "알람 없이 잤을 때 저절로 눈이 떠지는 시간은?",
+    text: "알람 없는 일요일, 저절로 눈이 떠졌다. 시계를 보니?",
     options: [
-      { text: "일곱 시 전후. 늦게 자도 비슷하다", key: "morning" },
-      { text: "정오에 가깝다. 새벽에 잤으니까", key: "night" },
+      { text: "7시. 늦게 잤는데도 몸이 알아서 깸", key: "morning" },
+      { text: "오후 1시. 해가 이미 꺾였다", key: "night" },
     ],
   },
   {
-    text: "점심 먹고 난 오후의 나는?",
+    text: "점심 먹고 돌아온 오후 2시의 사무실.",
     options: [
-      { text: "잠깐이라도 눈을 붙여야 산다", key: "nap" },
-      { text: "작은 소리에도 집중이 깨진다", key: "light" },
+      { text: "책상에 엎드려 15분은 자야 오후가 산다", key: "nap" },
+      { text: "옆자리 키보드 소리 하나에 집중이 와르르", key: "light" },
     ],
   },
   {
-    text: "낯선 곳에서 자야 할 때 나는?",
+    text: "친구들과 펜션 1박, 거실 바닥에서 자야 한다.",
     options: [
-      { text: "베개만 있으면 어디서든 잔다", key: "rock" },
-      { text: "평소보다 일찍 자고 일찍 깬다", key: "morning" },
+      { text: "이불 한 장이면 충분, 제일 먼저 기절", key: "rock" },
+      { text: "다들 떠들 때 먼저 자고 6시에 혼자 산책", key: "morning" },
     ],
   },
   {
-    text: "가장 머리가 잘 돌아가는 시간대는?",
+    text: "기가 막힌 아이디어가 떠오르는 순간은?",
     options: [
-      { text: "모두가 잠든 새벽", key: "night" },
-      { text: "짧게 자고 일어난 직후", key: "nap" },
+      { text: "새벽 2시, 불 끄고 누웠을 때", key: "night" },
+      { text: "20분 낮잠에서 막 깼을 때", key: "nap" },
     ],
   },
   {
-    text: "자는 동안 옆에서 소리가 났다면?",
+    text: "새벽 3시, 윗집에서 쿵 소리가 났다.",
     options: [
-      { text: "전혀 모른다. 아침에 들어야 안다", key: "rock" },
-      { text: "바로 깬다. 그리고 다시 잠들기 어렵다", key: "light" },
+      { text: "아침에 가족이 말해 줘서 처음 앎", key: "rock" },
+      { text: "그 뒤로 해 뜰 때까지 천장만 봄", key: "light" },
     ],
   },
   {
-    text: "주말 아침 계획을 잡는다면?",
+    text: "친구가 토요일 아침 8시 브런치를 제안했다.",
     options: [
-      { text: "아침 일정도 괜찮다. 오히려 상쾌하다", key: "morning" },
-      { text: "오후 늦게가 아니면 못 간다", key: "night" },
+      { text: "\"좋아! 그 전에 운동도 하고 갈게\"", key: "morning" },
+      { text: "\"그거 저녁 8시 말하는 거지?\"", key: "night" },
     ],
   },
   {
-    text: "이동 중 버스나 지하철에서 나는?",
+    text: "퇴근 지하철, 운 좋게 자리에 앉았다.",
     options: [
-      { text: "앉으면 거의 바로 잠든다", key: "nap" },
-      { text: "눕지 않으면 잠이 안 온다", key: "rock" },
+      { text: "두 정거장 만에 고개가 툭", key: "nap" },
+      { text: "앉아서는 못 잠. 대신 누우면 3초 컷", key: "rock" },
     ],
   },
   {
-    text: "잠들기 전 내 머릿속은?",
+    text: "불 끄고 누운 밤 12시, 내 머릿속은?",
     options: [
-      { text: "생각이 많아져 오래 뒤척인다", key: "light" },
-      { text: "이때부터 아이디어가 쏟아진다", key: "night" },
+      { text: "낮에 한 말 하나 곱씹느라 뒤척뒤척", key: "light" },
+      { text: "갑자기 정신이 맑아지며 할 일이 떠오름", key: "night" },
     ],
   },
   {
-    text: "수면 환경에 대한 내 기준은?",
+    text: "바빴던 이번 주, 컨디션을 지켜 준 비결은?",
     options: [
-      { text: "일정한 시간에 자고 일어나는 게 최우선", key: "morning" },
-      { text: "틈틈이 자둬야 하루가 버틴다", key: "nap" },
+      { text: "매일 11시 취침, 6시 반 기상 루틴", key: "morning" },
+      { text: "점심시간, 이동 시간마다 쪽잠 충전", key: "nap" },
     ],
   },
   {
-    text: "잠이 부족한 날 나에게 나타나는 변화는?",
+    text: "밤새 야근한 다음 날의 나는?",
     options: [
-      { text: "별로 없다. 웬만하면 버틴다", key: "rock" },
-      { text: "예민해지고 소리에 더 민감해진다", key: "light" },
+      { text: "커피 한 잔이면 멀쩡, 그날 밤 꿀잠", key: "rock" },
+      { text: "작은 소리에도 예민 폭발, 말 한마디에 욱", key: "light" },
     ],
   },
 ];

@@ -6,73 +6,73 @@
 
 const TRAVELTYPE_QUESTIONS = [
   {
-    text: "여행이 확정됐다. 제일 먼저 하는 일은?",
+    text: "친구랑 부산 여행이 확정된 날 밤, 제일 먼저 하는 일은?",
     options: [
-      { text: "일정표부터 만든다. 시간 단위로", key: "planner" },
-      { text: "현지 맛집부터 검색한다", key: "foodie" },
+      { text: "엑셀 열고 시간 단위 일정표부터", key: "planner" },
+      { text: "돼지국밥 맛집 지도에 저장부터", key: "foodie" },
     ],
   },
   {
-    text: "숙소를 고를 때 가장 중요한 건?",
+    text: "숙소 예약 앱을 열었다. 제일 먼저 누르는 필터는?",
     options: [
-      { text: "조식과 수영장. 숙소 자체가 목적", key: "hotel" },
-      { text: "잠만 자면 되니까 위치와 가격", key: "walker" },
+      { text: "수영장, 조식 포함, 오션뷰", key: "hotel" },
+      { text: "역에서 도보 5분, 낮은 가격순", key: "walker" },
     ],
   },
   {
-    text: "여행지에서 제일 많이 하는 행동은?",
+    text: "여행지 골목에 귀여운 고양이가 누워 있다.",
     options: [
-      { text: "예쁜 장면이 보이면 일단 카메라부터", key: "camera" },
-      { text: "다음 일정까지 남은 시간을 계산한다", key: "planner" },
+      { text: "무릎 꿇고 30장 연사", key: "camera" },
+      { text: "귀엽지만 다음 일정까지 12분 남음", key: "planner" },
     ],
   },
   {
-    text: "맛집 대기가 90분이라고 한다.",
+    text: "유명 빵집 웨이팅이 90분이란다.",
     options: [
-      { text: "기다린다. 여기 오려고 온 거니까", key: "foodie" },
-      { text: "숙소 라운지가 더 편할 것 같은데", key: "hotel" },
+      { text: "줄 선다. 이 빵 먹으러 온 거니까", key: "foodie" },
+      { text: "숙소 돌아가서 룸서비스 시킴", key: "hotel" },
     ],
   },
   {
-    text: "하루에 걷는 거리는?",
+    text: "여행 이틀째 저녁, 만보기 앱을 열었다.",
     options: [
-      { text: "2만 보 기본. 다리는 나중에 생각", key: "walker" },
-      { text: "좋은 장소 한 곳에서 오래 머문다", key: "camera" },
+      { text: "2만 7천 보. 발바닥이 내 것이 아님", key: "walker" },
+      { text: "3천 보. 노을 명당에서 두 시간 버팀", key: "camera" },
     ],
   },
   {
-    text: "비가 와서 일정이 틀어졌다. 나는?",
+    text: "갑자기 비가 쏟아져 야외 일정이 날아갔다.",
     options: [
-      { text: "미리 짜둔 대안 일정을 꺼낸다", key: "planner" },
-      { text: "실내 맛집 리스트를 연다", key: "foodie" },
+      { text: "미리 만들어 둔 우천용 플랜B를 꺼냄", key: "planner" },
+      { text: "\"오히려 좋아, 파전집 가자\"", key: "foodie" },
     ],
   },
   {
-    text: "여행에서 돈을 제일 많이 쓰는 곳은?",
+    text: "여행 후 카드 명세서에서 제일 큰 금액은?",
     options: [
-      { text: "숙소. 좋은 데서 자야 여행이 산다", key: "hotel" },
-      { text: "교통비와 입장료. 많이 볼수록 이득", key: "walker" },
+      { text: "1박 숙박비. 근데 침구가 진짜 최고였음", key: "hotel" },
+      { text: "교통 패스와 입장권. 뽕 뽑았다", key: "walker" },
     ],
   },
   {
-    text: "여행이 끝나고 남는 건?",
+    text: "여행 끝나고 단톡방에 제일 먼저 올리는 건?",
     options: [
-      { text: "정리된 사진 폴더와 영상", key: "camera" },
-      { text: "먹었던 음식 사진과 가게 이름", key: "foodie" },
+      { text: "보정 끝낸 사진 20장과 릴스 한 편", key: "camera" },
+      { text: "먹은 음식 순위 TOP 5", key: "foodie" },
     ],
   },
   {
-    text: "같이 간 친구가 \"오늘 뭐 할까?\"라고 묻는다.",
+    text: "여행 둘째 날 아침, 친구가 \"오늘 뭐 할까?\"라고 묻는다.",
     options: [
-      { text: "\"10시에 여기, 12시에 여기\" 이미 준비됨", key: "planner" },
-      { text: "\"일단 나가서 생각하자\"", key: "hotel" },
+      { text: "\"10시 박물관, 12시 점심. 다 짜 놨어\"", key: "planner" },
+      { text: "\"체크아웃 12시니까 수영장부터 가자\"", key: "hotel" },
     ],
   },
   {
-    text: "다음 여행지를 고르는 기준은?",
+    text: "다음 여행지를 고른 결정적 이유는?",
     options: [
-      { text: "걸어 다니기 좋은 골목이 많은 곳", key: "walker" },
-      { text: "사진이 예쁘게 나오는 곳", key: "camera" },
+      { text: "지도만 봐도 걷고 싶은 골목이 가득", key: "walker" },
+      { text: "어느 각도로 찍어도 엽서 같은 풍경", key: "camera" },
     ],
   },
 ];

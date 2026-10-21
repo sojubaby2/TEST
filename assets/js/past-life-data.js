@@ -4,83 +4,83 @@
 
 const PASTLIFE_QUESTIONS = [
   {
-    text: "낯선 곳에 떨어졌을 때 나는?",
+    text: "눈 떠 보니 무인도에 10명이 함께 떨어졌다.",
     options: [
-      { text: "일단 사람들을 모아 이끈다", who: "pharaoh" },
-      { text: "혼자서라도 개척하며 나아간다", who: "viking" },
-      { text: "주변을 관찰하고 기록부터 한다", who: "scholar" },
+      { text: "\"다들 모여! 역할 나눈다\"", who: "pharaoh" },
+      { text: "나뭇가지 하나 들고 혼자 섬 반대편으로", who: "viking" },
+      { text: "지형부터 그려서 지도 만들기", who: "scholar" },
     ],
   },
   {
-    text: "갈등 상황에서 나는?",
+    text: "층간소음 2주째, 오늘 밤에도 위층에서 쿵쿵 소리가 난다.",
     options: [
-      { text: "정면돌파로 부딪힌다", who: "viking" },
-      { text: "타협점을 찾아 협상한다", who: "merchant" },
-      { text: "감정을 표현하며 풀어간다", who: "artist" },
+      { text: "바로 위층 올라가서 노크", who: "viking" },
+      { text: "\"과일 드릴 테니 슬리퍼 좀…\" 협상", who: "merchant" },
+      { text: "감정 꾹꾹 담은 손편지를 문에 붙임", who: "artist" },
     ],
   },
   {
-    text: "쉬는 날 가장 하고 싶은 건?",
+    text: "아무 일정 없는 일요일 오후, 가장 끌리는 곳은?",
     options: [
-      { text: "박물관이나 전시회 관람", who: "artist" },
-      { text: "책 읽고 사색하기", who: "scholar" },
-      { text: "시장 구경하며 사람 구경", who: "merchant" },
+      { text: "골목 안 작은 갤러리", who: "artist" },
+      { text: "조용한 도서관 구석 자리", who: "scholar" },
+      { text: "사람 북적이는 플리마켓", who: "merchant" },
     ],
   },
   {
-    text: "일할 때 나의 스타일은?",
+    text: "회사에서 새 프로젝트를 맡았다. 첫날 나는?",
     options: [
-      { text: "완벽한 결과물을 추구한다", who: "pharaoh" },
-      { text: "일단 몸으로 부딪혀 배운다", who: "viking" },
-      { text: "원칙과 절차를 중요하게 여긴다", who: "scholar" },
+      { text: "완성본 퀄리티 기준부터 높게 세움", who: "pharaoh" },
+      { text: "일단 해 보면서 부딪혀 배움", who: "viking" },
+      { text: "규정집이랑 지난 자료부터 정독", who: "scholar" },
     ],
   },
   {
-    text: "사람들과 있을 때 나는?",
+    text: "열 명 넘게 모인 바비큐 파티에서 나는?",
     options: [
-      { text: "자연스럽게 분위기를 주도한다", who: "pharaoh" },
-      { text: "이야기를 재밌게 풀어내며 어울린다", who: "merchant" },
-      { text: "조용히 관찰하며 영감을 얻는다", who: "artist" },
+      { text: "고기 굽는 순서까지 자연스럽게 지휘", who: "pharaoh" },
+      { text: "썰 풀며 이 테이블 저 테이블 순회", who: "merchant" },
+      { text: "노을 보며 혼자 사진 찍는 중", who: "artist" },
     ],
   },
   {
-    text: "돈에 대한 나의 태도는?",
+    text: "통장에 갑자기 보너스 300만 원이 들어왔다.",
     options: [
-      { text: "실속있게 굴리고 불린다", who: "merchant" },
-      { text: "필요하면 아낌없이 쓴다", who: "pharaoh" },
-      { text: "큰 관심 없고 자유롭게 쓴다", who: "artist" },
+      { text: "ETF랑 적금으로 바로 쪼개서 굴림", who: "merchant" },
+      { text: "가족들 데리고 근사한 데서 한턱", who: "pharaoh" },
+      { text: "사고 싶던 카메라 사고 나머진 기억 안 남", who: "artist" },
     ],
   },
   {
-    text: "위기가 닥쳤을 때 나는?",
+    text: "엘리베이터가 층 사이에 멈췄다. 안에 6명이 갇혔다.",
     options: [
-      { text: "용감하게 맞서 싸운다", who: "viking" },
-      { text: "냉정하게 상황을 분석한다", who: "scholar" },
-      { text: "사람들을 설득해 함께 헤쳐나간다", who: "merchant" },
+      { text: "비상벨 연타하며 \"여기요!\" 우렁차게", who: "viking" },
+      { text: "비상 안내문부터 읽고 차분히 상황 파악", who: "scholar" },
+      { text: "\"다들 괜찮아요\" 분위기 달래며 단합", who: "merchant" },
     ],
   },
   {
-    text: "나를 표현할 때 나는?",
+    text: "SNS 프로필 사진을 바꾼다. 내가 고른 사진은?",
     options: [
-      { text: "품위있고 위엄있게", who: "pharaoh" },
-      { text: "솔직하고 거침없이", who: "viking" },
-      { text: "감성적이고 자유롭게", who: "artist" },
+      { text: "정장 차림의 각 잡힌 단독 샷", who: "pharaoh" },
+      { text: "산 정상에서 소리 지르는 사진", who: "viking" },
+      { text: "흔들린 필름 카메라 감성 사진", who: "artist" },
     ],
   },
   {
-    text: "새로운 지식을 접하면 나는?",
+    text: "유튜브 알고리즘이 '고대 문명 미스터리' 영상을 띄웠다.",
     options: [
-      { text: "깊이 파고들어 탐구한다", who: "scholar" },
-      { text: "실용적으로 써먹을 방법을 찾는다", who: "merchant" },
-      { text: "영감을 얻어 무언가를 창작한다", who: "artist" },
+      { text: "관련 영상 12개 정주행, 논문까지 찾음", who: "scholar" },
+      { text: "\"이걸로 굿즈 팔면 되겠는데?\"", who: "merchant" },
+      { text: "보고 나서 영감 받아 그림 끄적임", who: "artist" },
     ],
   },
   {
-    text: "여행을 간다면 나는?",
+    text: "한 달 휴가와 항공권이 공짜로 생겼다. 행선지는?",
     options: [
-      { text: "미지의 땅을 정복하듯 탐험한다", who: "viking" },
-      { text: "각지의 시장과 사람들을 만난다", who: "merchant" },
-      { text: "역사와 유적지를 찾아다닌다", who: "pharaoh" },
+      { text: "지도에도 잘 안 나오는 북쪽 오지", who: "viking" },
+      { text: "이스탄불 대시장에서 흥정하기", who: "merchant" },
+      { text: "피라미드랑 고대 유적 투어", who: "pharaoh" },
     ],
   },
 ];

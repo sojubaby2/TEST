@@ -6,73 +6,73 @@
 
 const HOESIKTYPE_QUESTIONS = [
   {
-    text: "회식 공지가 떴다. 첫 반응은?",
+    text: "팀 단톡방에 '이번 주 금요일 회식' 공지가 올라왔다.",
     options: [
-      { text: "어디로 갈지 벌써 머릿속에 그려진다", key: "mc" },
-      { text: "인원과 예산부터 계산이 시작된다", key: "manager" },
+      { text: "벌써 건배사랑 게임 순서 구상 중", key: "mc" },
+      { text: "인원수 곱하기 1인 예산부터 계산 중", key: "manager" },
     ],
   },
   {
-    text: "자리를 고를 때 나는?",
+    text: "고깃집 도착, 다들 어디 앉을지 머뭇거린다.",
     options: [
-      { text: "끝자리. 전체가 보이는 곳이 편하다", key: "observer" },
-      { text: "출입구 쪽. 나갈 때 편해야 하니까", key: "firstround" },
+      { text: "구석 끝자리. 테이블 전체가 한눈에 보임", key: "observer" },
+      { text: "신발장 바로 앞. 탈출 동선 확보 완료", key: "firstround" },
     ],
   },
   {
-    text: "분위기가 어색해졌다. 그때 나는?",
+    text: "부장님 군대 썰이 끝나고 테이블에 3초간 정적이 흐른다.",
     options: [
-      { text: "일단 뭐라도 말을 꺼내 웃긴다", key: "lastman" },
-      { text: "화제를 던져서 판을 다시 돌린다", key: "mc" },
+      { text: "\"자, 일단 짠!\" 외치고 잔부터 든다", key: "lastman" },
+      { text: "옆 사람에게 \"요즘 뭐 보세요?\" 화제 패스", key: "mc" },
     ],
   },
   {
-    text: "주문할 때 내 역할은?",
+    text: "직원이 \"주문 도와드릴게요\" 하는데 다들 눈치만 본다.",
     options: [
-      { text: "인원수 세고 메뉴 정리해서 주문한다", key: "manager" },
-      { text: "말없이 듣다가 필요할 때만 거든다", key: "observer" },
+      { text: "\"삼겹 여섯, 목살 넷, 공깃밥은 나중에요\"", key: "manager" },
+      { text: "메뉴판 넘기며 누가 뭘 원하는지 표정 관찰", key: "observer" },
     ],
   },
   {
-    text: "1차가 끝나갈 무렵 내 마음은?",
+    text: "1차 막바지, 누군가 \"2차 갈 사람?\"을 외친다.",
     options: [
-      { text: "\"이제 슬슬 빠질 타이밍인데\"", key: "firstround" },
-      { text: "\"2차 어디 가지?\" 이미 검색 중", key: "lastman" },
+      { text: "가방끈은 이미 어깨에 걸려 있다", key: "firstround" },
+      { text: "손이 먼저 올라감, 노래방 예약까지 완료", key: "lastman" },
     ],
   },
   {
-    text: "옆자리 사람이 말이 없다. 나는?",
+    text: "이번 달 입사한 신입이 말없이 고기만 먹고 있다.",
     options: [
-      { text: "먼저 말을 걸어 대화를 만들어준다", key: "mc" },
-      { text: "잔이 비었는지 챙겨서 따라준다", key: "manager" },
+      { text: "\"신입님 MBTI 뭐예요?\" 대화 판 깔아 줌", key: "mc" },
+      { text: "신입 앞 접시에 잘 익은 고기 쌓아 줌", key: "manager" },
     ],
   },
   {
-    text: "회식 다음 날 내 상태는?",
+    text: "회식 다음 날 아침 9시, 출근길의 나는?",
     options: [
-      { text: "일찍 빠져서 멀쩡하다", key: "firstround" },
-      { text: "말은 적게 했는데 이상하게 피곤하다", key: "observer" },
+      { text: "밤 10시에 잤다. 컨디션 최상", key: "firstround" },
+      { text: "말 한마디 안 했는데 기 빨려서 녹초", key: "observer" },
     ],
   },
   {
-    text: "회식이 끝난 뒤 제일 많이 하는 생각은?",
+    text: "택시 타고 집에 가는 길, 머릿속을 채운 생각은?",
     options: [
-      { text: "\"오늘 진짜 재밌었다\"", key: "lastman" },
-      { text: "\"계산 잘 됐나? 영수증 챙겼나?\"", key: "manager" },
+      { text: "\"아… 3차까지 갔어야 했는데\"", key: "lastman" },
+      { text: "\"법카 영수증 단톡에 올렸나?\"", key: "manager" },
     ],
   },
   {
-    text: "상사가 갑자기 나에게 한마디 하라고 시켰다.",
+    text: "갑자기 부장님이 \"자, 이번엔 ○○ 씨가 건배사 한번 해 봐!\"",
     options: [
-      { text: "웃음 한 번 유도하고 자연스럽게 마무리", key: "mc" },
-      { text: "짧게 감사 인사만 하고 빠르게 앉는다", key: "firstround" },
+      { text: "삼행시 건배사로 빵 터뜨리고 착석", key: "mc" },
+      { text: "\"위하여!\" 세 글자로 끝내고 착석", key: "firstround" },
     ],
   },
   {
-    text: "회식에서 내가 제일 잘 기억하는 건?",
+    text: "일주일 뒤, 그 회식을 떠올리면 제일 먼저 생각나는 건?",
     options: [
-      { text: "2차에서 나온 진짜 이야기들", key: "lastman" },
-      { text: "누가 어떤 표정이었는지", key: "observer" },
+      { text: "새벽 2시 포장마차에서 들은 과장님 연애사", key: "lastman" },
+      { text: "누가 누구 말에 표정이 굳었는지", key: "observer" },
     ],
   },
 ];

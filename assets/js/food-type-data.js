@@ -6,73 +6,73 @@
 
 const FOODTYPE_QUESTIONS = [
   {
-    text: "처음 가본 식당에서 메뉴판을 펼쳤다. 나는?",
+    text: "처음 가 본 식당, 메뉴판에 '도전 메뉴'가 빨간 글씨로 적혀 있다.",
     options: [
-      { text: "제일 맵고 자극적인 걸로 간다", key: "tteokbokki" },
-      { text: "제일 무난한 걸로 안전하게 간다", key: "gomtang" },
+      { text: "도전 메뉴! 일단 질러 보고 생각함", key: "tteokbokki" },
+      { text: "늘 먹던 거랑 제일 비슷한 걸로", key: "gomtang" },
     ],
   },
   {
-    text: "친구가 \"아무거나 먹자\"고 했다. 내 반응은?",
+    text: "친구가 \"아무거나 먹자\"며 메뉴 결정을 나한테 넘겼다.",
     options: [
-      { text: "\"그럼 여기 가자\" 하고 취향을 밀어붙인다", key: "malatang" },
-      { text: "둘 다 무난하게 먹을 곳으로 정한다", key: "kimbap" },
+      { text: "\"나만 아는 데 있어\" 하고 끌고 감", key: "malatang" },
+      { text: "친구 표정 보며 둘 다 좋아할 곳 고름", key: "kimbap" },
     ],
   },
   {
-    text: "모임에서 내 자리는?",
+    text: "다섯 명이 모인 술자리, 대화가 잠깐 뚝 끊겼다.",
     options: [
-      { text: "웃음소리 나는 쪽 한가운데", key: "chicken" },
-      { text: "말은 짧게, 대신 임팩트 있게", key: "tteokbokki" },
+      { text: "\"아 그거 알아?\" 하고 웃긴 썰 투척", key: "chicken" },
+      { text: "한마디로 정곡 찔러서 다 빵 터지게 함", key: "tteokbokki" },
     ],
   },
   {
-    text: "누가 나를 알아가는 속도는?",
+    text: "새로 온 팀원이 한 달 뒤 나에 대해 남긴 후기는?",
     options: [
-      { text: "천천히, 오래 볼수록 알게 된다", key: "gomtang" },
-      { text: "첫인상부터 강하게 남는다", key: "malatang" },
+      { text: "\"볼수록 진국이에요\"", key: "gomtang" },
+      { text: "\"첫날부터 강렬했어요\"", key: "malatang" },
     ],
   },
   {
-    text: "낯선 모임에 혼자 갔을 때 나는?",
+    text: "친구 따라 처음 보는 사람들 모임에 끼게 됐다.",
     options: [
-      { text: "어디에 껴도 어색하지 않게 섞인다", key: "kimbap" },
-      { text: "금방 분위기를 띄우는 쪽이 된다", key: "chicken" },
+      { text: "어느 테이블에 앉아도 어색하지 않음", key: "kimbap" },
+      { text: "30분 뒤 내가 건배사 하고 있음", key: "chicken" },
     ],
   },
   {
-    text: "내가 듣고 기분 좋은 말은?",
+    text: "생일 롤링페이퍼에서 제일 마음에 드는 한 줄은?",
     options: [
-      { text: "\"너 진짜 화끈하다\"", key: "tteokbokki" },
-      { text: "\"너 은근 중독성 있어\"", key: "malatang" },
+      { text: "\"넌 할 말 다 하는 게 멋있어\"", key: "tteokbokki" },
+      { text: "\"이상하게 자꾸 생각나는 애\"", key: "malatang" },
     ],
   },
   {
-    text: "힘든 일이 있는 친구에게 나는?",
+    text: "이별한 친구가 새벽 1시에 \"잠깐 나와\"라고 연락했다.",
     options: [
-      { text: "말없이 오래 곁에 있어준다", key: "gomtang" },
-      { text: "일단 밥부터 먹이고 본다", key: "kimbap" },
+      { text: "옆에 앉아 아무 말 없이 밤새 있어 줌", key: "gomtang" },
+      { text: "편의점 털어서 먹을 거부터 쥐여 줌", key: "kimbap" },
     ],
   },
   {
-    text: "내 취향에 대해 주변 반응은?",
+    text: "내 플레이리스트를 들어 본 친구의 반응은?",
     options: [
-      { text: "\"넌 취향이 진짜 확실해\"", key: "malatang" },
-      { text: "\"넌 뭘 해도 무난하게 잘해\"", key: "chicken" },
+      { text: "\"이런 노래는 대체 어디서 찾아?\"", key: "malatang" },
+      { text: "\"이거 틀면 누구든 신나겠다\"", key: "chicken" },
     ],
   },
   {
-    text: "약속 시간이 갑자기 바뀌었다. 나는?",
+    text: "약속 1시간 전, 단톡방에 \"시간 좀 바꾸자\"가 떴다.",
     options: [
-      { text: "\"그래서 몇 시?\" 바로 정리하고 끝", key: "tteokbokki" },
-      { text: "\"난 다 괜찮아\" 하고 맞춰준다", key: "kimbap" },
+      { text: "\"그래서 몇 시? 어디?\" 3초 정리", key: "tteokbokki" },
+      { text: "\"난 다 돼, 편한 대로 해\"", key: "kimbap" },
     ],
   },
   {
-    text: "10년 뒤에도 사람들이 나를 이렇게 기억했으면 좋겠다.",
+    text: "10년 뒤 동창회에서 나를 두고 나올 말은?",
     options: [
-      { text: "\"그 사람 참 한결같았지\"", key: "gomtang" },
-      { text: "\"걔 있으면 자리가 재밌었지\"", key: "chicken" },
+      { text: "\"걔는 하나도 안 변했더라\"", key: "gomtang" },
+      { text: "\"걔 오면 그날은 무조건 재밌었지\"", key: "chicken" },
     ],
   },
 ];

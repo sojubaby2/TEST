@@ -6,42 +6,90 @@
    ============================================================ */
 
 const MBTI_QUESTIONS = [
-  { axis: "EI", text: "주말에 에너지를 채우는 방법은?", options: [
-      { text: "사람들과 어울리며 논다", letter: "E" },
-      { text: "혼자 조용히 쉰다", letter: "I" } ] },
-  { axis: "EI", text: "새로운 모임에 가면 나는?", options: [
-      { text: "먼저 다가가서 말을 건다", letter: "E" },
-      { text: "낯을 가리고 지켜본다", letter: "I" } ] },
-  { axis: "EI", text: "말을 할 때 나는?", options: [
-      { text: "생각을 말하면서 정리한다", letter: "E" },
-      { text: "충분히 생각한 후에 말한다", letter: "I" } ] },
-  { axis: "SN", text: "설명을 들을 때 나는?", options: [
-      { text: "구체적인 사실과 예시를 좋아한다", letter: "S" },
-      { text: "전체적인 개념과 가능성을 좋아한다", letter: "N" } ] },
-  { axis: "SN", text: "미래에 대해 생각할 때 나는?", options: [
-      { text: "현실적으로 가능한 것부터 생각한다", letter: "S" },
-      { text: "다양한 가능성을 상상해본다", letter: "N" } ] },
-  { axis: "SN", text: "일할 때 나는?", options: [
-      { text: "경험과 매뉴얼을 믿고 따른다", letter: "S" },
-      { text: "새로운 방법을 시도해본다", letter: "N" } ] },
-  { axis: "TF", text: "친구가 고민을 상담할 때 나는?", options: [
-      { text: "문제의 원인과 해결책을 짚어준다", letter: "T" },
-      { text: "감정에 공감하며 위로해준다", letter: "F" } ] },
-  { axis: "TF", text: "결정을 내릴 때 나는?", options: [
-      { text: "논리적으로 옳은 쪽을 택한다", letter: "T" },
-      { text: "사람들의 마음이 상하지 않는 쪽을 택한다", letter: "F" } ] },
-  { axis: "TF", text: "비판을 받을 때 나는?", options: [
-      { text: "타당하면 순순히 받아들인다", letter: "T" },
-      { text: "감정적으로 먼저 상처받는다", letter: "F" } ] },
-  { axis: "JP", text: "여행을 갈 때 나는?", options: [
-      { text: "일정을 미리 꼼꼼하게 계획한다", letter: "J" },
-      { text: "그때그때 즉흥적으로 정한다", letter: "P" } ] },
-  { axis: "JP", text: "일을 처리할 때 나는?", options: [
-      { text: "마감보다 미리 끝내야 마음이 편하다", letter: "J" },
-      { text: "마감 직전에 몰아서 해도 괜찮다", letter: "P" } ] },
-  { axis: "JP", text: "계획이 틀어지면 나는?", options: [
-      { text: "스트레스를 받는 편이다", letter: "J" },
-      { text: "그러려니 하고 유연하게 넘어간다", letter: "P" } ] },
+  {
+    axis: "EI", text: "3일 연휴 첫날 아침, 휴대폰이 조용하다.",
+    options: [
+      { text: "\"뭐 해?\" 단톡에 먼저 약속 잡기", letter: "E" },
+      { text: "알림 없는 이 고요가 너무 좋다", letter: "I" },
+    ],
+  },
+  {
+    axis: "EI", text: "친구 집들이에 갔는데 아는 사람이 집주인뿐이다.",
+    options: [
+      { text: "부엌에서 처음 본 사람과 이미 수다 중", letter: "E" },
+      { text: "집주인 옆에 붙어 고양이만 쓰다듬음", letter: "I" },
+    ],
+  },
+  {
+    axis: "EI", text: "머리 아픈 고민이 생겼다. 생각이 정리가 안 된다.",
+    options: [
+      { text: "친구한테 전화해서 떠들다 보면 답이 나옴", letter: "E" },
+      { text: "혼자 걸으며 정리한 다음에 털어놓음", letter: "I" },
+    ],
+  },
+  {
+    axis: "SN", text: "회사 선배가 처음 맡는 업무를 설명해 준다.",
+    options: [
+      { text: "\"예시 파일 하나만 보여 주세요\"", letter: "S" },
+      { text: "\"이게 결국 왜 필요한 거예요?\"", letter: "N" },
+    ],
+  },
+  {
+    axis: "SN", text: "친구가 \"로또 1등 되면 뭐 할 거야?\"라고 묻는다.",
+    options: [
+      { text: "\"대출부터 갚고 적금 넣어야지\"", letter: "S" },
+      { text: "\"일단 섬 하나 사서…\" 세계관 펼침", letter: "N" },
+    ],
+  },
+  {
+    axis: "SN", text: "처음 해 보는 요리, 레시피 영상을 틀었다.",
+    options: [
+      { text: "계량스푼까지 꺼내서 영상 그대로", letter: "S" },
+      { text: "대충 보고 냉장고 재료로 내 맘대로 변형", letter: "N" },
+    ],
+  },
+  {
+    axis: "TF", text: "친구가 \"나 면접 또 떨어졌어\"라고 연락했다.",
+    options: [
+      { text: "\"어떤 질문에서 막혔어? 같이 보자\"", letter: "T" },
+      { text: "\"헐 진짜 속상하겠다, 지금 갈까?\"", letter: "F" },
+    ],
+  },
+  {
+    axis: "TF", text: "여행지 투표가 2:1인데, 1표 낸 친구가 제일 기대하던 곳이다.",
+    options: [
+      { text: "\"다수결로 정했으니 이번엔 그쪽으로\"", letter: "T" },
+      { text: "\"걔가 제일 기대했잖아, 거기 가자\"", letter: "F" },
+    ],
+  },
+  {
+    axis: "TF", text: "공들인 발표 자료에 \"구성이 좀 산만하네\"라는 피드백이 왔다.",
+    options: [
+      { text: "\"어느 부분이요?\" 고칠 곳부터 체크", letter: "T" },
+      { text: "말투가 차가워서 하루 종일 마음에 걸림", letter: "F" },
+    ],
+  },
+  {
+    axis: "JP", text: "다음 달 오사카 여행, 지금 내 메모장 상태는?",
+    options: [
+      { text: "날짜별 식당 예약 시간까지 정리 완료", letter: "J" },
+      { text: "'오사카 맛있는 거' 딱 한 줄", letter: "P" },
+    ],
+  },
+  {
+    axis: "JP", text: "2주 뒤 마감인 과제를 받았다.",
+    options: [
+      { text: "첫 주에 초안 끝내야 잠이 옴", letter: "J" },
+      { text: "마감 전날 밤, 커피 들고 각성 모드", letter: "P" },
+    ],
+  },
+  {
+    axis: "JP", text: "한 시간 걸려 찾아간 맛집이 갑자기 임시휴무다.",
+    options: [
+      { text: "멘붕. 플랜 B가 없어서 하루 망한 기분", letter: "J" },
+      { text: "\"오히려 좋아\" 옆집 아무 데나 입장", letter: "P" },
+    ],
+  },
 ];
 
 const MBTI_RESULTS = [

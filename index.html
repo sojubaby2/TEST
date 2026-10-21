@@ -19,447 +19,358 @@
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><linearGradient id=%22g%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%237c3aed%22/><stop offset=%22100%25%22 stop-color=%22%23ec4899%22/></linearGradient></defs><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22url(%23g)%22/><text x=%2250%22 y=%2262%22 font-size=%2244%22 text-anchor=%22middle%22 fill=%22%23fff%22>☰</text></svg>" />
 <link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 <style>
 /* ============================================================
-   홈 화면 전용 디자인 (2안 '깔끔한 앱', 2026-10-20)
-   - 모든 규칙이 body.home2 아래에만 적용돼서 다른 페이지엔 영향 없음
+   홈 화면 전용 디자인 (3차 개편, 2026-10-21)
+   원칙: 한 화면에 한 가지씩. 색은 검정 + 보라 하나만.
+   모든 규칙이 body.home3 아래에만 적용돼서 다른 페이지엔 영향 없음
    ============================================================ */
-body.home2 {
-  --h-bg: #F2F4F6;
-  --h-card: #FFFFFF;
-  --h-ink: #191F28;
-  --h-sub: #4E5968;
-  --h-mute: #6B7684;
-  --h-line: #E5E8EB;
-  --h-accent: #1B64DA;
-  --h-accent-soft: #E8F3FF;
-  background: var(--h-bg);
-  color: var(--h-ink);
-  padding-bottom: calc(72px + env(safe-area-inset-bottom));
+body.home3 {
+  --x-bg: #F6F4F0;
+  --x-card: #FFFFFF;
+  --x-ink: #17161B;
+  --x-sub: #55525E;
+  --x-mute: #6A6675;
+  --x-line: #E7E3DC;
+  --x-soft: #F1EEE9;
+  --x-accent: #5B2EE0;
+  --x-accent-soft: #EEE9FD;
+  background: var(--x-bg);
+  color: var(--x-ink);
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  letter-spacing: -0.01em;
 }
-body.home2 h1, body.home2 h2 { letter-spacing: -0.02em; }
-body.home2 [hidden] { display: none !important; }
+body.home3 [hidden] { display: none !important; }
+.home3 .x-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.home3 h1, .home3 h2 { letter-spacing: -0.03em; }
+.home3 a:focus-visible, .home3 button:focus-visible, .home3 input:focus-visible { outline: 2px solid var(--x-accent); outline-offset: 2px; }
 
 /* 상단 바 */
-.home2 .h-top { position: sticky; top: 0; z-index: 30; background: var(--h-card); border-bottom: 1px solid var(--h-line); }
-.home2 .h-top-in { max-width: 960px; margin: 0 auto; padding: 0 20px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
-.home2 .h-logo { display: inline-flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 800; color: var(--h-accent); }
-.home2 .h-logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--h-accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 400; }
-.home2 .h-top-link { font-size: 14px; font-weight: 700; color: var(--h-sub); padding: 10px 4px; }
+.home3 .x-top { position: sticky; top: 0; z-index: 30; background: rgba(246,244,240,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.home3 .x-top-in { max-width: 1040px; margin: 0 auto; height: 60px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+.home3 .x-logo { display: inline-flex; align-items: center; gap: 9px; font-size: 20px; font-weight: 800; color: var(--x-ink); }
+.home3 .x-logo-mark { width: 30px; height: 30px; border-radius: 9px; background: var(--x-ink); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 400; }
+.home3 .x-top-nav { display: flex; gap: 4px; }
+.home3 .x-top-nav a { padding: 10px 12px; font-size: 15px; font-weight: 600; color: var(--x-sub); border-radius: 10px; }
 
-.home2 .h-main { max-width: 960px; margin: 0 auto; padding: 0 0 24px; }
+.home3 .x-main { max-width: 1040px; margin: 0 auto; padding: 4px 20px 40px; display: flex; flex-direction: column; gap: 44px; }
+.home3 .x-top-grid { display: flex; flex-direction: column; gap: 44px; }
 
-/* 히어로 + 검색 + 칩 */
-.home2 .h-hero { background: var(--h-card); padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 14px; }
-.home2 .h-hero h1 { margin: 0; font-size: 24px; font-weight: 800; line-height: 1.4; }
-.home2 .h-search { display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 14px; border-radius: 14px; background: var(--h-bg); }
-.home2 .h-search svg { width: 18px; height: 18px; fill: none; stroke: var(--h-mute); stroke-width: 2; stroke-linecap: round; flex: none; }
-.home2 .h-search input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 16px; color: var(--h-ink); outline: none; }
-.home2 .h-search input::placeholder { color: var(--h-mute); }
-.home2 .h-search:focus-within { box-shadow: 0 0 0 2px var(--h-accent) inset; }
-.home2 .h-chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -20px; padding: 0 20px; }
-.home2 .h-chips::-webkit-scrollbar { display: none; }
-.home2 .h-chip { flex: none; height: 38px; padding: 0 16px; border-radius: 19px; background: var(--h-bg); color: var(--h-sub); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; white-space: nowrap; }
-.home2 .h-chip.on { background: var(--h-ink); color: #fff; font-weight: 700; }
+/* 오늘의 테스트 (큰 검정 카드) */
+.home3 .x-hero { background: var(--x-ink); color: #fff; border-radius: 28px; padding: 28px 24px 22px; display: flex; flex-direction: column; align-items: flex-start; }
+.home3 .x-eyebrow { margin: 0 0 18px; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: #C9C2FF; }
+.home3 .x-hero-emoji { width: 84px; height: 84px; border-radius: 24px; background: #2A2832; display: flex; align-items: center; justify-content: center; font-size: 46px; line-height: 1; margin-bottom: 18px; }
+.home3 .x-hero .x-hero-title { margin: 0 0 8px; font-size: 30px; font-weight: 800; line-height: 1.25; word-break: keep-all; }
+.home3 .x-hero-desc { margin: 0; font-size: 16px; line-height: 1.55; color: #E4E1EC; word-break: keep-all; }
+.home3 .x-hero-meta { margin: 10px 0 0; font-size: 13px; color: #B5B0C2; }
+.home3 .x-hero-go { margin-top: 24px; width: 100%; height: 56px; border-radius: 16px; background: #fff; color: var(--x-ink); font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.home3 .x-hero-next { margin-top: 8px; align-self: center; min-height: 44px; padding: 0 12px; border: 0; background: transparent; color: #CFCAE0; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 
-.home2 .h-content { padding: 12px 16px 0; display: flex; flex-direction: column; gap: 12px; }
+/* 공통 머리글 */
+.home3 .x-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.home3 .x-head h2 { margin: 0; font-size: 22px; font-weight: 800; }
+.home3 .x-count, .home3 .x-more { font-size: 14px; color: var(--x-mute); }
+.home3 .x-more { padding: 6px 0; font-weight: 600; }
+.home3 .x-sub { margin: -8px 0 14px; font-size: 14px; color: var(--x-mute); }
 
-/* 공통 카드 */
-.home2 .h-card { background: var(--h-card); border-radius: 22px; padding: 20px; scroll-margin-top: 72px; }
-.home2 .h-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 14px; }
-.home2 .h-head h2 { margin: 0; font-size: 18px; font-weight: 800; }
-.home2 .h-count { font-size: 13px; color: var(--h-mute); }
-.home2 .h-more { font-size: 14px; color: var(--h-mute); padding: 6px 0; }
-.home2 .h-sub { margin: -8px 0 14px; font-size: 14px; color: var(--h-mute); }
+/* 인기 목록 */
+.home3 .x-list { background: var(--x-card); border-radius: 22px; padding: 6px 18px; }
+.home3 .x-row { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--x-line); }
+.home3 .x-row:first-child { border-top: 0; }
+.home3 .x-ico { width: 48px; height: 48px; border-radius: 15px; background: var(--x-soft); flex: none; display: inline-flex; align-items: center; justify-content: center; font-size: 25px; line-height: 1; overflow: hidden; }
+.home3 .x-ico img, .home3 .x-card-ico img { width: 100%; height: 100%; object-fit: cover; }
+.home3 .x-row-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.home3 .x-row-txt strong { font-size: 16px; font-weight: 700; }
+.home3 .x-row-txt span { font-size: 13px; color: var(--x-mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home3 .x-chev { width: 18px; height: 18px; flex: none; fill: none; stroke: #B3AEBC; stroke-width: 2; }
 
-/* 이모지 아이콘 칸 (파스텔 바탕) */
-.home2 .t1 { background: #FFE8E3; } .home2 .t2 { background: #E8F3FF; } .home2 .t3 { background: #EDE8FF; }
-.home2 .t4 { background: #E3F7EC; } .home2 .t5 { background: #FFF4E0; } .home2 .t6 { background: #FDE8F3; }
-.home2 .h-ico { width: 48px; height: 48px; border-radius: 14px; flex: none; display: inline-flex; align-items: center; justify-content: center; font-size: 24px; line-height: 1; overflow: hidden; }
-.home2 .h-ico img, .home2 .h-tile-ico img { width: 100%; height: 100%; object-fit: cover; }
+/* 주제별 */
+.home3 .x-explore { scroll-margin-top: 70px; }
+.home3 .x-search { display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 16px; border-radius: 16px; background: var(--x-card); border: 1px solid var(--x-line); margin-bottom: 12px; }
+.home3 .x-search svg { width: 19px; height: 19px; fill: none; stroke: var(--x-mute); stroke-width: 2; stroke-linecap: round; flex: none; }
+.home3 .x-search input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 16px; color: var(--x-ink); outline: none; }
+.home3 .x-search input::placeholder { color: var(--x-mute); }
+.home3 .x-search:focus-within { border-color: var(--x-accent); }
+.home3 .x-tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -20px 16px; padding: 0 20px; }
+.home3 .x-tabs::-webkit-scrollbar { display: none; }
+.home3 .x-tab { flex: none; height: 40px; padding: 0 16px; border-radius: 20px; border: 1px solid var(--x-line); background: transparent; color: var(--x-sub); font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.home3 .x-tab.on { background: var(--x-ink); border-color: var(--x-ink); color: #fff; }
+.home3 .x-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.home3 .x-card { background: var(--x-card); border-radius: 18px; padding: 16px 14px 14px; display: flex; flex-direction: column; gap: 4px; min-height: 128px; box-sizing: border-box; transition: transform 0.12s ease; }
+.home3 .x-card:active { transform: scale(0.98); }
+.home3 .x-card-ico { width: 44px; height: 44px; border-radius: 14px; background: var(--x-soft); display: inline-flex; align-items: center; justify-content: center; font-size: 24px; line-height: 1; margin-bottom: 8px; overflow: hidden; }
+.home3 .x-card strong { font-size: 15px; font-weight: 700; line-height: 1.35; word-break: keep-all; }
+.home3 .x-card span:last-child { font-size: 12.5px; color: var(--x-mute); }
+.home3 .x-empty { text-align: center; color: var(--x-mute); padding: 28px 0; margin: 0; }
 
-/* 사진 테스트 파란 카드 */
-.home2 .h-feature { display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 72px; }
-.home2 .h-feature-main { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 8px; padding: 22px; border-radius: 22px; background: var(--h-accent); color: #fff; }
-.home2 .h-feature-main::after { content: ""; position: absolute; right: -28px; bottom: -28px; width: 130px; height: 130px; border-radius: 50%; border: 16px solid rgba(255,255,255,0.16); }
-.home2 .h-badge { align-self: flex-start; padding: 4px 9px; border-radius: 8px; background: rgba(255,255,255,0.2); font-size: 12px; font-weight: 700; }
-.home2 .h-feature-main strong { font-size: 22px; font-weight: 800; line-height: 1.35; }
-.home2 .h-feature-sub { font-size: 14px; line-height: 1.55; max-width: 300px; }
-.home2 .h-feature-go { position: relative; z-index: 1; align-self: flex-start; margin-top: 6px; height: 44px; padding: 0 18px; border-radius: 12px; background: #fff; color: var(--h-accent); font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; }
-.home2 .h-feature-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.home2 .h-mini { display: flex; align-items: center; gap: 10px; padding: 14px 12px; border-radius: 18px; background: var(--h-card); }
-.home2 .h-mini .h-ico { width: 40px; height: 40px; border-radius: 12px; font-size: 20px; }
+/* 읽을거리 */
+.home3 .x-read-list { display: flex; flex-direction: column; gap: 10px; }
+.home3 .x-read-list a { background: var(--x-card); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 5px; }
+.home3 .x-tag { align-self: flex-start; font-size: 12px; font-weight: 700; color: var(--x-accent); background: var(--x-accent-soft); padding: 3px 8px; border-radius: 6px; }
+.home3 .x-read-list strong { font-size: 17px; font-weight: 700; line-height: 1.4; }
+.home3 .x-read-list a span:last-child { font-size: 14px; color: var(--x-mute); line-height: 1.5; }
 
-/* 가로로 넘기는 타일 줄 */
-.home2 .h-scroll { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 20px; scrollbar-width: none; margin: 0 -20px; padding: 0 20px 2px; }
-.home2 .h-scroll::-webkit-scrollbar { display: none; }
-.home2 .h-tile { flex: 0 0 128px; scroll-snap-align: start; display: flex; flex-direction: column; gap: 4px; }
-.home2 .h-tile-ico { height: 128px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 46px; line-height: 1; margin-bottom: 6px; overflow: hidden; }
-.home2 .h-tile .h-tile-title { font-size: 15px; font-weight: 700; line-height: 1.35; word-break: keep-all; }
-.home2 .h-tile-meta { font-size: 12px; color: var(--h-mute); }
+/* 아래 */
+.home3 .x-foot { border-top: 1px solid var(--x-line); padding-top: 20px; font-size: 12.5px; line-height: 1.7; color: var(--x-mute); }
+.home3 .x-foot p { margin: 0 0 6px; }
+.home3 .x-foot a { color: var(--x-sub); }
 
-/* 세로 목록 */
-.home2 .h-list { display: flex; flex-direction: column; }
-.home2 .h-row { display: flex; align-items: center; gap: 14px; padding: 10px 0; min-height: 48px; }
-.home2 .h-row-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.home2 .h-row-text strong { font-size: 15px; font-weight: 700; line-height: 1.4; }
-.home2 .h-row-text span { font-size: 13px; color: var(--h-mute); line-height: 1.45; }
-.home2 .h-chev { width: 18px; height: 18px; flex: none; fill: none; stroke: #B0B8C1; stroke-width: 2; }
-
-/* 운세 바로가기 4칸 */
-.home2 .h-quick-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-.home2 .h-quick { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 0 12px; border-radius: 16px; background: #F9FAFB; font-size: 13px; font-weight: 700; text-align: center; }
-.home2 .h-quick .h-ico { width: 44px; height: 44px; font-size: 22px; }
-
-/* 이야기 */
-.home2 .h-story-big { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 8px; }
-.home2 .h-story-card { display: flex; flex-direction: column; gap: 6px; padding: 16px 14px; min-height: 150px; border-radius: 18px; }
-.home2 .h-story-card.s1 { background: var(--h-ink); color: #fff; }
-.home2 .h-story-card.s2 { background: var(--h-accent-soft); color: var(--h-ink); }
-.home2 .h-story-tag { font-size: 12px; font-weight: 700; opacity: 0.85; }
-.home2 .h-story-card strong { font-size: 16px; font-weight: 800; line-height: 1.4; word-break: keep-all; }
-.home2 .h-story-card span:last-child { font-size: 13px; line-height: 1.5; opacity: 0.85; }
-.home2 .h-btn { display: flex; align-items: center; justify-content: center; height: 50px; margin-top: 12px; border-radius: 14px; background: var(--h-bg); font-size: 15px; font-weight: 700; color: var(--h-ink); }
-
-/* 검색 결과 */
-.home2 .h-results { margin: 12px 16px 0; }
-.home2 .h-empty { text-align: center; color: var(--h-mute); padding: 32px 0; margin: 0; }
-
-/* 하단 */
-.home2 .h-ad { margin: 16px 16px 0; }
-.home2 .h-notice { margin: 20px 20px 0; font-size: 12px; line-height: 1.6; color: var(--h-mute); }
-.home2 .h-foot { margin: 12px 20px 0; font-size: 12px; color: var(--h-mute); }
-.home2 .h-foot p { margin: 4px 0; }
-.home2 .h-foot a { color: var(--h-sub); }
-
-/* 하단 메뉴바 (휴대폰) */
-.home2 .h-tabbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); height: calc(64px + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); background: var(--h-card); border-top: 1px solid var(--h-line); }
-.home2 .h-tabbar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; color: var(--h-mute); }
-.home2 .h-tabbar a.on { color: var(--h-ink); font-weight: 700; }
-.home2 .h-tabbar svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
-
-.home2 a:focus-visible, .home2 input:focus-visible { outline: 2px solid var(--h-accent); outline-offset: 2px; }
-
-/* PC·태블릿: 넓게 쓰기 */
-@media (min-width: 768px) {
-  body.home2 { padding-bottom: 0; }
-  .home2 .h-tabbar { display: none; }
-  .home2 .h-hero { margin: 16px 16px 0; border-radius: 22px; padding: 28px; }
-  .home2 .h-hero h1 { font-size: 28px; }
-  .home2 .h-hero h1 br { display: none; }
-  .home2 .h-chips { flex-wrap: wrap; margin: 0; padding: 0; }
-  .home2 .h-feature { display: grid; grid-template-columns: 3fr 2fr; }
-  .home2 .h-feature-pair { grid-template-columns: 1fr; }
-  .home2 .h-scroll { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px 12px; overflow: visible; margin: 0; padding: 0; }
-  .home2 .h-tile-ico { height: auto; aspect-ratio: 4 / 3; font-size: 40px; }
-  .home2 .h-quick-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
-  .home2 #new .h-list, .home2 #compat .h-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
+/* PC·태블릿 */
+@media (min-width: 820px) {
+  .home3 .x-main { padding-top: 16px; gap: 56px; }
+  .home3 .x-top-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 24px; align-items: stretch; }
+  .home3 .x-hero { padding: 40px 36px 28px; }
+  .home3 .x-hero .x-hero-title { font-size: 36px; }
+  .home3 .x-hero-go { width: auto; padding: 0 32px; }
+  .home3 .x-hero-next { align-self: flex-start; padding: 0; }
+  .home3 .x-pop { display: flex; flex-direction: column; }
+  .home3 .x-pop .x-list { flex: 1; }
+  .home3 .x-tabs { flex-wrap: wrap; margin: 0 0 18px; padding: 0; }
+  .home3 .x-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .home3 .x-read-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 }
 </style>
 </head>
-<body class="home2">
+<body class="home3">
 
-<header class="h-top">
-  <div class="h-top-in">
-    <a class="h-logo" href="./"><span class="h-logo-mark">☰</span>알아볼괘</a>
-    <a class="h-top-link" href="blog/index.html">이야기</a>
+<header class="x-top">
+  <div class="x-top-in">
+    <a class="x-logo" href="./"><span class="x-logo-mark">☰</span>알아볼괘</a>
+    <nav class="x-top-nav" aria-label="바로가기">
+      <a href="#explore">테스트</a>
+      <a href="blog/index.html">이야기</a>
+    </nav>
   </div>
 </header>
 
-<main class="h-main">
-  <section class="h-hero">
-    <h1>오늘은 나의 <br />어떤 모습을 알아볼까요?</h1>
-    <label class="h-search">
+<main class="x-main">
+  <h1 class="x-sr">알아볼괘 - 재미로 보는 심리테스트·운세 모음</h1>
+
+  <div class="x-top-grid">
+    <section class="x-hero" aria-labelledby="heroTitle">
+      <p class="x-eyebrow">오늘의 테스트</p>
+      <div class="x-hero-emoji" id="heroEmoji" aria-hidden="true">🔥</div>
+      <h2 class="x-hero-title" id="heroTitle">나는 테토? 에겐?</h2>
+      <p class="x-hero-desc" id="heroDesc">지금 제일 핫한 테스트!</p>
+      <p class="x-hero-meta" id="heroMeta">10문항 · 30초</p>
+      <a class="x-hero-go" id="heroGo" href="tests/teto-egen/index.html">지금 시작하기</a>
+      <button type="button" class="x-hero-next" id="heroNext">다른 테스트 추천받기</button>
+    </section>
+
+    <section class="x-pop" aria-labelledby="popTitle">
+      <div class="x-head"><h2 id="popTitle">인기 테스트</h2></div>
+      <div class="x-list">
+        <a class="x-row" href="tests/teto-egen/index.html"><span class="x-ico" aria-hidden="true">🔥</span><span class="x-row-txt"><strong>나는 테토? 에겐?</strong><span>지금 제일 핫한 테스트!</span></span><svg class="x-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a class="x-row" href="tests/mbti/index.html"><span class="x-ico" aria-hidden="true">🔤</span><span class="x-row-txt"><strong>MBTI 간단 테스트</strong><span>나는 16유형 중 어디일까?</span></span><svg class="x-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a class="x-row" href="tests/king-face/index.html"><span class="x-ico" aria-hidden="true">👑</span><span class="x-row-txt"><strong>관상가 양반</strong><span>사진 한 장으로 보는 11가지 상</span></span><svg class="x-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a class="x-row" href="tests/tarot/index.html"><span class="x-ico"><img src="assets/img/tarot/witch-icon.jpg" alt="" /></span><span class="x-row-txt"><strong>오늘의 타로 점괘</strong><span>78장 중 오늘의 카드를 골라보세요</span></span><svg class="x-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a class="x-row" href="tests/saju/index.html"><span class="x-ico" aria-hidden="true">☯️</span><span class="x-row-txt"><strong>정통 사주풀이</strong><span>절기 기준 만세력으로 계산하는 사주팔자</span></span><svg class="x-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a class="x-row" href="tests/sociopath/index.html"><span class="x-ico" aria-hidden="true">🧊</span><span class="x-row-txt"><strong>소시오패스 테스트</strong><span>나의 냉철함 지수는 몇 %?</span></span><svg class="x-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      </div>
+    </section>
+  </div>
+
+  <section class="x-explore" id="explore" aria-labelledby="exTitle">
+    <div class="x-head">
+      <h2 id="exTitle">주제별로 골라보기</h2>
+      <span class="x-count">테스트 69개</span>
+    </div>
+    <label class="x-search">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input type="search" id="testSearchInput" placeholder="테스트 이름으로 찾기" aria-label="테스트 검색" autocomplete="off" />
     </label>
-    <nav class="h-chips" aria-label="주제 바로가기">
-      <a class="h-chip on" href="#popular">인기</a>
-      <a class="h-chip" href="#photo">사진</a>
-      <a class="h-chip" href="#personality">성격</a>
-      <a class="h-chip" href="#love">연애</a>
-      <a class="h-chip" href="#social">사회성</a>
-      <a class="h-chip" href="#temper">기질</a>
-      <a class="h-chip" href="#fortune">운세</a>
-      <a class="h-chip" href="#compat">궁합</a>
-      <a class="h-chip" href="#story">이야기</a>
-    </nav>
+    <div class="x-tabs" role="tablist" aria-label="주제">
+      <button type="button" class="x-tab on" role="tab" aria-selected="true" data-tab="new">새로 나온</button>
+      <button type="button" class="x-tab" role="tab" aria-selected="false" data-tab="personality">성격</button>
+      <button type="button" class="x-tab" role="tab" aria-selected="false" data-tab="love">연애</button>
+      <button type="button" class="x-tab" role="tab" aria-selected="false" data-tab="social">사회성</button>
+      <button type="button" class="x-tab" role="tab" aria-selected="false" data-tab="temper">기질</button>
+      <button type="button" class="x-tab" role="tab" aria-selected="false" data-tab="fortune">운세</button>
+      <button type="button" class="x-tab" role="tab" aria-selected="false" data-tab="compat">궁합</button>
+      <button type="button" class="x-tab" role="tab" aria-selected="false" data-tab="photo">사진</button>
+    </div>
+    <div class="x-grid" data-panel="new">
+      <a class="x-card" href="tests/baby-type/index.html" data-t="우리 아기 성격 유형" data-d="탐험대장? 애교뿜뿜? 고집장군? 엄마 아빠가 답해요"><span class="x-card-ico" aria-hidden="true">👶</span><strong>우리 아기 성격 유형</strong><span>10문항 · 1분</span></a>
+      <a class="x-card" href="tests/food-type/index.html" data-t="내가 음식이라면?" data-d="떡볶이? 곰탕? 마라탕?"><span class="x-card-ico" aria-hidden="true">🍽️</span><strong>내가 음식이라면?</strong><span>10문항 · 1분</span></a>
+      <a class="x-card" href="tests/reply-style/index.html" data-t="카톡 답장 유형" data-d="읽씹? 장문? 이모티콘 폭격?"><span class="x-card-ico" aria-hidden="true">💬</span><strong>카톡 답장 유형</strong><span>10문항 · 1분</span></a>
+      <a class="x-card" href="tests/life-genre/index.html" data-t="내 인생을 드라마로 만들면?" data-d="로맨스? 스릴러? 시트콤?"><span class="x-card-ico" aria-hidden="true">🎬</span><strong>내 인생을 드라마로 만들면?</strong><span>10문항 · 1분</span></a>
+      <a class="x-card" href="tests/game-position/index.html" data-t="인생 게임 포지션" data-d="탱커? 딜러? 힐러?"><span class="x-card-ico" aria-hidden="true">🎮</span><strong>인생 게임 포지션</strong><span>10문항 · 1분</span></a>
+      <a class="x-card" href="tests/ideal-type/index.html" data-t="내가 끌리는 사람 유형" data-d="내 이상형 코드는 뭘까?"><span class="x-card-ico" aria-hidden="true">💘</span><strong>내가 끌리는 사람 유형</strong><span>10문항 · 1분</span></a>
+      <a class="x-card" href="tests/travel-type/index.html" data-t="나는 어떤 여행자?" data-d="계획파? 즉흥파? 호캉스파?"><span class="x-card-ico" aria-hidden="true">✈️</span><strong>나는 어떤 여행자?</strong><span>10문항 · 1분</span></a>
+      <a class="x-card" href="tests/stress-relief/index.html" data-t="스트레스 해소 유형" data-d="먹어서? 자서? 뛰어서?"><span class="x-card-ico" aria-hidden="true">🧘</span><strong>스트레스 해소 유형</strong><span>10문항 · 1분</span></a>
+      <a class="x-card" href="tests/sleep-type/index.html" data-t="나의 수면 유형" data-d="아침형? 새벽형? 돌덩이형?"><span class="x-card-ico" aria-hidden="true">😴</span><strong>나의 수면 유형</strong><span>10문항 · 1분</span></a>
+      <a class="x-card" href="tests/hoesik-type/index.html" data-t="회식 자리 유형" data-d="분위기 메이커? 1차 요정?"><span class="x-card-ico" aria-hidden="true">🍻</span><strong>회식 자리 유형</strong><span>10문항 · 1분</span></a>
+      <a class="x-card" href="tests/pet-match/index.html" data-t="나와 맞는 반려동물" data-d="생활 패턴으로 찾아보기"><span class="x-card-ico" aria-hidden="true">🐾</span><strong>나와 맞는 반려동물</strong><span>10문항 · 1분</span></a>
+    </div>
+    <div class="x-grid" data-panel="personality" hidden>
+      <a class="x-card" href="tests/teto-egen/index.html" data-t="나는 테토? 에겐?" data-d="지금 제일 핫한 테스트!"><span class="x-card-ico" aria-hidden="true">🔥</span><strong>나는 테토? 에겐?</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/mbti/index.html" data-t="MBTI 간단 테스트" data-d="나는 16유형 중 어디일까?"><span class="x-card-ico" aria-hidden="true">🔤</span><strong>MBTI 간단 테스트</strong><span>12문항 · 1분</span></a>
+      <a class="x-card" href="tests/sociopath/index.html" data-t="소시오패스 테스트" data-d="나의 냉철함 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🧊</span><strong>소시오패스 테스트</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/animal-face/index.html" data-t="동물상 15종" data-d="얼굴 비율을 실제로 재서 찾기"><span class="x-card-ico" aria-hidden="true">🐾</span><strong>동물상 15종</strong><span>사진</span></a>
+      <a class="x-card" href="tests/king-face/index.html" data-t="관상가 양반" data-d="사진 한 장으로 보는 11가지 상"><span class="x-card-ico" aria-hidden="true">👑</span><strong>관상가 양반</strong><span>사진</span></a>
+      <a class="x-card" href="tests/face-ratio/index.html" data-t="내 얼굴 비율" data-d="가로세로비·턱 각도·눈코입 비율"><span class="x-card-ico" aria-hidden="true">📏</span><strong>내 얼굴 비율</strong><span>사진</span></a>
+      <a class="x-card" href="tests/past-life/index.html" data-t="전생 테스트" data-d="나는 전생에 어떤 사람이었을까?"><span class="x-card-ico" aria-hidden="true">🔮</span><strong>전생 테스트</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/iqeq/index.html" data-t="IQ / EQ 테스트" data-d="도형추리까지 나오는 진짜 IQ 테스트"><span class="x-card-ico" aria-hidden="true">🧩</span><strong>IQ / EQ 테스트</strong><span>16문항 · 3분</span></a>
+      <a class="x-card" href="tests/psychopath/index.html" data-t="싸이코패스 테스트" data-d="나의 숨겨진 대담함 지수는?"><span class="x-card-ico" aria-hidden="true">🐺</span><strong>싸이코패스 테스트</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/narcissist-index/index.html" data-t="나르시시스트 지수" data-d="나르시시스트 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">💅</span><strong>나르시시스트 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/self-esteem/index.html" data-t="자존감 테스트" data-d="나의 자존감 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🪫</span><strong>자존감 테스트</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/slang-quiz/index.html" data-t="신조어 지식퀴즈" data-d="매번 문제가 바뀌는 신조어 퀴즈"><span class="x-card-ico" aria-hidden="true">🔥</span><strong>신조어 지식퀴즈</strong><span>10문항 · 1분</span></a>
+    </div>
+    <div class="x-grid" data-panel="love" hidden>
+      <a class="x-card" href="tests/love-style/index.html" data-t="연애 유형 테스트" data-d="나의 연애 스타일은 5가지 중 뭘까?"><span class="x-card-ico" aria-hidden="true">💘</span><strong>연애 유형 테스트</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/love-language/index.html" data-t="사랑의 언어 테스트" data-d="나는 어떤 방식으로 사랑을 느낄까?"><span class="x-card-ico" aria-hidden="true">🫶</span><strong>사랑의 언어 테스트</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/fastlove-index/index.html" data-t="금사빠 지수" data-d="금사빠 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">💘</span><strong>금사빠 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/clingy-index/index.html" data-t="집착 지수" data-d="집착 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🔗</span><strong>집착 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/pushpull-index/index.html" data-t="밀당 고수 지수" data-d="밀당 고수 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">💘</span><strong>밀당 고수 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/romantic-index/index.html" data-t="로맨티스트 지수" data-d="로맨티스트 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">💐</span><strong>로맨티스트 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/tsundere-index/index.html" data-t="츤데레 지수" data-d="츤데레 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">😤</span><strong>츤데레 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/peopleluck-index/index.html" data-t="인복 지수" data-d="인복 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🍀</span><strong>인복 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/empathy-index/index.html" data-t="공감능력 지수" data-d="공감능력 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🥹</span><strong>공감능력 지수</strong><span>10문항 · 30초</span></a>
+    </div>
+    <div class="x-grid" data-panel="social" hidden>
+      <a class="x-card" href="tests/insa-assa/index.html" data-t="인싸/아싸 지수" data-d="나의 인싸력은 몇 %?"><span class="x-card-ico" aria-hidden="true">🕺</span><strong>인싸/아싸 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/nunchi/index.html" data-t="눈치 테스트" data-d="나의 눈치 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🧠</span><strong>눈치 테스트</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/kkondae/index.html" data-t="꼰대력 테스트" data-d="나의 꼰대력 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">📢</span><strong>꼰대력 테스트</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/dark-side/index.html" data-t="흑화 지수 테스트" data-d="나는 얼마나 흑화가 진행됐을까?"><span class="x-card-ico" aria-hidden="true">🌑</span><strong>흑화 지수 테스트</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/attention/index.html" data-t="관종력 테스트" data-d="나의 숨겨진 관종력은 몇 %?"><span class="x-card-ico" aria-hidden="true">📸</span><strong>관종력 테스트</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/pushover-index/index.html" data-t="호구력 테스트" data-d="나의 호구력 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🥺</span><strong>호구력 테스트</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/vanity-index/index.html" data-t="허세 지수" data-d="허세 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🎩</span><strong>허세 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/nosy-index/index.html" data-t="오지랖 지수" data-d="오지랖 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🗣️</span><strong>오지랖 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/leadership-index/index.html" data-t="리더십 지수" data-d="리더십 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">👑</span><strong>리더십 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/complainer-index/index.html" data-t="프로불편러 지수" data-d="프로불편러 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">😤</span><strong>프로불편러 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/certainty-index/index.html" data-t="답정너 지수" data-d="답정너 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🙄</span><strong>답정너 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/shy-index/index.html" data-t="낯가림 지수" data-d="낯가림 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🙈</span><strong>낯가림 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/positivity-index/index.html" data-t="긍정왕 지수" data-d="긍정왕 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🌈</span><strong>긍정왕 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/coolness-index/index.html" data-t="쿨함 지수" data-d="쿨함 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🧊</span><strong>쿨함 지수</strong><span>10문항 · 30초</span></a>
+    </div>
+    <div class="x-grid" data-panel="temper" hidden>
+      <a class="x-card" href="tests/laziness-index/index.html" data-t="귀차니즘 지수" data-d="귀차니즘 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🛋️</span><strong>귀차니즘 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/hottemper-index/index.html" data-t="다혈질 지수" data-d="다혈질 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🔥</span><strong>다혈질 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/sensitive-index/index.html" data-t="예민보스 지수" data-d="예민보스 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🐚</span><strong>예민보스 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/perfectionist-index/index.html" data-t="완벽주의 지수" data-d="완벽주의 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">📐</span><strong>완벽주의 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/worklife-index/index.html" data-t="워라밸 지수" data-d="워라밸 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🌇</span><strong>워라밸 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/stingy-index/index.html" data-t="짠내 지수" data-d="짠내 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🪙</span><strong>짠내 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/klutz-index/index.html" data-t="허당 지수" data-d="허당 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🌀</span><strong>허당 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/jealousy-index/index.html" data-t="질투 지수" data-d="질투 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">😤</span><strong>질투 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/planner-index/index.html" data-t="계획형 vs 즉흥형" data-d="나는 계획형? 즉흥형?"><span class="x-card-ico" aria-hidden="true">🗓️</span><strong>계획형 vs 즉흥형</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/cry-index/index.html" data-t="눈물버튼 지수" data-d="눈물버튼 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">😭</span><strong>눈물버튼 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/energy-index/index.html" data-t="텐션 지수" data-d="텐션 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">⚡</span><strong>텐션 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/mood-index/index.html" data-t="갬성 지수" data-d="갬성 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">🌇</span><strong>갬성 지수</strong><span>10문항 · 30초</span></a>
+      <a class="x-card" href="tests/littlejoy-index/index.html" data-t="소확행 지수" data-d="소확행 지수는 몇 %?"><span class="x-card-ico" aria-hidden="true">☕</span><strong>소확행 지수</strong><span>10문항 · 30초</span></a>
+    </div>
+    <div class="x-grid" data-panel="fortune" hidden>
+      <a class="x-card" href="tests/tarot/index.html" data-t="오늘의 타로 점괘" data-d="78장 중 오늘의 카드를 골라보세요"><span class="x-card-ico"><img src="assets/img/tarot/witch-icon.jpg" alt="" /></span><strong>오늘의 타로 점괘</strong><span>78장</span></a>
+      <a class="x-card" href="tests/saju/index.html" data-t="정통 사주풀이" data-d="절기 기준 만세력으로 계산하는 사주팔자"><span class="x-card-ico" aria-hidden="true">☯️</span><strong>정통 사주풀이</strong><span>만세력</span></a>
+      <a class="x-card" href="tests/today-fortune/index.html" data-t="오늘의 운세" data-d="내 띠만 고르면 끝! 총운·애정운·금전운·건강운"><span class="x-card-ico" aria-hidden="true">🔮</span><strong>오늘의 운세</strong><span>띠별</span></a>
+      <a class="x-card" href="tests/zodiac-fortune/index.html" data-t="별자리 운세" data-d="내 별자리만 고르면 끝! 오늘의 총운"><span class="x-card-ico" aria-hidden="true">✨</span><strong>별자리 운세</strong><span>별자리</span></a>
+      <a class="x-card" href="tests/lotto-number/index.html" data-t="로또 번호 추천" data-d="1~45 중 오늘의 행운 번호"><span class="x-card-ico" aria-hidden="true">🍀</span><strong>로또 번호 추천</strong><span>무작위</span></a>
+      <a class="x-card" href="tests/blood-type/index.html" data-t="혈액형 성격 궁합" data-d="성격 분석부터 최고의 궁합까지"><span class="x-card-ico" aria-hidden="true">🩸</span><strong>혈액형 성격 궁합</strong><span>혈액형</span></a>
+      <a class="x-card" href="tests/dream-interpretation/index.html" data-t="꿈해몽 검색" data-d="키워드로 찾는 150가지 꿈풀이"><span class="x-card-ico" aria-hidden="true">🌙</span><strong>꿈해몽 검색</strong><span>150가지</span></a>
+    </div>
+    <div class="x-grid" data-panel="compat" hidden>
+      <a class="x-card" href="tests/saju-compat/index.html" data-t="사주명리학 궁합" data-d="두 사람의 생년월일시로 계산하는 사주 궁합"><span class="x-card-ico" aria-hidden="true">☯️</span><strong>사주명리학 궁합</strong><span>생년월일시</span></a>
+      <a class="x-card" href="tests/compat-simple/index.html" data-t="간단 궁합보기" data-d="이름 + 생년월일로 30초 만에"><span class="x-card-ico" aria-hidden="true">💕</span><strong>간단 궁합보기</strong><span>30초</span></a>
+      <a class="x-card" href="tests/name-compat/index.html" data-t="이름궁합 테스트" data-d="이름 두 개만 입력하면 바로"><span class="x-card-ico" aria-hidden="true">💌</span><strong>이름궁합 테스트</strong><span>이름만</span></a>
+    </div>
+    <div class="x-grid" data-panel="photo" hidden>
+      <a class="x-card" href="tests/king-face/index.html" data-t="관상가 양반" data-d="사진 한 장으로 보는 11가지 상"><span class="x-card-ico" aria-hidden="true">👑</span><strong>관상가 양반</strong><span>사진</span></a>
+      <a class="x-card" href="tests/animal-face/index.html" data-t="동물상 15종" data-d="얼굴 비율을 실제로 재서 찾기"><span class="x-card-ico" aria-hidden="true">🐾</span><strong>동물상 15종</strong><span>사진</span></a>
+      <a class="x-card" href="tests/face-ratio/index.html" data-t="내 얼굴 비율" data-d="가로세로비·턱 각도·눈코입 비율"><span class="x-card-ico" aria-hidden="true">📏</span><strong>내 얼굴 비율</strong><span>사진</span></a>
+    </div>
+    <div class="x-grid" id="searchResults" hidden></div>
+    <p class="x-empty" id="searchEmpty" hidden>찾는 테스트가 없어요. 다른 단어로 찾아보세요.</p>
   </section>
 
-  <div id="searchResultsSection" class="h-card h-results" hidden></div>
-
-  <div id="homeContent" class="h-content">
-  <section id="photo" class="h-feature">
-    <a class="h-feature-main" href="tests/king-face/index.html">
-      <span class="h-badge">NEW · 사진 테스트</span>
-      <strong>사진 한 장으로 보는<br />나의 관상</strong>
-      <span class="h-feature-sub">왕상·장군상 등 11가지 상 중 내 얼굴은? 사진은 내 폰 밖으로 나가지 않아요</span>
-      <span class="h-feature-go">관상 보러 가기</span>
-    </a>
-    <div class="h-feature-pair">
-      <a class="h-mini h-item" href="tests/animal-face/index.html"><span class="h-ico t2" aria-hidden="true">🐾</span><span class="h-row-text"><strong class="h-tile-title">동물상 15종</strong><span>얼굴 비율을 실제로 재서 찾기</span></span></a>
-      <a class="h-mini h-item" href="tests/face-ratio/index.html"><span class="h-ico t3" aria-hidden="true">📏</span><span class="h-row-text"><strong class="h-tile-title">내 얼굴 비율</strong><span>가로세로비·턱 각도·눈코입 비율</span></span></a>
+  <section class="x-read" aria-labelledby="readTitle">
+    <div class="x-head"><h2 id="readTitle">읽을거리</h2><a class="x-more" href="blog/index.html">83편 모두 보기</a></div>
+    <p class="x-sub">테스트 뒤에 숨은 유래와 과학 이야기</p>
+    <div class="x-read-list">
+      <a href="blog/face-reading-science.html"><span class="x-tag">과학</span><strong>관상학의 유래와 과학적 근거</strong><span>이마가 넓으면 재물운이 좋다는 말, 근거가 있을까</span></a>
+      <a href="blog/mbti-origin.html"><span class="x-tag">유래</span><strong>MBTI는 왜 이렇게 인기가 많을까?</strong><span>탄생 배경부터 알아두면 좋은 한계까지</span></a>
+      <a href="blog/personality-change.html"><span class="x-tag">연구</span><strong>성격은 정말 안 바뀔까?</strong><span>빅파이브 연구가 말하는 것</span></a>
     </div>
-  </section>
-  <section id="popular" class="h-card">
-    <div class="h-head"><h2>지금 인기 있는 테스트</h2></div>
-    <div class="h-scroll">
-      <a class="h-tile h-item" href="tests/teto-egen/index.html" data-desc="지금 제일 핫한 테스트!"><span class="h-tile-ico t1" aria-hidden="true">🔥</span><span class="h-tile-title">나는 테토? 에겐?</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/mbti/index.html" data-desc="나는 16유형 중 어디일까?"><span class="h-tile-ico t2" aria-hidden="true">🔤</span><span class="h-tile-title">MBTI 간단 테스트</span><span class="h-tile-meta">12문항 · 1분</span></a>
-      <a class="h-tile h-item" href="tests/tarot/index.html" data-desc="78장 중 오늘의 카드를 골라보세요"><span class="h-tile-ico t4"><img src="assets/img/tarot/witch-icon.jpg" alt="" /></span><span class="h-tile-title">오늘의 타로 점괘</span><span class="h-tile-meta">78장</span></a>
-      <a class="h-tile h-item" href="tests/saju/index.html" data-desc="절기 기준 만세력으로 계산하는 사주팔자"><span class="h-tile-ico t5" aria-hidden="true">☯️</span><span class="h-tile-title">정통 사주풀이</span><span class="h-tile-meta">만세력</span></a>
-      <a class="h-tile h-item" href="tests/sociopath/index.html" data-desc="나의 냉철함 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">🧊</span><span class="h-tile-title">소시오패스 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/iqeq/index.html" data-desc="도형추리까지 나오는 진짜 IQ 테스트"><span class="h-tile-ico t3" aria-hidden="true">🧩</span><span class="h-tile-title">IQ / EQ 테스트</span><span class="h-tile-meta">16문항 · 3분</span></a>
-      <a class="h-tile h-item" href="tests/past-life/index.html" data-desc="나는 전생에 어떤 사람이었을까?"><span class="h-tile-ico t5" aria-hidden="true">🔮</span><span class="h-tile-title">전생 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/psychopath/index.html" data-desc="나의 숨겨진 대담함 지수는?"><span class="h-tile-ico t1" aria-hidden="true">🐺</span><span class="h-tile-title">싸이코패스 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/slang-quiz/index.html" data-desc="매번 문제가 바뀌는 신조어 퀴즈"><span class="h-tile-ico t6" aria-hidden="true">🔥</span><span class="h-tile-title">신조어 지식퀴즈</span><span class="h-tile-meta">10문항 · 1분</span></a>
-      <a class="h-tile h-item" href="tests/lotto-number/index.html" data-desc="1~45 중 오늘의 행운 번호"><span class="h-tile-ico t6" aria-hidden="true">🍀</span><span class="h-tile-title">로또 번호 추천</span><span class="h-tile-meta">무작위</span></a>
-    </div>
-  </section>
-  <section id="fortune" class="h-card">
-    <div class="h-head"><h2>오늘의 운세</h2></div>
-    <div class="h-quick-grid">
-      <a class="h-quick" href="tests/tarot/index.html"><span class="h-ico t4"><img src="assets/img/tarot/witch-icon.jpg" alt="" /></span><span>타로</span></a>
-      <a class="h-quick" href="tests/saju/index.html"><span class="h-ico t5" aria-hidden="true">☯️</span><span>사주</span></a>
-      <a class="h-quick" href="tests/today-fortune/index.html"><span class="h-ico t3" aria-hidden="true">🔮</span><span>띠별 운세</span></a>
-      <a class="h-quick" href="tests/zodiac-fortune/index.html"><span class="h-ico t4" aria-hidden="true">✨</span><span>별자리</span></a>
-      <a class="h-quick" href="tests/lotto-number/index.html"><span class="h-ico t6" aria-hidden="true">🍀</span><span>로또 번호</span></a>
-      <a class="h-quick" href="tests/blood-type/index.html"><span class="h-ico t5" aria-hidden="true">🩸</span><span>혈액형</span></a>
-      <a class="h-quick" href="tests/dream-interpretation/index.html"><span class="h-ico t6" aria-hidden="true">🌙</span><span>꿈해몽</span></a>
-      <a class="h-quick" href="tests/saju-compat/index.html"><span class="h-ico t1" aria-hidden="true">☯️</span><span>사주 궁합</span></a>
-    </div>
-  </section>
-  <section id="new" class="h-card">
-    <div class="h-head"><h2>새로 나온 테스트</h2></div>
-    <div class="h-list">
-      <a class="h-row h-item" href="tests/baby-type/index.html"><span class="h-ico t2" aria-hidden="true">👶</span><span class="h-row-text"><strong class="h-tile-title">우리 아기 성격 유형</strong><span>탐험대장? 애교뿜뿜? 고집장군? 엄마 아빠가 답해요</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/food-type/index.html"><span class="h-ico t3" aria-hidden="true">🍽️</span><span class="h-row-text"><strong class="h-tile-title">내가 음식이라면?</strong><span>떡볶이? 곰탕? 마라탕?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/reply-style/index.html"><span class="h-ico t4" aria-hidden="true">💬</span><span class="h-row-text"><strong class="h-tile-title">카톡 답장 유형</strong><span>읽씹? 장문? 이모티콘 폭격?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/life-genre/index.html"><span class="h-ico t5" aria-hidden="true">🎬</span><span class="h-row-text"><strong class="h-tile-title">내 인생을 드라마로 만들면?</strong><span>로맨스? 스릴러? 시트콤?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/game-position/index.html"><span class="h-ico t6" aria-hidden="true">🎮</span><span class="h-row-text"><strong class="h-tile-title">인생 게임 포지션</strong><span>탱커? 딜러? 힐러?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/ideal-type/index.html"><span class="h-ico t1" aria-hidden="true">💘</span><span class="h-row-text"><strong class="h-tile-title">내가 끌리는 사람 유형</strong><span>내 이상형 코드는 뭘까?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/travel-type/index.html"><span class="h-ico t2" aria-hidden="true">✈️</span><span class="h-row-text"><strong class="h-tile-title">나는 어떤 여행자?</strong><span>계획파? 즉흥파? 호캉스파?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/stress-relief/index.html"><span class="h-ico t3" aria-hidden="true">🧘</span><span class="h-row-text"><strong class="h-tile-title">스트레스 해소 유형</strong><span>먹어서? 자서? 뛰어서?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/sleep-type/index.html"><span class="h-ico t4" aria-hidden="true">😴</span><span class="h-row-text"><strong class="h-tile-title">나의 수면 유형</strong><span>아침형? 새벽형? 돌덩이형?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/hoesik-type/index.html"><span class="h-ico t5" aria-hidden="true">🍻</span><span class="h-row-text"><strong class="h-tile-title">회식 자리 유형</strong><span>분위기 메이커? 1차 요정?</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/pet-match/index.html"><span class="h-ico t6" aria-hidden="true">🐾</span><span class="h-row-text"><strong class="h-tile-title">나와 맞는 반려동물</strong><span>생활 패턴으로 찾아보기</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-    </div>
-  </section>
-  <section id="personality" class="h-card">
-    <div class="h-head"><h2>성격 유형 &amp; 나 알아보기</h2><span class="h-count">12개</span></div>
-    <div class="h-scroll">
-      <a class="h-tile h-item" href="tests/teto-egen/index.html" data-desc="지금 제일 핫한 테스트!"><span class="h-tile-ico t1" aria-hidden="true">🔥</span><span class="h-tile-title">나는 테토? 에겐?</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/mbti/index.html" data-desc="나는 16유형 중 어디일까?"><span class="h-tile-ico t2" aria-hidden="true">🔤</span><span class="h-tile-title">MBTI 간단 테스트</span><span class="h-tile-meta">12문항 · 1분</span></a>
-      <a class="h-tile h-item" href="tests/sociopath/index.html" data-desc="나의 냉철함 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">🧊</span><span class="h-tile-title">소시오패스 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/animal-face/index.html" data-desc="얼굴 비율을 실제로 재서 찾기"><span class="h-tile-ico t2" aria-hidden="true">🐾</span><span class="h-tile-title">동물상 15종</span><span class="h-tile-meta">사진</span></a>
-      <a class="h-tile h-item" href="tests/king-face/index.html" data-desc="사진 한 장으로 보는 11가지 상"><span class="h-tile-ico t1" aria-hidden="true">👑</span><span class="h-tile-title">관상가 양반</span><span class="h-tile-meta">사진</span></a>
-      <a class="h-tile h-item" href="tests/face-ratio/index.html" data-desc="가로세로비·턱 각도·눈코입 비율"><span class="h-tile-ico t3" aria-hidden="true">📏</span><span class="h-tile-title">내 얼굴 비율</span><span class="h-tile-meta">사진</span></a>
-      <a class="h-tile h-item" href="tests/past-life/index.html" data-desc="나는 전생에 어떤 사람이었을까?"><span class="h-tile-ico t5" aria-hidden="true">🔮</span><span class="h-tile-title">전생 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/iqeq/index.html" data-desc="도형추리까지 나오는 진짜 IQ 테스트"><span class="h-tile-ico t3" aria-hidden="true">🧩</span><span class="h-tile-title">IQ / EQ 테스트</span><span class="h-tile-meta">16문항 · 3분</span></a>
-      <a class="h-tile h-item" href="tests/psychopath/index.html" data-desc="나의 숨겨진 대담함 지수는?"><span class="h-tile-ico t1" aria-hidden="true">🐺</span><span class="h-tile-title">싸이코패스 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/narcissist-index/index.html" data-desc="나르시시스트 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">💅</span><span class="h-tile-title">나르시시스트 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/self-esteem/index.html" data-desc="나의 자존감 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">🪫</span><span class="h-tile-title">자존감 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/slang-quiz/index.html" data-desc="매번 문제가 바뀌는 신조어 퀴즈"><span class="h-tile-ico t6" aria-hidden="true">🔥</span><span class="h-tile-title">신조어 지식퀴즈</span><span class="h-tile-meta">10문항 · 1분</span></a>
-    </div>
-  </section>
-  <section id="love" class="h-card">
-    <div class="h-head"><h2>연애 &amp; 관계 지수</h2><span class="h-count">9개</span></div>
-    <div class="h-scroll">
-      <a class="h-tile h-item" href="tests/love-style/index.html" data-desc="나의 연애 스타일은 5가지 중 뭘까?"><span class="h-tile-ico t3" aria-hidden="true">💘</span><span class="h-tile-title">연애 유형 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/love-language/index.html" data-desc="나는 어떤 방식으로 사랑을 느낄까?"><span class="h-tile-ico t4" aria-hidden="true">🫶</span><span class="h-tile-title">사랑의 언어 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/fastlove-index/index.html" data-desc="금사빠 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">💘</span><span class="h-tile-title">금사빠 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/clingy-index/index.html" data-desc="집착 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🔗</span><span class="h-tile-title">집착 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/pushpull-index/index.html" data-desc="밀당 고수 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">💘</span><span class="h-tile-title">밀당 고수 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/romantic-index/index.html" data-desc="로맨티스트 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">💐</span><span class="h-tile-title">로맨티스트 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/tsundere-index/index.html" data-desc="츤데레 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">😤</span><span class="h-tile-title">츤데레 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/peopleluck-index/index.html" data-desc="인복 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">🍀</span><span class="h-tile-title">인복 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/empathy-index/index.html" data-desc="공감능력 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🥹</span><span class="h-tile-title">공감능력 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-    </div>
-  </section>
-  <section id="social" class="h-card">
-    <div class="h-head"><h2>사회성 &amp; 태도 지수</h2><span class="h-count">14개</span></div>
-    <div class="h-scroll">
-      <a class="h-tile h-item" href="tests/insa-assa/index.html" data-desc="나의 인싸력은 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🕺</span><span class="h-tile-title">인싸/아싸 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/nunchi/index.html" data-desc="나의 눈치 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">🧠</span><span class="h-tile-title">눈치 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/kkondae/index.html" data-desc="나의 꼰대력 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">📢</span><span class="h-tile-title">꼰대력 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/dark-side/index.html" data-desc="나는 얼마나 흑화가 진행됐을까?"><span class="h-tile-ico t3" aria-hidden="true">🌑</span><span class="h-tile-title">흑화 지수 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/attention/index.html" data-desc="나의 숨겨진 관종력은 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">📸</span><span class="h-tile-title">관종력 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/pushover-index/index.html" data-desc="나의 호구력 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🥺</span><span class="h-tile-title">호구력 테스트</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/vanity-index/index.html" data-desc="허세 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🎩</span><span class="h-tile-title">허세 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/nosy-index/index.html" data-desc="오지랖 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">🗣️</span><span class="h-tile-title">오지랖 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/leadership-index/index.html" data-desc="리더십 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">👑</span><span class="h-tile-title">리더십 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/complainer-index/index.html" data-desc="프로불편러 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">😤</span><span class="h-tile-title">프로불편러 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/certainty-index/index.html" data-desc="답정너 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">🙄</span><span class="h-tile-title">답정너 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/shy-index/index.html" data-desc="낯가림 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">🙈</span><span class="h-tile-title">낯가림 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/positivity-index/index.html" data-desc="긍정왕 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🌈</span><span class="h-tile-title">긍정왕 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/coolness-index/index.html" data-desc="쿨함 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">🧊</span><span class="h-tile-title">쿨함 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-    </div>
-  </section>
-  <section id="temper" class="h-card">
-    <div class="h-head"><h2>기질 &amp; 성향 지수</h2><span class="h-count">13개</span></div>
-    <div class="h-scroll">
-      <a class="h-tile h-item" href="tests/laziness-index/index.html" data-desc="귀차니즘 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">🛋️</span><span class="h-tile-title">귀차니즘 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/hottemper-index/index.html" data-desc="다혈질 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">🔥</span><span class="h-tile-title">다혈질 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/sensitive-index/index.html" data-desc="예민보스 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">🐚</span><span class="h-tile-title">예민보스 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/perfectionist-index/index.html" data-desc="완벽주의 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">📐</span><span class="h-tile-title">완벽주의 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/worklife-index/index.html" data-desc="워라밸 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🌇</span><span class="h-tile-title">워라밸 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/stingy-index/index.html" data-desc="짠내 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">🪙</span><span class="h-tile-title">짠내 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/klutz-index/index.html" data-desc="허당 지수는 몇 %?"><span class="h-tile-ico t2" aria-hidden="true">🌀</span><span class="h-tile-title">허당 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/jealousy-index/index.html" data-desc="질투 지수는 몇 %?"><span class="h-tile-ico t3" aria-hidden="true">😤</span><span class="h-tile-title">질투 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/planner-index/index.html" data-desc="나는 계획형? 즉흥형?"><span class="h-tile-ico t2" aria-hidden="true">🗓️</span><span class="h-tile-title">계획형 vs 즉흥형</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/cry-index/index.html" data-desc="눈물버튼 지수는 몇 %?"><span class="h-tile-ico t4" aria-hidden="true">😭</span><span class="h-tile-title">눈물버튼 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/energy-index/index.html" data-desc="텐션 지수는 몇 %?"><span class="h-tile-ico t5" aria-hidden="true">⚡</span><span class="h-tile-title">텐션 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/mood-index/index.html" data-desc="갬성 지수는 몇 %?"><span class="h-tile-ico t6" aria-hidden="true">🌇</span><span class="h-tile-title">갬성 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-      <a class="h-tile h-item" href="tests/littlejoy-index/index.html" data-desc="소확행 지수는 몇 %?"><span class="h-tile-ico t1" aria-hidden="true">☕</span><span class="h-tile-title">소확행 지수</span><span class="h-tile-meta">10문항 · 30초</span></a>
-    </div>
-  </section>
-  <section id="compat" class="h-card">
-    <div class="h-head"><h2>궁합 보기</h2></div>
-    <div class="h-list">
-      <a class="h-row h-item" href="tests/saju-compat/index.html"><span class="h-ico t1" aria-hidden="true">☯️</span><span class="h-row-text"><strong class="h-tile-title">사주명리학 궁합</strong><span>두 사람의 생년월일시로 계산하는 사주 궁합</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/compat-simple/index.html"><span class="h-ico t2" aria-hidden="true">💕</span><span class="h-row-text"><strong class="h-tile-title">간단 궁합보기</strong><span>이름 + 생년월일로 30초 만에</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row h-item" href="tests/name-compat/index.html"><span class="h-ico t3" aria-hidden="true">💌</span><span class="h-row-text"><strong class="h-tile-title">이름궁합 테스트</strong><span>이름 두 개만 입력하면 바로</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-    </div>
-  </section>
-  <section id="story" class="h-card">
-    <div class="h-head"><h2>알아볼괘 이야기</h2><a class="h-more" href="blog/index.html">전체보기</a></div>
-    <p class="h-sub">테스트 뒤에 숨은 유래와 과학 이야기 83편</p>
-    <div class="h-story-big">
-      <a class="h-story-card s1" href="blog/face-reading-science.html"><span class="h-story-tag">과학</span><strong>관상학의 유래와 과학적 근거</strong><span>이마가 넓으면 재물운이 좋다는 말, 근거가 있을까</span></a>
-      <a class="h-story-card s2" href="blog/mbti-origin.html"><span class="h-story-tag">유래</span><strong>MBTI는 왜 이렇게 인기가 많을까?</strong><span>탄생 배경부터 알아두면 좋은 한계까지</span></a>
-    </div>
-    <div class="h-list">
-      <a class="h-row" href="blog/mirror-self.html"><span class="h-ico t3" aria-hidden="true">🪞</span><span class="h-row-text"><strong>거울 속 나와 사진 속 내가 다른 이유</strong><span>어느 쪽이 진짜 내 얼굴일까</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row" href="blog/personality-change.html"><span class="h-ico t4" aria-hidden="true">🌱</span><span class="h-row-text"><strong>성격은 정말 안 바뀔까?</strong><span>빅파이브 연구가 말하는 것</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row" href="blog/placebo.html"><span class="h-ico t5" aria-hidden="true">💊</span><span class="h-row-text"><strong>가짜 약인 걸 알고 먹어도 효과가?</strong><span>플라시보가 작동하는 방식</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-      <a class="h-row" href="blog/palmistry.html"><span class="h-ico t6" aria-hidden="true">✋</span><span class="h-row-text"><strong>생명선이 짧으면 단명할까?</strong><span>손금에 대해 밝혀진 것들</span></span><svg class="h-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-    </div>
-    <a class="h-btn" href="blog/index.html">이야기 83편 모두 보기</a>
   </section>
 
-  </div>
-
-  <div class="ad-slot h-ad">광고 영역 (심사 통과 후 게재 예정)</div>
-
-  <p class="h-notice">알아볼괘의 모든 테스트는 재미를 위해 제작된 콘텐츠이며, 전문적인 심리 진단이나 의학적 진단을 대신하지 않습니다.</p>
-
-  <footer class="h-foot">
-    <p>© 2026 알아볼괘</p>
+  <footer class="x-foot">
+    <p>알아볼괘의 모든 테스트는 재미를 위해 만든 콘텐츠이며, 전문적인 심리 진단이나 의학적 진단을 대신하지 않습니다.</p>
     <p><a href="blog/index.html">알아볼괘 이야기</a> · <a href="about.html">소개</a> · <a href="contact.html">문의</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></p>
+    <p>© 2026 알아볼괘</p>
   </footer>
 </main>
-
-<nav class="h-tabbar" aria-label="하단 메뉴">
-  <a href="#top" class="on" data-go="top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7v9H3z"/></svg>홈</a>
-  <a href="#personality"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>테스트</a>
-  <a href="#fortune"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>운세</a>
-  <a href="blog/index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h6"/></svg>이야기</a>
-</nav>
 
 <script src="assets/js/main.js"></script>
 <script>
   (function () {
-    var content = document.getElementById("homeContent");
-    var input = document.getElementById("testSearchInput");
-    var results = document.getElementById("searchResultsSection");
-    var chips = document.querySelectorAll(".h-chip");
-    var tabs = document.querySelectorAll(".h-tabbar a");
+    /* ===== 오늘의 테스트: 날짜마다 하나씩 바뀌고, 버튼으로 다른 것도 추천 ===== */
+    var POOL = [{"h": "tests/teto-egen/index.html", "e": "🔥", "t": "나는 테토? 에겐?", "d": "지금 제일 핫한 테스트!", "m": "10문항 · 30초"}, {"h": "tests/mbti/index.html", "e": "🔤", "t": "MBTI 간단 테스트", "d": "나는 16유형 중 어디일까?", "m": "12문항 · 1분"}, {"h": "tests/sociopath/index.html", "e": "🧊", "t": "소시오패스 테스트", "d": "나의 냉철함 지수는 몇 %?", "m": "10문항 · 30초"}, {"h": "tests/past-life/index.html", "e": "🔮", "t": "전생 테스트", "d": "나는 전생에 어떤 사람이었을까?", "m": "10문항 · 30초"}, {"h": "tests/psychopath/index.html", "e": "🐺", "t": "싸이코패스 테스트", "d": "나의 숨겨진 대담함 지수는?", "m": "10문항 · 30초"}, {"h": "tests/iqeq/index.html", "e": "🧩", "t": "IQ / EQ 테스트", "d": "도형추리까지 나오는 진짜 IQ 테스트", "m": "16문항 · 3분"}, {"h": "tests/baby-type/index.html", "e": "👶", "t": "우리 아기 성격 유형", "d": "탐험대장? 애교뿜뿜? 고집장군? 엄마 아빠가 답해요", "m": "10문항 · 1분"}, {"h": "tests/king-face/index.html", "e": "👑", "t": "관상가 양반", "d": "사진 한 장으로 보는 11가지 상", "m": "사진"}, {"h": "tests/love-style/index.html", "e": "💘", "t": "연애 유형 테스트", "d": "나의 연애 스타일은 5가지 중 뭘까?", "m": "10문항 · 30초"}, {"h": "tests/food-type/index.html", "e": "🍽️", "t": "내가 음식이라면?", "d": "떡볶이? 곰탕? 마라탕?", "m": "10문항 · 1분"}, {"h": "tests/kkondae/index.html", "e": "📢", "t": "꼰대력 테스트", "d": "나의 꼰대력 지수는 몇 %?", "m": "10문항 · 30초"}, {"h": "tests/insa-assa/index.html", "e": "🕺", "t": "인싸/아싸 지수", "d": "나의 인싸력은 몇 %?", "m": "10문항 · 30초"}, {"h": "tests/slang-quiz/index.html", "e": "🔥", "t": "신조어 지식퀴즈", "d": "매번 문제가 바뀌는 신조어 퀴즈", "m": "10문항 · 1분"}, {"h": "tests/life-genre/index.html", "e": "🎬", "t": "내 인생을 드라마로 만들면?", "d": "로맨스? 스릴러? 시트콤?", "m": "10문항 · 1분"}];
+    var now = new Date();
+    var dayNo = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000);
+    var idx = dayNo % POOL.length;
+    function showHero(i) {
+      var p = POOL[i];
+      document.getElementById("heroEmoji").textContent = p.e === "IMG" ? "🔮" : p.e;
+      document.getElementById("heroTitle").textContent = p.t;
+      document.getElementById("heroDesc").textContent = p.d;
+      document.getElementById("heroMeta").textContent = p.m;
+      document.getElementById("heroGo").setAttribute("href", p.h);
+    }
+    showHero(idx);
+    document.getElementById("heroNext").addEventListener("click", function () {
+      idx = (idx + 1 + Math.floor(Math.random() * (POOL.length - 1))) % POOL.length;
+      showHero(idx);
+    });
 
-    /* ===== 테스트 검색 =====
-       같은 테스트가 여러 칸에 들어 있어서 주소(href) 기준으로 한 번씩만 모아둠 */
-    var seen = {};
-    var index = [];
-    Array.prototype.forEach.call(content.querySelectorAll(".h-item"), function (el) {
-      var href = el.getAttribute("href");
-      if (seen[href]) return;
-      seen[href] = true;
-      var titleEl = el.querySelector(".h-tile-title");
-      var subEl = el.querySelector(".h-row-text span");
-      var icoEl = el.querySelector(".h-ico, .h-tile-ico");
-      index.push({
-        href: href,
-        title: titleEl ? titleEl.textContent : "",
-        desc: el.getAttribute("data-desc") || (subEl ? subEl.textContent : ""),
-        ico: icoEl
+    /* ===== 주제 탭: 한 번에 한 주제만 보여줌 ===== */
+    var tabs = document.querySelectorAll(".x-tab");
+    var panels = document.querySelectorAll(".x-grid[data-panel]");
+    var current = tabs[0].getAttribute("data-tab");
+    function setTab(id) {
+      current = id;
+      Array.prototype.forEach.call(tabs, function (t) {
+        var on = t.getAttribute("data-tab") === id;
+        t.classList.toggle("on", on);
+        t.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      Array.prototype.forEach.call(panels, function (p) { p.hidden = p.getAttribute("data-panel") !== id; });
+    }
+    Array.prototype.forEach.call(tabs, function (t) {
+      t.addEventListener("click", function () {
+        if (input.value) { input.value = ""; runSearch(""); }
+        setTab(t.getAttribute("data-tab"));
       });
     });
 
-    function makeRow(item) {
-      var a = document.createElement("a");
-      a.className = "h-row";
-      a.href = item.href;
-      var ico = item.ico.cloneNode(true);
-      ico.className = "h-ico " + (item.ico.className.match(/t\d/) || [""])[0];
-      a.appendChild(ico);
-      var text = document.createElement("span");
-      text.className = "h-row-text";
-      var strong = document.createElement("strong");
-      strong.textContent = item.title;
-      var span = document.createElement("span");
-      span.textContent = item.desc;
-      text.appendChild(strong);
-      text.appendChild(span);
-      a.appendChild(text);
-      return a;
-    }
-
+    /* ===== 검색: 모든 주제에서 찾아 한 곳에 모아 보여줌 ===== */
+    var input = document.getElementById("testSearchInput");
+    var results = document.getElementById("searchResults");
+    var empty = document.getElementById("searchEmpty");
+    var tabRow = document.querySelector(".x-tabs");
+    var seen = {}, index = [];
+    Array.prototype.forEach.call(document.querySelectorAll(".x-card"), function (c) {
+      var h = c.getAttribute("href");
+      if (seen[h]) return;
+      seen[h] = true;
+      index.push(c);
+    });
     function runSearch(q) {
       q = q.trim().toLowerCase();
+      results.innerHTML = "";
       if (!q) {
-        results.hidden = true;
-        results.innerHTML = "";
-        content.hidden = false;
+        results.hidden = true; empty.hidden = true; tabRow.hidden = false;
+        setTab(current);
         return;
       }
-      var hits = index.filter(function (it) {
-        return it.title.toLowerCase().indexOf(q) !== -1 || it.desc.toLowerCase().indexOf(q) !== -1;
+      tabRow.hidden = true;
+      Array.prototype.forEach.call(panels, function (p) { p.hidden = true; });
+      var hits = index.filter(function (c) {
+        return (c.getAttribute("data-t") + " " + c.getAttribute("data-d")).toLowerCase().indexOf(q) !== -1;
       });
-      results.innerHTML = "";
-      var head = document.createElement("div");
-      head.className = "h-head";
-      var h2 = document.createElement("h2");
-      h2.textContent = hits.length ? "검색 결과 " + hits.length + "개" : "검색 결과";
-      head.appendChild(h2);
-      results.appendChild(head);
-      if (!hits.length) {
-        var p = document.createElement("p");
-        p.className = "h-empty";
-        p.textContent = "찾는 테스트가 없어요. 다른 단어로 찾아보세요";
-        results.appendChild(p);
-      } else {
-        var list = document.createElement("div");
-        list.className = "h-list";
-        hits.forEach(function (it) { list.appendChild(makeRow(it)); });
-        results.appendChild(list);
-      }
-      content.hidden = true;
-      results.hidden = false;
+      hits.forEach(function (c) { results.appendChild(c.cloneNode(true)); });
+      results.hidden = hits.length === 0;
+      empty.hidden = hits.length !== 0;
     }
     input.addEventListener("input", function () { runSearch(input.value); });
-
-    /* ===== 주제 칩 / 하단 메뉴: 누르면 해당 칸으로 부드럽게 이동 ===== */
-    function goTo(hash) {
-      if (input.value) { input.value = ""; runSearch(""); }
-      if (hash === "#top") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
-      var el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    Array.prototype.forEach.call(chips, function (c) {
-      c.addEventListener("click", function (e) {
-        e.preventDefault();
-        Array.prototype.forEach.call(chips, function (x) { x.classList.toggle("on", x === c); });
-        goTo(c.getAttribute("href"));
-      });
-    });
-    Array.prototype.forEach.call(tabs, function (t) {
-      var h = t.getAttribute("href");
-      if (h.charAt(0) !== "#") return;
-      t.addEventListener("click", function (e) {
-        e.preventDefault();
-        Array.prototype.forEach.call(tabs, function (x) { x.classList.toggle("on", x === t); });
-        goTo(h);
-      });
-    });
   })();
 </script>
 

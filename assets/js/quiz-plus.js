@@ -1,3 +1,13 @@
+/* 3D 이모지 그림 불러오기 (assets/js/emoji3d.js) */
+(function () {
+  if (window.E3D || document.querySelector('script[src*="emoji3d.js"]')) return;
+  var me = document.currentScript;
+  if (!me) return;
+  var s = document.createElement("script");
+  s.src = me.src.replace(/[^\/]*$/, "") + "emoji3d.js";
+  document.head.appendChild(s);
+})();
+
 /* ============================================================
    알아볼괘 - 테스트 화면 손맛 더하기 (2026-10-28)
    <body class="qp"> 페이지에서 동작. 화면 종류를 스스로 알아내서:
@@ -83,8 +93,28 @@
   var label = document.getElementById("progressLabel");
   if (options && label) {
     body.classList.add("qp-quiz");
-    window.QP_DELAY = reduce ? 500 : 1500;
+    window.QP_DELAY = reduce ? 500 : 1300;
     var card = options.closest(".card");
+
+    // 진행 막대 위를 이 테스트의 이모지가 달려가요
+    var bar = document.getElementById("progressBar");
+    var outer = bar && bar.parentNode;
+    if (outer) {
+      outer.classList.add("qp-track");
+      var runner = el("span", "qp-runner", testEmoji());
+      outer.appendChild(runner);
+      outer.appendChild(el("span", "qp-flag", "🏁"));
+      var lastW = -1;
+      var place = function () {
+        var w = parseFloat(bar.style.width) || 0;
+        if (w === lastW) return;
+        lastW = w;
+        runner.style.left = Math.min(w, 100) + "%";
+        if (!reduce) { runner.classList.remove("qp-hop"); void runner.offsetWidth; runner.classList.add("qp-hop"); }
+      };
+      place();
+      new MutationObserver(place).observe(bar, { attributes: true, attributeFilter: ["style"] });
+    }
     var selfFeedback = slug === "slang-quiz";   // 정답/오답을 스스로 보여주는 퀴즈
     var passing = false;
 
@@ -120,10 +150,21 @@
     }).observe(label, { childList: true, characterData: true, subtree: true });
   }
 
+  /* 이 테스트의 대표 이모지 (탭 아이콘에 들어 있는 것) */
+  function testEmoji() {
+    var link = document.querySelector('link[rel~="icon"]');
+    var h = "";
+    try { h = decodeURIComponent(link ? link.getAttribute("href") : ""); } catch (e) {}
+    var m = null;
+    try { m = h.match(new RegExp("\\p{Extended_Pictographic}\\uFE0F?", "u")); } catch (e) {}
+    return m ? m[0] : "✨";
+  }
+
   function showLoading() {
     var name = getName();
     var ov = el("div", "qp-loading");
     ov.setAttribute("role", "status");
+    ov.appendChild(el("div", "qp-loading-emo", testEmoji()));
     var g = el("div", "qp-loading-gua");
     for (var i = 0; i < 3; i++) g.appendChild(el("i"));
     ov.appendChild(g);
@@ -149,6 +190,23 @@
     var nm = getName();
     var h1 = hero.querySelector("h1");
     if (fresh && nm && h1) hero.insertBefore(el("p", "qp-who", callName(nm) + "은"), h1);
+
+    // 방금 끝낸 사람에게는 결과 카드를 뒤집어서 공개
+    if (fresh && !reduce) {
+      var cover = el("div", "qp-cover");
+      var cg = el("div", "qp-loading-gua");
+      for (var ci = 0; ci < 3; ci++) cg.appendChild(el("i"));
+      cover.appendChild(cg);
+      cover.appendChild(el("p", null, "두구두구…"));
+      hero.appendChild(cover);
+      hero.classList.add("qp-hide-in");
+      setTimeout(function () { hero.classList.add("qp-flip-a"); }, 650);
+      setTimeout(function () {
+        cover.remove();
+        hero.classList.remove("qp-flip-a", "qp-hide-in");
+        hero.classList.add("qp-flip-b");
+      }, 650 + 200);
+    }
 
     var rkey = (location.pathname.match(/result-([A-Za-z0-9-]+)\.html$/) || [])[1];
     var pulse = el("div", "qp-pulse");

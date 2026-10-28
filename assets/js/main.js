@@ -1,3 +1,13 @@
+/* 3D 이모지 그림 불러오기 (assets/js/emoji3d.js) */
+(function () {
+  if (window.E3D || document.querySelector('script[src*="emoji3d.js"]')) return;
+  var me = document.currentScript;
+  if (!me) return;
+  var s = document.createElement("script");
+  s.src = me.src.replace(/[^\/]*$/, "") + "emoji3d.js";
+  document.head.appendChild(s);
+})();
+
 /* ============================================================
    알아볼괘 - 공통 JS (공유, 토스트 등)
    ============================================================ */

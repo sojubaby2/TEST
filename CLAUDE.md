@@ -35,6 +35,12 @@
 - 2026-10-28 추가. 열쇠 파일 `43df6924dd03faebdc1d6fa2e5fcb7ce.txt` 가 사이트 루트에 있다. **지우거나 이름을 바꾸지 말 것.**
 - `업데이트하기.bat` 가 배포 성공 후 `tools/indexnow.ps1` 을 실행해 sitemap 주소 중 내용이 바뀐 것만 api.indexnow.org 로 보낸다(네이버·빙 등이 받음, 구글은 미지원). 기록은 `tools/indexnow-state.json`. 전부 다시 보내려면 `-All`.
 
+## 3D 이모지
+
+- 2026-10-28 추가. `assets/js/emoji3d.js` 가 홈(`body.home4`)과 새 옷 테스트(`body.qp`)에서 이모지 글자를 `assets/img/e3d/<코드>.webp` 3D 그림으로 바꿔 끼운다. 그림은 Microsoft Fluent Emoji 3D(MIT, npm `@lobehub/fluent-emoji-3d`). main.js·quiz-plus.js 가 이 파일을 불러온다.
+- **새 이모지를 쓰면** 그 그림 파일이 e3d 폴더에 없을 수 있다. 없으면 원래 글자로 보이니 고장은 아니지만, 3D로 보이게 하려면 emoji3d.js 의 MAP 에 넣고 webp 를 추가해야 한다.
+- 테스트 화면: 진행 막대 위를 그 테스트 이모지(탭 아이콘의 이모지)가 달려가고, 결과는 "두구두구" 카드를 뒤집으며 공개된다.
+
 ## 드래그·복사 방지
 
 - 2026-10-28 추가. `style.css` 끝에 글자 선택·이미지 끌기 막는 규칙, `main.js`·`quiz-plus.js` 끝에 오른쪽 클릭·복사 막는 코드(`window.__arabolGuard`). 입력칸은 예외. 블로그 글은 main.js 를 안 불러서 CSS(선택 막기)만 적용됨.

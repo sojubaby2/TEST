@@ -16,7 +16,9 @@
 #          ...해설...
 #
 #  둘 다 tests/<테스트슬러그>/<결과파일명>.html 의
-#  <div class="ad-slot"> 바로 위에 주입됩니다.
+#  궁합 제목("나와 잘 맞는…") 바로 위에 주입됩니다. (없으면 <div class="ad-slot"> 위)
+#  2026-10-28: 기존 결과 페이지들은 해설을 결과 카드 안으로 옮겨 두었어요.
+#  표시가 이미 있으면 그 자리에서 내용만 바꾸므로 위치는 그대로 유지됩니다.
 #
 #  RESULT-ARTICLE:START ~ END 주석으로 감싸므로
 #  여러 번 돌려도 교체만 되고 중복되지 않아요.
@@ -111,7 +113,7 @@ foreach ($job in $jobs) {
   }
   else {
     $anchor = $null
-    foreach ($cand in @('<div class="ad-slot">', '<p class="notice">', '<div class="footer">')) {
+    foreach ($cand in @('<p class="section-title" style="margin-top:28px;">', '<div class="ad-slot">', '<p class="notice">', '<div class="footer">')) {
       if ($html.IndexOf($cand) -ge 0) { $anchor = $cand; break }
     }
     if (-not $anchor) {

@@ -251,7 +251,16 @@
       });
       wrap.appendChild(b);
     });
-    pulse.appendChild(wrap);
+    // 재밌어요/정확해요는 결과 풀이를 다 읽은 뒤에 누르도록 풀이 카드 바로 아래에
+    var tl = document.querySelector(".trait-list");
+    var bodyCard = tl && tl.closest(".card");
+    if (bodyCard) {
+      var rw = el("div", "qp-pulse");
+      rw.appendChild(wrap);
+      bodyCard.parentNode.insertBefore(rw, bodyCard.nextSibling);
+    } else {
+      pulse.appendChild(wrap);
+    }
     function showReact(d) {
       if (!d) return;
       ["fun", "acc"].forEach(function (k) { if (d[k] >= 10) btns[k].textContent = fmt(d[k]); });

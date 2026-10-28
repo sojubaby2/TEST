@@ -365,3 +365,17 @@ body.qp.qp-quiz { background: var(--mist); }
 @media (prefers-reduced-motion: reduce) {
   .qp .hero > div:first-child .e3d, .qp .hero > div:first-child::after, .qp-loading-emo .e3d { animation: none !important; }
 }
+
+/* ============================================================
+   결과 풀이 합치기 (2026-10-28 3차)
+   "이 결과에 대해 조금 더" 해설을 결과 카드 안으로 옮겨 한 덩어리로 읽히게
+   ============================================================ */
+.qp .card .article { margin-top: 26px; padding-top: 24px; border-top: 2px dashed var(--line); text-align: left; }
+.qp .card .article .article-head { display: none; }
+.qp .card .article h2 { font-size: 18px; margin: 26px 0 10px; padding-left: 12px; border-left: 6px solid var(--hwang); line-height: 1.45; }
+.qp .card .article h2:first-of-type { margin-top: 0; }
+.qp .card .article p, .qp .card .article li { font-size: 15px; line-height: 1.85; color: #33375A; }
+.qp .card .article strong { color: var(--ink); background: linear-gradient(transparent 62%, var(--hwang-soft) 62%); }
+.qp .card .article-more { margin-top: 24px; }
+/* 해설이 카드 밖에 따로 있을 때(새로 만든 테스트 등)도 카드처럼 */
+.qp .wrap > .article { margin-top: 16px; padding: 22px 20px; border: 2px solid var(--line); border-radius: 20px; }

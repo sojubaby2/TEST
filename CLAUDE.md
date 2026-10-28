@@ -7,12 +7,13 @@
 | 경로 | 내용 |
 |---|---|
 | `index.html` | 홈. 2026-10-27 4차 개편 "팔괘" 디자인(큰 제목 "오늘, 나를 알아볼괘"). 휴대폰은 위에 붙는 가로 탭 + 아래 고정 메뉴(골라보기·찾기·아무거나·읽을거리), PC는 왼쪽 고정 주제 메뉴 + 오른쪽 3열 카드. 주제 8개를 주역 팔괘(막대 3줄)로 표시, 오방색(노랑 #FFC93C·빨강 #C9381F·파랑 #2450D8·남색 #1B1F3B), 제목 글꼴 Gaegu(구글폰트)+본문 Pretendard, 히어로에 직접 그린 티남이·티녀(`assets/img/home/*.webp`), "괘 뽑기" 버튼. 홈 전용 스타일은 파일 안 `<style>` 에 `body.home4` 범위로만 있음(공용 style.css 미수정). 새 테스트 추가 시 홈 탭 목록에도 직접 넣어야 함 |
-| `tests/` | 테스트 69종. 각 폴더에 `index.html` + `result*.html` |
+| `tests/` | 테스트 70종. 각 폴더에 `index.html` + `result*.html` |
+| `assets/css/test-skin.css`, `assets/js/quiz-plus.js` | 2026-10-28 테스트 화면 새 옷. 문제형 테스트 57종(시작·문제·결과 화면)에 `<body class="qp">` + 이 두 파일을 붙임. 홈과 같은 팔괘·오방색·Gaegu 디자인, 이름 넣기(기기에만 저장), 고른 답 표시, "결과 뽑는 중" 화면, 같은 결과 비율, 재밌어요/정확해요. 결과 히어로 색은 `style="--rc:#색"` 으로 줌. 사주·타로·관상 등 나머지 13종은 아직 옛 디자인 |
 | `blog/` | 블로그 83편 + `index.html` 목록 |
 | `assets/js/`, `assets/css/`, `assets/img/` | 공용 자원 |
 | `generate_*.py` (루트) | 결과 페이지·이미지 생성 스크립트 |
 | `content/`, `tools/` | 작업용. **사이트로 배포되지 않음** |
-| `worker.js` | `/api/view` 조회수 API 만 처리 |
+| `worker.js` | 집계 API: `/api/view`(참여 +1), `/api/counts`(전체 참여 수, 10분 캐시, 홈 카드·"다들 이것부터 해봤괘"에 사용), `/api/result`(같은 결과 비율), `/api/react`(재밌어요/정확해요). 모두 KV `VIEW_COUNTS` 에 실제로 센 값만 저장. 화면엔 100명(반응은 10개) 넘을 때만 표시. KV 무료 쓰기 한도(하루 1,000번)를 넘으면 숫자가 조용히 안 늘어날 수 있음 |
 | `sitemap.xml`, `robots.txt` | 색인 제어 |
 
 프레임워크·빌드 단계 없음. HTML / CSS / 바닐라 JS 뿐이다.
@@ -28,6 +29,15 @@
   **Claude 는 Cloudflare API 토큰을 다루지 않는다.**
 - `.assetsignore` 에 `*.py`, `*.bat`, `content/`, `tools/` 가 들어 있다.
   작업용 파일이 공개되지 않게 하는 장치이므로 **빼지 말 것.**
+
+## 검색엔진 알림 (IndexNow)
+
+- 2026-10-28 추가. 열쇠 파일 `43df6924dd03faebdc1d6fa2e5fcb7ce.txt` 가 사이트 루트에 있다. **지우거나 이름을 바꾸지 말 것.**
+- `업데이트하기.bat` 가 배포 성공 후 `tools/indexnow.ps1` 을 실행해 sitemap 주소 중 내용이 바뀐 것만 api.indexnow.org 로 보낸다(네이버·빙 등이 받음, 구글은 미지원). 기록은 `tools/indexnow-state.json`. 전부 다시 보내려면 `-All`.
+
+## 드래그·복사 방지
+
+- 2026-10-28 추가. `style.css` 끝에 글자 선택·이미지 끌기 막는 규칙, `main.js`·`quiz-plus.js` 끝에 오른쪽 클릭·복사 막는 코드(`window.__arabolGuard`). 입력칸은 예외. 블로그 글은 main.js 를 안 불러서 CSS(선택 막기)만 적용됨.
 
 ## 지켜야 할 제약
 
@@ -45,9 +55,9 @@
 
 ## 색인 정책 (중요)
 
-- `tests/**/result*.html` 498개 전부 `<meta name="robots" content="noindex, follow">`.
+- `tests/**/result*.html` 506개 전부 `<meta name="robots" content="noindex, follow">`.
   내용이 거의 같은 얇은 페이지라 색인되면 사이트 평가가 깎인다.
-- `sitemap.xml` 은 158개만: 홈·안내 5 + 테스트 `index.html` 69 + 블로그 84.
+- `sitemap.xml` 은 159개만: 홈·안내 5 + 테스트 `index.html` 70 + 블로그 84.
   **결과 페이지는 sitemap 에 넣지 않는다.**
 - 블로그와 테스트 `index.html` 에는 noindex 를 걸지 않는다.
 
@@ -77,6 +87,9 @@
 - **애드센스 재신청은 색인된 페이지가 50개를 넘긴 뒤에** 한다.
 
 ### 남은 정리거리
+
+- `my-gua`(나는 어떤 괘일까? 팔괘 캐릭터 테스트)는 new-test.ps1 이 아니라 직접 만든 이야기형 테스트다. 12장면, 답마다 세 축(위=첫인상, 가운데=속마음, 아래=시작 방식)에 쌓여 막대 세 줄 → 팔괘 8결과. 데이터는 `assets/js/my-gua-data.js`, 문항에 `{이름}` 자리표시자가 있다.
+- `tools/new-test.ps1` 템플릿도 새 옷(test-skin, quiz-plus, `--rc`)으로 바꿔 둠. 다시 돌려도 새 디자인이 유지된다.
 
 - `baby-type`(우리 아기 성격 유형)은 new-test.ps1 형식에 맞춰 만들었지만 손댄 부분이 있다: 소개 안내 3줄, 결과 noindex, 궁합 문구("찰떡 친구/티격태격 친구"). `new-test.ps1 -Only baby-type` 을 다시 돌리면 이 부분이 사라지니 주의.
 

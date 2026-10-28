@@ -164,6 +164,7 @@ body.home4 [hidden] { display: none !important; }
 .home4 .z-item-txt strong { font-size: 16px; font-weight: 800; line-height: 1.35; }
 .home4 .z-item-txt span { font-size: 13.5px; color: var(--sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .home4 .z-item-meta { grid-column: 2; font-size: 12px; font-weight: 700; color: var(--sub); }
+.home4 .z-cnt { margin-left: 8px; padding: 1px 7px; border-radius: 6px; background: var(--hwang); color: var(--ink); }
 .home4 .z-item:hover strong { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .home4 .z-empty { padding: 32px 0; text-align: center; color: var(--sub); margin: 0; }
 
@@ -275,7 +276,7 @@ body.home4 { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
     <div class="z-wrap z-hero-in">
       <div class="z-hero-copy">
         <h1 id="heroTitle">오늘, 나를<br />알아볼괘</h1>
-        <p class="z-hero-sub">심리테스트와 운세 69가지. 가입 없이 1분이면 결과가 나와요.</p>
+        <p class="z-hero-sub">심리테스트와 운세 70가지. 가입 없이 1분이면 결과가 나와요.</p>
         <div class="z-duo" aria-hidden="true">
           <img class="z-girl" src="assets/img/home/titi-girl.webp" alt="" width="260" height="251" />
           <img class="z-boy" src="assets/img/home/titi-boy.webp" alt="" width="200" height="248" />
@@ -286,13 +287,13 @@ body.home4 { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
         <p class="z-draw-label">오늘의 괘</p>
         <div class="z-draw-gua" id="drawGua"><span class="g g-big" aria-hidden="true"><i class="n"></i><i class="n"></i><i class="y"></i></span></div>
         <div class="z-draw-body">
-          <span class="z-draw-emo" id="drawEmo" aria-hidden="true">🔥</span>
-          <h2 class="z-draw-title" id="drawTitle">나는 테토? 에겐?</h2>
-          <p class="z-draw-desc" id="drawDesc">지금 제일 핫한 테스트!</p>
-          <p class="z-draw-meta" id="drawMeta">10문항, 30초</p>
+          <span class="z-draw-emo" id="drawEmo" aria-hidden="true">☯️</span>
+          <h2 class="z-draw-title" id="drawTitle">나는 어떤 괘일까?</h2>
+          <p class="z-draw-desc" id="drawDesc">괘마을에서 보낸 일주일, 팔괘 중 나의 괘</p>
+          <p class="z-draw-meta" id="drawMeta">12장면, 2분</p>
         </div>
         <div class="z-draw-actions">
-          <a class="z-btn z-btn-ink" id="drawGo" href="tests/teto-egen/index.html">이거 해볼괘</a>
+          <a class="z-btn z-btn-ink" id="drawGo" href="tests/my-gua/index.html">이거 해볼괘</a>
           <button type="button" class="z-btn z-btn-line" id="drawAgain">다시 뽑기</button>
         </div>
       </div>
@@ -315,8 +316,8 @@ body.home4 { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
   <aside class="z-side" aria-label="주제 고르기">
     <h2 class="z-h2" id="guaTitle">골라서 알아볼괘</h2>
     <div class="z-tabs" role="tablist" aria-label="주제">
-      <button type="button" class="z-tab t-jeok on" role="tab" aria-selected="true" aria-controls="p-new" id="tab-new" data-tab="new"><span class="g" aria-hidden="true"><i class="n"></i><i class="n"></i><i class="y"></i></span><span class="z-tab-name">새로 나온</span><span class="z-tab-sub">震 진</span><span class="z-tab-n">11개</span></button>
-      <button type="button" class="z-tab t-cheong" role="tab" aria-selected="false" aria-controls="p-personality" id="tab-personality" data-tab="personality"><span class="g" aria-hidden="true"><i class="y"></i><i class="y"></i><i class="y"></i></span><span class="z-tab-name">성격</span><span class="z-tab-sub">乾 건</span><span class="z-tab-n">12개</span></button>
+      <button type="button" class="z-tab t-jeok on" role="tab" aria-selected="true" aria-controls="p-new" id="tab-new" data-tab="new"><span class="g" aria-hidden="true"><i class="n"></i><i class="n"></i><i class="y"></i></span><span class="z-tab-name">새로 나온</span><span class="z-tab-sub">震 진</span><span class="z-tab-n">12개</span></button>
+      <button type="button" class="z-tab t-cheong" role="tab" aria-selected="false" aria-controls="p-personality" id="tab-personality" data-tab="personality"><span class="g" aria-hidden="true"><i class="y"></i><i class="y"></i><i class="y"></i></span><span class="z-tab-name">성격</span><span class="z-tab-sub">乾 건</span><span class="z-tab-n">13개</span></button>
       <button type="button" class="z-tab t-jeok" role="tab" aria-selected="false" aria-controls="p-love" id="tab-love" data-tab="love"><span class="g" aria-hidden="true"><i class="n"></i><i class="y"></i><i class="y"></i></span><span class="z-tab-name">연애</span><span class="z-tab-sub">兌 태</span><span class="z-tab-n">9개</span></button>
       <button type="button" class="z-tab t-cheong" role="tab" aria-selected="false" aria-controls="p-social" id="tab-social" data-tab="social"><span class="g" aria-hidden="true"><i class="y"></i><i class="y"></i><i class="n"></i></span><span class="z-tab-name">사회성</span><span class="z-tab-sub">巽 손</span><span class="z-tab-n">14개</span></button>
       <button type="button" class="z-tab t-jeok" role="tab" aria-selected="false" aria-controls="p-temper" id="tab-temper" data-tab="temper"><span class="g" aria-hidden="true"><i class="y"></i><i class="n"></i><i class="y"></i></span><span class="z-tab-name">기질</span><span class="z-tab-sub">離 리</span><span class="z-tab-n">13개</span></button>
@@ -331,8 +332,9 @@ body.home4 { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
   </aside>
 
   <section class="z-panels" aria-live="polite">
-    <div class="z-panel-head"><span id="panelGua"><span class="g" aria-hidden="true"><i class="n"></i><i class="n"></i><i class="y"></i></span></span><h3 class="z-panel-title" id="panelTitle">새로 나온 테스트</h3><span class="z-panel-n" id="panelN">11개</span></div>
+    <div class="z-panel-head"><span id="panelGua"><span class="g" aria-hidden="true"><i class="n"></i><i class="n"></i><i class="y"></i></span></span><h3 class="z-panel-title" id="panelTitle">새로 나온 테스트</h3><span class="z-panel-n" id="panelN">12개</span></div>
     <div class="z-list" role="tabpanel" id="p-new" aria-labelledby="tab-new" data-panel="new">
+      <a class="z-item t-jeok" href="tests/my-gua/index.html" data-t="나는 어떤 괘일까?" data-d="괘마을에서 보낸 일주일, 팔괘 중 나의 괘"><span class="z-emo" aria-hidden="true">☯️</span><span class="z-item-txt"><strong>나는 어떤 괘일까?</strong><span>괘마을에서 보낸 일주일, 팔괘 중 나의 괘</span></span><span class="z-item-meta">12장면, 2분</span></a>
       <a class="z-item t-jeok" href="tests/baby-type/index.html" data-t="우리 아기 성격 유형" data-d="탐험대장? 애교뿜뿜? 고집장군? 엄마 아빠가 답해요"><span class="z-emo" aria-hidden="true">👶</span><span class="z-item-txt"><strong>우리 아기 성격 유형</strong><span>탐험대장? 애교뿜뿜? 고집장군? 엄마 아빠가 답해요</span></span><span class="z-item-meta">10문항, 1분</span></a>
       <a class="z-item t-jeok" href="tests/food-type/index.html" data-t="내가 음식이라면?" data-d="떡볶이? 곰탕? 마라탕?"><span class="z-emo" aria-hidden="true">🍽️</span><span class="z-item-txt"><strong>내가 음식이라면?</strong><span>떡볶이? 곰탕? 마라탕?</span></span><span class="z-item-meta">10문항, 1분</span></a>
       <a class="z-item t-jeok" href="tests/reply-style/index.html" data-t="카톡 답장 유형" data-d="읽씹? 장문? 이모티콘 폭격?"><span class="z-emo" aria-hidden="true">💬</span><span class="z-item-txt"><strong>카톡 답장 유형</strong><span>읽씹? 장문? 이모티콘 폭격?</span></span><span class="z-item-meta">10문항, 1분</span></a>
@@ -346,6 +348,7 @@ body.home4 { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
       <a class="z-item t-jeok" href="tests/pet-match/index.html" data-t="나와 맞는 반려동물" data-d="생활 패턴으로 찾아보기"><span class="z-emo" aria-hidden="true">🐾</span><span class="z-item-txt"><strong>나와 맞는 반려동물</strong><span>생활 패턴으로 찾아보기</span></span><span class="z-item-meta">10문항, 1분</span></a>
     </div>
     <div class="z-list" role="tabpanel" id="p-personality" aria-labelledby="tab-personality" data-panel="personality" hidden>
+      <a class="z-item t-cheong" href="tests/my-gua/index.html" data-t="나는 어떤 괘일까?" data-d="괘마을에서 보낸 일주일, 팔괘 중 나의 괘"><span class="z-emo" aria-hidden="true">☯️</span><span class="z-item-txt"><strong>나는 어떤 괘일까?</strong><span>괘마을에서 보낸 일주일, 팔괘 중 나의 괘</span></span><span class="z-item-meta">12장면, 2분</span></a>
       <a class="z-item t-cheong" href="tests/teto-egen/index.html" data-t="나는 테토? 에겐?" data-d="지금 제일 핫한 테스트!"><span class="z-emo" aria-hidden="true">🔥</span><span class="z-item-txt"><strong>나는 테토? 에겐?</strong><span>지금 제일 핫한 테스트!</span></span><span class="z-item-meta">10문항, 30초</span></a>
       <a class="z-item t-cheong" href="tests/mbti/index.html" data-t="MBTI 간단 테스트" data-d="나는 16유형 중 어디일까?"><span class="z-emo" aria-hidden="true">🔤</span><span class="z-item-txt"><strong>MBTI 간단 테스트</strong><span>나는 16유형 중 어디일까?</span></span><span class="z-item-meta">12문항, 1분</span></a>
       <a class="z-item t-cheong" href="tests/sociopath/index.html" data-t="소시오패스 테스트" data-d="나의 냉철함 지수는 몇 %?"><span class="z-emo" aria-hidden="true">🧊</span><span class="z-item-txt"><strong>소시오패스 테스트</strong><span>나의 냉철함 지수는 몇 %?</span></span><span class="z-item-meta">10문항, 30초</span></a>
@@ -463,7 +466,7 @@ body.home4 { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     /* ===== 괘 뽑기 ===== */
-    var POOL = [{"h": "tests/teto-egen/index.html", "e": "🔥", "t": "나는 테토? 에겐?", "d": "지금 제일 핫한 테스트!", "m": "10문항, 30초", "g": "001"}, {"h": "tests/mbti/index.html", "e": "🔤", "t": "MBTI 간단 테스트", "d": "나는 16유형 중 어디일까?", "m": "12문항, 1분", "g": "111"}, {"h": "tests/sociopath/index.html", "e": "🧊", "t": "소시오패스 테스트", "d": "나의 냉철함 지수는 몇 %?", "m": "10문항, 30초", "g": "011"}, {"h": "tests/past-life/index.html", "e": "🔮", "t": "전생 테스트", "d": "나는 전생에 어떤 사람이었을까?", "m": "10문항, 30초", "g": "110"}, {"h": "tests/psychopath/index.html", "e": "🐺", "t": "싸이코패스 테스트", "d": "나의 숨겨진 대담함 지수는?", "m": "10문항, 30초", "g": "101"}, {"h": "tests/iqeq/index.html", "e": "🧩", "t": "IQ / EQ 테스트", "d": "도형추리까지 나오는 진짜 IQ 테스트", "m": "16문항, 3분", "g": "010"}, {"h": "tests/baby-type/index.html", "e": "👶", "t": "우리 아기 성격 유형", "d": "탐험대장? 애교뿜뿜? 고집장군? 엄마 아빠가 답해요", "m": "10문항, 1분", "g": "000"}, {"h": "tests/love-style/index.html", "e": "💘", "t": "연애 유형 테스트", "d": "나의 연애 스타일은 5가지 중 뭘까?", "m": "10문항, 30초", "g": "100"}, {"h": "tests/food-type/index.html", "e": "🍽️", "t": "내가 음식이라면?", "d": "떡볶이? 곰탕? 마라탕?", "m": "10문항, 1분", "g": "001"}, {"h": "tests/kkondae/index.html", "e": "📢", "t": "꼰대력 테스트", "d": "나의 꼰대력 지수는 몇 %?", "m": "10문항, 30초", "g": "111"}, {"h": "tests/insa-assa/index.html", "e": "🕺", "t": "인싸/아싸 지수", "d": "나의 인싸력은 몇 %?", "m": "10문항, 30초", "g": "011"}, {"h": "tests/slang-quiz/index.html", "e": "🔥", "t": "신조어 지식퀴즈", "d": "매번 문제가 바뀌는 신조어 퀴즈", "m": "10문항, 1분", "g": "110"}, {"h": "tests/life-genre/index.html", "e": "🎬", "t": "내 인생을 드라마로 만들면?", "d": "로맨스? 스릴러? 시트콤?", "m": "10문항, 1분", "g": "101"}, {"h": "tests/reply-style/index.html", "e": "💬", "t": "카톡 답장 유형", "d": "읽씹? 장문? 이모티콘 폭격?", "m": "10문항, 1분", "g": "010"}, {"h": "tests/game-position/index.html", "e": "🎮", "t": "인생 게임 포지션", "d": "탱커? 딜러? 힐러?", "m": "10문항, 1분", "g": "000"}, {"h": "tests/nunchi/index.html", "e": "🧠", "t": "눈치 테스트", "d": "나의 눈치 지수는 몇 %?", "m": "10문항, 30초", "g": "100"}, {"h": "tests/dark-side/index.html", "e": "🌑", "t": "흑화 지수 테스트", "d": "나는 얼마나 흑화가 진행됐을까?", "m": "10문항, 30초", "g": "001"}, {"h": "tests/ideal-type/index.html", "e": "💘", "t": "내가 끌리는 사람 유형", "d": "내 이상형 코드는 뭘까?", "m": "10문항, 1분", "g": "111"}, {"h": "tests/travel-type/index.html", "e": "✈️", "t": "나는 어떤 여행자?", "d": "계획파? 즉흥파? 호캉스파?", "m": "10문항, 1분", "g": "011"}, {"h": "tests/tsundere-index/index.html", "e": "😤", "t": "츤데레 지수", "d": "츤데레 지수는 몇 %?", "m": "10문항, 30초", "g": "110"}, {"h": "tests/self-esteem/index.html", "e": "🪫", "t": "자존감 테스트", "d": "나의 자존감 지수는 몇 %?", "m": "10문항, 30초", "g": "101"}, {"h": "tests/pet-match/index.html", "e": "🐾", "t": "나와 맞는 반려동물", "d": "생활 패턴으로 찾아보기", "m": "10문항, 1분", "g": "010"}];
+    var POOL = [{"h": "tests/my-gua/index.html", "e": "☯️", "t": "나는 어떤 괘일까?", "d": "괘마을에서 보낸 일주일, 팔괘 중 나의 괘", "m": "12장면, 2분", "g": "001"}, {"h": "tests/teto-egen/index.html", "e": "🔥", "t": "나는 테토? 에겐?", "d": "지금 제일 핫한 테스트!", "m": "10문항, 30초", "g": "111"}, {"h": "tests/mbti/index.html", "e": "🔤", "t": "MBTI 간단 테스트", "d": "나는 16유형 중 어디일까?", "m": "12문항, 1분", "g": "011"}, {"h": "tests/sociopath/index.html", "e": "🧊", "t": "소시오패스 테스트", "d": "나의 냉철함 지수는 몇 %?", "m": "10문항, 30초", "g": "110"}, {"h": "tests/past-life/index.html", "e": "🔮", "t": "전생 테스트", "d": "나는 전생에 어떤 사람이었을까?", "m": "10문항, 30초", "g": "101"}, {"h": "tests/psychopath/index.html", "e": "🐺", "t": "싸이코패스 테스트", "d": "나의 숨겨진 대담함 지수는?", "m": "10문항, 30초", "g": "010"}, {"h": "tests/iqeq/index.html", "e": "🧩", "t": "IQ / EQ 테스트", "d": "도형추리까지 나오는 진짜 IQ 테스트", "m": "16문항, 3분", "g": "000"}, {"h": "tests/baby-type/index.html", "e": "👶", "t": "우리 아기 성격 유형", "d": "탐험대장? 애교뿜뿜? 고집장군? 엄마 아빠가 답해요", "m": "10문항, 1분", "g": "100"}, {"h": "tests/love-style/index.html", "e": "💘", "t": "연애 유형 테스트", "d": "나의 연애 스타일은 5가지 중 뭘까?", "m": "10문항, 30초", "g": "001"}, {"h": "tests/food-type/index.html", "e": "🍽️", "t": "내가 음식이라면?", "d": "떡볶이? 곰탕? 마라탕?", "m": "10문항, 1분", "g": "111"}, {"h": "tests/kkondae/index.html", "e": "📢", "t": "꼰대력 테스트", "d": "나의 꼰대력 지수는 몇 %?", "m": "10문항, 30초", "g": "011"}, {"h": "tests/insa-assa/index.html", "e": "🕺", "t": "인싸/아싸 지수", "d": "나의 인싸력은 몇 %?", "m": "10문항, 30초", "g": "110"}, {"h": "tests/slang-quiz/index.html", "e": "🔥", "t": "신조어 지식퀴즈", "d": "매번 문제가 바뀌는 신조어 퀴즈", "m": "10문항, 1분", "g": "101"}, {"h": "tests/life-genre/index.html", "e": "🎬", "t": "내 인생을 드라마로 만들면?", "d": "로맨스? 스릴러? 시트콤?", "m": "10문항, 1분", "g": "010"}, {"h": "tests/reply-style/index.html", "e": "💬", "t": "카톡 답장 유형", "d": "읽씹? 장문? 이모티콘 폭격?", "m": "10문항, 1분", "g": "000"}, {"h": "tests/game-position/index.html", "e": "🎮", "t": "인생 게임 포지션", "d": "탱커? 딜러? 힐러?", "m": "10문항, 1분", "g": "100"}, {"h": "tests/nunchi/index.html", "e": "🧠", "t": "눈치 테스트", "d": "나의 눈치 지수는 몇 %?", "m": "10문항, 30초", "g": "001"}, {"h": "tests/dark-side/index.html", "e": "🌑", "t": "흑화 지수 테스트", "d": "나는 얼마나 흑화가 진행됐을까?", "m": "10문항, 30초", "g": "111"}, {"h": "tests/ideal-type/index.html", "e": "💘", "t": "내가 끌리는 사람 유형", "d": "내 이상형 코드는 뭘까?", "m": "10문항, 1분", "g": "011"}, {"h": "tests/travel-type/index.html", "e": "✈️", "t": "나는 어떤 여행자?", "d": "계획파? 즉흥파? 호캉스파?", "m": "10문항, 1분", "g": "110"}, {"h": "tests/tsundere-index/index.html", "e": "😤", "t": "츤데레 지수", "d": "츤데레 지수는 몇 %?", "m": "10문항, 30초", "g": "101"}, {"h": "tests/self-esteem/index.html", "e": "🪫", "t": "자존감 테스트", "d": "나의 자존감 지수는 몇 %?", "m": "10문항, 30초", "g": "010"}, {"h": "tests/pet-match/index.html", "e": "🐾", "t": "나와 맞는 반려동물", "d": "생활 패턴으로 찾아보기", "m": "10문항, 1분", "g": "000"}];
     var now = new Date();
     var dayNo = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000);
     var idx = dayNo % POOL.length;
@@ -564,6 +567,40 @@ body.home4 { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
       empty.hidden = hits.length !== 0;
     }
     input.addEventListener("input", function () { runSearch(input.value); });
+
+    /* ===== 실제 참여자 수 (Worker 가 센 값, 100명 넘는 것만) ===== */
+    function fmtN(n) { return n >= 10000 ? (Math.round(n / 1000) / 10 + "만").replace(".0만", "만") : n.toLocaleString("ko-KR"); }
+    function slugOf(a) { return ((a.getAttribute("href") || "").match(/tests\/([^\/]+)\//) || [])[1]; }
+    if (location.protocol !== "file:") {
+      fetch("/api/counts").then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+        if (!d || !d.counts) return;
+        var C = d.counts;
+        Array.prototype.forEach.call(document.querySelectorAll(".z-item"), function (a) {
+          var n = C[slugOf(a)];
+          if (!n || n < 100 || a.querySelector(".z-cnt")) return;
+          var m = a.querySelector(".z-item-meta");
+          var sp = document.createElement("span"); sp.className = "z-cnt"; sp.textContent = fmtN(n) + "명 참여";
+          m.appendChild(sp);
+        });
+        // 처음 왔다면 → 실제로 많이 한 순서로 (100명 넘는 테스트가 6개 이상일 때만)
+        var ranked = Object.keys(C).filter(function (k) { return C[k] >= 100; }).sort(function (a, b) { return C[b] - C[a]; });
+        if (ranked.length >= 6) {
+          var row = document.querySelector(".z-start-row");
+          var pool = {};
+          Array.prototype.forEach.call(document.querySelectorAll(".z-item"), function (a) { pool[slugOf(a)] = pool[slugOf(a)] || a; });
+          var made = 0, html = "";
+          ranked.forEach(function (k) {
+            if (made >= 6 || !pool[k]) return;
+            var it = pool[k];
+            var em = it.querySelector(".z-emo").innerHTML;
+            html += '<a class="z-start-card" href="' + it.getAttribute("href") + '"><span class="z-start-emo" aria-hidden="true">' + em +
+              '</span><strong>' + it.getAttribute("data-t") + '</strong><span>' + fmtN(C[k]) + '명이 해봤어요</span></a>';
+            made++;
+          });
+          if (made === 6) { row.innerHTML = html; document.getElementById("startTitle").textContent = "다들 이것부터 해봤괘"; }
+        }
+      }).catch(function () {});
+    }
 
     /* ===== 휴대폰 아래 메뉴 ===== */
     document.getElementById("barSearch").addEventListener("click", function () {

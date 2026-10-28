@@ -349,3 +349,20 @@ document.addEventListener("DOMContentLoaded", function () {
   initViewCounter();
 });
 initPWA();
+
+/* ============================================================
+   드래그·복사·오른쪽 클릭 방지 (2026-10-28)
+   입력칸(이름·검색)에서는 평소처럼 쓸 수 있게 둠
+   ============================================================ */
+(function () {
+  if (window.__arabolGuard) return;
+  window.__arabolGuard = true;
+  function isField(t) {
+    return t && t.closest && t.closest("input, textarea, select, [contenteditable='true']");
+  }
+  ["contextmenu", "dragstart", "selectstart", "copy", "cut"].forEach(function (ev) {
+    document.addEventListener(ev, function (e) {
+      if (!isField(e.target)) e.preventDefault();
+    });
+  });
+})();

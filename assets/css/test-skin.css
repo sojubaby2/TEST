@@ -1,0 +1,286 @@
+/* ============================================================
+   알아볼괘 - 테스트 화면 새 옷 (2026-10-28)
+   - 홈과 같은 팔괘 · 오방색 디자인을 테스트 시작 / 문제 / 결과 화면에 입힘
+   - <body class="qp"> 가 붙은 페이지에만 적용 (style.css 는 그대로)
+   - 색: 남색 먹 #1B1F3B · 노랑 #FFC93C · 빨강 #C9381F · 파랑 #2450D8
+   - 글꼴: 제목 Gaegu(손글씨) + 본문 Pretendard
+   ============================================================ */
+body.qp {
+  --ink: #1B1F3B;
+  --paper: #FFFFFF;
+  --mist: #F2F3F8;
+  --line: #DADDEA;
+  --sub: #5A5E78;
+  --hwang: #FFC93C;
+  --hwang-soft: #FFF4D1;
+  --jeok: #C9381F;
+  --cheong: #2450D8;
+  --hand: "Gaegu", "Pretendard Variable", sans-serif;
+
+  /* 기존 style.css 변수도 새 색으로 덮어씀 */
+  --brand-1: #1B1F3B;
+  --brand-2: #1B1F3B;
+  --bg: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --text-main: #1B1F3B;
+  --text-sub: #5A5E78;
+  --border: #DADDEA;
+  --shadow: none;
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+body.qp a:focus-visible, body.qp button:focus-visible, body.qp input:focus-visible {
+  outline: 3px solid var(--cheong); outline-offset: 2px;
+}
+
+/* ---------- 머리 (홈과 같은 노란 띠) ---------- */
+.qp .site-header {
+  max-width: none; margin: 0; padding: 0 20px; height: 56px;
+  background: var(--hwang);
+}
+.qp .site-header .logo {
+  max-width: 480px; width: 100%; margin: 0 auto;
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--hand); font-size: 26px; font-weight: 700; line-height: 1; color: var(--ink);
+}
+/* ☰ 글자 대신 팔괘 막대 3줄 */
+.qp .site-header .logo-mark {
+  width: 32px; height: 32px; flex: none; border-radius: 9px; font-size: 0; color: transparent;
+  background:
+    linear-gradient(var(--hwang), var(--hwang)) center 9px / 18px 4px no-repeat,
+    linear-gradient(var(--hwang), var(--hwang)) center 14px / 18px 4px no-repeat,
+    linear-gradient(var(--hwang), var(--hwang)) center 19px / 18px 4px no-repeat,
+    var(--ink);
+}
+
+.qp .wrap { padding-bottom: 48px; display: flow-root; }
+
+/* 결과 아래 '이런 테스트는 어때요?' 추천 */
+.qp .test-card {
+  gap: 14px; padding: 14px; margin-top: 10px;
+  border: 2px solid var(--line); border-radius: 18px; box-shadow: none;
+}
+.qp .test-card:hover { border-color: var(--ink); }
+.qp .test-card .emoji { width: 52px; height: 52px; font-size: 30px; background: var(--hwang-soft); border-radius: 14px; }
+.qp .test-card .info h3 { font-size: 16px; font-weight: 800; margin: 0 0 2px; }
+.qp .test-card .info p { font-size: 13.5px; color: var(--sub); margin: 0; }
+
+/* ---------- 공통 카드 · 버튼 ---------- */
+.qp .card {
+  border: 2px solid var(--line); border-radius: 20px; box-shadow: none; padding: 20px;
+}
+.qp .btn { border-radius: 16px; font-weight: 800; padding: 17px 16px; transition: transform .1s ease, background-color .15s ease; }
+.qp .btn-primary {
+  background: var(--ink); color: var(--paper); box-shadow: 0 4px 0 #090B1C; border: 0;
+}
+.qp .btn-primary:hover { background: #2C3360; }
+.qp .btn-primary:active { transform: translateY(3px); box-shadow: 0 1px 0 #090B1C; }
+.qp .btn-secondary {
+  background: var(--paper); color: var(--ink); border: 2px solid var(--ink);
+}
+.qp .btn-secondary:hover { background: var(--hwang-soft); }
+.qp .btn-secondary:active { transform: translateY(1px); }
+.qp .btn-row { gap: 8px; }
+
+.qp .notice {
+  background: var(--mist); border: 0; border-radius: 14px; color: var(--sub);
+}
+.qp .ad-slot:not(:has(ins)) { display: none; }
+.qp .footer { border-top: 2px dashed var(--line); color: var(--sub); }
+.qp .footer a { color: var(--ink); font-weight: 700; }
+
+/* ---------- 테스트 시작 화면 ---------- */
+.qp .hero {
+  position: relative; margin: 0 -20px; padding: 18px 20px 30px;
+  background: var(--hwang); text-align: center;
+  border-radius: 0 0 32px 32px;
+}
+.qp .hero > div:first-child {
+  /* 이모지를 흰 스티커 안에 */
+  width: 104px; height: 104px; margin: 6px auto 14px !important;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 56px !important; line-height: 1;
+  background: var(--paper); border: 3px solid var(--ink); border-radius: 50%;
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: rotate(-4deg);
+}
+.qp .hero h1 {
+  font-family: var(--hand); font-size: 44px; font-weight: 700; line-height: 1.05;
+  letter-spacing: -0.01em; margin: 0 0 10px; word-break: keep-all;
+}
+.qp .hero p { color: var(--ink); font-size: 15px; font-weight: 600; line-height: 1.6; opacity: .82; }
+.qp .hero .view-counter { opacity: 1 !important; font-weight: 700; color: var(--ink) !important; }
+/* 안내 카드(문항 수 · 소요 시간) */
+.qp .hero + .card { margin-top: 18px; border-style: dashed; }
+
+/* 이름 넣는 칸 (quiz-plus.js 가 만듦) */
+.qp .qp-name {
+  margin-top: 16px; padding: 18px 18px 16px;
+  background: var(--paper); border: 3px solid var(--ink);
+  border-radius: 22px 18px 24px 16px; box-shadow: 6px 6px 0 var(--ink);
+}
+.qp .qp-name label { display: block; font-family: var(--hand); font-size: 24px; font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+.qp .qp-name-row { display: flex; align-items: center; gap: 8px; }
+.qp .qp-name input {
+  flex: 1; min-width: 0; height: 52px; padding: 0 16px; box-sizing: border-box;
+  border: 2px solid var(--line); border-radius: 14px; background: var(--mist);
+  font: inherit; font-size: 17px; font-weight: 700; color: var(--ink); outline: none;
+}
+.qp .qp-name input:focus { border-color: var(--ink); background: var(--paper); }
+.qp .qp-name input::placeholder { color: #8A8EA6; font-weight: 500; }
+.qp .qp-name-suffix { font-size: 16px; font-weight: 800; }
+.qp .qp-name small { display: block; margin-top: 8px; font-size: 12.5px; color: var(--sub); }
+
+/* ---------- 문제 화면 ---------- */
+body.qp.qp-quiz { background: var(--mist); }
+.qp-quiz .wrap { padding-top: 18px; }
+.qp .progress-outer {
+  height: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 999px; margin-bottom: 8px;
+}
+.qp .progress-inner {
+  background: var(--hwang) !important; border-right: 2px solid var(--ink); border-radius: 0 999px 999px 0;
+  transition: width .35s cubic-bezier(.3,.7,.3,1);
+}
+.qp .progress-label { font-size: 13px; font-weight: 800; color: var(--ink); text-align: right; }
+.qp-quiz .card {
+  position: relative; margin-top: 14px; padding: 22px 18px 18px;
+  background: var(--paper); border: 3px solid var(--ink);
+  border-radius: 24px 20px 26px 18px; box-shadow: 6px 6px 0 var(--ink);
+}
+.qp .question-num {
+  font-family: var(--hand); font-size: 34px; font-weight: 700; line-height: 1; color: var(--jeok); margin: 0 0 10px;
+}
+.qp .question-text { font-size: 21px; font-weight: 800; line-height: 1.45; margin: 0 0 20px; word-break: keep-all; }
+.qp #options { counter-reset: qp-opt; display: grid; gap: 10px; }
+.qp .option-btn {
+  position: relative; display: flex; align-items: center; gap: 12px; margin: 0;
+  min-height: 60px; padding: 14px 16px 14px 14px;
+  background: var(--paper); border: 2px solid var(--line); border-radius: 16px;
+  font-size: 15.5px; font-weight: 600; line-height: 1.45; color: var(--ink); word-break: keep-all;
+  transition: border-color .12s ease, background-color .12s ease, transform .12s ease;
+}
+.qp #options:not(.opt-fig-grid) .option-btn::before {
+  counter-increment: qp-opt; content: counter(qp-opt, upper-alpha);
+  flex: none; width: 30px; height: 30px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; color: var(--ink); background: var(--mist);
+}
+.qp .option-btn:hover { border-color: var(--ink); }
+.qp .option-btn:active { transform: scale(.985); }
+.qp .option-btn.qp-picked { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.qp .option-btn.qp-picked::before { background: var(--hwang); color: var(--ink); }
+.qp .option-btn.correct { background: #E3F4EA; border-color: #1E7F4F; color: #14532D; }
+.qp .option-btn.wrong { background: #FDE7E2; border-color: var(--jeok); color: #7A1E0E; }
+/* 다음 문제가 들어올 때 */
+.qp .card.qp-in { animation: qpIn .32s cubic-bezier(.2,.8,.3,1); }
+@keyframes qpIn { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+
+/* 결과 뽑는 중 (quiz-plus.js) */
+.qp-loading {
+  position: fixed; inset: 0; z-index: 999; background: var(--hwang);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+  padding: 24px; text-align: center; animation: qpFade .2s ease;
+}
+@keyframes qpFade { from { opacity: 0; } to { opacity: 1; } }
+.qp-loading-gua { display: flex; flex-direction: column; gap: 10px; width: 120px; }
+.qp-loading-gua i { display: block; height: 18px; border-radius: 6px; background: var(--ink); }
+.qp-loading-gua i.n { background: linear-gradient(90deg, var(--ink) 0 42%, transparent 42% 58%, var(--ink) 58% 100%); }
+.qp-loading p { margin: 0; font-family: var(--hand); font-size: 34px; font-weight: 700; line-height: 1.15; color: var(--ink); }
+.qp-loading small { font-size: 14px; font-weight: 600; color: var(--ink); opacity: .75; }
+
+/* ---------- 결과 화면 ---------- */
+.qp .result-hero {
+  --rc: #FFC93C;
+  position: relative; margin-top: 20px; padding: 0 0 22px; overflow: hidden;
+  background: var(--paper) !important; color: var(--ink);
+  border: 3px solid var(--ink); border-radius: 26px 22px 28px 20px; box-shadow: 6px 6px 0 var(--ink);
+}
+.qp .result-hero::before {
+  content: ""; display: block; height: 88px; margin-bottom: -52px;
+  background: color-mix(in oklab, var(--rc) 55%, white);
+  border-bottom: 3px solid var(--ink);
+}
+.qp .result-hero .emoji {
+  position: relative; width: 96px; height: 96px; margin: 0 auto 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 52px; line-height: 1;
+  background: var(--paper); border: 3px solid var(--ink); border-radius: 50%;
+  transform: rotate(-4deg);
+}
+.qp .qp-who { margin: 0 0 2px; font-family: var(--hand); font-size: 24px; font-weight: 700; line-height: 1.2; color: var(--jeok); }
+.qp .result-hero h1 {
+  margin: 0 16px 6px; font-family: var(--hand); font-size: 40px; font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.01em; word-break: keep-all;
+}
+.qp .result-hero .subtitle { margin: 0 20px; font-size: 15px; font-weight: 600; color: var(--sub); opacity: 1; }
+.qp .result-hero .percentile {
+  margin-bottom: 8px; background: var(--hwang); color: var(--ink); font-weight: 800; position: relative;
+}
+.qp .result-hero .view-counter { color: var(--sub) !important; opacity: 1 !important; font-weight: 700; }
+
+/* 같은 결과 % · 반응 버튼 */
+.qp .qp-pulse { display: grid; gap: 12px; margin-top: 16px; }
+.qp .qp-same {
+  margin: 0; padding: 14px 16px; border-radius: 16px; background: var(--hwang-soft);
+  font-size: 15px; font-weight: 700; line-height: 1.5; text-align: center;
+}
+.qp .qp-same b { font-family: var(--hand); font-size: 28px; color: var(--jeok); }
+.qp .qp-react { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.qp .qp-react button {
+  display: flex; align-items: center; justify-content: center; gap: 8px; height: 52px;
+  background: var(--paper); border: 2px solid var(--line); border-radius: 14px;
+  font: inherit; font-size: 15px; font-weight: 800; color: var(--ink); cursor: pointer;
+}
+.qp .qp-react button:hover { border-color: var(--ink); }
+.qp .qp-react button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.qp .qp-react button[aria-pressed="true"] .qp-n { color: var(--hwang); }
+.qp .qp-react .qp-n { font-size: 13px; font-weight: 700; color: var(--sub); }
+.qp .qp-react button.qp-pop { animation: qpPop .3s ease; }
+@keyframes qpPop { 50% { transform: scale(1.06); } }
+
+/* 지수 게이지 */
+.qp .index-card { border-color: var(--ink); }
+.qp .index-title { color: var(--sub); }
+.qp .index-percent { font-family: var(--hand); font-size: 52px; font-weight: 700; }
+.qp .index-gauge-outer { height: 18px; background: var(--mist); border: 2px solid var(--ink); }
+.qp .index-gauge-inner { border-right: 2px solid var(--ink); }
+.qp .index-mini .index-gauge-outer { height: 12px; }
+
+/* 특징 목록 */
+.qp .trait-list li::before {
+  content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 10px; vertical-align: 1px;
+  background: var(--hwang); border: 2px solid var(--ink); border-radius: 3px;
+}
+.qp .section-title {
+  font-family: var(--hand); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1.2;
+}
+.qp .card .section-title { font-size: 22px; }
+
+/* 궁합 카드 */
+.qp .compat-card { box-shadow: none; border-radius: 18px; }
+.qp .compat-best { background: #E8EEFD; border: 2px solid var(--cheong); }
+.qp .compat-worst { background: #FDE7E2; border: 2px solid var(--jeok); }
+.qp .compat-best .compat-label { color: var(--cheong); }
+.qp .compat-worst .compat-label { color: var(--jeok); }
+.qp .compat-card:hover { transform: translate(-2px, -2px); }
+
+/* 읽을거리 */
+.qp .article-head { color: var(--ink); font-family: var(--hand); font-size: 24px; font-weight: 700; }
+.qp .article h2 { border-left: 6px solid var(--hwang); }
+.qp .faq-q::before { color: var(--jeok); }
+.qp .article-more { border: 2px solid var(--line); }
+
+/* PC 에서는 바깥을 연한 회색으로 깔아 가운데 기둥이 보이게 */
+@media (min-width: 720px) {
+  body.qp { background: var(--mist); }
+  .qp .wrap { background: var(--paper); padding-left: 28px; padding-right: 28px; min-height: 100vh; box-sizing: border-box; max-width: 540px; }
+  .qp .hero { margin: 0 -28px; padding-left: 28px; padding-right: 28px; }
+  body.qp.qp-quiz .wrap { background: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qp *, .qp-loading { animation: none !important; transition: none !important; }
+}

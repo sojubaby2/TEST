@@ -149,8 +149,13 @@ $AD
 
 <link rel="icon" href="$(Favicon $spec.emoji)" />
 <link rel="stylesheet" href="../../assets/css/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap" />
+<link rel="stylesheet" href="../../assets/css/test-skin.css" />
 </head>
-<body>
+<body class="qp">
 
 <header class="site-header">
   <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
@@ -180,6 +185,7 @@ $AD
   </div>
 </main>
 
+<script src="../../assets/js/quiz-plus.js"></script>
 </body>
 </html>
 "@
@@ -200,8 +206,13 @@ $AD
 <meta name="robots" content="noindex" />
 <link rel="icon" href="$(Favicon $spec.emoji)" />
 <link rel="stylesheet" href="../../assets/css/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap" />
+<link rel="stylesheet" href="../../assets/css/test-skin.css" />
 </head>
-<body>
+<body class="qp">
 
 <header class="site-header">
   <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
@@ -271,12 +282,13 @@ $AD
     const url = "result-" + result.id + ".html?percent=" + Math.min(percent, 100);
     setTimeout(() => {
       window.location.href = url;
-    }, 350);
+    }, window.QP_DELAY || 350);
   }
 
   renderQuestion();
 </script>
 
+<script src="../../assets/js/quiz-plus.js"></script>
 </body>
 </html>
 "@
@@ -306,15 +318,20 @@ $AD
 
 <link rel="icon" href="$(Favicon $r.emoji)" />
 <link rel="stylesheet" href="../../assets/css/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap" />
+<link rel="stylesheet" href="../../assets/css/test-skin.css" />
 </head>
-<body>
+<body class="qp">
 
 <header class="site-header">
   <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
 </header>
 
 <main class="wrap">
-  <div class="result-hero" style="background:$($r.color);">
+  <div class="result-hero" style="--rc:$($r.color);">
     <div class="emoji">$($r.emoji)</div>
     <h1>$($r.title)</h1>
     <p class="subtitle">$($r.subtitle)</p>
@@ -400,6 +417,7 @@ $traitsHtml
   })();
 </script>
 
+<script src="../../assets/js/quiz-plus.js"></script>
 </body>
 </html>
 "@

@@ -7,7 +7,7 @@
 | 경로 | 내용 |
 |---|---|
 | `index.html` | 홈. 2026-10-27 4차 개편 "팔괘" 디자인(큰 제목 "오늘, 나를 알아볼괘"). 휴대폰은 위에 붙는 가로 탭 + 아래 고정 메뉴(골라보기·찾기·아무거나·읽을거리), PC는 왼쪽 고정 주제 메뉴 + 오른쪽 3열 카드. 주제 8개를 주역 팔괘(막대 3줄)로 표시, 오방색(노랑 #FFC93C·빨강 #C9381F·파랑 #2450D8·남색 #1B1F3B), 제목 글꼴 Gaegu(구글폰트)+본문 Pretendard, 히어로에 직접 그린 티남이·티녀(`assets/img/home/*.webp`), "괘 뽑기" 버튼. 홈 전용 스타일은 파일 안 `<style>` 에 `body.home4` 범위로만 있음(공용 style.css 미수정). 새 테스트 추가 시 홈 탭 목록에도 직접 넣어야 함 |
-| `tests/` | 테스트 70종. 각 폴더에 `index.html` + `result*.html` |
+| `tests/` | 테스트 73종. 각 폴더에 `index.html` + `result*.html` |
 | `assets/css/test-skin.css`, `assets/js/quiz-plus.js` | 2026-10-28 테스트 화면 새 옷. 문제형 테스트 57종(시작·문제·결과 화면)에 `<body class="qp">` + 이 두 파일을 붙임. 홈과 같은 팔괘·오방색·Gaegu 디자인, 이름 넣기(기기에만 저장), 고른 답 표시, "결과 뽑는 중" 화면, 같은 결과 비율, 재밌어요/정확해요. 결과 히어로 색은 `style="--rc:#색"` 으로 줌. 사주·타로·관상 등 나머지 13종은 아직 옛 디자인 |
 | `blog/` | 블로그 83편 + `index.html` 목록 |
 | `assets/js/`, `assets/css/`, `assets/img/` | 공용 자원 |
@@ -61,9 +61,9 @@
 
 ## 색인 정책 (중요)
 
-- `tests/**/result*.html` 506개 전부 `<meta name="robots" content="noindex, follow">`.
+- `tests/**/result*.html` 519개 전부 `<meta name="robots" content="noindex, follow">`.
   내용이 거의 같은 얇은 페이지라 색인되면 사이트 평가가 깎인다.
-- `sitemap.xml` 은 159개만: 홈·안내 5 + 테스트 `index.html` 70 + 블로그 84.
+- `sitemap.xml` 은 162개만: 홈·안내 5 + 테스트 `index.html` 73 + 블로그 84.
   **결과 페이지는 sitemap 에 넣지 않는다.**
 - 블로그와 테스트 `index.html` 에는 noindex 를 걸지 않는다.
 
@@ -96,6 +96,7 @@
 
 ### 남은 정리거리
 
+- 2026-10-29 새 테스트 3종(푸망·테스트잇 참고, 직접 기획): `joseon-job`(조선 직업, 12장면 이야기형, 8결과), `retro-age`(감성 연대, 4결과, 결과에 내 답 비율 막대 `?d=`), `my-hashtags`(해시태그 3개 조합 64가지, 결과는 `result.html?t=` 한 장 + 기기 안에서 그리는 카드 저장). 셋 다 new-test.ps1 이 아니라 스크래치 빌더로 만든 페이지라 고칠 때는 파일을 직접 고친다. 데이터는 `assets/js/<슬러그>-data.js`.
 - `my-gua`(나는 어떤 괘일까? 팔괘 캐릭터 테스트)는 new-test.ps1 이 아니라 직접 만든 이야기형 테스트다. 12장면, 답마다 세 축(위=첫인상, 가운데=속마음, 아래=시작 방식)에 쌓여 막대 세 줄 → 팔괘 8결과. 데이터는 `assets/js/my-gua-data.js`, 문항에 `{이름}` 자리표시자가 있다.
 - `tools/new-test.ps1` 템플릿도 새 옷(test-skin, quiz-plus, `--rc`)으로 바꿔 둠. 다시 돌려도 새 디자인이 유지된다.
 

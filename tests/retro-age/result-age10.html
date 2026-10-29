@@ -96,7 +96,7 @@
   <section class="article">
     <h2>옛날 이야기가 새로운 세대</h2>
     <p>
-      이 결과가 나왔다면 오늘 테스트에 나온 추억 상당수가 처음 보는 것이었을 거예요. 그만큼 지금 유행과 가까이 있다는 뜻이죠. 지금 즐기는 탕후루, 네 컷 사진도 언젠가는 누군가의 추억이 될 거예요.
+      이 결과가 나왔다면 오늘 테스트에 나온 추억 상당수가 처음 보는 것이었을 거예요. 그만큼 지금 유행과 가까이 있다는 뜻이죠. 지금 즐기는 놀이와 유행도 언젠가는 누군가의 추억이 될 거예요.
     </p>
     <h2>이렇게 즐겨 보세요</h2>
     <p>
@@ -144,7 +144,7 @@
   (function () {
     var ID = "age10", LV = 1, TITLE = "추억 나이 10대", EMO = "🐣";
     // 시대별로 아는 개수 (?d=) - 테스트를 마친 사람에게만 보여요
-    var per = NT_DATA.perLevel;
+    var per = NT_DATA.labels.map(function () { return NT_DATA.ask; });
     var d = (new URLSearchParams(location.search).get("d") || "").split("-").map(Number);
     if (d.length === per.length && d.every(function (x, i) { return x >= 0 && x <= per[i]; })) {
       var sum = d.reduce(function (a, b) { return a + b; }, 0), all = per.reduce(function (a, b) { return a + b; }, 0);
@@ -153,7 +153,7 @@
       d.forEach(function (n, i) {
         var pct = Math.round(n / per[i] * 100);
         var row = document.createElement("div");
-        row.className = "nt-bar" + (i + 1 === LV ? " me" : "");
+        row.className = "nt-bar" + (i + 2 === LV ? " me" : "");
         row.innerHTML = '<span></span><div class="nt-bar-track"><div class="nt-bar-fill"></div></div><span></span>';
         row.children[0].textContent = NT_DATA.labels[i];
         row.children[2].textContent = n + "/" + per[i];

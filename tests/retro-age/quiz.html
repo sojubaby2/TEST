@@ -8,11 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>옛날 사람 테스트 진행중... | 알아볼괘</title>
 <meta name="robots" content="noindex" />
-<meta name="description" content="유희왕 카드, 국민학교, 밀리오레 강매, 삐삐 공중전화, 탕후루까지. 36가지 추억 중 직접 해 본 것만 골라 보면 나의 &#x27;추억 나이&#x27;가 나와요." />
+<meta name="description" content="유희왕 카드, 국민학교, 밀리오레 강매, 삐삐 공중전화, 학력고사까지. 세대별 추억 15개를 해봤다·안해봤다로 골라 보면 나의 &#x27;추억 나이&#x27;가 나와요." />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="옛날 사람 테스트" />
-<meta property="og:description" content="유희왕 듀얼 해 봤다? 밀리오레에서 강매당해 봤다? 36개 중 몇 개 해 봤어? 나의 추억 나이 확인하기" />
+<meta property="og:description" content="유희왕 듀얼 해 봤다? 밀리오레에서 강매당해 봤다? 15개 중 몇 개 해 봤어? 나의 추억 나이 확인하기" />
 <meta property="og:image" content="../../assets/img/og/retro-age-intro.png" />
 <meta property="og:url" content="./" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -76,7 +76,7 @@
   <div class="progress-outer">
     <div class="progress-inner" id="progressBar" style="width:0%;"></div>
   </div>
-  <div class="progress-label" id="progressLabel">0 / 36</div>
+  <div class="progress-label" id="progressLabel">0 / 15</div>
 
   <div class="card">
     <div class="question-num" id="qNum">Q1</div>
@@ -90,7 +90,14 @@
 <script src="../../assets/js/retro-age-data.js"></script>
 <script>
   (function () {
-    var Q = NT_DATA.questions, total = Q.length, current = 0, picks = [];
+    // 세대마다 문제 묶음에서 몇 개씩만 무작위로 골라 섞어서 내요
+    function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+    var Q = [];
+    NT_DATA.labels.forEach(function (_, k) {
+      Q = Q.concat(shuffle(NT_DATA.questions.filter(function (q) { return q.level === k + 2; })).slice(0, NT_DATA.ask));
+    });
+    shuffle(Q);
+    var total = Q.length, current = 0, picks = [];
     var qNum = document.getElementById("qNum"), qEmo = document.getElementById("qEmo"), qText = document.getElementById("qText"), qHint = document.getElementById("qHint");
     var optionsEl = document.getElementById("options"), bar = document.getElementById("progressBar"), label = document.getElementById("progressLabel");
     function render() {
@@ -100,7 +107,7 @@
       qText.textContent = q.text;
       qHint.textContent = q.hint;
       optionsEl.innerHTML = "";
-      [["🙆 해 봤다", 1], ["🙅 모른다", 0]].forEach(function (o) {
+      [["🙆 해봤다", 1], ["🙅 안해봤다", 0]].forEach(function (o) {
         var b = document.createElement("button");
         b.className = "option-btn"; b.type = "button"; b.textContent = o[0];
         b.addEventListener("click", function () { pick(o[1]); });
@@ -120,11 +127,11 @@
       render(); window.scrollTo({ top: 0, behavior: "smooth" });
     }
     function finish(p) {
-      // 세대별(1~6단계) 아는 개수. 6개 중 4개 이상 해 본 가장 오래된 시대가 결과
-      var c = [0, 0, 0, 0, 0, 0];
-      p.forEach(function (v, i) { if (v === 1) c[Q[i].level - 1] += 1; });
+      // 세대별로 해 본 개수. 3개 중 2개 이상 해 본 가장 윗세대가 결과 (하나도 없으면 10대)
+      var c = NT_DATA.labels.map(function () { return 0; });
+      p.forEach(function (v, i) { if (v === 1) c[Q[i].level - 2] += 1; });
       var lv = 1;
-      for (var L = 6; L >= 2; L--) { if (c[L - 1] >= 4) { lv = L; break; } }
+      for (var L = c.length + 1; L >= 2; L--) { if (c[L - 2] >= 2) { lv = L; break; } }
       return "result-" + NT_DATA.ids[lv - 1] + ".html?d=" + c.join("-");
     }
     render();

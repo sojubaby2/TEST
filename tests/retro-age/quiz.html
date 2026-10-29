@@ -6,13 +6,13 @@
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>내 감성은 몇 년대? 진행중... | 알아볼괘</title>
+<title>옛날 사람 테스트 진행중... | 알아볼괘</title>
 <meta name="robots" content="noindex" />
-<meta name="description" content="편지 감성? 미니홈피 감성? 숏폼 감성? 10문항으로 알아보는 나의 감성 연대. 내 안의 연대별 비율까지 보여드려요." />
+<meta name="description" content="유희왕 카드, 국민학교, 밀리오레 강매, 삐삐 공중전화, 탕후루까지. 36가지 추억 중 직접 해 본 것만 골라 보면 나의 &#x27;추억 나이&#x27;가 나와요." />
 
 <meta property="og:type" content="website" />
-<meta property="og:title" content="내 감성은 몇 년대?" />
-<meta property="og:description" content="삐삐 세대? 미니홈피 세대? 내 감성이 사는 연대를 알아봐요" />
+<meta property="og:title" content="옛날 사람 테스트" />
+<meta property="og:description" content="유희왕 듀얼 해 봤다? 밀리오레에서 강매당해 봤다? 36개 중 몇 개 해 봤어? 나의 추억 나이 확인하기" />
 <meta property="og:image" content="../../assets/img/og/retro-age-intro.png" />
 <meta property="og:url" content="./" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -48,6 +48,23 @@
 .qp .ht-parts strong { font-size: 17px; }
 .qp .ht-parts p { margin: 6px 0 0; font-size: 15px; line-height: 1.75; color: #33375A; }
 </style>
+<style>
+.qp .od-emo { font-size: 84px; line-height: 1; margin: 8px 0 12px; text-align: center; }
+.qp .od-emo .e3d { width: 112px; height: 112px; }
+.qp .od-item { text-align: center; }
+.qp .od-hint { margin: 6px 0 18px; text-align: center; font-size: 15px; color: var(--sub); word-break: keep-all; }
+.qp #options.od-two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.qp #options.od-two .option-btn { margin: 0; text-align: center; font-size: 18px; font-weight: 800; padding: 18px 6px; white-space: nowrap; }
+.qp #options.od-two .option-btn:first-child { background: var(--hwang-soft); }
+.qp .od-total { margin: 0 0 14px; font-family: var(--hand); font-size: 26px; word-break: keep-all; font-weight: 700; text-align: center; }
+.qp .od-total b { color: var(--jeok); }
+.qp .nt-bar { grid-template-columns: 100px 1fr 40px; }
+.qp .od-all { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+.qp .od-all a { display: block; padding: 10px 2px; border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); color: var(--ink); text-align: center; font-size: 13px; font-weight: 800; text-decoration: none; }
+.qp .od-all a.me { background: var(--hwang); }
+.qp .od-all a span { display: block; font-size: 26px; line-height: 1.2; }
+.qp .od-all .e3d { width: 30px; height: 30px; }
+</style>
 </head>
 <body class="qp">
 
@@ -59,13 +76,14 @@
   <div class="progress-outer">
     <div class="progress-inner" id="progressBar" style="width:0%;"></div>
   </div>
-  <div class="progress-label" id="progressLabel">0 / 10</div>
+  <div class="progress-label" id="progressLabel">0 / 36</div>
 
   <div class="card">
     <div class="question-num" id="qNum">Q1</div>
-    <p class="mg-scene" id="qScene"></p>
-    <p class="question-text" id="qText"></p>
-    <div id="options"></div>
+    <div class="od-emo" id="qEmo"></div>
+    <p class="question-text od-item" id="qText"></p>
+    <p class="od-hint" id="qHint"></p>
+    <div id="options" class="od-two"></div>
   </div>
 </main>
 
@@ -73,18 +91,16 @@
 <script>
   (function () {
     var Q = NT_DATA.questions, total = Q.length, current = 0, picks = [];
-    var name = "";
-    try { name = (localStorage.getItem("arabol:name") || "").trim(); } catch (e) {}
-    var qNum = document.getElementById("qNum"), qScene = document.getElementById("qScene"), qText = document.getElementById("qText");
+    var qNum = document.getElementById("qNum"), qEmo = document.getElementById("qEmo"), qText = document.getElementById("qText"), qHint = document.getElementById("qHint");
     var optionsEl = document.getElementById("options"), bar = document.getElementById("progressBar"), label = document.getElementById("progressLabel");
-    function fill(t) { return t.replace("{이름}, ", name ? name + "님, " : "").replace("{이름}", name ? name + "님" : ""); }
     function render() {
       var q = Q[current];
       qNum.textContent = "Q" + (current + 1);
-      qScene.textContent = q.scene || "";
-      qText.textContent = fill(q.text);
+      qEmo.textContent = q.emoji;
+      qText.textContent = q.text;
+      qHint.textContent = q.hint;
       optionsEl.innerHTML = "";
-      q.options.forEach(function (o) {
+      [["🙆 해 봤다", 1], ["🙅 모른다", 0]].forEach(function (o) {
         var b = document.createElement("button");
         b.className = "option-btn"; b.type = "button"; b.textContent = o[0];
         b.addEventListener("click", function () { pick(o[1]); });
@@ -104,13 +120,12 @@
       render(); window.scrollTo({ top: 0, behavior: "smooth" });
     }
     function finish(p) {
-      var t = {}; p.forEach(function (k) { t[k] = (t[k] || 0) + 1; });
-      // 가장 많이 고른 유형. 동점이면 그중 가장 나중에 고른 답을 따름
-      var max = 0; for (var k in t) if (t[k] > max) max = t[k];
-      var best = null;
-      for (var i = p.length - 1; i >= 0; i--) { if (t[p[i]] === max) { best = p[i]; break; } }
-      var dist = NT_DATA.order.map(function (k) { return t[k] || 0; }).join("-");
-      return "result-" + best + ".html?d=" + dist;
+      // 세대별(1~6단계) 아는 개수. 6개 중 4개 이상 해 본 가장 오래된 시대가 결과
+      var c = [0, 0, 0, 0, 0, 0];
+      p.forEach(function (v, i) { if (v === 1) c[Q[i].level - 1] += 1; });
+      var lv = 1;
+      for (var L = 6; L >= 2; L--) { if (c[L - 1] >= 4) { lv = L; break; } }
+      return "result-" + NT_DATA.ids[lv - 1] + ".html?d=" + c.join("-");
     }
     render();
   })();

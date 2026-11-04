@@ -3552,3 +3552,6 @@ img {
   -webkit-user-drag: none;
   user-drag: none;
 }
+
+/* [2026-11-04] 결과 화면 이모지 자리를 티남이·티녀 그림으로 — assets/img/titi/r/ */
+.result-hero .emoji img.titi-res { display: block; width: min(230px, 62vw); height: auto; margin: 0 auto; }

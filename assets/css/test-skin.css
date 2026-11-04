@@ -382,3 +382,7 @@ body.qp.qp-quiz { background: var(--mist); }
 .qp .card .article-more { margin-top: 24px; }
 /* 해설이 카드 밖에 따로 있을 때(새로 만든 테스트 등)도 카드처럼 */
 .qp .wrap > .article { margin-top: 16px; padding: 22px 20px; border: 2px solid var(--line); border-radius: 20px; }
+
+/* [2026-11-04] 결과 화면 이모지 자리를 티남이·티녀 그림으로 — assets/img/titi/r/ */
+.qp .result-hero .emoji img.titi-res { display: block; width: min(230px, 62vw); height: auto; margin: 0 auto; }
+.qp .result-hero.qp-flip-b .emoji .titi-res { animation: qpPop .7s cubic-bezier(.3,1.6,.5,1) both .1s; }

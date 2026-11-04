@@ -115,6 +115,17 @@
       outer.classList.add("qp-track");
       var runner = el("span", "qp-runner", testEmoji());
       outer.appendChild(runner);
+      // [2026-11-04] 달리는 이모지 대신 그 테스트의 티남이·티녀 그림(assets/img/titi/<테스트>-ic.webp). 그림이 없으면 이모지 그대로
+      try {
+        var qs = document.querySelector('script[src*="quiz-plus.js"]');
+        if (slug && qs) {
+          var ti = new Image();
+          ti.className = "qp-titi";
+          ti.alt = "";
+          ti.onload = function () { runner.textContent = ""; runner.appendChild(ti); };
+          ti.src = qs.src.replace(/js\/quiz-plus\.js.*$/, "img/titi/") + slug + "-ic.webp";
+        }
+      } catch (e) {}
       outer.appendChild(el("span", "qp-flag", "🏁"));
       var lastW = -1;
       var place = function () {

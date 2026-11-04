@@ -316,6 +316,9 @@ body.qp.qp-quiz { background: var(--mist); }
 }
 .qp .qp-runner .e3d { width: 54px; height: 54px; vertical-align: 0; display: block; }
 .qp .qp-runner.qp-hop .e3d { animation: qpHop .45s ease; }
+/* [2026-11-04] 진행 막대 위 티남이·티녀 */
+.qp .qp-runner .qp-titi { width: 58px; height: 58px; display: block; object-fit: contain; }
+.qp .qp-runner.qp-hop .qp-titi { animation: qpHop .45s ease; }
 @keyframes qpHop { 0% { transform: translateY(0); } 40% { transform: translateY(-16px) rotate(-8deg); } 100% { transform: translateY(0); } }
 .qp .qp-flag { position: absolute; right: -6px; bottom: 6px; font-size: 26px; line-height: 1; }
 .qp .qp-flag .e3d { width: 30px; height: 30px; display: block; vertical-align: 0; }

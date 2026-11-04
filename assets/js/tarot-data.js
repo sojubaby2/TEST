@@ -1818,6 +1818,16 @@ function tarotHashSeed(str) {
   return h;
 }
 
+// 숫자를 골고루 섞는 함수 — 비슷한 글자로 만든 숫자도 홀짝이 한쪽으로 쏠리지 않게 함
+function tarotMix(h) {
+  h ^= h >>> 16;
+  h = Math.imul(h, 0x85ebca6b) >>> 0;
+  h ^= h >>> 13;
+  h = Math.imul(h, 0xc2b2ae35) >>> 0;
+  h ^= h >>> 16;
+  return h >>> 0;
+}
+
 function getTarotTodayDateStr() {
   const d = new Date();
   const y = d.getFullYear();
@@ -1908,7 +1918,13 @@ function getTodayTarotDraw(category) {
   const seed = getTarotVisitorSeed();
   const base = dateStr + "-" + seed + "-" + cat;
   const cardIdx = tarotHashSeed(base + "-card") % TAROT_CARDS.length;
-  const isReversed = tarotHashSeed(base + "-orientation") % 2 === 1;
+  // [2026-11-04 고침] 재성님: "누를 때마다 역방향만 나오고 정방향은 가뭄에 콩 나듯"
+  //   원인: tarotHashSeed 값의 맨 끝 자리(홀짝)는 글자들의 홀짝 합으로만 정해져서,
+  //   "총운"만 늘 반대로 나오고 연애·금전·건강·직장 4개는 하루 종일 같은 방향(대개 다 역방향 또는 다 정방향)으로 묶여 나왔음.
+  //   → 홀짝을 보기 전에 숫자를 한 번 골고루 섞어서(tarotMix) 주제마다 정·역이 따로따로 반반 나오게 함.
+  //   오늘(11/4) 이미 본 사람 결과가 바뀌지 않도록 11월 5일부터 적용.
+  const oriHash = tarotHashSeed(base + "-orientation");
+  const isReversed = (dateStr >= "2026-11-05" ? tarotMix(oriHash) : oriHash) % 2 === 1;
   return {
     dateStr: dateStr,
     category: cat,

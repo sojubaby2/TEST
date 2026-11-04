@@ -1,3 +1,15 @@
+/* 움직임 효과 불러오기 (assets/js/fx.js) — 2026-11-04 추가. 이 덩어리를 지우면 효과가 전부 꺼집니다 */
+(function () {
+  if (window.__arabolFXLoad || document.querySelector('script[src*="/fx.js"]')) return;
+  window.__arabolFXLoad = true;
+  var me = document.currentScript;
+  if (!me) return;
+  var s = document.createElement("script");
+  s.src = me.src.replace(/[^\/]*$/, "") + "fx.js";
+  s.async = true;
+  document.head.appendChild(s);
+})();
+
 /* 3D 이모지 그림 불러오기 (assets/js/emoji3d.js) */
 (function () {
   if (window.E3D || document.querySelector('script[src*="emoji3d.js"]')) return;

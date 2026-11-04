@@ -1,0 +1,99 @@
+/* ============================================================
+   알아볼괘 — 움직임 효과 꾸밈 (2026-11-04 신설)
+   assets/js/fx.js 가 이 파일을 불러옵니다. 이 파일만 비우면 꾸밈만 빠집니다.
+   오방색: 노랑 #FFC93C · 빨강 #C9381F · 파랑 #2450D8 · 남색 #1B1F3B
+   ============================================================ */
+
+/* 맨 위 읽은 만큼 차오르는 막대 */
+#fx-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 9999;
+  background: linear-gradient(90deg, #C9381F 0%, #FFC93C 50%, #2450D8 100%);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+/* 스크롤하면 떠오를 칸 — 떠오르기 전 잠깐 숨김(첫 화면엔 안 씀) */
+.fx-pre { opacity: 0; }
+
+/* 괘 막대가 왼쪽부터 그려지게 */
+.z-draw-gua .g i,
+.qp-loading-gua i { transform-origin: 0 50%; }
+
+/* 카드 기울기(PC)가 입체로 보이게 */
+.z-start-card,
+.test-card,
+.z-draw,
+.compat-card,
+.index-card { transform-style: preserve-3d; will-change: transform; }
+
+/* 홈 카드: 마우스를 올리면 그림자가 통통하게 */
+@media (hover: hover) and (pointer: fine) {
+  .z-start-card { transition: box-shadow 0.25s ease; }
+  .z-start-card:hover { box-shadow: 5px 5px 0 #1B1F3B; }
+  .z-item .z-emo > *,
+  .z-start-card .z-start-emo { display: inline-block; }
+  .z-item:hover .z-emo > *,
+  .z-start-card:hover .z-start-emo { animation: fx-wiggle 0.6s ease; }
+  .z-item { transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
+  .z-item:hover { transform: translateX(4px); }
+}
+@keyframes fx-wiggle {
+  0%, 100% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(-12deg) scale(1.12); }
+  50% { transform: rotate(9deg) scale(1.12); }
+  75% { transform: rotate(-5deg) scale(1.05); }
+}
+
+/* 로고 — 마우스를 올리면 살랑 */
+.z-logo,
+.site-header .logo { display: inline-block; transition: transform 0.3s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.z-logo:hover,
+.site-header .logo:hover { transform: rotate(-4deg) scale(1.06); }
+
+/* "괘 뽑기" 같은 큰 단추 — 은은하게 숨 쉬기 */
+.z-btn-ink,
+.qp .btn-primary { position: relative; overflow: hidden; }
+.z-btn-ink::after,
+.qp .btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.35) 50%, transparent 65%);
+  transform: translateX(-120%);
+  animation: fx-shine 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes fx-shine {
+  0%, 62% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+/* 보기 단추 — 누르는 순간 쫀득 */
+.qp .option-btn { transition: transform 0.15s cubic-bezier(0.3, 1.6, 0.5, 1), background-color 0.2s ease; }
+.qp .option-btn:active { transform: scale(0.96); }
+
+/* 결과 지수 막대 — 천천히 차오르게 */
+.index-gauge-inner { transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.index-percent { display: inline-block; }
+
+/* 결과 색종이 */
+.fx-confetti { position: fixed; inset: 0; pointer-events: none; z-index: 9998; overflow: hidden; }
+.fx-confetti i { position: absolute; width: 9px; height: 13px; margin: -6px 0 0 -4px; border-radius: 2px; opacity: 0; box-shadow: 0 0 0 1px rgba(27, 31, 59, 0.15); }
+
+/* 누른 자리 물결 — 세 가지 색 돌아가며 */
+.fx-ripple { position: fixed; width: 110px; height: 110px; margin: -55px 0 0 -55px; border-radius: 50%; pointer-events: none; z-index: 9997; }
+.fx-r0 { background: radial-gradient(circle, rgba(255, 201, 60, 0.7), transparent 70%); }
+.fx-r1 { background: radial-gradient(circle, rgba(201, 56, 31, 0.45), transparent 70%); }
+.fx-r2 { background: radial-gradient(circle, rgba(36, 80, 216, 0.45), transparent 70%); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-pre { opacity: 1; }
+  .z-btn-ink::after,
+  .qp .btn-primary::after { animation: none; }
+}

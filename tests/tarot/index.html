@@ -17,53 +17,255 @@
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>" />
 <link rel="stylesheet" href="../../assets/css/style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+/* ===== [2026-11-04 전면 개편] 타로 — 별밤 무대 · 마법사 티녀 · 돌리는 카드 바퀴 =====
+   이 페이지 전용 꾸밈. body.tarot2 범위로만 적용되어 다른 페이지엔 영향 없음.
+   카드 그림(assets/img/tarot/cards/*.jpg, card-back.jpg)은 그대로 씀. */
+.tarot2 {
+  --night: #15193A; --night-2: #0E1129; --gold: #E3BE6E; --gold-2: #F6DC9C;
+  --lav: #B9A7FF; --hwang: #FFC93C; --ink: #1B1F3B;
+  --hand: "Gaegu", "Pretendard Variable", sans-serif;
+  font-family: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+}
+.tarot2 .tz-wrap { padding-top: 12px; }
+
+/* 별밤 무대 */
+.tarot2 .tz-night {
+  position: relative; overflow: hidden; isolation: isolate;
+  margin: 0 -4px 22px; padding: 22px 16px 26px; border-radius: 26px;
+  background: radial-gradient(120% 80% at 50% 0%, #26306A 0%, var(--night) 55%, var(--night-2) 100%);
+  color: #F4F1FF; box-shadow: 0 18px 40px -18px rgba(14, 17, 41, 0.7);
+}
+.tarot2 .tz-sky {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    radial-gradient(1.6px 1.6px at 12% 18%, #fff 60%, transparent 61%),
+    radial-gradient(1.2px 1.2px at 28% 62%, #fff 60%, transparent 61%),
+    radial-gradient(1.8px 1.8px at 47% 12%, #FFE7A8 60%, transparent 61%),
+    radial-gradient(1.1px 1.1px at 66% 40%, #fff 60%, transparent 61%),
+    radial-gradient(1.5px 1.5px at 84% 22%, #fff 60%, transparent 61%),
+    radial-gradient(1.2px 1.2px at 92% 68%, #FFE7A8 60%, transparent 61%),
+    radial-gradient(1px 1px at 7% 82%, #fff 60%, transparent 61%),
+    radial-gradient(1.4px 1.4px at 58% 86%, #fff 60%, transparent 61%),
+    radial-gradient(1.2px 1.2px at 38% 34%, #fff 60%, transparent 61%),
+    radial-gradient(1px 1px at 76% 92%, #fff 60%, transparent 61%);
+  animation: tzTwinkle 4s ease-in-out infinite alternate;
+}
+@keyframes tzTwinkle { from { opacity: 0.55; } to { opacity: 1; } }
+
+/* 머리 부분: 글 + 마법사 티녀 */
+.tarot2 .tz-hero { display: grid; grid-template-columns: 1fr; gap: 6px; text-align: center; }
+.tarot2 .tz-eyebrow { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: var(--gold-2); }
+.tarot2 .tz-hero h1 { margin: 4px 0 6px; font-family: var(--hand); font-size: 44px; line-height: 1; color: #fff; text-shadow: 0 0 22px rgba(185, 167, 255, 0.55); }
+.tarot2 .tz-lead { margin: 0; font-size: 14.5px; line-height: 1.6; color: #D9D4F5; }
+.tarot2 .tz-mascot { position: relative; margin: 4px auto 0; width: 220px; }
+.tarot2 .tz-mascot img { display: block; width: 100%; height: auto; animation: tzBob 3.2s ease-in-out infinite; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35)); }
+@keyframes tzBob { 0%, 100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(6px) rotate(1.5deg); } }
+.tarot2 .tz-ball-glow {
+  position: absolute; left: 50%; bottom: 8%; width: 46%; aspect-ratio: 1; transform: translateX(-50%);
+  border-radius: 50%; background: radial-gradient(circle, rgba(185, 167, 255, 0.85), rgba(185, 167, 255, 0) 68%);
+  animation: tzGlow 2.4s ease-in-out infinite; z-index: 0; pointer-events: none;
+}
+.tarot2 .tz-mascot img { position: relative; z-index: 1; }
+@keyframes tzGlow { 0%, 100% { opacity: 0.45; transform: translateX(-50%) scale(0.9); } 50% { opacity: 1; transform: translateX(-50%) scale(1.15); } }
+.tarot2 .tz-bubble {
+  position: absolute; z-index: 2; top: -6px; right: -54px; max-width: 150px;
+  padding: 8px 12px; border-radius: 16px 16px 16px 4px; background: #fff; color: var(--ink);
+  font-family: var(--hand); font-size: 18px; line-height: 1.15; box-shadow: 3px 3px 0 var(--ink);
+  border: 2px solid var(--ink); transform-origin: 0 100%;
+}
+.tarot2 .tz-bubble.pop { animation: tzPop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1); }
+@keyframes tzPop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* 주제 고르기 */
+.tarot2 .tz-cats { display: flex; gap: 6px; overflow-x: auto; margin: 18px -16px 0; padding: 2px 16px 4px; scrollbar-width: none; }
+.tarot2 .tz-cats::-webkit-scrollbar { display: none; }
+.tarot2 .tz-cats .tarot-category-chip {
+  flex: 0 0 auto; height: 40px; padding: 0 15px; border-radius: 999px; font: inherit; font-size: 14px; font-weight: 700;
+  background: rgba(255, 255, 255, 0.08); color: #E9E5FF; border: 1px solid rgba(255, 255, 255, 0.18); cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.18s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.tarot2 .tz-cats .tarot-category-chip:active { transform: scale(0.94); }
+.tarot2 .tz-cats .tarot-category-chip.active { background: var(--gold); color: var(--night-2); border-color: var(--gold); box-shadow: 0 0 18px rgba(227, 190, 110, 0.5); }
+.tarot2 .tz-hint { margin: 12px 0 0; text-align: center; font-size: 13.5px; color: #CFC9EE; }
+.tarot2 .tz-hint b { color: var(--gold-2); }
+
+/* 카드 바퀴 */
+.tarot2 .tz-wheel-box {
+  --R: 470px; --cw: 62px; --ch: 93px;
+  position: relative; height: 250px; margin: 6px -16px 0; overflow: hidden; touch-action: pan-y; cursor: grab; outline: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.tarot2 .tz-wheel-box:focus-visible { box-shadow: inset 0 0 0 2px var(--gold); border-radius: 18px; }
+.tarot2 .tz-wheel-box.dragging { cursor: grabbing; }
+.tarot2 .tz-wheel { position: absolute; left: 50%; top: calc(var(--R) + 40px); width: 0; height: 0; will-change: transform; }
+.tarot2 .tz-c {
+  position: absolute; left: calc(var(--cw) / -2); top: calc(var(--ch) / -2); width: var(--cw); height: var(--ch);
+  padding: 0; border: 0; background: none; cursor: pointer; border-radius: 7px;
+  transform: rotate(var(--a)) translateY(calc(var(--R) * -1));
+  transform-origin: 50% 50%;
+}
+.tarot2 .tz-c img {
+  display: block; width: 100%; height: 100%; border-radius: 7px; object-fit: cover; pointer-events: none;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45); transition: transform 0.25s cubic-bezier(0.3, 1.5, 0.5, 1), box-shadow 0.25s ease, filter 0.25s ease;
+}
+.tarot2 .tz-c.is-top img { transform: translateY(-16px) scale(1.12); box-shadow: 0 0 0 2px var(--gold), 0 0 26px rgba(246, 220, 156, 0.75); }
+@media (hover: hover) and (pointer: fine) {
+  .tarot2 .tz-c:hover img { transform: translateY(-14px) scale(1.08); box-shadow: 0 0 0 2px var(--gold-2), 0 0 20px rgba(246, 220, 156, 0.6); }
+}
+.tarot2 .tz-c:focus-visible img { box-shadow: 0 0 0 3px #fff; }
+.tarot2 .tz-pointer {
+  position: absolute; left: 50%; top: 6px; width: 0; height: 0; transform: translateX(-50%);
+  border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 11px solid var(--gold-2);
+  filter: drop-shadow(0 0 6px rgba(246, 220, 156, 0.9));
+}
+.tarot2 .tz-wheel-box.fading .tz-c:not(.chosen) img { filter: blur(2px) brightness(0.55); }
+
+.tarot2 .tz-actions { display: grid; grid-template-columns: 1fr 1.2fr; gap: 8px; margin-top: 10px; }
+.tarot2 .tz-btn { height: 48px; border-radius: 14px; font: inherit; font-size: 15px; font-weight: 800; cursor: pointer; transition: transform 0.18s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.tarot2 .tz-btn:active { transform: scale(0.96); }
+.tarot2 .tz-btn-line { background: transparent; color: #F4F1FF; border: 1.5px solid rgba(255, 255, 255, 0.35); }
+.tarot2 .tz-btn-gold { background: var(--gold); color: var(--night-2); border: 0; box-shadow: 0 0 22px rgba(227, 190, 110, 0.45); }
+.tarot2 .tz-btn[disabled] { opacity: 0.5; pointer-events: none; }
+
+/* 뽑은 카드 무대 */
+.tarot2 .tz-stage { perspective: 1100px; position: relative; display: flex; flex-direction: column; align-items: center; padding: 26px 0 6px; }
+.tarot2 .tz-stage.hidden { display: none; }
+.tarot2 .tz-aura { position: absolute; top: 4px; left: 50%; width: 340px; height: 340px; transform: translateX(-50%); pointer-events: none; }
+.tarot2 .tz-aura i {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0 8%, rgba(246, 220, 156, 0.55) 12%, transparent 18% 32%, rgba(185, 167, 255, 0.55) 38%, transparent 44% 58%, rgba(246, 220, 156, 0.5) 63%, transparent 70% 84%, rgba(185, 167, 255, 0.5) 90%, transparent 96%);
+  -webkit-mask: radial-gradient(circle, transparent 46%, #000 47%, #000 70%, transparent 71%);
+          mask: radial-gradient(circle, transparent 46%, #000 47%, #000 70%, transparent 71%);
+  animation: tzSpin 9s linear infinite;
+}
+.tarot2 .tz-aura i:last-child { inset: 30px; animation-duration: 6s; animation-direction: reverse; opacity: 0.8; }
+@keyframes tzSpin { to { transform: rotate(360deg); } }
+.tarot2 .tz-card {
+  position: relative; width: 200px; height: 300px; margin-top: 20px; padding: 0; border: 0; background: none; cursor: pointer;
+  transform-style: preserve-3d; border-radius: 14px;
+}
+.tarot2 .tz-card.flipped { transform: rotateY(180deg); }
+.tarot2 .tz-card.waiting { animation: tzFloat 2.2s ease-in-out infinite; }
+@keyframes tzFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+.tarot2 .tz-face { position: absolute; inset: 0; border-radius: 14px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 0 0 2px var(--gold), 0 20px 44px rgba(0, 0, 0, 0.5); }
+.tarot2 .tz-face img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tarot2 .tz-front { transform: rotateY(180deg); background: #fff; }
+.tarot2 .tz-front .is-reversed { transform: rotate(180deg); }
+.tarot2 .tz-front .tarot-emoji { display: flex; align-items: center; justify-content: center; height: 100%; font-size: 84px; }
+.tarot2 .tz-sheen {
+  position: absolute; inset: 0; border-radius: 14px; pointer-events: none; mix-blend-mode: soft-light; opacity: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.9) 42%, rgba(185, 167, 255, 0.8) 52%, transparent 70%);
+  background-size: 250% 250%; background-position: var(--sx, 100%) 0;
+  transition: opacity 0.3s ease;
+}
+.tarot2 .tz-card.flipped .tz-sheen { opacity: 0.85; }
+.tarot2 .tz-tap { margin: 18px 0 0; font-family: var(--hand); font-size: 22px; color: var(--gold-2); animation: tzBlink 1.4s ease-in-out infinite; }
+@keyframes tzBlink { 50% { opacity: 0.45; } }
+.tarot2 .tz-caption { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 18px; }
+.tarot2 .tz-caption[hidden] { display: none; }
+.tarot2 .tz-name-en { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #CFC9EE; }
+.tarot2 .tz-name-ko { font-family: var(--hand); font-size: 34px; line-height: 1; color: #fff; text-shadow: 0 0 18px rgba(246, 220, 156, 0.6); }
+.tarot2 .tz-orient { margin-top: 6px; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #fff; }
+
+/* 뒤집는 순간 번쩍 + 반짝이 */
+.tz-flash { position: fixed; inset: 0; z-index: 9990; pointer-events: none; background: radial-gradient(circle at var(--fx, 50%) var(--fy, 50%), rgba(255, 248, 225, 0.95), rgba(255, 248, 225, 0) 55%); }
+.tz-spark { position: fixed; z-index: 9991; width: 12px; height: 12px; margin: -6px 0 0 -6px; pointer-events: none;
+  background: var(--c, #F6DC9C); clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+.tz-flying { position: fixed; z-index: 9989; border-radius: 10px; pointer-events: none; background-size: cover; background-position: center; box-shadow: 0 0 0 2px #E3BE6E, 0 0 36px rgba(246, 220, 156, 0.8); }
+
+/* 결과 칸: 차례로 떠오르기 */
+.tarot2 .tz-result-card .tarot-info-section { opacity: 1; }
+
+/* PC: 넓게 */
+@media (min-width: 760px) {
+  .tarot2 .tz-wrap { max-width: 980px; }
+  .tarot2 .tz-wrap > :not(.tz-night) { max-width: 640px; margin-left: auto; margin-right: auto; }
+  .tarot2 .tz-night { padding: 34px 36px 34px; margin: 0 0 28px; }
+  .tarot2 .tz-hero { grid-template-columns: 1.1fr 1fr; align-items: center; text-align: left; }
+  .tarot2 .tz-hero h1 { font-size: 62px; }
+  .tarot2 .tz-mascot { width: 260px; margin: 0 auto; }
+  .tarot2 .tz-cats { justify-content: center; margin: 20px 0 0; padding: 2px 0 4px; }
+  .tarot2 .tz-wheel-box { --R: 620px; --cw: 74px; --ch: 111px; height: 300px; margin: 8px -36px 0; }
+  .tarot2 .tz-actions { max-width: 420px; margin: 12px auto 0; }
+  .tarot2 .tz-card { width: 240px; height: 360px; }
+  .tarot2 .tz-aura { width: 400px; height: 400px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarot2 .tz-sky, .tarot2 .tz-mascot img, .tarot2 .tz-ball-glow, .tarot2 .tz-aura i, .tarot2 .tz-card.waiting, .tarot2 .tz-tap { animation: none; }
+}
+</style>
 </head>
-<body>
+<body class="tarot2">
 
 <header class="site-header">
   <a class="logo" href="../../index.html"><span class="logo-mark">☰</span> 알아볼괘</a>
 </header>
 
-<main class="wrap">
-  <section class="hero">
-    <img src="../../assets/img/tarot/witch-icon.jpg" alt="타로 마법사" style="width:84px;height:84px;border-radius:50%;object-fit:cover;margin-bottom:8px;box-shadow:0 8px 20px rgba(76,29,149,0.25);" />
-    <h1>오늘의 타로 점괘</h1>
-    <p>궁금한 주제를 고르고<br />78장 중 오늘의 카드 한 장을 뽑아보세요</p>
+<main class="wrap tz-wrap">
+  <!-- [2026-11-04 전면 개편] 재성님: "타로카드는 그대로 두고, 대표 캐릭터를 티녀로 귀엽고 이쁘게,
+       카드 배치·눌렀을 때 이펙트를 혁신적으로" → 별밤 무대 + 마법사 티녀 + 돌리는 78장 카드 바퀴 -->
+  <section class="tz-night" aria-label="오늘의 타로 카드 고르기">
+    <div class="tz-sky" aria-hidden="true"></div>
+
+    <div class="tz-hero">
+      <div class="tz-hero-copy">
+        <p class="tz-eyebrow">티녀의 별밤 타로</p>
+        <h1>오늘의 타로 점괘</h1>
+        <p class="tz-lead">주제를 고르고, 78장 카드 바퀴를 돌려<br />마음이 가는 한 장을 톡 눌러 보세요</p>
+      </div>
+      <figure class="tz-mascot">
+        <span class="tz-ball-glow" aria-hidden="true"></span>
+        <img src="../../assets/img/tarot/titi-witch.webp" alt="마법사 모자를 쓰고 수정구슬을 보는 티녀" width="557" height="567" />
+        <figcaption class="tz-bubble" id="tzBubble">오늘 카드는 내가 봐줄게!</figcaption>
+      </figure>
+    </div>
+
+    <div id="drawStage">
+      <div class="tz-cats" id="tarotCategoryTabs">
+        <button type="button" class="tarot-category-chip active" data-cat="all">✨ 총운</button>
+        <button type="button" class="tarot-category-chip" data-cat="love">💕 연애운</button>
+        <button type="button" class="tarot-category-chip" data-cat="money">💰 금전운</button>
+        <button type="button" class="tarot-category-chip" data-cat="health">🌿 건강운</button>
+        <button type="button" class="tarot-category-chip" data-cat="career">💼 직장운</button>
+      </div>
+
+      <p class="tz-hint" id="tarotHint">지금 보는 건 <b id="tarotCatLabel">총운</b> · 바퀴를 좌우로 밀어 돌려 보세요</p>
+
+      <div class="tz-wheel-box" id="tzWheelBox" tabindex="0" aria-label="타로 카드 바퀴. 왼쪽·오른쪽 화살표로 돌리고 Enter로 맨 위 카드를 고릅니다">
+        <div class="tz-wheel" id="tarotGrid"></div>
+        <span class="tz-pointer" aria-hidden="true"></span>
+      </div>
+
+      <div class="tz-actions">
+        <button type="button" class="tz-btn tz-btn-line" id="tzShuffle">🔀 카드 섞기</button>
+        <button type="button" class="tz-btn tz-btn-gold" id="tzLucky">🔮 티녀가 골라줘</button>
+      </div>
+    </div>
+
+    <div class="tz-stage hidden" id="tarotStage">
+      <div class="tz-aura" aria-hidden="true"><i></i><i></i></div>
+      <button type="button" class="tz-card" id="tarotFlipCard" aria-label="카드를 눌러 뒤집기">
+        <span class="tz-face tz-back"><img src="../../assets/img/tarot/card-back.jpg" alt="" /></span>
+        <span class="tz-face tz-front" id="tarotFrontFace"></span>
+      </button>
+      <p class="tz-tap" id="tzTap">두근두근… 카드를 눌러 뒤집어 보세요</p>
+      <div class="tz-caption" id="tzCaption" hidden>
+        <span class="tz-name-en" id="tzNameEn"></span>
+        <strong class="tz-name-ko" id="tzNameKo"></strong>
+        <span class="tz-orient" id="tzOrient"></span>
+      </div>
+    </div>
   </section>
 
-  <div class="tarot-mascot-full">
-    <img src="../../assets/img/tarot/witch-full.jpg" alt="타로 마법사 전신" />
-    <p>안녕! 오늘 타로는 내가 봐줄게 🔮</p>
-  </div>
-
-  <div id="drawStage">
-    <p class="tarot-tabs-hint">👆 눌러서 다른 운세도 확인해보세요</p>
-    <div class="tarot-category-tabs pulse-hint" id="tarotCategoryTabs">
-      <button type="button" class="tarot-category-chip active" data-cat="all">✨ 총운</button>
-      <button type="button" class="tarot-category-chip" data-cat="love">💕 연애운</button>
-      <button type="button" class="tarot-category-chip" data-cat="money">💰 금전운</button>
-      <button type="button" class="tarot-category-chip" data-cat="health">🌿 건강운</button>
-      <button type="button" class="tarot-category-chip" data-cat="career">💼 직장운</button>
-    </div>
-
-    <p class="tarot-grid-hint" id="tarotHint">지금 보고 싶은 건 <b id="tarotCatLabel">총운</b>이에요. 카드를 한 장 골라 탭해보세요</p>
-
-    <div class="tarot-grid-wrap">
-      <div class="tarot-grid" id="tarotGrid"></div>
-    </div>
-  </div>
-
-  <div class="tarot-stage hidden" id="tarotStage">
-    <div class="tarot-flip-card" id="tarotFlipCard">
-      <div class="tarot-flip-face tarot-flip-face-back">
-        <img class="tarot-card-back-img" src="../../assets/img/tarot/card-back.jpg" alt="" />
-      </div>
-      <div class="tarot-flip-face tarot-flip-face-front" id="tarotFrontFace"></div>
-    </div>
-  </div>
-
   <div class="tarot-result-section" id="tarotResultSection">
-    <div class="card" style="text-align:center;">
+    <div class="card tz-result-card" style="text-align:center;">
       <span class="tarot-keyword-badge" id="tarotKeywordBadge"></span>
 
       <div class="tarot-info-section">
@@ -200,77 +402,191 @@
 <script src="../../assets/js/tarot-data.js"></script>
 <script src="../../assets/js/main.js"></script>
 <script>
+  /* [2026-11-04 전면 개편] 별밤 타로 — 돌리는 78장 카드 바퀴 + 카드가 날아와 뒤집히는 연출
+     뽑히는 카드는 예전과 똑같이 getTodayTarotDraw()가 정합니다(같은 날·같은 주제면 같은 카드).
+     움직임은 브라우저 기본 기능(Web Animations)으로만 만들어서 다른 파일이 없어도 돌아갑니다. */
   (function () {
-    var CATEGORY_LABELS = {
-      all: "총운",
-      love: "연애운",
-      money: "금전운",
-      health: "건강운",
-      career: "직장운",
-    };
-    var ATTR_LABELS = {
-      love: "💕 연애",
-      money: "💰 금전",
-      health: "🌿 건강",
-      career: "💼 직장",
-    };
+    var CATEGORY_LABELS = { all: "총운", love: "연애운", money: "금전운", health: "건강운", career: "직장운" };
+    var ATTR_LABELS = { love: "💕 연애", money: "💰 금전", health: "🌿 건강", career: "💼 직장" };
+    var CARD_BACK_IMG = "../../assets/img/tarot/card-back.jpg";
+    var REDUCE = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     var drawStage = document.getElementById("drawStage");
     var categoryTabs = document.getElementById("tarotCategoryTabs");
-    var tarotHint = document.getElementById("tarotHint");
     var tarotCatLabel = document.getElementById("tarotCatLabel");
-    var gridEl = document.getElementById("tarotGrid");
+    var wheelBox = document.getElementById("tzWheelBox");
+    var wheel = document.getElementById("tarotGrid");
     var tarotStage = document.getElementById("tarotStage");
     var flipCard = document.getElementById("tarotFlipCard");
     var frontFace = document.getElementById("tarotFrontFace");
     var resultSection = document.getElementById("tarotResultSection");
+    var bubble = document.getElementById("tzBubble");
+    var tapHint = document.getElementById("tzTap");
+    var caption = document.getElementById("tzCaption");
+    var shuffleBtn = document.getElementById("tzShuffle");
+    var luckyBtn = document.getElementById("tzLucky");
 
     var currentCategory = "all";
     var drawing = false;
     var currentDraw = null;
-    var CARD_BACK_IMG = "../../assets/img/tarot/card-back.jpg";
+    var flipped = false;
 
-    // 78장 전체를 수트 구분(라벨) 없이 부채꼴로 펼친다 — 스크롤 없이 한 번에 노출.
-    // 4~5줄 정도로만 나누고, 줄 사이는 아래 줄이 위 줄 밑단과 살짝 겹치도록 붙여서
-    // 하나로 이어진 부채 더미처럼 보이게 함(z-index는 카드 전체 순서를 그대로 써서
-    // 겹치는 부분에서 아래쪽 줄이 항상 위 줄 위로 자연스럽게 겹쳐 보이게 함)
-    function buildGrid() {
-      var ROWS = 5; // 78장을 5줄로 (16,16,16,15,15)
-      var base = Math.floor(TAROT_CARDS.length / ROWS);
-      var extra = TAROT_CARDS.length % ROWS;
-      var html = "";
-      var start = 0;
-      for (var r = 0; r < ROWS; r++) {
-        var n = base + (r < extra ? 1 : 0);
-        var arc = 30;
-        var edgeMargin = 9; // 양 끝 카드가 줄 밖으로 잘려나가지 않도록 여백(%)
-        var rowStyle = r === 0 ? "" : ' style="margin-top:-30px;"';
-
-        html += "<div class=\"tarot-fan-row\"" + rowStyle + ">";
-        for (var pos = 0; pos < n; pos++) {
-          var idx = start + pos;
-          var t = n === 1 ? 0.5 : pos / (n - 1);
-          var angle = -arc + t * arc * 2;
-          var bump = Math.sin(t * Math.PI) * 10; // 가운데가 살짝 위로 볼록해지는 부채꼴 곡선
-          var leftPct = edgeMargin + t * (100 - edgeMargin * 2);
-          html +=
-            '<button type="button" class="tarot-grid-card" data-idx="' + idx + '" ' +
-            'style="--x:' + leftPct.toFixed(2) + '%; --rot:' + angle.toFixed(1) + 'deg; --bump:' + bump.toFixed(1) + 'px; --z:' + (idx + 1) + ';">' +
-            '<img class="tarot-card-back-img" src="' + CARD_BACK_IMG + '" alt="" />' +
-            "</button>";
-        }
-        html += "</div>";
-        start += n;
-      }
-      gridEl.innerHTML = html;
-      gridEl.classList.remove("disabled");
-      Array.prototype.forEach.call(gridEl.querySelectorAll(".tarot-grid-card"), function (el) {
-        el.addEventListener("click", function () {
-          handlePick(el);
-        });
-      });
+    function say(text) {
+      bubble.textContent = text;
+      bubble.classList.remove("pop");
+      void bubble.offsetWidth;
+      bubble.classList.add("pop");
     }
 
+    /* ── 카드 바퀴 ─────────────────────────────────────────── */
+    var N = TAROT_CARDS.length;
+    var STEP = 360 / N;
+    var spin = 0, vel = 0, raf = 0, idle = true, topIdx = -1;
+    var cards = [];
+
+    function radius() {
+      return parseFloat(getComputedStyle(wheelBox).getPropertyValue("--R")) || 470;
+    }
+
+    function buildGrid() {
+      var html = "";
+      for (var i = 0; i < N; i++) {
+        html += '<button type="button" class="tz-c" data-idx="' + i + '" style="--a:' + (i * STEP).toFixed(3) + 'deg" aria-label="' + (i + 1) + '번째 카드 고르기" tabindex="-1">' +
+          '<img src="' + CARD_BACK_IMG + '" alt="" draggable="false" /></button>';
+      }
+      wheel.innerHTML = html;
+      cards = Array.prototype.slice.call(wheel.querySelectorAll(".tz-c"));
+      wheelBox.classList.remove("fading");
+      topIdx = -1;
+      render();
+      // 카드가 가운데에서 바퀴 자리로 촤르륵 펼쳐짐
+      if (!REDUCE && cards[0].animate) {
+        cards.forEach(function (c, i) {
+          var a = c.style.getPropertyValue("--a");
+          c.animate(
+            [
+              { transform: "rotate(0deg) translateY(calc(var(--R) * -1)) scale(0.6)", opacity: 0 },
+              { transform: "rotate(" + a + ") translateY(calc(var(--R) * -1)) scale(1)", opacity: 1 }
+            ],
+            { duration: 700, delay: 6 * Math.abs(i - N / 2), easing: "cubic-bezier(.2,.9,.25,1)", fill: "backwards" }
+          );
+        });
+      }
+    }
+
+    function render() {
+      wheel.style.transform = "rotate(" + spin + "deg)";
+      // 맨 위(바늘 아래)에 온 카드 표시
+      var t = Math.round(((-spin % 360) + 360) % 360 / STEP) % N;
+      if (t !== topIdx) {
+        if (cards[topIdx]) cards[topIdx].classList.remove("is-top");
+        topIdx = t;
+        if (cards[t]) cards[t].classList.add("is-top");
+      }
+    }
+
+    function loop() {
+      if (dragging) { raf = requestAnimationFrame(loop); return; }
+      if (Math.abs(vel) > 0.01) {
+        spin += vel;
+        vel *= 0.95;
+      } else if (idle && !REDUCE && !drawing) {
+        spin += 0.04; // 손대지 않으면 아주 천천히 돎
+      }
+      render();
+      raf = requestAnimationFrame(loop);
+    }
+
+    // 끌어서 돌리기
+    var dragging = false, startX = 0, lastX = 0, lastT = 0, moved = 0, suppress = false;
+    wheelBox.addEventListener("pointerdown", function (e) {
+      if (drawing) return;
+      dragging = true; idle = false; moved = 0; suppress = false;
+      startX = lastX = e.clientX; lastT = performance.now(); vel = 0;
+      wheelBox.classList.add("dragging");
+    });
+    window.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      var dx = e.clientX - lastX;
+      var now = performance.now();
+      moved += Math.abs(dx);
+      if (moved > 6) suppress = true;
+      var deg = (dx / radius()) * (180 / Math.PI);
+      spin += deg;
+      vel = deg / Math.max(1, (now - lastT) / 16.7);
+      lastX = e.clientX; lastT = now;
+      render();
+    }, { passive: true });
+    window.addEventListener("pointerup", function () {
+      if (!dragging) return;
+      dragging = false;
+      wheelBox.classList.remove("dragging");
+      vel = Math.max(-6, Math.min(6, vel));
+    });
+
+    wheel.addEventListener("click", function (e) {
+      var c = e.target.closest(".tz-c");
+      if (!c || suppress || drawing) { suppress = false; return; }
+      handlePick(c);
+    });
+
+    // 키보드: ←→ 로 돌리고 Enter 로 맨 위 카드
+    wheelBox.addEventListener("keydown", function (e) {
+      if (drawing) return;
+      if (e.key === "ArrowLeft") { idle = false; vel = 0; spin += STEP; render(); e.preventDefault(); }
+      else if (e.key === "ArrowRight") { idle = false; vel = 0; spin -= STEP; render(); e.preventDefault(); }
+      else if (e.key === "Enter" || e.key === " ") { handlePick(cards[topIdx]); e.preventDefault(); }
+    });
+
+    // 카드 섞기 — 바퀴가 휘리릭 돌며 카드들이 들썩임
+    shuffleBtn.addEventListener("click", function () {
+      if (drawing) return;
+      idle = false;
+      vel = (Math.random() < 0.5 ? -1 : 1) * (9 + Math.random() * 4);
+      say("섞는 중… 섞는 중…");
+      if (!REDUCE && cards[0].animate) {
+        cards.forEach(function (c) {
+          var img = c.firstChild;
+          img.animate(
+            [{ transform: "translateY(0)" }, { transform: "translateY(" + (-10 - Math.random() * 22) + "px) rotate(" + (Math.random() * 16 - 8) + "deg)" }, { transform: "translateY(0)" }],
+            { duration: 500 + Math.random() * 300, easing: "ease-in-out" }
+          );
+        });
+      }
+      setTimeout(function () { if (!drawing) say("자, 마음 가는 카드를 골라 봐!"); }, 1400);
+    });
+
+    // 티녀가 골라줘 — 바퀴가 돌다가 멈추면 맨 위 카드를 자동으로 뽑음
+    luckyBtn.addEventListener("click", function () {
+      if (drawing) return;
+      idle = false;
+      say("음… 이 카드다!");
+      shuffleBtn.disabled = luckyBtn.disabled = true;
+      vel = 12 + Math.random() * 6;
+      var wait = setInterval(function () {
+        if (Math.abs(vel) < 0.05) {
+          clearInterval(wait);
+          // 가장 가까운 카드 칸에 딱 맞춤
+          var target = Math.round(spin / STEP) * STEP;
+          animateNumber(spin, target, 260, function (v) { spin = v; render(); }, function () {
+            shuffleBtn.disabled = luckyBtn.disabled = false;
+            handlePick(cards[topIdx]);
+          });
+        }
+      }, 60);
+    });
+
+    function animateNumber(from, to, ms, onUpdate, onDone) {
+      var t0 = performance.now();
+      (function step(now) {
+        var t = Math.min(1, (now - t0) / ms);
+        var k = 1 - Math.pow(1 - t, 3);
+        onUpdate(from + (to - from) * k);
+        if (t < 1) requestAnimationFrame(step); else onDone && onDone();
+      })(t0);
+    }
+
+    /* ── 주제 고르기 ───────────────────────────────────────── */
     function setCategory(cat) {
       currentCategory = cat;
       tarotCatLabel.textContent = CATEGORY_LABELS[cat];
@@ -278,30 +594,39 @@
         chip.classList.toggle("active", chip.getAttribute("data-cat") === cat);
       });
     }
-
+    var CAT_LINES = {
+      all: "오늘 하루 전체 흐름을 볼게!",
+      love: "두근두근, 연애운이구나?",
+      money: "지갑 사정이 궁금하구나!",
+      health: "몸과 마음 컨디션을 볼게",
+      career: "일·공부 쪽 기운을 볼게!"
+    };
     Array.prototype.forEach.call(categoryTabs.querySelectorAll(".tarot-category-chip"), function (chip) {
       chip.addEventListener("click", function () {
         if (drawing) return;
-        categoryTabs.classList.remove("pulse-hint");
-        setCategory(chip.getAttribute("data-cat"));
+        var cat = chip.getAttribute("data-cat");
+        setCategory(cat);
+        say(CAT_LINES[cat]);
       });
     });
 
+    /* ── 뽑은 카드 앞면 ───────────────────────────────────── */
     function buildFrontFace(draw) {
       var card = draw.card;
-      var reversed = draw.reversed;
-      // 역방향이어도 카드 "그림"만 뒤집어서 보여주고, 카드 이름/뱃지 텍스트는 항상 똑바로 읽히게 함
-      var revClass = reversed ? " is-reversed" : "";
+      var revClass = draw.reversed ? " is-reversed" : "";
       frontFace.innerHTML =
         (card.img
-          ? '<img class="tarot-card-img' + revClass + '" src="' + card.img + '" alt="' + card.name + ' 타로카드" loading="lazy" ' +
+          ? '<img class="tarot-card-img' + revClass + '" src="' + card.img + '" alt="' + card.name + ' 타로카드" ' +
             'onerror="this.replaceWith(Object.assign(document.createElement(\'div\'),{className:\'tarot-emoji' + revClass + '\',textContent:\'' + card.emoji + '\'}))" />'
           : '<div class="tarot-emoji' + revClass + '">' + card.emoji + "</div>") +
-        '<div class="tarot-name-en">' + card.nameEn + "</div>" +
-        '<div class="tarot-name-ko">' + card.name + "</div>" +
-        '<div class="tarot-orientation" style="background:' + card.color + ';">' +
-        (reversed ? "역방향 · 조심스러운 기운" : "정방향 · 좋은 기운") + "</div>";
-      frontFace.style.transform = "rotateY(180deg)";
+        '<span class="tz-sheen" aria-hidden="true"></span>';
+      document.getElementById("tzNameEn").textContent = card.nameEn;
+      document.getElementById("tzNameKo").textContent = card.name;
+      var orient = document.getElementById("tzOrient");
+      orient.textContent = draw.reversed ? "역방향 · 조심스러운 기운" : "정방향 · 좋은 기운";
+      orient.style.background = card.color;
+      // 미리 받아 두기(뒤집을 때 그림이 바로 보이게)
+      if (card.img) { var pre = new Image(); pre.src = card.img; }
     }
 
     function showResult(draw) {
@@ -310,115 +635,188 @@
       var orientation = reversed ? "reversed" : "upright";
       var orientationLabel = reversed ? "역방향" : "정방향";
       var generalMeaning = card[orientation];
-      var mainMeaning =
-        currentCategory === "all" ? generalMeaning : card.meanings[currentCategory][orientation];
+      var mainMeaning = currentCategory === "all" ? generalMeaning : card.meanings[currentCategory][orientation];
 
       document.getElementById("tarotKeywordBadge").textContent = "🔑 " + card.keyword;
       document.getElementById("tarotKeywordBadge").style.background = card.color;
-
       document.getElementById("tarotMeaningText").textContent = mainMeaning;
       document.getElementById("tarotMeaningSub").textContent =
-        card.name +
-        " · " +
-        orientationLabel +
-        (currentCategory !== "all" ? " · " + ATTR_LABELS[currentCategory] + " 관점" : "");
-
+        card.name + " · " + orientationLabel + (currentCategory !== "all" ? " · " + ATTR_LABELS[currentCategory] + " 관점" : "");
       document.getElementById("tarotTipText").textContent = card.tip;
 
       var luck = getTarotLuck(card.id, currentCategory, draw.dateStr);
       document.getElementById("tarotLuckRow").innerHTML =
         '<div class="tarot-luck-chip"><span class="luck-label">행운의 색</span><span class="luck-value"><span class="luck-swatch" style="background:' +
-        luck.color.hex +
-        ';"></span>' +
-        luck.color.name +
-        "</span></div>" +
-        '<div class="tarot-luck-chip"><span class="luck-label">행운의 숫자</span><span class="luck-value">' +
-        luck.number +
-        "</span></div>" +
-        '<div class="tarot-luck-chip"><span class="luck-label">행운의 아이템</span><span class="luck-value">' +
-        luck.item +
-        "</span></div>";
+        luck.color.hex + ';"></span>' + luck.color.name + "</span></div>" +
+        '<div class="tarot-luck-chip"><span class="luck-label">행운의 숫자</span><span class="luck-value">' + luck.number + "</span></div>" +
+        '<div class="tarot-luck-chip"><span class="luck-label">행운의 아이템</span><span class="luck-value">' + luck.item + "</span></div>";
 
-      var badgesEl = document.getElementById("tarotAttrBadges");
-      badgesEl.innerHTML = card.categories
-        .map(function (c) {
-          return '<span class="tarot-attr-badge cat-' + c + '">' + ATTR_LABELS[c] + " 카드</span>";
-        })
+      document.getElementById("tarotAttrBadges").innerHTML = card.categories
+        .map(function (c) { return '<span class="tarot-attr-badge cat-' + c + '">' + ATTR_LABELS[c] + " 카드</span>"; })
         .join("");
-
       document.getElementById("tarotDateNote").textContent =
         "오늘(" + draw.dateStr + ") " + CATEGORY_LABELS[currentCategory] + " 카드예요. 다른 주제를 고르거나 내일 다시 오면 새로운 카드를 볼 수 있어요.";
 
       resultSection.classList.add("show");
+      // 결과 칸들이 차례로 떠오름
+      if (!REDUCE && resultSection.animate) {
+        var parts = resultSection.querySelectorAll(".tarot-keyword-badge, .tarot-info-section, .tarot-attr-badges, .btn-row");
+        Array.prototype.forEach.call(parts, function (el, i) {
+          el.animate([{ opacity: 0, transform: "translateY(18px)" }, { opacity: 1, transform: "none" }],
+            { duration: 520, delay: 120 + i * 90, easing: "cubic-bezier(.2,.9,.25,1)", fill: "backwards" });
+        });
+      }
     }
 
-    // 클릭한 그리드 카드가 화면 중앙(리빌 스테이지)으로 날아가는 것처럼 보이게 하는 연출
-    function flyToCenter(originEl, onDone) {
-      var originRect = originEl.getBoundingClientRect();
-      var flying = document.createElement("div");
-      flying.className = "tarot-flying-card";
-      flying.style.width = originRect.width + "px";
-      flying.style.height = originRect.height + "px";
-      flying.style.left = originRect.left + "px";
-      flying.style.top = originRect.top + "px";
-      flying.style.backgroundImage = "url('" + CARD_BACK_IMG + "')";
-      document.body.appendChild(flying);
+    /* ── 뽑기 연출 ────────────────────────────────────────── */
+    // 바퀴의 카드가 빙그르르 날아올라 가운데 무대 자리로
+    function flyToStage(tileEl, onDone) {
+      var from = tileEl.getBoundingClientRect();
+      var ang = (spin + parseFloat(tileEl.style.getPropertyValue("--a"))) % 360;
+      // 바퀴 자리를 무대로 바꿔 끼우고, 바뀐 자리에서 카드가 놓일 곳을 잼
+      drawStage.style.display = "none";
+      tarotStage.classList.remove("hidden");
+      var to = flipCard.getBoundingClientRect();
+      flipCard.style.opacity = "0";
+      var fly = document.createElement("div");
+      fly.className = "tz-flying";
+      fly.style.left = to.left + "px";
+      fly.style.top = to.top + "px";
+      fly.style.width = to.width + "px";
+      fly.style.height = to.height + "px";
+      fly.style.backgroundImage = "url('" + CARD_BACK_IMG + "')";
+      document.body.appendChild(fly);
 
-      var targetW = 220;
-      var targetH = 320;
-      var targetX = window.innerWidth / 2 - targetW / 2;
-      var targetY = window.innerHeight / 2 - targetH / 2;
-      var scaleX = targetW / originRect.width;
-      var scaleY = targetH / originRect.height;
-      var dx = targetX + targetW / 2 - (originRect.left + originRect.width / 2);
-      var dy = targetY + targetH / 2 - (originRect.top + originRect.height / 2);
-
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          flying.style.transform =
-            "translate(" + dx + "px, " + dy + "px) scale(" + scaleX + ", " + scaleY + ") rotate(360deg)";
-          flying.style.opacity = "0";
-        });
-      });
-
-      setTimeout(function () {
-        flying.remove();
-        onDone();
-      }, 560);
+      var sx = from.width / to.width, sy = from.height / to.height;
+      var dx = from.left + from.width / 2 - (to.left + to.width / 2);
+      var dy = from.top + from.height / 2 - (to.top + to.height / 2);
+      var done = function () { fly.remove(); flipCard.style.opacity = ""; onDone(); };
+      if (REDUCE || !fly.animate) { done(); return; }
+      var anim = fly.animate(
+        [
+          { transform: "translate(" + dx + "px," + dy + "px) scale(" + sx + "," + sy + ") rotate(" + ang + "deg)" },
+          { transform: "translate(" + dx * 0.4 + "px," + (dy * 0.4 - 90) + "px) scale(" + (sx + 1) / 2 * 1.15 + ") rotate(" + (ang + 380) + "deg)", offset: 0.55 },
+          { transform: "translate(0,0) scale(1) rotate(720deg)" }
+        ],
+        { duration: 950, easing: "cubic-bezier(.25,.8,.25,1)" }
+      );
+      anim.onfinish = done;
     }
 
     function handlePick(tileEl) {
-      if (drawing) return;
+      if (drawing || !tileEl) return;
       drawing = true;
-      gridEl.classList.add("disabled");
-      tileEl.classList.add("picked");
+      vel = 0;
+      tileEl.classList.add("chosen");
+      wheelBox.classList.add("fading");
+      say("좋아, 이 카드야!");
 
       var draw = getTodayTarotDraw(currentCategory);
       currentDraw = draw;
+      buildFrontFace(draw);
 
-      flyToCenter(tileEl, function () {
-        drawStage.style.display = "none";
-        tarotStage.classList.remove("hidden");
-        buildFrontFace(draw);
-        requestAnimationFrame(function () {
-          setTimeout(function () {
-            flipCard.classList.add("flipped");
-          }, 80);
+      // 바퀴에서 그 카드가 쏙 빠지는 느낌
+      if (!REDUCE && tileEl.firstChild.animate) {
+        tileEl.firstChild.animate([{ transform: "translateY(-16px) scale(1.12)" }, { transform: "translateY(-60px) scale(1.3)", opacity: 0 }], { duration: 260, fill: "forwards" });
+      }
+
+      setTimeout(function () {
+        flyToStage(tileEl, function () {
+          flipped = false;
+          flipCard.classList.add("waiting");
+          tapHint.hidden = false;
+          tapHint.textContent = "두근두근… 카드를 눌러 뒤집어 보세요";
+          say("두근두근… 눌러서 뒤집어 봐!");
+          flipCard.focus({ preventScroll: true });
+          tarotStage.scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "center" });
         });
-        setTimeout(function () {
-          showResult(draw);
-        }, 780);
-      });
+      }, 200);
     }
 
+    // 카드 뒤집기 — 번쩍! 하고 별 가루가 터지며 결과 공개
+    flipCard.addEventListener("click", function () {
+      if (!currentDraw || flipped) return;
+      flipped = true;
+      flipCard.classList.remove("waiting");
+      tapHint.hidden = true;
+      var r = flipCard.getBoundingClientRect();
+      var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+
+      if (!REDUCE && flipCard.animate) {
+        flipCard.animate(
+          [{ transform: "rotateY(0deg) scale(1)" }, { transform: "rotateY(100deg) scale(1.14)", offset: 0.45 }, { transform: "rotateY(180deg) scale(1)" }],
+          { duration: 820, easing: "cubic-bezier(.3,1.25,.5,1)" }
+        );
+        setTimeout(function () { flash(cx, cy); burst(cx, cy); }, 360);
+      }
+      flipCard.classList.add("flipped");
+      setTimeout(function () {
+        caption.hidden = false;
+        if (caption.animate && !REDUCE) caption.animate([{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "none" }], { duration: 500, easing: "ease-out" });
+        say(currentDraw.reversed ? "조심조심! 그래도 방법이 있어" : "와, 좋은 기운이 들어왔어!");
+        showResult(currentDraw);
+      }, REDUCE ? 0 : 760);
+    });
+
+    // 뒤집은 카드 — 손가락/마우스를 따라 반짝이가 흐르고 살짝 기울어짐
+    flipCard.addEventListener("pointermove", function (e) {
+      if (!flipped) return;
+      var r = flipCard.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      flipCard.style.transform = "rotateY(" + (180 - (px - 0.5) * 18) + "deg) rotateX(" + ((py - 0.5) * 14) + "deg)";
+      var sh = frontFace.querySelector(".tz-sheen");
+      if (sh) sh.style.setProperty("--sx", (100 - px * 100) + "%");
+    });
+    flipCard.addEventListener("pointerleave", function () { flipCard.style.transform = ""; });
+
+    function flash(x, y) {
+      var f = document.createElement("div");
+      f.className = "tz-flash";
+      f.style.setProperty("--fx", x + "px");
+      f.style.setProperty("--fy", y + "px");
+      document.body.appendChild(f);
+      f.animate([{ opacity: 0 }, { opacity: 1, offset: 0.25 }, { opacity: 0 }], { duration: 700, easing: "ease-out" }).onfinish = function () { f.remove(); };
+    }
+
+    function burst(x, y) {
+      var colors = ["#F6DC9C", "#FFC93C", "#B9A7FF", "#FFFFFF", "#FF9FB5"];
+      for (var i = 0; i < 34; i++) {
+        (function (i) {
+          var s = document.createElement("span");
+          s.className = "tz-spark";
+          s.style.left = x + "px";
+          s.style.top = y + "px";
+          s.style.setProperty("--c", colors[i % colors.length]);
+          var size = 0.6 + Math.random() * 1.4;
+          document.body.appendChild(s);
+          var a = (i / 34) * Math.PI * 2 + Math.random() * 0.3;
+          var d = 120 + Math.random() * 140;
+          s.animate(
+            [
+              { transform: "translate(0,0) scale(0) rotate(0deg)", opacity: 1 },
+              { transform: "translate(" + Math.cos(a) * d + "px," + Math.sin(a) * d + "px) scale(" + size + ") rotate(" + (Math.random() * 360) + "deg)", opacity: 1, offset: 0.6 },
+              { transform: "translate(" + Math.cos(a) * d * 1.15 + "px," + (Math.sin(a) * d * 1.15 + 40) + "px) scale(0)", opacity: 0 }
+            ],
+            { duration: 1000 + Math.random() * 500, easing: "cubic-bezier(.15,.8,.3,1)" }
+          ).onfinish = function () { s.remove(); };
+        })(i);
+      }
+    }
+
+    /* ── 다시 보기·공유 ───────────────────────────────────── */
     document.getElementById("otherCategoryBtn").addEventListener("click", function () {
       resultSection.classList.remove("show");
       tarotStage.classList.add("hidden");
-      flipCard.classList.remove("flipped");
-      frontFace.style.transform = "";
+      flipCard.classList.remove("flipped", "waiting");
+      flipCard.style.transform = "";
+      caption.hidden = true;
       drawStage.style.display = "";
       drawing = false;
+      flipped = false;
+      currentDraw = null;
       buildGrid();
+      say("다른 주제도 골라 봐!");
+      drawStage.scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "start" });
     });
 
     document.getElementById("shareBtn").addEventListener("click", function () {
@@ -433,17 +831,12 @@
     });
     document.getElementById("downloadBtn").addEventListener("click", function () {
       var card = currentDraw.card;
-      downloadImage(
-        "../../assets/img/og/tarot-" + card.id + ".png",
-        "알아볼괘_오늘의타로_" + card.name + ".png"
-      );
+      downloadImage("../../assets/img/og/tarot-" + card.id + ".png", "알아볼괘_오늘의타로_" + card.name + ".png");
     });
 
     buildGrid();
     setCategory("all");
-    setTimeout(function () {
-      categoryTabs.classList.remove("pulse-hint");
-    }, 9000);
+    raf = requestAnimationFrame(loop);
   })();
 </script>
 

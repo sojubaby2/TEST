@@ -368,7 +368,6 @@ $traitsHtml
   <a class="btn btn-secondary" href="index.html" style="margin-top:20px;">🔄 테스트 다시 하기</a>
   <a class="btn btn-secondary" href="../../index.html">🏠 다른 테스트 보러가기</a>
 
-  <div class="ad-slot">광고 영역 (심사 통과 후 게재 예정)</div>
 
   <p class="notice">
     ⚠️ $($spec.notice)

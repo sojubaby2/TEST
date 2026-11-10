@@ -3555,3 +3555,12 @@ img {
 
 /* [2026-11-04] 결과 화면 이모지 자리를 티남이·티녀 그림으로 — assets/img/titi/r/ */
 .result-hero .emoji img.titi-res { display: block; width: min(230px, 62vw); height: auto; margin: 0 auto; }
+
+/* 광고 자리: 실제 광고(ins)가 들어오기 전에는 빈 칸을 보여주지 않아요 */
+.ad-slot:not(:has(ins)) { display: none !important; }
+/* 테스트 소개 - 나올 수 있는 결과 목록 */
+.rt-list { margin: 8px 0 0; padding-left: 18px; }
+.rt-list li { margin: 0 0 12px; line-height: 1.65; word-break: keep-all; }
+.rt-list a { color: inherit; }
+/* 블로그 글 - 작성 정보 */
+.post-meta { margin: -6px 0 18px; font-size: 13px; color: var(--text-sub, #6b6b7b); }

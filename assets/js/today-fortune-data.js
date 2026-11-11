@@ -293,7 +293,7 @@ const FORTUNE_MONEY = [
   "저축이나 목돈 마련에 대한 좋은 아이디어가 떠오를 수 있어요.",
   "필요 없는 구독이나 지출을 정리하기 좋은 날이에요.",
   "금전적으로는 무난하게 흘러가는 하루예요.",
-  "선물이나 뜻밖의 혜택으로 기분 좋은 지출 절약이 생길 수 있어요.",
+  "선물이나 뜻밖의 혜택 덕분에 기분 좋게 지출을 아낄 수 있어요.",
   "동업이나 금전 거래는 조건을 꼼꼼히 확인하고 진행하세요.",
   "적은 금액이라도 꾸준히 모으는 습관이 빛을 발하는 시기예요.",
   "오늘은 계획한 지출 안에서 무난하게 관리되는 하루예요.",
@@ -497,11 +497,24 @@ const LUCKY_COLORS = [
   { name: "테라코타", hex: "#C1694F" },
   { name: "스카이 블루", hex: "#87CEEB" },
   { name: "올리브 그린", hex: "#708238" },
+  { name: "버터 옐로우", hex: "#F6E3A1" },
+  { name: "와인 레드", hex: "#7B1E3A" },
+  { name: "피치", hex: "#FFCBA4" },
+  { name: "베이지", hex: "#D9C7A7" },
+  { name: "코발트 블루", hex: "#1F4FD8" },
+  { name: "포레스트 그린", hex: "#2F5D3A" },
+  { name: "살구색", hex: "#F7B38A" },
+  { name: "연보라", hex: "#C9B6E4" },
+  { name: "브라운", hex: "#7A5230" },
+  { name: "주황", hex: "#F28C28" },
 ];
 
 const LUCKY_ITEMS = [
   "손목시계", "볼펜", "머그컵", "이어폰", "손수건", "다이어리",
   "향초", "우산", "선글라스", "텀블러", "책", "키링",
+  "에코백", "양말", "핸드크림", "보조배터리", "엽서", "머리끈",
+  "장갑", "목도리", "수첩", "사탕", "동전", "열쇠",
+  "안경닦이", "립밤", "교통카드", "슬리퍼", "무릎담요", "물병",
 ];
 
 function hashSeed(str) {
@@ -510,6 +523,35 @@ function hashSeed(str) {
     h = (h * 31 + str.charCodeAt(i)) >>> 0;
   }
   return h;
+}
+
+// [2026-11-11] 매일 뽑기 고침 — "며칠째 같은 풀이가 돈다"는 문제
+//   원인: 예전 계산식은 날짜가 하루 바뀌어도 번호가 늘 같은 칸 수만큼만 움직여서,
+//         문장 4~5개가 일주일 내내 돌아가며 나오고 총운과 금전운이 늘 같은 짝으로 붙어 다녔어요.
+//   고침: 문장 목록을 골고루 섞은 순서표를 만들어 하루에 한 칸씩 넘깁니다.
+//         → 목록을 한 바퀴 다 돌 때까지 같은 문장이 다시 나오지 않고, 같은 날 열두 띠가가 서로 다른 문장을 받아요.
+//   오늘 이미 본 결과가 바뀌지 않도록 2026-11-12 부터 적용합니다.
+function tfH32(str) {
+  var h = 2166136261 >>> 0;
+  for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+  h ^= h >>> 16; h = Math.imul(h, 0x85ebca6b) >>> 0; h ^= h >>> 13; h = Math.imul(h, 0xc2b2ae35) >>> 0; h ^= h >>> 16;
+  return h >>> 0;
+}
+function tfPerm(n, seed) {
+  var a = [], i, s = tfH32(String(seed));
+  for (i = 0; i < n; i++) a.push(i);
+  for (i = n - 1; i > 0; i--) { s = tfH32(s + ":" + i); var j = s % (i + 1), t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+function tfDayNo(dateStr) {
+  var p = dateStr.split("-");
+  return Math.floor(Date.UTC(+p[0], +p[1] - 1, +p[2]) / 864e5);
+}
+function tfPickDaily(pool, slot, idIndex, dateStr) {
+  var n = pool.length, D = tfDayNo(dateStr);
+  var base = tfPerm(n, slot + "|" + Math.floor(D / n))[D % n];
+  var step = Math.max(1, Math.floor(n / 12));
+  return pool[(base + idIndex * step) % n];
 }
 
 function getTodayDateStr() {
@@ -526,11 +568,17 @@ function getZodiacById(id) {
 
 function getTodayFortune(zodiacId) {
   const dateStr = getTodayDateStr();
-  const pick = (salt, arr) => arr[hashSeed(dateStr + "-" + zodiacId + "-" + salt) % arr.length];
+  const idIndex = Math.max(0, ZODIAC_LIST.findIndex((z) => z.id === zodiacId));
+  const fresh = dateStr >= "2026-11-12";
+  const pick = (salt, arr) => fresh
+    ? tfPickDaily(arr, salt, idIndex, dateStr)
+    : arr[hashSeed(dateStr + "-" + zodiacId + "-" + salt) % arr.length];
 
   const color = pick("color", LUCKY_COLORS);
   const item = pick("item", LUCKY_ITEMS);
-  const number = (hashSeed(dateStr + "-" + zodiacId + "-number") % 45) + 1;
+  const number = fresh
+    ? (tfPerm(45, "number|" + zodiacId + "|" + Math.floor(tfDayNo(dateStr) / 45))[tfDayNo(dateStr) % 45] + 1)
+    : (hashSeed(dateStr + "-" + zodiacId + "-number") % 45) + 1;
 
   return {
     dateStr,

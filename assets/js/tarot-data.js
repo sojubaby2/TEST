@@ -399,7 +399,7 @@ const TAROT_CARDS = [
     tip: "무너지는 것을 막으려 애쓰기보다, 그 자리에 무엇을 새로 세울지 미리 그려보세요.",
     categories: ["career", "money"],
     meanings: {
-      love: { upright: "갑작스러운 다툼이나 이별로 관계에 큰 충격이 있을 수 있어요.", reversed: "애써 피해온 문제를 계속 미루면 상황이 더 힘들어질 수 있어요." },
+      love: { upright: "갑작스러운 다툼이나 변화로 관계가 크게 흔들릴 수 있으니 차분히 대화해보세요.", reversed: "애써 피해온 문제를 계속 미루면 상황이 더 힘들어질 수 있어요." },
       money: { upright: "예상치 못한 지출이나 손실로 계획이 크게 틀어질 수 있어요.", reversed: "문제를 미루다 재정적인 부담이 더 커질 수 있으니 빨리 정리하세요." },
       health: { upright: "갑작스러운 컨디션 저하나 스트레스로 놀랄 수 있는 때예요.", reversed: "몸의 신호를 계속 무시하다 더 크게 지칠 수 있으니 주의하세요." },
       career: { upright: "갑작스러운 변화나 위기로 계획이 흔들릴 수 있는 때예요.", reversed: "변화를 피하려다 오히려 상황이 더 꼬일 수 있으니 대비하세요." },
@@ -1222,12 +1222,12 @@ const TAROT_CARDS = [
     emoji: "⚔️",
     color: "#475569",
     keyword: "상처와 슬픔",
-    upright: "마음에 상처를 남기는 이별이나 실망스러운 소식이 있을 수 있는 때예요.",
+    upright: "마음이 상하는 말이나 실망스러운 소식에 속상할 수 있는 때예요.",
     reversed: "아팠던 마음이 서서히 아물며 회복되고 있는 과정이에요.",
     tip: "마음이 아플 땐 억누르기보다 믿을 만한 사람에게 털어놓아보세요.",
     categories: ["love", "health"],
     meanings: {
-      love: { upright: "이별이나 서운한 말로 마음에 상처를 입을 수 있는 때예요.", reversed: "아팠던 마음이 서서히 아물며 다시 웃을 여유가 생겨요." },
+      love: { upright: "서운한 말이나 엇갈림으로 마음에 상처를 입을 수 있는 때예요.", reversed: "아팠던 마음이 서서히 아물며 다시 웃을 여유가 생겨요." },
       money: { upright: "예상치 못한 지출이나 손실로 속상한 일이 생길 수 있어요.", reversed: "손실로 인한 걱정이 조금씩 가라앉고 안정을 찾아가요." },
       health: { upright: "마음의 상처가 몸의 피로로 이어질 수 있으니 돌봄이 필요해요.", reversed: "지쳤던 마음과 몸이 천천히 회복되어가는 시기예요." },
       career: { upright: "실망스러운 평가나 결과로 마음이 상할 수 있는 때예요.", reversed: "속상했던 일을 딛고 다시 마음을 다잡게 되는 시기예요." },
@@ -1805,7 +1805,7 @@ const TAROT_CARDS = [
       love: { upright: "안정감 있고 든든한 태도로 관계에 신뢰를 주는 때예요.", reversed: "물질적인 것에 치우쳐 관계의 진심을 놓칠 수 있는 때예요." },
       money: { upright: "안정적인 기반 위에서 물질적인 풍요를 이루는 든든한 때예요.", reversed: "돈에 대한 지나친 집착이 오히려 관계를 해칠 수 있어요." },
       health: { upright: "안정된 생활 속에서 여유롭게 컨디션을 관리하는 때예요.", reversed: "일과 성과에 치우쳐 몸을 돌보는 걸 소홀히 할 수 있어요." },
-      career: { upright: "안정적인 기반 위에서 물질적인 성공을 이루는 든든한 때예요.", reversed: "성과에 대한 지나친 집착이 팀 분위기를 해칠 수 있어요." },
+      career: { upright: "탄탄한 기반 위에서 책임 있는 자리를 맡아 성과를 인정받는 때예요.", reversed: "성과에 대한 지나친 집착이 팀 분위기를 해칠 수 있어요." },
     },
   },
 ];
@@ -1899,12 +1899,20 @@ const TAROT_LUCKY_ITEMS = [
   "만년필", "책갈피", "동전 지갑", "말린 꽃", "찻잔", "열쇠고리",
 ];
 
+// 숫자 n개를 씨앗(seed)에 따라 골고루 섞은 순서표
+function tarotPerm(n, seed) {
+  var a = [], i, s = tarotMix(tarotHashSeed(String(seed)));
+  for (i = 0; i < n; i++) a.push(i);
+  for (i = n - 1; i > 0; i--) { s = tarotMix(tarotHashSeed(s + ":" + i)); var j = s % (i + 1), t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+
 function getTarotLuck(cardId, category, dateStr) {
   const base = dateStr + "-" + cardId + "-" + category;
-  const pick = (salt, arr) => arr[tarotHashSeed(base + "-" + salt) % arr.length];
+  const pick = (salt, arr) => arr[tarotMix(tarotHashSeed(base + "-" + salt)) % arr.length];
   const color = pick("color", TAROT_LUCKY_COLORS);
   const item = pick("item", TAROT_LUCKY_ITEMS);
-  const number = (tarotHashSeed(base + "-number") % 45) + 1;
+  const number = (tarotMix(tarotHashSeed(base + "-number")) % 45) + 1;
   return { color: color, item: item, number: number };
 }
 
@@ -1917,7 +1925,20 @@ function getTodayTarotDraw(category) {
   const dateStr = getTarotTodayDateStr();
   const seed = getTarotVisitorSeed();
   const base = dateStr + "-" + seed + "-" + cat;
-  const cardIdx = tarotHashSeed(base + "-card") % TAROT_CARDS.length;
+  // [2026-11-11 고침] "금전운은 며칠째 같은 카드 대여섯 장만 돈다"
+  //   원인: 예전 계산식은 날짜가 하루 바뀌면 카드 번호가 늘 같은 칸 수만큼만 움직였어요(금전운은 7일 안 재등장 55%).
+  //   고침: 방문자마다 78장을 골고루 섞은 순서표를 만들어 하루에 한 장씩 넘깁니다.
+  //         → 같은 주제에서는 78일 동안 같은 카드가 다시 나오지 않고, 같은 날 다섯 주제가 서로 다른 카드를 받아요.
+  //   오늘 이미 본 카드가 바뀌지 않도록 2026-11-12 부터 적용.
+  var cardIdx = tarotHashSeed(base + "-card") % TAROT_CARDS.length;
+  if (dateStr >= "2026-11-12") {
+    var nCards = TAROT_CARDS.length;
+    var dp = dateStr.split("-");
+    var dayNo = Math.floor(Date.UTC(+dp[0], +dp[1] - 1, +dp[2]) / 864e5);
+    var catNo = Math.max(0, ["all", "love", "money", "health", "career"].indexOf(cat));
+    var pos = dayNo + catNo * 15;
+    cardIdx = tarotPerm(nCards, seed + "|" + Math.floor(dayNo / nCards))[pos % nCards];
+  }
   // [2026-11-04 고침] 재성님: "누를 때마다 역방향만 나오고 정방향은 가뭄에 콩 나듯"
   //   원인: tarotHashSeed 값의 맨 끝 자리(홀짝)는 글자들의 홀짝 합으로만 정해져서,
   //   "총운"만 늘 반대로 나오고 연애·금전·건강·직장 4개는 하루 종일 같은 방향(대개 다 역방향 또는 다 정방향)으로 묶여 나왔음.

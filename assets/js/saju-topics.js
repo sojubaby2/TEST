@@ -206,11 +206,11 @@ const SajuTopics = (function () {
     const main = kinds[0];
     const meta = FRICTION_KIND[main.k];
 
-    return "사주에서 <b>" + main.m.join("·") + "</b>이(가) " + meta.word + " 관계로 놓여 있습니다" +
+    return "사주에서 <b>" + main.m.join("·") + "</b>" + i_ga(main.m[main.m.length - 1]) + " " + meta.word + " 관계로 놓여 있습니다" +
       (kinds.length > 1 ? " (이런 조합이 모두 " + kinds.length + "군데)" : "") + ". " +
       meta.mean + " 모양이에요. " +
       (where.length
-        ? "걸려 있는 자리는 <b>" + where.join(", ") + "</b>라서, 그 영역에서 특히 드러납니다. "
+        ? "걸려 있는 자리는 <b>" + where.join(", ") + "</b>" + josa(where[where.length - 1], "이라서", "라서") + ", 그 영역에서 특히 드러납니다. "
         : "") +
       "본인은 별 뜻 없이 한 말인데 상대가 다르게 받아들이거나, 반대로 상대의 행동을 혼자 오래 곱씹기 쉬우니 " +
       "<b>짐작하지 말고 직접 물어보는 습관</b>이 값집니다.";
@@ -242,7 +242,7 @@ const SajuTopics = (function () {
     const lines = [];
     lines.push(
       "당신을 사주에서 나타내는 글자는 <b>" + a.dayStem + "</b>, " +
-      me.word + "에 해당합니다. 태어난 달까지 함께 보면 <b>" + metaphor + "</b>이에요."
+      me.word + "에 해당합니다. 태어난 달까지 함께 보면 <b>" + metaphor + "</b>" + ieyo(metaphor) + "."
     );
 
     // 가장 많고 적은 기운
@@ -316,7 +316,7 @@ const SajuTopics = (function () {
     keys.push(st.isStrong ? "밀고 나가는 힘이 있음" : "주변을 쓸 때 멀리 감");
     const topForce = ["비겁","식상","재성","관성","인성"]
       .slice().sort((x, y2) => g[y2] - g[x])[0];
-    keys.push(FORCE[topForce].word + "이 두터움");
+    keys.push(FORCE[topForce].word + i_ga(FORCE[topForce].word) + " 두터움");
     if (a.sinsal.some(s => s.name === "천을귀인")) keys.push("어려울 때 돕는 사람이 있음");
     if (a.sinsal.some(s => s.name === "역마")) keys.push("움직일수록 풀림");
     if (a.sinsal.some(s => s.name === "도화")) keys.push("사람을 끌어당김");
@@ -413,14 +413,20 @@ const SajuTopics = (function () {
       );
     }
 
-    // 사람을 쉽게 믿지 않는 구조
-    if (a.relations.hyung.length || a.relations.hae.length) {
-      paras.push(
-        "사주 안에 서로 어긋나는 글자 조합이 있습니다. 전통적으로 <b>사소한 오해가 쌓이기 쉬운 자리</b>로 봤어요. " +
-        "본인은 별 뜻 없이 한 말인데 상대가 다르게 받아들이거나, 반대로 상대의 행동을 오래 곱씹는 일이 생깁니다. " +
-        "이 사주에서는 <b>추측하기보다 직접 물어보는 습관</b>이 특히 값집니다."
-      );
-    }
+    // 타고난 힘의 세기에 따라 같은 성향도 드러나는 모양이 달라집니다
+    // ('어긋나는 글자 조합' 이야기는 인간관계 칸에서 한 번만 합니다)
+    paras.push(a.strength.isStrong
+      ? "타고난 힘이 센 편이라 이런 성향이 <b>겉으로 또렷하게</b> 드러납니다. 남이 뭐라 해도 내 방식을 지키는 쪽이에요."
+      : "타고난 힘은 부드러운 편이라 이런 성향이 <b>상황과 사람을 봐 가며</b> 드러납니다. 편한 사람 앞에서 본모습이 더 잘 나와요.");
+    const CHAR_FORCE = {
+      비겁:"사람들 사이에서는 <b>지기 싫어하는 면</b>이 먼저 보입니다. 내 몫과 내 자리에 대한 감각이 분명해요.",
+      식상:"사람들 사이에서는 <b>말과 재치</b>가 먼저 보입니다. 생각을 담아 두지 못하고 표현해야 풀리는 편이에요.",
+      재성:"사람들 사이에서는 <b>눈치와 현실 감각</b>이 먼저 보입니다. 손익과 분위기를 빠르게 읽어요.",
+      관성:"사람들 사이에서는 <b>반듯함과 책임감</b>이 먼저 보입니다. 남의 시선과 평가를 의식하는 편이에요.",
+      인성:"사람들 사이에서는 <b>차분함과 생각의 깊이</b>가 먼저 보입니다. 움직이기 전에 충분히 알아보는 편이에요.",
+    };
+    const topF = ["비겁","식상","재성","관성","인성"].slice().sort((x, y2) => g[y2] - g[x])[0];
+    if (g[topF] >= 2) paras.push(CHAR_FORCE[topF]);
 
     return { paras: paras, good: good.slice(0, 4), bad: bad.slice(0, 4) };
   }
@@ -451,47 +457,61 @@ const SajuTopics = (function () {
 
       paras.push(
         s.title + "은 사주의 <b>" + { year:"첫째", day:"셋째", hour:"넷째" }[s.cellKey] +
-        " 기둥</b>으로 봅니다. " + s.seat + "을 읽는 자리예요."
+        " 기둥</b>으로 봅니다. " + s.seat + eul(s.seat) + " 읽는 자리예요."
       );
 
       if (grp) {
-        const f = FORCE[grp];
+        // 같은 기운이라도 초년·중년·말년에 따라 뜻이 달라서, 시기별로 따로 씁니다
         const SAY = {
-          비겁:"이 시기에는 <b>또래와 경쟁</b>이 삶의 중심에 놓입니다. 친구·동료와 어울리는 일이 많고, 내 몫을 지키는 문제가 자주 떠올라요.",
-          식상:"이 시기에는 <b>표현하고 만들어내는 일</b>이 중심에 놓입니다. 재능이 드러나고, 내가 밖으로 내보내는 것으로 평가받습니다.",
-          재성:"이 시기에는 <b>돈과 현실</b>이 중심에 놓입니다. 벌고 쓰고 굴리는 문제가 삶의 전면에 올라와요.",
-          관성:"이 시기에는 <b>책임과 자리</b>가 중심에 놓입니다. 맡은 일, 지켜야 할 것, 평판 같은 게 중요해집니다.",
-          인성:"이 시기에는 <b>배우고 받는 일</b>이 중심에 놓입니다. 공부하거나 누군가의 도움을 받으며 바탕을 쌓는 시기예요.",
+          비겁:{
+            early:"어린 시절에는 <b>형제·친구와의 관계</b>가 삶의 중심이었던 것으로 읽습니다. 또래 사이에서 내 몫을 지키며 자립심이 일찍 자라요.",
+            mid:"한창 일할 나이에는 <b>동료·경쟁자와 어깨를 겨루는 일</b>이 중심에 놓입니다. 내 이름으로 서려는 마음이 커지고, 동업이나 독립을 고민하게 돼요.",
+            late:"노년에는 <b>오랜 친구와 형제</b>가 삶의 중심으로 돌아옵니다. 혼자 지내기보다 또래와 어울릴수록 기운이 살아나요." },
+          식상:{
+            early:"어린 시절에는 <b>재주와 표현</b>이 일찍 드러나는 자리로 봅니다. 하고 싶은 걸 하게 두면 잘 자라고, 누르면 반발이 커지는 쪽이에요.",
+            mid:"한창 일할 나이에는 <b>만들고 내보내는 일</b>이 중심에 놓입니다. 내 손으로 낸 결과물로 평가받고, 자녀나 후배를 키우는 일도 이때 커져요.",
+            late:"노년에는 <b>취미와 손재주, 베푸는 일</b>이 중심이 됩니다. 가르치고 나누는 자리에서 보람을 얻는 쪽으로 봤어요." },
+          재성:{
+            early:"어린 시절부터 <b>살림과 돈 문제</b>가 눈에 들어온 자리로 봅니다. 현실 감각이 일찍 생기고, 일찍 벌이를 시작하는 경우도 많아요.",
+            mid:"한창 일할 나이에는 <b>돈과 현실</b>이 삶의 전면에 올라옵니다. 벌고 쓰고 굴리는 문제가 커지고, 가정 살림의 무게도 이때 실려요.",
+            late:"노년에는 <b>모아 둔 것을 지키고 쓰는 문제</b>가 중심이 됩니다. 재산과 살림을 어떻게 정리할지가 말년의 큰 주제예요." },
+          관성:{
+            early:"어린 시절에는 <b>규칙과 기대</b>가 분명한 환경이었던 것으로 읽습니다. 일찍 철이 들고, 어른들 눈높이에 맞추려 애쓴 기억이 남기 쉬워요.",
+            mid:"한창 일할 나이에는 <b>책임과 자리</b>가 중심에 놓입니다. 직장·직함·평판이 삶을 끌고 가고, 맡은 일이 무거워지는 만큼 인정도 따라와요.",
+            late:"노년에는 <b>명예와 체면, 지켜 온 자리</b>가 중심이 됩니다. 물러난 뒤에도 찾는 사람이 있는 쪽으로 봤어요." },
+          인성:{
+            early:"어린 시절에는 <b>보살핌과 공부</b>가 중심이었던 자리로 봅니다. 어른들의 손길을 많이 받고, 배우는 데서 바탕을 쌓아요.",
+            mid:"한창 일할 나이에는 <b>배우고 자격을 갖추는 일</b>이 중심에 놓입니다. 문서·계약·자격증과 인연이 깊고, 윗사람의 도움으로 길이 열려요.",
+            late:"노년에는 <b>공부와 마음의 안정</b>이 중심이 됩니다. 배우는 즐거움이 늦게까지 이어지고, 주변의 보살핌을 받는 쪽으로 봤어요." },
         };
-        paras.push(SAY[grp]);
+        paras.push(SAY[grp][s.id]);
       }
 
-      // 그 시기 대운 흐름
+      // 그 시기 대운 흐름 (시기마다 다른 말로 풀어, 같은 문장이 세 번 나오지 않게 합니다)
       const run = summarizeRun(daeunBetween(a, s.lo, s.hi));
       if (run) {
         const g = run.good, b = run.bad;
-        if (g.length && !b.length) {
-          paras.push(
-            "이 시기를 지나는 10년 흐름을 보면 <b>" +
-            g.map(d => d.from + "~" + d.to + "세").join(", ") +
-            "</b> 구간에 당신에게 보약이 되는 기운이 들어옵니다. 전반적으로 순한 시기예요."
-          );
-        } else if (!g.length && b.length) {
-          paras.push(
-            "이 시기를 지나는 10년 흐름 중 <b>" +
-            b.map(d => d.from + "~" + d.to + "세").join(", ") +
-            "</b> 구간은 애써야 하는 때로 봅니다. 나쁜 일이 생긴다는 뜻이 아니라, " +
-            "같은 결과를 내는 데 품이 더 드는 시기라는 뜻이에요."
-          );
-        } else if (g.length && b.length) {
-          paras.push(
-            "이 시기 안에서도 흐름이 갈립니다. <b>" + g.map(d => d.from + "~" + d.to + "세").join(", ") +
-            "</b>는 순한 구간이고, <b>" + b.map(d => d.from + "~" + d.to + "세").join(", ") +
-            "</b>는 품이 더 드는 구간이에요."
-          );
-        } else {
-          paras.push("이 시기의 10년 흐름은 크게 치우치지 않고 무난하게 지나갑니다.");
-        }
+        const G = "<b>" + g.map(d => d.from + "~" + d.to + "세").join(", ") + "</b>";
+        const Bd = "<b>" + b.map(d => d.from + "~" + d.to + "세").join(", ") + "</b>";
+        const RUN = {
+          early:{
+            good:"이때 지나는 10년 흐름 가운데 " + G + " 구간에 보약이 되는 기운이 들어옵니다. 자라는 환경이 비교적 순했던 쪽이에요.",
+            bad:Bd + " 구간은 품이 더 드는 때로 봅니다. 어린 나이에 애쓴 만큼 일찍 단단해지는 쪽이에요.",
+            mix:"초년 안에서도 온도가 갈립니다. " + G + " 구간은 순하고, " + Bd + " 구간은 품이 더 들어요.",
+            flat:"초년의 10년 흐름은 크게 치우치지 않고 무난하게 지나갑니다." },
+          mid:{
+            good:"이 시기를 지나는 10년 흐름 중 " + G + " 구간에 보약이 되는 기운이 들어옵니다. 일과 가정 모두 힘을 실어 볼 만한 때예요.",
+            bad:Bd + " 구간은 애써야 하는 때로 봅니다. 나쁜 일이 생긴다는 뜻이 아니라 같은 결과를 내는 데 품이 더 든다는 뜻이라, 무리한 확장만 피하면 됩니다.",
+            mix:"중년은 구간마다 결이 다릅니다. " + G + " 구간에 힘을 싣고, " + Bd + " 구간에는 지키는 쪽으로 가면 돼요.",
+            flat:"중년의 10년 흐름은 크게 밀어주지도 막지도 않아서, 본인이 하는 만큼 결과가 나옵니다." },
+          late:{
+            good:"말년을 지나는 10년 흐름 중 " + G + " 구간에 보약이 되는 기운이 들어옵니다. 노후가 편안하게 흐르는 모양이에요.",
+            bad:Bd + " 구간은 품이 더 드는 때라, 벌이기보다 건강과 가진 것을 지키는 쪽이 맞습니다.",
+            mix:"말년도 한결같지는 않습니다. " + G + " 구간은 편안하고, " + Bd + " 구간은 조금 더 조심할 때예요.",
+            flat:"말년의 10년 흐름은 잔잔한 편이에요." },
+        };
+        const R = RUN[s.id];
+        paras.push(g.length && !b.length ? R.good : !g.length && b.length ? R.bad : g.length && b.length ? R.mix : R.flat);
       }
 
       // 공망
@@ -528,6 +548,55 @@ const SajuTopics = (function () {
     정인:"품어주고 받쳐주는 상대에게 끌립니다. 안정감을 가장 크게 느끼는 쪽이에요. 다만 기대는 쪽으로만 흐르면 관계가 한쪽으로 기웁니다.",
   };
 
+  const LOVE_ME = {
+    갑:"좋아하면 돌려 말하지 않고 곧게 표현합니다. 대신 상대가 내 방식에 맞춰 주길 바라는 마음이 커서, 한 걸음 굽혀 주는 연습이 관계를 살려요.",
+    을:"상대에게 자연스럽게 맞춰 들어가는 연애를 합니다. 다정하지만 서운한 걸 쌓아 두는 편이라, 작을 때 말하는 게 중요해요.",
+    병:"좋아하는 티가 다 나는 연애를 합니다. 뜨겁게 시작하는 만큼, 식었을 때의 온도 차를 상대가 크게 느낄 수 있어요.",
+    정:"한 사람을 오래 깊이 챙기는 연애를 합니다. 말없이 헌신하다 알아주지 않으면 크게 서운해지니, 바라는 걸 말로 꺼내 보세요.",
+    무:"쉽게 흔들리지 않는 듬직한 연애를 합니다. 표현이 적어 무심해 보일 수 있어서, 마음을 말로 옮기는 게 숙제예요.",
+    기:"챙겨 주고 받아 주는 연애를 합니다. 맞춰 주다 내 몫을 잊기 쉬우니, 받는 것도 연애라는 걸 기억하세요.",
+    경:"좋으면 좋다, 아니면 아니다가 분명한 연애를 합니다. 의리는 깊은데 말이 세게 나가서, 맞는 말도 부드럽게 전하는 게 관건이에요.",
+    신:"기준이 높고 섬세한 연애를 합니다. 작은 말에 오래 마음이 쓰이는 편이라, 혼자 해석하기 전에 물어보는 습관이 도움이 돼요.",
+    임:"품이 넓고 자유로운 연애를 합니다. 구속을 싫어해서 무심해 보일 때가 있으니, 연락과 약속 같은 기본을 챙기면 오래 갑니다.",
+    계:"상대 기분을 먼저 읽고 스며드는 연애를 합니다. 상대 감정에 내 하루가 흔들리기 쉬워서, 내 시간을 따로 지키는 게 중요해요.",
+  };
+  const MONEY_ME = {
+    갑:"돈을 다룰 때도 큰 그림부터 그리는 편이라, 자잘한 지출 관리는 자동이체 같은 장치에 맡기는 게 좋습니다.",
+    을:"큰 판보다 여러 작은 통로에서 돈을 만드는 데 능합니다. 사람 따라 쓰는 돈만 조심하면 돼요.",
+    병:"벌 때 시원하게 벌고 쓸 때도 시원하게 쓰는 편입니다. 체면 때문에 나가는 돈이 가장 큰 구멍이에요.",
+    정:"가까운 사람에게 쓰는 돈이 큰 편입니다. 내 몫을 먼저 떼어 두는 습관이 이 사주의 방패예요.",
+    무:"한번 묶어 두면 잘 건드리지 않아서, 오래 묵히는 방식의 저축이 성격에 맞습니다.",
+    기:"알뜰하게 모으는 힘이 있습니다. 다만 남의 부탁을 거절하지 못해 새는 돈을 조심하세요.",
+    경:"결정이 빨라 기회를 잘 잡지만 지르는 것도 빠릅니다. 큰돈은 하루 묵히고 결정하세요.",
+    신:"좋은 물건과 품질에 돈을 쓰는 편입니다. 개수를 줄이고 제대로 된 하나를 사는 방식이 오히려 절약이 돼요.",
+    임:"돈의 흐름을 넓게 보는 눈이 있습니다. 들어오는 통로는 많은데 고이지 않고 흘러나가기 쉬워, 먼저 떼어 두는 장치가 필요해요.",
+    계:"큰 한 방보다 조용히 불리는 쪽이 맞습니다. 불안할 때 하는 소비와 투자가 가장 위험해요.",
+  };
+  const JOB_ME = {
+    갑:"일할 때는 처음 길을 내는 역할, 기획하고 이끄는 자리에서 힘이 납니다.",
+    을:"일할 때는 사람 사이를 조율하고 틈새를 찾아내는 역할에서 강합니다.",
+    병:"일할 때는 앞에 나서서 알리고 설득하는 역할이 잘 맞습니다.",
+    정:"일할 때는 한 분야를 깊이 파서 사람을 돕는 역할에서 오래 갑니다.",
+    무:"일할 때는 큰 살림을 맡아 흔들림 없이 굴리는 역할이 어울립니다.",
+    기:"일할 때는 꼼꼼히 챙기고 키워 내는 실무·관리 역할에서 신뢰를 얻습니다.",
+    경:"일할 때는 결단이 필요한 자리, 문제를 잘라 해결하는 역할에서 빛납니다.",
+    신:"일할 때는 정밀함과 완성도가 값이 되는 역할이 잘 맞습니다.",
+    임:"일할 때는 넓게 보고 흐름을 읽는 전략·기획 쪽 역할에서 강합니다.",
+    계:"일할 때는 조용히 분석하고 뒤에서 받쳐 주는 역할, 사람 마음을 다루는 역할이 어울립니다.",
+  };
+  const SOCIAL_ME = {
+    갑:"앞에 서서 방향을 정해 주는 역할을 자주 맡습니다. 조언이 지시처럼 들리지 않게만 하면 따르는 사람이 많아요.",
+    을:"누구와도 부드럽게 섞이는 편입니다. 모두에게 맞추다 지치기 쉬우니, 편한 사람 몇에게 힘을 더 쓰세요.",
+    병:"모임의 분위기를 띄우는 사람입니다. 내가 지쳤을 때는 조용히 빠져도 괜찮다는 걸 기억하세요.",
+    정:"넓게보다 깊게 사귑니다. 한 번 마음 준 사람에게 실망하면 오래 가니, 기대를 조금 낮춰 두면 편해요.",
+    무:"말수가 적어도 믿고 찾는 사람이 많습니다. 먼저 연락하는 일을 조금만 늘려도 관계가 훨씬 따뜻해져요.",
+    기:"남의 얘기를 잘 들어주는 사람으로 통합니다. 고민 상담을 떠안다 지치지 않게, 들어주는 선을 정해 두세요.",
+    경:"의리 있는 사람으로 통하고, 아닌 건 아니라고 말해 주는 친구입니다. 직설이 상처가 되지 않게 한 박자만 쉬고 말하세요.",
+    신:"사람을 가려 사귀는 편입니다. 첫인상이 차가워 보여도 가까워지면 세심하게 챙기는 쪽이에요.",
+    임:"처음 보는 사람과도 금방 말을 틉니다. 아는 사람은 많은데 속을 나누는 사람은 적을 수 있어, 깊은 관계 한둘을 따로 가꾸세요.",
+    계:"말하지 않아도 상대 기분을 알아채는 사람입니다. 남의 감정을 대신 짊어지지 않도록 거리를 두는 연습이 필요해요.",
+  };
+
   function topicLove(a) {
     const day = cellOf(a, "day");
     const seat = day ? day.branchGod : null;
@@ -536,7 +605,8 @@ const SajuTopics = (function () {
     const paras = [];
 
     
-    if (seat && SEAT_LOVE[seat]) paras.push(SEAT_LOVE[seat]);
+    if (LOVE_ME[a.dayStem]) paras.push(LOVE_ME[a.dayStem]);
+    if (seat && SEAT_LOVE[seat]) paras.push("배우자 자리로 보면, " + SEAT_LOVE[seat]);
 
     // 인연의 양
     const love = g.재성 + g.관성;
@@ -799,11 +869,12 @@ const SajuTopics = (function () {
       "많음|중화강":"<b>재물 기운이 두텁고 그럭저럭 감당이 되는</b> 구조입니다. " +
         "다만 욕심을 내면 금세 버거워지는 선이 있어요. <b>지금 규모의 1.5배까지</b>를 한계로 잡으시면 적당합니다.",
       "많음|중화약":"<b>재물 기운은 두터운데 내 힘은 그만큼은 아닌</b> 구조입니다. " +
-        "<b>돈 벌 기회는 자주 오는데 다 받으면 내가 지치는</b> 모양이에요.",
+        "일감과 벌이의 기회가 끊이지 않는 대신, <b>전부 붙잡으려 하면 몸과 마음이 먼저 닳는</b> 모양이에요.",
       "많음|약":"<b>재물 기운이 아주 두터운데 내 힘은 약한</b> 구조입니다. 명리에서 특징적으로 보는 모양이에요. " +
         "<b>돈이 사람을 끌고 다니는</b> 형국이라, 규모 조절이 평생의 과제가 됩니다.",
     };
     paras.push(MONEY_SHAPE[amount + "|" + power]);
+    if (MONEY_ME[a.dayStem]) paras.push(MONEY_ME[a.dayStem]);
 
     // 재물이 많고 힘이 모자랄 때만 따로 당부합니다
     const overload = (amount === "많음" && soft) || (amount === "보통" && power === "약");
@@ -909,6 +980,7 @@ const SajuTopics = (function () {
       인성:"배우고 쌓아 전하는 일이 맞습니다. 바로 성과가 나지 않아도 깊이가 자산이 되는 구조에서 오래 갑니다.",
     };
     paras.push("사주에서 가장 두터운 기운은 <b>" + FORCE[top].word + "</b>입니다. " + BY[top]);
+    if (JOB_ME[a.dayStem]) paras.push(JOB_ME[a.dayStem]);
 
     // 직장 vs 사업
     if (g.재성 >= 3 && !st.isStrong) {
@@ -963,12 +1035,12 @@ const SajuTopics = (function () {
       paras.push(
         "특히 <b>" + EL_WORD[least] + " 기운이 아예 없습니다</b>. 옛 글에서는 " +
         EL_WORD[least] + "에 연결된 " + BODY[least].part + " 쪽을 " +
-        "평소에 덜 챙기기 쉽다고 봤어요. " + BODY[least].life + "을 특히 조심하시면 좋습니다."
+        "평소에 덜 챙기기 쉽다고 봤어요. " + BODY[least].life + eul(BODY[least].life) + " 특히 조심하시면 좋습니다."
       );
     } else {
       paras.push(
         "넘치는 " + EL_WORD[most] + " 기운은 " + BODY[most].part + " 쪽과 연결해 읽습니다. " +
-        BODY[most].life + "이 쌓이지 않도록 하시는 게 좋아요."
+        BODY[most].life + i_ga(BODY[most].life) + " 쌓이지 않도록 하시는 게 좋아요."
       );
     }
 
@@ -985,14 +1057,6 @@ const SajuTopics = (function () {
         "태어난 계절이 한여름인데 <b>불 기운까지 많습니다</b>. 사주 전체가 뜨거운 쪽으로 기울어 있어요. " +
         "열이 쌓이는 구조라 <b>과로와 수면 부족</b>을 가장 조심하라고 봤습니다. " +
         "쉬는 걸 일정에 넣어두지 않으면 몸이 먼저 신호를 보냅니다."
-      );
-    }
-
-    // 충 - 변동
-    if (a.relations.chung.length) {
-      paras.push(
-        "사주 안에 서로 부딪히는 글자가 있습니다. 전통적으로 <b>갑작스러운 변동</b>을 " +
-        "조심하라고 읽는 자리예요. 무리한 일정, 급하게 몰아치는 생활을 줄이시면 좋습니다."
       );
     }
 
@@ -1062,6 +1126,7 @@ const SajuTopics = (function () {
   function topicSocial(a) {
     const g = a.gods.groups;
     const paras = [];
+    if (SOCIAL_ME[a.dayStem]) paras.push(SOCIAL_ME[a.dayStem]);
 
     
 
@@ -1113,8 +1178,8 @@ const SajuTopics = (function () {
     if (a.sinsal.some(s => s.name === "천을귀인")) {
       paras.push(
         "사주에서 가장 귀하게 치는 <b>도움의 별</b>이 있습니다. " +
-        "고비마다 사람의 손으로 넘어간다는 뜻이에요. " +
-        "혼자 해결하려 들기보다 주변에 말을 꺼내는 게 이 사주에서는 전략입니다."
+        "막힐 때마다 뜻밖의 사람이 다리를 놓아 준다는 뜻이에요. " +
+        "평소에 인사와 안부를 아끼지 않는 것이 이 별을 쓰는 방법입니다."
       );
     }
 
@@ -1177,37 +1242,29 @@ const SajuTopics = (function () {
        같은 해라도 어떤 10년 구간을 지나는 중인지에 따라 작용이 달라집니다.
        (이걸 넣어야 '올해는 다 같은 해'가 되지 않습니다) */
     var daeunNow = (a.currentDaeun && a.currentDaeun.item) ? a.currentDaeun.item : null;
+    var off = offset || 0;
+    var switched = false;
+    // 내년에 10년 구간이 바뀌는 사람은 바뀐 구간으로 봅니다
+    if (daeunNow && off > 0 && a.currentDaeun.age + off > daeunNow.to && a.daeun) {
+      var nextItem = a.daeun.list.filter(function (d) { return d.order === daeunNow.order + 1; })[0];
+      if (nextItem) { daeunNow = nextItem; switched = true; }
+    }
     var daeunGrade = daeunNow ? gradeDaeun(a, daeunNow) : null;
     if (daeunGrade === "순풍") score += 2;
     else if (daeunGrade === "역풍") score -= 2;
 
     var bigFlow = "";
-    if (daeunNow) {
-      bigFlow = "지금 지나는 10년 구간(<b>" + daeunNow.from + "~" + daeunNow.to + "세 " +
-        daeunNow.pillar + "</b>)은 " +
+    if (daeunNow && (off === 0 || switched)) {
+      bigFlow = (switched ? "이 해부터 10년 구간이 <b>" : "지금 지나는 10년 구간(<b>") +
+        daeunNow.from + "~" + daeunNow.to + "세 " + daeunNow.pillar +
+        (switched ? "</b>" + josa(daeunNow.pillar, "으로", "로") + " 바뀝니다. 새 구간은 " : "</b>)은 ") +
         (daeunGrade === "순풍" ? "<b>순한 흐름</b>이라, 이 해의 기운이 더 잘 받쳐집니다."
          : daeunGrade === "역풍" ? "<b>품이 드는 흐름</b>이라, 이 해가 좋아도 체감은 한 단계 낮아집니다."
          : "<b>무난한 흐름</b>이라, 이 해의 성격이 비교적 그대로 드러납니다.");
+    } else if (daeunNow) {
+      bigFlow = "바탕이 되는 10년 구간은 올해와 같습니다.";
     }
 
-    // 종합 판정 — 세운과 대운을 함께 본 결과
-    var verdict;
-    if (score >= 6) {
-      verdict = "세운과 대운이 <b>같은 방향으로 맞물리는 해</b>입니다. 힘을 실어도 받쳐주는 때라, " +
-                "미뤄둔 일을 꺼내거나 새로 시작하기에 적당합니다.";
-    } else if (score >= 4) {
-      verdict = "전체적으로 <b>당신을 받쳐주는 쪽</b>으로 기운이 들어옵니다. 밀어붙여도 버틸 만한 해예요.";
-    } else if (score >= 2) {
-      verdict = "<b>나쁘지 않은 해</b>입니다. 크게 터지진 않아도 하던 일이 순하게 굴러갑니다.";
-    } else if (score >= 0) {
-      verdict = "크게 밀어주지도, 막아서지도 않는 <b>평범한 해</b>입니다. 무리하지 않으면 탈이 없어요.";
-    } else if (score >= -3) {
-      verdict = "<b>엇갈리는 해</b>입니다. 도움이 되는 기운과 부담이 되는 기운이 섞여 들어와서, " +
-                "어디에 힘을 쓰느냐에 따라 결과가 크게 갈립니다.";
-    } else {
-      verdict = "<b>품이 더 드는 해</b>입니다. 같은 결과를 내는 데 평소보다 힘이 많이 들어요. " +
-                "새로 벌이기보다 가진 것을 지키는 쪽이 유리합니다.";
-    }
     // 충(부딪힘)과 공망(빈자리)도 판정에 반영해야 하므로 verdict 보다 먼저 계산합니다
     const myBranches = a.cells.map(c => c.branch);
     const CHUNG = [["자","오"],["축","미"],["인","신"],["묘","유"],["진","술"],["사","해"]];
@@ -1220,22 +1277,50 @@ const SajuTopics = (function () {
     if (hit.length) score -= hit.length >= 2 ? 2 : 1;
     if (isGongmang) score -= 1;
 
+    // 종합 판정 — 세운과 대운을 함께 본 결과 (올해와 내년은 다른 말로 풀어요)
+    var V = off === 0 ? [
+      "세운과 대운이 <b>같은 방향으로 맞물리는 해</b>입니다. 힘을 실어도 받쳐주는 때라, 미뤄둔 일을 꺼내거나 새로 시작하기에 적당합니다.",
+      "전체적으로 <b>당신을 받쳐주는 쪽</b>으로 기운이 들어옵니다. 밀어붙여도 버틸 만한 해예요.",
+      "<b>나쁘지 않은 해</b>입니다. 크게 터지진 않아도 하던 일이 순하게 굴러갑니다.",
+      "크게 밀어주지도, 막아서지도 않는 <b>평범한 해</b>입니다. 무리하지 않으면 탈이 없어요.",
+      "<b>엇갈리는 해</b>입니다. 도움이 되는 기운과 부담이 되는 기운이 섞여 들어와서, 어디에 힘을 쓰느냐에 따라 결과가 크게 갈립니다.",
+      "<b>품이 더 드는 해</b>입니다. 같은 결과를 내는 데 평소보다 힘이 많이 들어요. 새로 벌이기보다 가진 것을 지키는 쪽이 유리합니다.",
+    ] : [
+      "한 해의 기운과 10년의 흐름이 <b>한 방향으로 겹치는 해</b>입니다. 준비해 온 일을 이때 내놓으면 받쳐주는 힘이 커요.",
+      "<b>기운이 내 편으로 기우는 해</b>입니다. 계획을 조금 크게 잡아도 감당이 됩니다.",
+      "<b>무난하게 좋은 해</b>입니다. 눈에 띄는 한 방은 없어도 쌓은 만큼 남아요.",
+      "<b>잔잔한 해</b>입니다. 특별히 밀어주는 것도 막는 것도 없어, 하던 일을 꾸준히 잇기에 좋습니다.",
+      "<b>밀고 당기는 기운이 섞인 해</b>입니다. 일을 여러 개 벌이기보다 하나를 골라 집중하면 결과가 달라져요.",
+      "<b>힘을 아껴야 하는 해</b>입니다. 큰 결정은 서두르지 말고, 몸과 돈의 여유분을 챙겨 두는 쪽이 유리해요.",
+    ];
+    var verdict = score >= 6 ? V[0] : score >= 4 ? V[1] : score >= 2 ? V[2] : score >= 0 ? V[3] : score >= -3 ? V[4] : V[5];
+
     if (bigFlow) paras.push(bigFlow);
     paras.push(verdict);
 
     if (hit.length) {
       const where = a.cells.filter(c => hit.indexOf(c.branch) !== -1)
         .map(c => ({ year:"초년·집안", month:"직업·사회", day:"배우자·가정", hour:"자녀·말년" })[c.key]);
-      paras.push(
-        "이 해의 글자가 당신 사주의 <b>" + hit.join("·") + "</b>와 정면으로 부딪힙니다. " +
-        "한마디로 <b>변화의 압력이 커지는 해</b>예요. " +
-        (where.length ? "특히 <b>" + where.join(", ") + "</b> 쪽에서 움직임이 생기기 쉽습니다. " : "") +
-        "이직, 부서 이동, 사업 방향 수정, 이사, 관계 재편 같은 모습으로 나타납니다. " +
-        "반드시 일이 터진다는 뜻은 아니고, <b>가만히 있기보다 뭔가를 바꾸고 싶어지는</b> 해라는 뜻이에요."
-      );
+      if (off === 0) {
+        paras.push(
+          "이 해의 글자가 당신 사주의 <b>" + hit.join("·") + "</b>" + josa(hit[hit.length - 1], "과", "와") + " 정면으로 부딪힙니다. " +
+          "한마디로 <b>변화의 압력이 커지는 해</b>예요. " +
+          (where.length ? "특히 <b>" + where.join(", ") + "</b> 쪽에서 움직임이 생기기 쉽습니다. " : "") +
+          "이직, 부서 이동, 사업 방향 수정, 이사, 관계 재편 같은 모습으로 나타납니다. " +
+          "반드시 일이 터진다는 뜻은 아니고, <b>가만히 있기보다 뭔가를 바꾸고 싶어지는</b> 해라는 뜻이에요."
+        );
+      } else {
+        paras.push(
+          "이 해의 글자는 당신 사주의 <b>" + hit.join("·") + "</b>" + josa(hit[hit.length - 1], "과", "와") + " 부딪힙니다. " +
+          (where.length ? "<b>" + where.join(", ") + "</b> 쪽에서 " : "") +
+          "자리를 옮기거나 방식을 바꾸는 일이 생기기 쉬운 해로 봤어요. 미리 정리해 둘수록 변화가 가볍게 지나갑니다."
+        );
+      }
     }
     if (isGongmang) {
-      paras.push("이 해는 당신의 '빈자리'에 해당합니다. 바쁜 것에 비해 손에 남는 게 적게 느껴질 수 있어요.");
+      paras.push(off === 0
+        ? "이 해는 당신의 '빈자리'에 해당합니다. 바쁜 것에 비해 손에 남는 게 적게 느껴질 수 있어요."
+        : "이 해는 사주에서 '빈자리'로 치는 해라, 성과를 서두르기보다 준비에 쓰는 편이 낫다고 봤어요.");
     }
 
     return { year: ymp.sajuYear, pillar: pillar,
@@ -1246,6 +1331,173 @@ const SajuTopics = (function () {
   }
 
   /* ============================================================
+     [2026-11-11 추가] 올해 달별 흐름
+     - 한 해 풀이만 있으면 "그래서 언제?"가 빠져서, 열두 달을 따로 봅니다.
+     - 사주의 달은 양력 1일이 아니라 절기(매달 4~8일 무렵)에 바뀝니다.
+     - 달의 두 글자가 내게 보약인지 부담인지, 그 달 천간이 어떤 일을 불러오는지,
+       내 사주 글자와 부딪히는 달인지를 따로 따져 문장을 만듭니다.
+     ============================================================ */
+  const MONTH_GOD = {
+    비견: { good:"내 힘으로 밀어붙이면 통하는 달입니다. 미뤄 둔 일을 직접 챙기기 좋아요.",
+            bad:"혼자 다 하려다 지치기 쉬운 달입니다. 나눌 수 있는 일은 나누세요." },
+    겁재: { good:"사람이 모이고 경쟁이 자극이 되는 달입니다. 같이 움직일 때 속도가 붙어요.",
+            bad:"돈과 사람이 함께 새기 쉬운 달입니다. 보증·동업·충동 지출은 미루는 게 좋아요." },
+    식신: { good:"해 온 일이 결과물로 나오는 달입니다. 꾸준히 만든 것이 눈에 띄어요.",
+            bad:"일은 느는데 체력이 못 따라가기 쉬운 달입니다. 양을 줄이고 마무리에 집중하세요." },
+    상관: { good:"아이디어와 말솜씨가 살아나는 달입니다. 제안·발표·새 시도를 해볼 만해요.",
+            bad:"말 한마디로 손해 보기 쉬운 달입니다. 윗사람·거래처와는 글로 남기고 한 번 더 읽으세요." },
+    편재: { good:"움직인 만큼 돈과 기회가 따라오는 달입니다. 발로 뛰는 일에 운이 있어요.",
+            bad:"들어오는 것보다 나가는 것이 커지기 쉬운 달입니다. 큰 지출·투자는 다음 달로 미루세요." },
+    정재: { good:"꾸준히 해 온 일이 수입으로 이어지는 달입니다. 계약·정산을 매듭짓기 좋아요.",
+            bad:"고정 지출이 부담으로 느껴지는 달입니다. 새는 돈부터 막는 게 먼저예요." },
+    편관: { good:"책임이 커지지만 그만큼 인정도 따라오는 달입니다. 어려운 일을 맡아볼 만해요.",
+            bad:"압박과 일이 한꺼번에 몰리는 달입니다. 무리한 일정과 다툼을 피하고 몸부터 챙기세요." },
+    정관: { good:"자리와 평판이 반듯해지는 달입니다. 승진·시험·공식적인 일에 유리해요.",
+            bad:"규칙과 눈치에 묶여 답답한 달입니다. 원칙대로 처리하되 혼자 떠안지는 마세요." },
+    편인: { good:"배우고 궁리한 것이 실력이 되는 달입니다. 자격·공부·기획에 좋아요.",
+            bad:"생각만 많고 손이 안 가기 쉬운 달입니다. 계획을 작게 쪼개서 하나만 끝내세요." },
+    정인: { good:"도와주는 사람과 문서 운이 따르는 달입니다. 계약·합격·윗사람의 도움을 기대할 만해요.",
+            bad:"남에게 기대다가 때를 놓치기 쉬운 달입니다. 결정은 미루지 말고 스스로 내리세요." },
+  };
+  const MONTH_CLASH_WHERE = { year:"집안·윗사람", month:"직장·하는 일", day:"배우자·가까운 사람", hour:"자녀·아랫사람" };
+  function monthLook(a) {
+    const now = new Date();
+    const today = SajuEngine.computeYearMonthPillar(
+      now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes());
+    const base = today.sajuYear;
+    const hh = helpHurt(a);
+    const CH = [["자","오"],["축","미"],["인","신"],["묘","유"],["진","술"],["사","해"]];
+    const list = [];
+    for (let k = 0; k < 12; k++) {
+      // 인월(양력 2월)부터 축월(이듬해 1월)까지. 매달 20일은 절기 경계에서 멀어 안전합니다.
+      const calYear = k < 11 ? base : base + 1;
+      const calMonth = k < 11 ? k + 2 : 1;
+      const mp = SajuEngine.computeYearMonthPillar(calYear, calMonth, 20, 12, 0);
+      const stem = mp.monthPillar.charAt(0), branch = mp.monthPillar.charAt(1);
+      const sEl = SajuEngine.STEM[stem].el, bEl = SajuEngine.BRANCH[branch].el;
+      let score = 0;
+      [sEl, bEl].forEach(function (el, idx) {
+        const w = idx === 1 ? 1.5 : 1;          // 달은 지지(계절)의 힘이 더 큽니다
+        if (el === hh.yong) score += 3 * w;
+        else if (hh.help.indexOf(el) !== -1) score += 2 * w;
+        else if (hh.hurt.indexOf(el) !== -1) score -= 2 * w;
+        else if (el === a.dayStemEl) score += (a.strength && a.strength.isStrong ? -0.5 : 1) * w;
+      });
+      const clash = [];
+      a.cells.forEach(function (c) {
+        CH.forEach(function (pr) {
+          if ((pr[0] === branch && pr[1] === c.branch) || (pr[1] === branch && pr[0] === c.branch)) {
+            if (MONTH_CLASH_WHERE[c.key] && clash.indexOf(MONTH_CLASH_WHERE[c.key]) === -1) clash.push(MONTH_CLASH_WHERE[c.key]);
+          }
+        });
+      });
+      if (clash.length) score -= 1;
+      const god = SajuEngine.tenGodOfStem(a.dayStem, stem);
+      const tone = score >= 3 ? "good" : score <= -2 ? "bad" : "mid";
+      const meta = MONTH_GOD[god] || MONTH_GOD.비견;
+      let text = tone === "good" ? meta.good
+               : tone === "bad" ? meta.bad
+               : "큰 굴곡 없이 무난하게 지나가는 달입니다. " + (score >= 0 ? meta.good : meta.bad).replace(/^.*?달입니다\.\s*/, "");
+      if (clash.length) {
+        text += " <b>" + clash.join("·") + "</b> 쪽에서 자리 이동이나 의견 충돌 같은 변화가 생기기 쉬우니 약속과 일정은 여유 있게 잡으세요.";
+      }
+      const nextM = calMonth === 12 ? 1 : calMonth + 1;
+      list.push({
+        label: calMonth + "월 초 ~ " + nextM + "월 초", calYear: calYear, calMonth: calMonth,
+        pillar: mp.monthPillar, hanja: mp.monthPillarHanja, god: god,
+        tone: tone, tag: tone === "good" ? "순풍" : tone === "bad" ? "조심" : "보통",
+        score: score, text: text,
+        isNow: mp.monthPillar === today.monthPillar && today.sajuYear === base,
+      });
+    }
+    const best = list.slice().sort(function (x, y) { return y.score - x.score; }).slice(0, 2);
+    const worst = list.slice().sort(function (x, y) { return x.score - y.score; }).slice(0, 2);
+    const summary =
+      "올해 열두 달 가운데 가장 힘이 실리는 때는 <b>" + best.map(function (m) { return m.label; }).join("</b>, <b>") + "</b>입니다. " +
+      "새 일을 벌이거나 중요한 결정을 한다면 이때로 맞추는 편이 유리해요. " +
+      "반대로 <b>" + worst.map(function (m) { return m.label; }).join("</b>, <b>") + "</b>" +
+      (worst[0].score < 0 ? "에는 무리한 확장보다 정리와 마무리에 쓰는 편이 낫습니다."
+                          : "은 상대적으로 힘이 덜 실리는 때라 속도를 조금 늦추면 됩니다.");
+    return { year: base, list: list, summary: summary };
+  }
+
+  /* ============================================================
+     [2026-11-11 추가] 생활 처방 — 내게 보약인 기운을 일상에서 채우는 법
+     - 용신(가장 필요한 오행)이 무엇이냐에 따라 색·방향·계절·습관이 달라집니다.
+     - 전통 명리에서 오행에 짝지어 온 것들을 정리한 것이고, 효과를 보장하는 처방은 아닙니다.
+     ============================================================ */
+  const REMEDY = {
+    목: { color:"초록·청록", dir:"동쪽", season:"봄", time:"새벽~아침(오전 5~9시)", num:"3·8",
+          habit:"아침 산책, 화분 가꾸기, 스트레칭처럼 <b>몸을 위로 뻗고 자라게 하는 활동</b>",
+          place:"나무와 풀이 보이는 곳, 책과 종이가 많은 공간",
+          work:"기획·교육·출판·디자인처럼 <b>새로 키워내는 일</b>",
+          lack:"시작을 미루고 계획만 세우게 되기 쉽습니다. 작은 것 하나를 먼저 시작해 두는 습관이 약이에요." },
+    화: { color:"빨강·주황·분홍", dir:"남쪽", season:"여름", time:"한낮(오전 9시~오후 1시)", num:"2·7",
+          habit:"햇볕 쬐기, 땀나는 운동, 사람들 앞에서 말하기처럼 <b>밖으로 드러내는 활동</b>",
+          place:"볕이 잘 들고 밝은 곳, 사람이 모이는 자리",
+          work:"홍보·영업·방송·요리처럼 <b>알리고 뜨겁게 달구는 일</b>",
+          lack:"의욕이 쉽게 식고 속으로만 삭이기 쉽습니다. 표현을 한 번 더 하는 것이 약이에요." },
+    토: { color:"노랑·베이지·갈색", dir:"한가운데(집과 일터의 중심)", season:"환절기", time:"계절이 바뀌는 무렵, 하루 중엔 식사 때", num:"5·10",
+          habit:"규칙적인 식사, 정리 정돈, 맨땅 걷기처럼 <b>중심을 잡아주는 활동</b>",
+          place:"낮고 안정된 곳, 오래 머문 익숙한 공간",
+          work:"중개·관리·부동산·농업처럼 <b>모으고 받쳐주는 일</b>",
+          lack:"마음이 붕 뜨고 하던 일을 자주 바꾸기 쉽습니다. 생활 리듬을 일정하게 두는 것이 약이에요." },
+    금: { color:"흰색·은색·회색", dir:"서쪽", season:"가을", time:"늦은 오후~저녁(오후 3~7시)", num:"4·9",
+          habit:"물건 줄이기, 기록과 결산, 근력 운동처럼 <b>잘라내고 단단하게 하는 활동</b>",
+          place:"깔끔하게 정돈된 곳, 금속·돌 소재가 많은 공간",
+          work:"금융·법무·기술·품질관리처럼 <b>기준을 세우고 가려내는 일</b>",
+          lack:"맺고 끊음이 흐려져 일이 늘어지기 쉽습니다. 기한을 정해 두는 것이 약이에요." },
+    수: { color:"검정·남색·짙은 파랑", dir:"북쪽", season:"겨울", time:"밤(오후 9시~새벽 1시)", num:"1·6",
+          habit:"충분한 잠, 물 자주 마시기, 수영·반신욕, 혼자 생각하는 시간처럼 <b>가라앉히고 채우는 활동</b>",
+          place:"물가, 조용하고 서늘한 곳",
+          work:"연구·유통·무역·상담처럼 <b>흐르고 이어주는 일</b>",
+          lack:"조급해지고 깊이 생각할 틈이 없어지기 쉽습니다. 쉬는 시간을 먼저 일정에 넣는 것이 약이에요." },
+  };
+  function topicRemedy(a) {
+    const hh = helpHurt(a);
+    const y = hh.yong, r = REMEDY[y];
+    if (!r) return null;
+    const second = hh.help[1] && hh.help[1] !== y ? hh.help[1] : null;
+    const hurtEl = hh.hurt[0] || null;
+    const paras = [];
+    paras.push(
+      "당신 사주에서 가장 필요한 기운은 " + EL_EMOJI[y] + " <b>" + EL_WORD[y] + "</b>입니다. " +
+      "이 기운은 사주 안에서 모자라거나 눌려 있어서, 운에서 들어올 때마다 일이 풀리는 구조예요. " +
+      "운을 기다리지 않고 <b>일상에서 조금씩 채워 두는 방법</b>을 정리했습니다."
+    );
+    paras.push(
+      "전통적으로 이 기운과 짝지어 온 것은 <b>" + r.color + "</b> 계열의 색, <b>" + r.dir + "</b> 방향, <b>" + r.season + "</b>, " +
+      "그리고 하루 중에는 <b>" + r.time + "</b>입니다. 숫자로는 " + r.num + "을 씁니다. " +
+      "옷이나 소지품의 포인트 색, 책상을 두는 방향, 중요한 일을 잡는 시간대를 고를 때 참고할 수 있어요."
+    );
+    paras.push(
+      "생활에서는 " + r.habit + "이 잘 맞습니다. 머무는 곳은 " + r.place + "이 편안하고, " +
+      "일로는 " + r.work + "과 인연이 닿기 쉬워요."
+    );
+    paras.push("이 기운이 달릴 때는 " + r.lack);
+    if (second && REMEDY[second]) {
+      paras.push(
+        "두 번째로 도움이 되는 것은 " + EL_EMOJI[second] + " <b>" + EL_WORD[second] + "</b>입니다. " +
+        EL_WORD[second] + i_ga(EL_WORD[second]) + " " + EL_WORD[y] + eul(EL_WORD[y]) + " 길러주기 때문이에요. " +
+        "<b>" + REMEDY[second].color + "</b> 계열과 " + REMEDY[second].season + "의 기운도 함께 쓰면 좋습니다."
+      );
+    }
+    if (hurtEl && REMEDY[hurtEl]) {
+      paras.push(
+        "반대로 " + EL_EMOJI[hurtEl] + " <b>" + EL_WORD[hurtEl] + "</b>" + eun(EL_WORD[hurtEl]) + " 필요한 기운을 누르는 쪽이라, " +
+        "이미 넘치는 사주라면 굳이 더 보탤 필요가 없습니다. " +
+        REMEDY[hurtEl].season + " 무렵이나 이 기운이 강한 해에는 일을 벌이기보다 지키는 쪽으로 계획을 잡아 보세요."
+      );
+    }
+    return {
+      emoji: "🧭", title: "나에게 힘이 되는 것들",
+      lede: "모자란 기운을 색·방향·시간·습관으로 채우는 법",
+      paras: paras,
+      tip: "색이나 방향은 어디까지나 전통적인 짝짓기예요. 실제로 힘이 되는 건 잠·식사·운동 같은 생활 리듬을 그 기운에 맞게 고르는 쪽입니다.",
+    };
+  }
+
+  /* ============================================================
      조립
      ============================================================ */
   function build(a) {
@@ -1253,6 +1505,8 @@ const SajuTopics = (function () {
       topicLove(a), topicMarriage(a), topicChild(a), topicMoney(a),
       topicJob(a), topicHealth(a), topicFamily(a), topicSocial(a),
     ];
+    const remedy = topicRemedy(a);
+    if (remedy) topics.push(remedy);
     return {
       headline: headline(a),
       personality: personality(a),
@@ -1260,6 +1514,7 @@ const SajuTopics = (function () {
       topics: topics,
       thisYear: yearLook(a, 0),
       nextYear: yearLook(a, 1),
+      months: monthLook(a),
       gradeDaeun: function (item) { return gradeDaeun(a, item); },
     };
   }

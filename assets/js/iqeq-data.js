@@ -5,10 +5,10 @@
    완전 무작위가 아니라 난이도별로 정해진 개수씩 뽑아서,
    매번 문제는 달라도 시험 전체의 난이도는 같게 유지합니다.
 
-     diff 1 쉬움  ×2      cat  seq    수열
-     diff 2 보통  ×3           num    수리추리
-     diff 3 어려움 ×3           logic  언어·논리
-     diff 4 매우어려움 ×2        fig    도형추리
+     diff 1 쉬움  ×1      cat  seq    수열
+     diff 2 보통  ×2           num    수리추리
+     diff 3 어려움 ×4           logic  언어·논리
+     diff 4 매우어려움 ×3        fig    도형추리
                                spc    공간지각
 
    도형 문제의 그림은 iq-figures.js 가 SVG 로 그립니다.
@@ -94,7 +94,7 @@ const IQ_QUESTIONS = [
     opts:[{t:"1/12"},{t:"1/9"},{t:"1/6",ok:1},{t:"5/36"}],
     why:"합이 7인 경우는 6가지, 전체는 36가지이므로 6/36 = 1/6." },
 
-  { cat:"num", diff:3, text:"원가에 20%의 이익을 붙여 정가를 매긴 뒤, 정가에서 10%를 할인해 팔았더니 160원이 남았습니다. 원가는?",
+  { cat:"num", diff:3, text:"원가에 20%의 이익을 붙여 정가를 매긴 뒤, 정가에서 10%를 할인해 팔았더니 160원의 이익이 남았습니다. 원가는 얼마일까요?",
     opts:[{t:"1,600원"},{t:"1,800원"},{t:"2,000원",ok:1},{t:"2,400원"}],
     why:"1.2 × 0.9 = 1.08 이므로 이익은 원가의 8%. 0.08x = 160 → x = 2,000." },
 
@@ -131,7 +131,7 @@ const IQ_QUESTIONS = [
 
   { cat:"logic", diff:3, text:"다음 두 문장이 참일 때 반드시 참인 것은?\n\n· 모든 장미는 꽃이다.\n· 어떤 꽃은 빨갛다.",
     opts:[{t:"어떤 장미는 빨갛다"},{t:"모든 꽃은 장미다"},
-          {t:"빨간 것은 모두 꽃이다"},{t:"위 문장만으로는 알 수 없다",ok:1}],
+          {t:"빨간 것은 모두 꽃이다"},{t:"이 중 반드시 참인 것은 없다",ok:1}],
     why:"빨간 꽃이 장미라는 보장이 없습니다. 장미가 아닌 다른 꽃일 수도 있어요." },
 
   { cat:"logic", diff:3, text:"어떤 규칙으로 암호를 만들었습니다.\n\nABC → BDF\nBCD → DFH\n\n같은 규칙이면 DEF → __",
@@ -185,7 +185,7 @@ const IQ_QUESTIONS = [
     fig:{ cells:[ [{s:"ring"},{s:"mk",p:0}], [{s:"ring"},{s:"mk",p:3}],
                   [{s:"ring"},{s:"mk",p:6}], [{s:"q"}] ], cols:4 },
     opts:[{f:[{s:"ring"},{s:"mk",p:1}],ok:1},{f:[{s:"ring"},{s:"mk",p:0}]},
-          {f:[{s:"ring"},{s:"mk",p:2}],},{f:[{s:"ring"},{s:"mk",p:7}]}],
+          {f:[{s:"ring"},{s:"mk",p:2}]},{f:[{s:"ring"},{s:"mk",p:7}]}],
     why:"시계 방향으로 세 칸씩 움직입니다. 자리는 모두 여덟 개라, 일곱 번째 자리에서 세 칸 더 가면 한 바퀴를 돌아 두 번째 자리예요." },
 
   /* ---------------- 도형추리 ----------------
@@ -245,7 +245,7 @@ const IQ_QUESTIONS = [
                   [{s:"ar",r:180,f:2}], [{s:"ar",r:225,f:1}], [{s:"q"}] ], cols:3 },
     opts:[{f:[{s:"ar",r:270,f:0}],ok:1},{f:[{s:"ar",r:270,f:1}]},
           {f:[{s:"ar",r:270,f:2}]},{f:[{s:"ar",r:225,f:0}]}],
-    why:"각도는 칸마다 45도씩 계속 늘어납니다. 칠하기는 가로줄에도 세로줄에도 세 가지가 한 번씩만 나와요. 셋째 줄에 남은 것은 '빈 것'입니다." },
+    why:"각도는 가로줄 안에서 45도씩 늘고, 다음 줄은 앞줄의 마지막 각도에서 다시 시작합니다. 칠하기는 가로줄에도 세로줄에도 세 가지가 한 번씩만 나와요. 셋째 줄에 남은 것은 '빈 것'입니다." },
 
   { cat:"fig", diff:4, text:"빈칸에 들어갈 모양은?",
     fig:{ cells:[ [{s:"ring"},{s:"mk",p:0},{s:"dots",n:1,z:0.45}], [{s:"ring"},{s:"mk",p:2},{s:"dots",n:2,z:0.45}], [{s:"ring"},{s:"mk",p:4},{s:"dots",n:3,z:0.45}],
@@ -358,11 +358,12 @@ function pickIqQuestions() {
   Object.keys(IQ_PICK).forEach(function (d) {
     const pool = iqShuffle(IQ_QUESTIONS.filter(function (q) { return q.diff === Number(d); }));
     let need = IQ_PICK[d];
-    // 1차: 아직 적게 나온 갈래부터
-    pool.sort(function (a, b) { return (catUsed[a.cat] || 0) - (catUsed[b.cat] || 0); });
-    for (let i = 0; i < pool.length && need > 0; i++) {
-      picked.push(pool[i]);
-      catUsed[pool[i].cat] = (catUsed[pool[i].cat] || 0) + 1;
+    // 한 문제 뽑을 때마다 다시 정렬해서, 아직 적게 나온 갈래부터 고릅니다
+    while (need > 0 && pool.length > 0) {
+      pool.sort(function (a, b) { return (catUsed[a.cat] || 0) - (catUsed[b.cat] || 0); });
+      const q = pool.shift();
+      picked.push(q);
+      catUsed[q.cat] = (catUsed[q.cat] || 0) + 1;
       need--;
     }
   });

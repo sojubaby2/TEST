@@ -76,6 +76,10 @@
       <ul class="trait-list" id="cautionsList"></ul>
     </div>
 
+    <!-- [2026-11-11] 생년월일로 실제로 따져 본 풀이 (띠 · 별자리 · 나이 차이) -->
+    <p class="section-title" id="birthDetailTitle" style="margin-top:24px;display:none;">생년월일로 따져 본 두 사람</p>
+    <div id="birthDetail"></div>
+
     <div class="btn-row">
       <button class="btn btn-primary" id="shareBtn" type="button">결과 공유하기</button>
     </div>
@@ -163,6 +167,20 @@
       li.textContent = t;
       strengthsEl.appendChild(li);
     });
+    var birthItems = getBirthCompatDetail(nameA, dateA, nameB, dateB);
+    if (birthItems.length) {
+      var safe = function (t) { return String(t).replace(/[<>&"'`]/g, ""); };
+      birthItems = getBirthCompatDetail(safe(nameA).slice(0, 20), dateA, safe(nameB).slice(0, 20), dateB);
+      document.getElementById("birthDetailTitle").style.display = "";
+      var birthBox = document.getElementById("birthDetail");
+      birthItems.forEach(function (it) {
+        var card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = '<p style="margin:0 0 8px;font-size:15px;font-weight:800;">' + it.emoji + " " + it.title + "</p>" +
+          '<p style="margin:0;font-size:14px;line-height:1.8;">' + it.text + "</p>";
+        birthBox.appendChild(card);
+      });
+    }
     var cautionsEl = document.getElementById("cautionsList");
     result.cautions.forEach(function (t) {
       var li = document.createElement("li");

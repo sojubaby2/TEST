@@ -229,6 +229,23 @@ const SajuRender = (function () {
         "(" + y.hanja + ")</b></p>";
       card.appendChild(paras(y.paras));
       mount.appendChild(card);
+      // [2026-11-11] 올해 카드 바로 아래에 달별 흐름을 붙입니다
+      if (pair[0] === "올해" && r.months && r.months.list && r.months.list.length) {
+        const mc = el("div", "card month-flow");
+        let html = '<p class="yc-head">' + r.months.year + "년 달별 흐름</p>" +
+          '<p class="mf-sum">' + r.months.summary + "</p>" +
+          '<p class="mf-note">사주의 달은 양력 1일이 아니라 절기(매달 4~8일 무렵)에 바뀌어서 "○월 초 ~ ○월 초"로 적었어요.</p>' +
+          '<ol class="mf-list">';
+        r.months.list.forEach(function (m) {
+          html += '<li class="mf-item is-' + m.tone + (m.isNow ? " is-now" : "") + '">' +
+            '<div class="mf-top"><span class="mf-when">' + (m.calYear !== r.months.year ? m.calYear + "년 " : "") + m.label + "</span>" +
+            '<span class="mf-pillar">' + m.pillar + "(" + m.hanja + ")</span>" +
+            '<span class="mf-tag">' + m.tag + "</span>" + (m.isNow ? '<span class="mf-nowtag">지금</span>' : "") + "</div>" +
+            '<p class="mf-text">' + m.text + "</p></li>";
+        });
+        mc.innerHTML = html + "</ol>";
+        mount.appendChild(mc);
+      }
     });
   }
 

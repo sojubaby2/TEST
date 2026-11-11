@@ -51,7 +51,7 @@ const SLEEPTYPE_QUESTIONS = [
     text: "퇴근 지하철, 운 좋게 자리에 앉았다.",
     options: [
       { text: "두 정거장 만에 고개가 툭", key: "nap" },
-      { text: "앉아서는 못 잠. 대신 누우면 3초 컷", key: "rock" },
+      { text: "꾸벅 졸다가 종점까지 가도 모르고 푹 잠", key: "rock" },
     ],
   },
   {
@@ -85,7 +85,7 @@ const SLEEPTYPE_RESULTS = [
     emoji: "🐦",
     title: "아침형 새",
     subtitle: "이른 시간에 가장 또렷해지는 타입",
-    summary: "아침 시간대에 컨디션이 가장 좋은 타입이에요. 사회의 기본 일정과 리듬이 잘 맞아서 생활이 수월한 편입니다. 수면 연구에서도 규칙적인 기상 시간이 컨디션에 가장 크게 작용한다고 보는데, 이미 그걸 하고 있는 셈이죠. 주말에도 기상 시간을 크게 흔들지 않으면 계속 유지됩니다.",
+    summary: "아침 시간대에 컨디션이 가장 좋은 타입이에요. 사회의 기본 일정과 리듬이 잘 맞아서 생활이 수월한 편입니다. 수면 연구에서도 규칙적인 기상 시간이 컨디션 관리에 중요하다고 보는데, 이미 그걸 하고 있는 셈이죠. 주말에도 기상 시간을 크게 흔들지 않으면 계속 유지됩니다.",
     traits: ["이른 시간에 집중이 잘됨", "취침·기상 시간이 규칙적", "늦은 약속을 부담스러워함"],
     color: "#F59E0B",
     compat: {
@@ -116,7 +116,7 @@ const SLEEPTYPE_RESULTS = [
     color: "#0D9488",
     compat: {
       best: { id: "night", reason: "밤에 부족한 잠을 낮에 메우는 리듬이 비슷해요" },
-      worst: { id: "light", reason: "아무 데서나 자는 나를 상대는 신기해하며 부러워해요" },
+      worst: { id: "light", reason: "아무 데서나 자는 내 모습이 잠에 예민한 상대에겐 얄밉게 보일 수 있어요" },
     },
   },
   {
@@ -152,15 +152,14 @@ function getSleepTypeById(id) {
 }
 
 function tallyToSleepTypeResult(tally) {
-  let best = null;
+  // [2026-11-11] 동점 고르게: 예전에는 동점이면 목록 앞쪽 유형이 무조건 이겨서 첫 유형이 마지막 유형보다 2.7배 자주 나왔어요.
+  //   이제 동점인 유형들 가운데 답 모양(유형별 득표 수)에 따라 골고루 하나가 정해집니다. 같은 답이면 늘 같은 결과예요.
+  const order = ["morning", "night", "nap", "rock", "light"];
   let bestCount = -1;
-  const order = ["morning", "night", "nap", "rock", "light"]; // 동점 시 우선순위
-  order.forEach((key) => {
-    const count = tally[key] || 0;
-    if (count > bestCount) {
-      bestCount = count;
-      best = key;
-    }
-  });
+  order.forEach((key) => { bestCount = Math.max(bestCount, tally[key] || 0); });
+  const tied = order.filter((key) => (tally[key] || 0) === bestCount);
+  let mix = 7;
+  order.forEach((key, i) => { mix = (mix * 31 + (tally[key] || 0) * (i + 3)) % 9973; });
+  const best = tied[mix % tied.length];
   return getSleepTypeById(best);
 }

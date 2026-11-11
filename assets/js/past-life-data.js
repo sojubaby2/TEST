@@ -159,16 +159,19 @@ const PASTLIFE_RESULTS = [
 ];
 
 function tallyToPastLifeResult(tally) {
-  let best = null;
+  // [2026-11-11] 동점 고르게: 예전에는 동점이면 목록 앞쪽 유형이 무조건 이겨서 첫 유형이 마지막 유형보다 2.7배 자주 나왔어요.
+  //   이제 동점인 유형들 가운데 답 모양(유형별 득표 수)에 따라 골고루 하나가 정해집니다. 같은 답이면 늘 같은 결과예요.
+  const order = ["pharaoh", "viking", "scholar", "merchant", "artist"];
+  // 유형마다 보기에 나오는 횟수가 달라서(5~7번), 득표 수가 아니라 "나온 횟수 중 몇 번 골랐나"로 견줍니다.
+  const appear = {};
+  PASTLIFE_QUESTIONS.forEach((q) => q.options.forEach((o) => { appear[o.who] = (appear[o.who] || 0) + 1; }));
+  const rate = (key) => Math.round(((tally[key] || 0) / (appear[key] || 1)) * 1000);
   let bestCount = -1;
-  const order = ["pharaoh", "viking", "scholar", "merchant", "artist"]; // 동점 시 우선순위
-  order.forEach((key) => {
-    const count = tally[key] || 0;
-    if (count > bestCount) {
-      bestCount = count;
-      best = key;
-    }
-  });
+  order.forEach((key) => { bestCount = Math.max(bestCount, rate(key)); });
+  const tied = order.filter((key) => rate(key) === bestCount);
+  let mix = 7;
+  order.forEach((key, i) => { mix = (mix * 31 + (tally[key] || 0) * (i + 3)) % 9973; });
+  const best = tied[mix % tied.length];
   return getPastLifeById(best);
 }
 

@@ -90,7 +90,7 @@ const CLINGYINDEX_MAX_SCORE = 20;
 
 const CLINGYINDEX_RESULTS = [
   {
-    id: 1, emoji: "🍃", title: "쿨内 여유형", subtitle: "믿음이 기본값인 타입",
+    id: 1, emoji: "🍃", title: "쿨내 여유형", subtitle: "믿음이 기본값인 타입",
     min: 0, max: 4, color: "#16A34A",
     summary: "연인을 향한 믿음이 워낙 단단해서 사소한 일에 흔들리지 않는 타입. 연락이 늦어도, 혼자만의 시간을 가져도 여유롭게 받아들이는 안정적인 연애 스타일이야. 가끔은 무심해 보일 수 있으니 표현도 잊지 말길.",
     traits: ["연락이 늦어도 크게 신경 쓰지 않는다", "연인의 SNS는 거의 확인하지 않는다", "혼자만의 시간을 존중해준다"],

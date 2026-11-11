@@ -187,7 +187,7 @@ const MYGUA_RESULTS = [
     color: "#2450D8",
     compat: {
       best: { id: "ri", reason: "불의 열정이 고요한 내게 시동을 걸어 줘요" },
-      worst: { id: "gam", reason: "둘 다 속으로만 생각해서 대화가 자꾸 끊겨요" },
+      worst: { id: "gan", reason: "둘 다 말수가 적고 속으로만 생각해서 대화가 자꾸 끊겨요" },
     },
   },
   {
@@ -213,7 +213,7 @@ const MYGUA_RESULTS = [
     color: "#C9381F",
     compat: {
       best: { id: "geon", reason: "하늘이 길을 열면 내가 단단히 받쳐 줘요" },
-      worst: { id: "gon", reason: "서로 양보만 하다가 메뉴 하나 정하는 데 30분 걸려요" },
+      worst: { id: "jin", reason: "갑자기 내달리는 상대 속도에 맞추다 보면 내 마음은 늘 뒤로 밀려요" },
     },
   },
 ];

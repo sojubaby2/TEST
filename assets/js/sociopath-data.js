@@ -40,8 +40,8 @@ const SOCIOPATH_QUESTIONS = [
     text: "팀플에서 한 명이 3주째 연락 두절이다.",
     options: [
       { text: "발표 때 그 사람 몫까지 내 공으로 어필", score: 2 },
-      { text: "한숨 쉬고 그 사람 파트까지 내가 함", score: 1 },
-      { text: "\"이러시면 이름 빼겠습니다\" 직접 연락", score: 0 },
+      { text: "한숨 쉬고 그 사람 파트까지 내가 함", score: 0 },
+      { text: "\"이러시면 이름 빼겠습니다\" 직접 연락", score: 1 },
     ],
   },
   {

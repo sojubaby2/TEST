@@ -154,16 +154,15 @@ const LOVELANG_RESULTS = [
 ];
 
 function tallyToLoveLangResult(tally) {
-  let best = null;
+  // [2026-11-11] 동점 고르게: 예전에는 동점이면 목록 앞쪽 유형이 무조건 이겨서 첫 유형이 마지막 유형보다 2.7배 자주 나왔어요.
+  //   이제 동점인 유형들 가운데 답 모양(유형별 득표 수)에 따라 골고루 하나가 정해집니다. 같은 답이면 늘 같은 결과예요.
+  const order = ["words", "time", "gifts", "acts", "touch"];
   let bestCount = -1;
-  const order = ["words", "time", "gifts", "acts", "touch"]; // 동점 시 우선순위
-  order.forEach((key) => {
-    const count = tally[key] || 0;
-    if (count > bestCount) {
-      bestCount = count;
-      best = key;
-    }
-  });
+  order.forEach((key) => { bestCount = Math.max(bestCount, tally[key] || 0); });
+  const tied = order.filter((key) => (tally[key] || 0) === bestCount);
+  let mix = 7;
+  order.forEach((key, i) => { mix = (mix * 31 + (tally[key] || 0) * (i + 3)) % 9973; });
+  const best = tied[mix % tied.length];
   return getLoveLangById(best);
 }
 

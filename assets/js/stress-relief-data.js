@@ -116,7 +116,7 @@ const STRESSRELIEF_RESULTS = [
     color: "#16A34A",
     compat: {
       best: { id: "alone", reason: "각자 방식대로 충전한 뒤 만나면 서로 편해요" },
-      worst: { id: "eat", reason: "한쪽은 나가자 하고 한쪽은 눕자 해서 계속 엇갈려요" },
+      worst: { id: "eat", reason: "한쪽은 뛰러 나가자 하고 한쪽은 먹으러 가자 해서 계속 엇갈려요" },
     },
   },
   {
@@ -152,15 +152,14 @@ function getStressReliefById(id) {
 }
 
 function tallyToStressReliefResult(tally) {
-  let best = null;
+  // [2026-11-11] 동점 고르게: 예전에는 동점이면 목록 앞쪽 유형이 무조건 이겨서 첫 유형이 마지막 유형보다 2.7배 자주 나왔어요.
+  //   이제 동점인 유형들 가운데 답 모양(유형별 득표 수)에 따라 골고루 하나가 정해집니다. 같은 답이면 늘 같은 결과예요.
+  const order = ["eat", "sleep", "move", "talk", "alone"];
   let bestCount = -1;
-  const order = ["eat", "sleep", "move", "talk", "alone"]; // 동점 시 우선순위
-  order.forEach((key) => {
-    const count = tally[key] || 0;
-    if (count > bestCount) {
-      bestCount = count;
-      best = key;
-    }
-  });
+  order.forEach((key) => { bestCount = Math.max(bestCount, tally[key] || 0); });
+  const tied = order.filter((key) => (tally[key] || 0) === bestCount);
+  let mix = 7;
+  order.forEach((key, i) => { mix = (mix * 31 + (tally[key] || 0) * (i + 3)) % 9973; });
+  const best = tied[mix % tied.length];
   return getStressReliefById(best);
 }

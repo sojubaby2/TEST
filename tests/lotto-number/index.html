@@ -310,7 +310,7 @@
     shareBtn.addEventListener("click", function () {
       if (!latestNumbers) return;
       shareCurrentPage(
-        "오늘의 행운 번호는 " + latestNumbers.join(", ") + " 이에요 🍀",
+        "오늘의 행운 번호: " + latestNumbers.join(", ") + " 🍀",
         "알아볼괘에서 나도 행운 번호 뽑아보기!"
       );
     });
@@ -356,7 +356,7 @@
       ctx.fillStyle = "rgba(255,255,255,0.85)";
       ctx.font = "14px sans-serif";
       ctx.textBaseline = "alphabetic";
-      ctx.fillText("재미로 즐기는 참고용 번호예요 · testmatzip", W / 2, H - 20);
+      ctx.fillText("재미로 즐기는 참고용 번호예요 · arabol.co.kr", W / 2, H - 20);
 
       var dataUrl = canvas.toDataURL("image/png");
       var a = document.createElement("a");

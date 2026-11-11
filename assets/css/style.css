@@ -1,3 +1,7 @@
+/* 글꼴: 어느 화면에서든 같은 글꼴이 나오도록 여기서 한 번 불러옵니다 (2026-11-11) */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap");
+
 /* ============================================================
    알아볼괘 - 공통 스타일시트 (모바일 우선)
    ============================================================ */
@@ -148,7 +152,7 @@ a {
 
 .search-input:focus {
   border-color: var(--brand-1);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+  box-shadow: 0 0 0 3px rgba(27, 31, 59, 0.12);
 }
 
 /* 검색 입력 지우기(x) 버튼도 살짝 눌러보기 좋게 */
@@ -213,7 +217,7 @@ a {
   margin: 4px 0 16px;
   padding: 12px 14px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, #f5f3ff, #fdf2f8);
+  background: linear-gradient(135deg, #FFF4D1, #FFF9E6);
   border: 1.5px solid var(--border);
   transition: transform 0.15s ease;
 }
@@ -294,7 +298,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f5f3ff, #fdf2f8);
+  background: linear-gradient(135deg, #FFF4D1, #FFF9E6);
   border-radius: var(--radius-md);
   flex-shrink: 0;
   overflow: hidden;
@@ -358,7 +362,7 @@ a {
 .btn-primary {
   background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
   color: #fff;
-  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.25);
+  box-shadow: 0 10px 20px rgba(27, 31, 59, 0.25);
 }
 
 .btn-primary:active {
@@ -462,7 +466,7 @@ a {
 }
 
 .option-btn:active {
-  background: #f5f3ff;
+  background: #FFF4D1;
   border-color: var(--brand-1);
 }
 
@@ -954,7 +958,7 @@ a {
 }
 
 .pillar-cell-btn.active {
-  background: #f5f3ff;
+  background: #FFF4D1;
   border-color: var(--brand-1);
 }
 
@@ -1542,14 +1546,14 @@ a {
 
 @keyframes tarotChipPulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.35);
+    box-shadow: 0 0 0 0 rgba(27, 31, 59, 0.35);
     transform: scale(1) translateY(0);
     border-color: rgba(76, 29, 149, 0.15);
   }
   35% {
-    box-shadow: 0 0 0 6px rgba(124, 58, 237, 0);
+    box-shadow: 0 0 0 6px rgba(27, 31, 59, 0);
     transform: scale(1.06) translateY(-2px);
-    border-color: rgba(124, 58, 237, 0.55);
+    border-color: rgba(27, 31, 59, 0.55);
   }
 }
 
@@ -1569,7 +1573,7 @@ a {
   padding: 6px 2px 2px;
   margin-bottom: 6px;
   border-radius: var(--radius-md);
-  background: rgba(124, 58, 237, 0.04);
+  background: rgba(27, 31, 59, 0.04);
 }
 
 .tarot-grid {
@@ -1743,7 +1747,7 @@ a {
   font-size: 13px;
   padding: 8px 18px;
   border-radius: 999px;
-  box-shadow: 0 6px 14px rgba(124, 58, 237, 0.28);
+  box-shadow: 0 6px 14px rgba(27, 31, 59, 0.28);
   position: relative;
   z-index: 1;
 }
@@ -1908,7 +1912,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f5f3ff, #fdf2f8);
+  background: linear-gradient(135deg, #FFF4D1, #FFF9E6);
   border-radius: var(--radius-md);
   flex-shrink: 0;
 }
@@ -2195,7 +2199,7 @@ a {
   margin-top: 24px;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.06), rgba(236, 72, 153, 0.06));
+  background: linear-gradient(135deg, rgba(27, 31, 59, 0.06), rgba(236, 72, 153, 0.06));
   padding: 15px 16px 9px;
 }
 
@@ -2212,7 +2216,7 @@ a {
   font-weight: 600;
   color: var(--brand-1);
   background: #fff;
-  border: 1px solid rgba(124, 58, 237, 0.25);
+  border: 1px solid rgba(27, 31, 59, 0.25);
   border-radius: 999px;
   padding: 6px 12px;
   margin: 0 6px 6px 0;
@@ -2419,7 +2423,7 @@ a {
   overflow: hidden;
   padding: 20px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, #6d28d9, #be185d);
+  background: linear-gradient(135deg, #2C3360, #2C3360);
   color: #fff;
   box-shadow: var(--shadow);
   transition: transform 0.15s ease;
@@ -2549,7 +2553,7 @@ a {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, #f5f3ff, #fdf2f8);
+  background: linear-gradient(135deg, #FFF4D1, #FFF9E6);
   flex-shrink: 0;
 }
 
@@ -2647,7 +2651,7 @@ a {
 /* 얼굴 윤곽이 그려지는 효과 */
 .scan-outline {
   fill: none;
-  stroke: var(--primary, #7c3aed);
+  stroke: var(--primary, #2450D8);
   stroke-width: 2.2;
   stroke-linecap: round;
   stroke-dasharray: 700;
@@ -2657,7 +2661,7 @@ a {
 
 .scan-feature {
   fill: none;
-  stroke: var(--primary, #7c3aed);
+  stroke: var(--primary, #2450D8);
   stroke-width: 1.8;
   stroke-linecap: round;
   opacity: 0;
@@ -2914,7 +2918,7 @@ a {
 
 .pillar-cell .pillar-god.is-me {
   color: var(--text-main);
-  background: #ede9fe;
+  background: #FFF4D1;
   border-radius: 999px;
   padding: 1px 0;
 }
@@ -3041,7 +3045,7 @@ a {
   border-radius: 999px;
   margin-left: 6px;
   vertical-align: 1.5px;
-  background: #ede9fe;
+  background: #FFF4D1;
   color: var(--brand-1);
 }
 
@@ -3119,7 +3123,7 @@ a {
 }
 
 .daeun-cell.is-now {
-  background: #f5f3ff;
+  background: #FFF4D1;
   border-color: var(--brand-1);
 }
 
@@ -3208,7 +3212,7 @@ a {
 
 .saju-seg input:checked + span {
   border-color: var(--brand-1);
-  background: #f5f3ff;
+  background: #FFF4D1;
   color: var(--brand-1);
 }
 
@@ -3232,7 +3236,7 @@ a {
   text-decoration: none;
 }
 
-.rp-toc a:active { background: #ede9fe; color: var(--brand-1); }
+.rp-toc a:active { background: #FFF4D1; color: var(--brand-1); }
 
 /* ============================================================
    IQ 테스트 - 도형 문항
@@ -3262,7 +3266,7 @@ a {
 .q-tag.diff-2 { background: #eff6ff; color: #2563eb; }
 .q-tag.diff-3 { background: #fff7ed; color: #ea580c; }
 .q-tag.diff-4 { background: #fef2f2; color: #dc2626; }
-.q-tag.diff-eq { background: #fdf2f8; color: #db2777; }
+.q-tag.diff-eq { background: #FFF9E6; color: #db2777; }
 
 /* 문제 그림 */
 .fig-grid {
@@ -3289,7 +3293,7 @@ a {
 .fig-cell.is-q {
   border-style: dashed;
   border-color: var(--brand-1);
-  background: #faf5ff;
+  background: #FFF9E6;
 }
 
 .fig-cell svg { display: block; width: 100%; height: auto; }
@@ -3564,3 +3568,144 @@ img {
 .rt-list a { color: inherit; }
 /* 블로그 글 - 작성 정보 */
 .post-meta { margin: -6px 0 18px; font-size: 13px; color: var(--text-sub, #6b6b7b); }
+
+/* ============================================================
+   2026-11-11  새 옷 통일
+   - 테스트 화면(body.qp)·홈(body.home4)·타로(body.tarot2)는 이미 새 디자인이라 그대로 둡니다.
+   - 그 밖의 화면(읽을거리, 소개·문의·약관, 사주, 궁합, 운세, 꿈해몽, 관상, 로또 등)이
+     예전 보라색 디자인으로 남아 있어서, 같은 노란 띠 · 남색 먹 · 손글씨 제목으로 맞춥니다.
+   - HTML 은 건드리지 않고 이 파일만으로 적용됩니다.
+   ============================================================ */
+body:not(.qp):not(.home4):not(.tarot2) {
+  --ink: #1B1F3B; --paper: #FFFFFF; --mist: #F2F3F8; --line: #DADDEA; --sub: #5A5E78;
+  --hwang: #FFC93C; --hwang-soft: #FFF4D1; --jeok: #C9381F; --cheong: #2450D8;
+  --hand: "Gaegu", "Pretendard Variable", sans-serif;
+  --brand-1: #1B1F3B; --brand-2: #1B1F3B;
+  --bg: #FFFFFF; --card-bg: #FFFFFF; --text-main: #1B1F3B; --text-sub: #5A5E78;
+  --border: #DADDEA; --shadow: none;
+  background: var(--paper); color: var(--ink);
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  letter-spacing: -0.01em;
+}
+body:not(.qp):not(.home4):not(.tarot2) a:focus-visible, body:not(.qp):not(.home4):not(.tarot2) button:focus-visible, body:not(.qp):not(.home4):not(.tarot2) input:focus-visible, body:not(.qp):not(.home4):not(.tarot2) select:focus-visible {
+  outline: 3px solid var(--cheong); outline-offset: 2px;
+}
+/* 머리: 홈과 같은 노란 띠 + 팔괘 로고 */
+body:not(.qp):not(.home4):not(.tarot2) .site-header {
+  max-width: none; margin: 0; padding: 0 20px; height: 56px; background: var(--hwang);
+}
+body:not(.qp):not(.home4):not(.tarot2) .site-header .logo {
+  max-width: 480px; width: 100%; margin: 0 auto; display: flex; align-items: center; gap: 10px;
+  font-family: var(--hand); font-size: 26px; font-weight: 700; line-height: 1;
+  background: none; color: var(--ink); -webkit-text-fill-color: var(--ink);
+}
+body:not(.qp):not(.home4):not(.tarot2) .site-header .logo-mark {
+  width: 32px; height: 32px; flex: none; border-radius: 9px; font-size: 0; color: transparent; -webkit-text-fill-color: transparent;
+  background:
+    linear-gradient(var(--hwang), var(--hwang)) center 9px / 18px 4px no-repeat,
+    linear-gradient(var(--hwang), var(--hwang)) center 14px / 18px 4px no-repeat,
+    linear-gradient(var(--hwang), var(--hwang)) center 19px / 18px 4px no-repeat,
+    var(--ink);
+}
+body:not(.qp):not(.home4):not(.tarot2) .wrap { display: flow-root; padding-top: 6px; }
+/* 시작 화면 제목 */
+body:not(.qp):not(.home4):not(.tarot2) .hero { padding: 26px 0 10px; }
+body:not(.qp):not(.home4):not(.tarot2) .hero h1 { font-family: var(--hand); font-size: 36px; line-height: 1.15; letter-spacing: 0; margin: 0 0 10px; }
+body:not(.qp):not(.home4):not(.tarot2) .hero p { font-size: 15px; color: var(--sub); }
+body:not(.qp):not(.home4):not(.tarot2) .section-title { font-family: var(--hand); font-size: 25px; font-weight: 700; letter-spacing: 0; line-height: 1.2; }
+/* 카드 · 단추 */
+body:not(.qp):not(.home4):not(.tarot2) .card { border: 2px solid var(--line); border-radius: 20px; box-shadow: none; }
+body:not(.qp):not(.home4):not(.tarot2) .btn { border-radius: 16px; font-weight: 800; padding: 17px 16px; transition: transform .1s ease, background-color .15s ease; }
+body:not(.qp):not(.home4):not(.tarot2) .btn-primary { background: var(--ink); color: var(--paper); box-shadow: 0 4px 0 #090B1C; border: 0; }
+body:not(.qp):not(.home4):not(.tarot2) .btn-primary:hover { background: #2C3360; }
+body:not(.qp):not(.home4):not(.tarot2) .btn-primary:active { transform: translateY(3px); box-shadow: 0 1px 0 #090B1C; }
+body:not(.qp):not(.home4):not(.tarot2) .btn-secondary { background: var(--paper); color: var(--ink); border: 2px solid var(--ink); }
+body:not(.qp):not(.home4):not(.tarot2) .btn-secondary:hover { background: var(--hwang-soft); }
+body:not(.qp):not(.home4):not(.tarot2) .test-card { border: 2px solid var(--line); border-radius: 18px; box-shadow: none; }
+body:not(.qp):not(.home4):not(.tarot2) .test-card:hover { border-color: var(--ink); }
+body:not(.qp):not(.home4):not(.tarot2) .notice { background: var(--mist); border: 0; border-radius: 14px; color: var(--sub); }
+body:not(.qp):not(.home4):not(.tarot2) .footer { border-top: 2px dashed var(--line); color: var(--sub); }
+body:not(.qp):not(.home4):not(.tarot2) .footer a { color: var(--ink); font-weight: 700; }
+/* 결과 머리 카드: 색 띠 위에 먹색 테두리 */
+body:not(.qp):not(.home4):not(.tarot2) .result-hero { border: 3px solid var(--ink); border-radius: 24px; box-shadow: 5px 5px 0 var(--ink); margin-top: 16px; }
+body:not(.qp):not(.home4):not(.tarot2) .result-hero h1 { font-family: var(--hand); font-size: 34px; line-height: 1.15; letter-spacing: 0; }
+/* 입력 칸 */
+body:not(.qp):not(.home4):not(.tarot2) input[type="text"], body:not(.qp):not(.home4):not(.tarot2) input[type="date"], body:not(.qp):not(.home4):not(.tarot2) input[type="number"], body:not(.qp):not(.home4):not(.tarot2) input[type="search"], body:not(.qp):not(.home4):not(.tarot2) select {
+  border-color: var(--line); border-radius: 14px; color: var(--ink);
+}
+body:not(.qp):not(.home4):not(.tarot2) input[type="text"]:focus, body:not(.qp):not(.home4):not(.tarot2) input[type="date"]:focus, body:not(.qp):not(.home4):not(.tarot2) input[type="number"]:focus, body:not(.qp):not(.home4):not(.tarot2) input[type="search"]:focus, body:not(.qp):not(.home4):not(.tarot2) select:focus {
+  border-color: var(--ink); box-shadow: 0 0 0 3px var(--hwang-soft);
+}
+
+/* ---------- 읽을거리 · 소개 · 약관 (글 읽는 화면) ---------- */
+body:not(.qp):not(.home4):not(.tarot2) .legal h1 {
+  font-family: var(--hand); font-size: 34px !important; line-height: 1.2; letter-spacing: 0;
+  margin: 26px 0 8px; word-break: keep-all;
+}
+body:not(.qp):not(.home4):not(.tarot2) .legal h2 {
+  font-size: 20px; font-weight: 800; line-height: 1.4; margin: 38px 0 12px; padding-left: 12px;
+  border-left: 6px solid var(--hwang); word-break: keep-all;
+}
+body:not(.qp):not(.home4):not(.tarot2) .legal p, body:not(.qp):not(.home4):not(.tarot2) .legal li { font-size: 16px; line-height: 1.85; color: #33374F; word-break: keep-all; }
+body:not(.qp):not(.home4):not(.tarot2) .legal p { margin: 0 0 16px; }
+body:not(.qp):not(.home4):not(.tarot2) .legal ul, body:not(.qp):not(.home4):not(.tarot2) .legal ol { padding-left: 22px; margin: 0 0 18px; }
+body:not(.qp):not(.home4):not(.tarot2) .legal li { margin-bottom: 6px; }
+body:not(.qp):not(.home4):not(.tarot2) .legal strong, body:not(.qp):not(.home4):not(.tarot2) .legal b { color: var(--ink); font-weight: 800; background: linear-gradient(transparent 62%, var(--hwang-soft) 0); }
+body:not(.qp):not(.home4):not(.tarot2) .legal p a, body:not(.qp):not(.home4):not(.tarot2) .legal li a { color: var(--cheong); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+body:not(.qp):not(.home4):not(.tarot2) .legal figure { margin: 22px 0; }
+body:not(.qp):not(.home4):not(.tarot2) .legal figure img { width: 100%; border-radius: 16px; border: 2px solid var(--line); }
+body:not(.qp):not(.home4):not(.tarot2) .legal figcaption { margin-top: 8px; font-size: 13px; color: var(--sub); text-align: center; }
+body:not(.qp):not(.home4):not(.tarot2) .post-meta { margin: 0 0 22px; padding-bottom: 14px; border-bottom: 2px dashed var(--line); font-size: 13px; color: var(--sub); }
+@media (min-width: 900px) {
+  /* PC 에서는 글 폭을 넓혀 읽기 편하게 */
+  body:not(.qp):not(.home4):not(.tarot2) .wrap.legal { max-width: 720px; }
+  body:has(.wrap.legal) .site-header .logo { max-width: 680px; }
+  body:not(.qp):not(.home4):not(.tarot2) .legal h1 { font-size: 44px !important; }
+  body:not(.qp):not(.home4):not(.tarot2) .legal p, body:not(.qp):not(.home4):not(.tarot2) .legal li { font-size: 17px; }
+}
+
+/* ---------- PC 화면 배치 (2026-11-11) ---------- */
+@media (min-width: 900px) {
+  /* 읽을거리 목록: PC 에서는 두 줄로 */
+  body:has(#blogListSection) main.wrap { max-width: 880px; }
+  body:has(#blogListSection) .site-header .logo { max-width: 840px; }
+  body:not(.qp):not(.home4):not(.tarot2) #blogListSection { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; align-items: stretch; }
+  body:not(.qp):not(.home4):not(.tarot2) #blogListSection > *:not(a.test-card) { grid-column: 1 / -1; }
+  /* 사주 풀이: 글이 긴 화면이라 PC 에서는 폭을 넓힘 */
+  body:has(script[src*="saju-render"]) main.wrap { max-width: 720px; }
+  body:has(script[src*="saju-render"]) .site-header .logo { max-width: 680px; }
+}
+
+/* ---------- 타로 화면: 머리 띠와 아래 설명글만 다른 화면과 맞춤 (카드 뽑는 밤하늘 영역은 그대로) ---------- */
+body.tarot2 .site-header { max-width: none; margin: 0; padding: 0 20px; height: 56px; background: #FFC93C; }
+body.tarot2 .site-header .logo {
+  max-width: 480px; width: 100%; margin: 0 auto; display: flex; align-items: center; gap: 10px;
+  font-family: "Gaegu", "Pretendard Variable", sans-serif; font-size: 26px; font-weight: 700; line-height: 1;
+  background: none; color: #1B1F3B; -webkit-text-fill-color: #1B1F3B;
+}
+body.tarot2 .site-header .logo-mark {
+  width: 32px; height: 32px; flex: none; border-radius: 9px; font-size: 0; color: transparent; -webkit-text-fill-color: transparent;
+  background:
+    linear-gradient(#FFC93C, #FFC93C) center 9px / 18px 4px no-repeat,
+    linear-gradient(#FFC93C, #FFC93C) center 14px / 18px 4px no-repeat,
+    linear-gradient(#FFC93C, #FFC93C) center 19px / 18px 4px no-repeat,
+    #1B1F3B;
+}
+
+/* ---------- 사주: 올해 달별 흐름 (2026-11-11) ---------- */
+.month-flow .mf-sum { margin: 0 0 8px; font-size: 14.5px; line-height: 1.75; color: #33374F; }
+.month-flow .mf-note { margin: 0 0 14px; font-size: 12.5px; line-height: 1.6; color: #5A5E78; }
+.month-flow .mf-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.month-flow .mf-item { padding: 12px 14px; border-radius: 14px; background: #F2F3F8; border-left: 5px solid #DADDEA; }
+.month-flow .mf-item.is-good { border-left-color: #16a34a; }
+.month-flow .mf-item.is-bad { border-left-color: #f97316; }
+.month-flow .mf-item.is-now { background: #FFF4D1; }
+.month-flow .mf-top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-bottom: 6px; }
+.month-flow .mf-when { font-size: 14.5px; font-weight: 800; color: #1B1F3B; }
+.month-flow .mf-pillar { font-size: 12.5px; color: #5A5E78; }
+.month-flow .mf-tag { margin-left: auto; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 800; background: #fff; color: #1B1F3B; border: 1.5px solid #DADDEA; }
+.month-flow .is-good .mf-tag { border-color: #16a34a; color: #15803d; }
+.month-flow .is-bad .mf-tag { border-color: #f97316; color: #c2410c; }
+.month-flow .mf-nowtag { padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 800; background: #1B1F3B; color: #fff; }
+.month-flow .mf-text { margin: 0; font-size: 14px; line-height: 1.7; color: #33374F; }
+@media (min-width: 900px) { .month-flow .mf-list { grid-template-columns: 1fr 1fr; } }

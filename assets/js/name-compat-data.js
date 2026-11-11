@@ -40,20 +40,20 @@ var NAME_COMPAT_STRENGTHS = [
   "이름만 들어도 짝처럼 느껴진다는 얘기를 들을 수 있어요.",
   "이름 궁합상 서로의 기운을 부드럽게 채워주는 조합이에요.",
   "이름을 함께 쓸 때(커플템 각인 등) 디자인이 예쁘게 뽑히는 조합이에요.",
-  "이름의 성조(높낮이)가 잘 어우러져서 듣기 편해요.",
+  "이름의 소리 흐름이 잘 어우러져서 듣기 편해요.",
   "줄임말이나 애칭을 지어도 잘 어울리는 조합이에요.",
-  "이름 궁합상 서로에게 좋은 에너지를 주는 관계로 알려져 있어요.",
+  "이름 궁합상 서로에게 좋은 에너지를 주는 조합이에요.",
 ];
 
 var NAME_COMPAT_CAUTIONS = [
   "이름 궁합만으로 모든 게 결정되진 않으니 재미로만 봐주세요.",
-  "처음엔 이름이 살짝 안 어울린다고 느낄 수 있지만 부르다 보면 익숙해져요.",
+  "처음엔 이름 조합이 낯설게 느껴질 수 있지만 부르다 보면 금방 익숙해져요.",
   "이름 궁합보다 실제로 대화하고 지내보는 게 훨씬 중요해요.",
   "발음이 비슷해서 헷갈릴 수 있으니 애칭을 다르게 지어보는 것도 방법이에요.",
-  "이름 궁합은 낮아도 실제 궁합은 얼마든지 좋을 수 있어요.",
+  "이름 궁합 점수와 실제 궁합은 얼마든지 다를 수 있어요.",
   "이름 궁합 점수보다 서로를 알아가려는 마음이 더 중요해요.",
   "이름에 너무 의미를 부여하기보다 가볍게 즐겨보세요.",
-  "이름 궁합이 낮게 나왔다고 실망하지 마세요, 재미 콘텐츠예요.",
+  "이름 궁합 점수는 재미로만 보고, 실제 관계는 두 사람이 만들어가는 거예요.",
 ];
 
 function getNameCompatResult(nameA, nameB) {
@@ -83,14 +83,23 @@ function getNameCompatResult(nameA, nameB) {
 
   var strengths = [];
   var cautions = [];
-  var sIdx = hashSeedNameCompat(seed + "-s") % NAME_COMPAT_STRENGTHS.length;
-  var cIdx = hashSeedNameCompat(seed + "-c") % NAME_COMPAT_CAUTIONS.length;
-  for (var k = 0; k < 3; k++) {
-    strengths.push(NAME_COMPAT_STRENGTHS[(sIdx + k) % NAME_COMPAT_STRENGTHS.length]);
-  }
-  for (var m = 0; m < 2; m++) {
-    cautions.push(NAME_COMPAT_CAUTIONS[(cIdx + m) % NAME_COMPAT_CAUTIONS.length]);
-  }
+  // [2026-11-11] 예전에는 목록에서 "연달아 붙은 3개 / 2개"만 꺼내서 묶음이 10가지 · 8가지뿐이었어요.
+  //   이제 목록을 이름에 따라 골고루 섞은 뒤 앞에서 3개 / 2개를 꺼냅니다(같은 두 이름이면 늘 같은 결과).
+  var mixNameCompat = function (h) {
+    h ^= h >>> 16; h = Math.imul(h, 0x85ebca6b) >>> 0;
+    h ^= h >>> 13; h = Math.imul(h, 0xc2b2ae35) >>> 0;
+    h ^= h >>> 16; return h >>> 0;
+  };
+  var shuffled = function (arr, salt) {
+    var a = arr.slice(), s = mixNameCompat(hashSeedNameCompat(seed + "-" + salt));
+    for (var i = a.length - 1; i > 0; i--) {
+      s = mixNameCompat(s + i);
+      var j = s % (i + 1), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  };
+  strengths = shuffled(NAME_COMPAT_STRENGTHS, "s").slice(0, 3);
+  cautions = shuffled(NAME_COMPAT_CAUTIONS, "c").slice(0, 2);
 
   return {
     overall: overall,

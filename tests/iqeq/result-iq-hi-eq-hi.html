@@ -134,8 +134,10 @@
     var eqParam = params.get("eq");
     var hasScore = iqParam !== null && eqParam !== null && !isNaN(Number(iqParam)) && !isNaN(Number(eqParam));
 
-    var iqNum = hasScore ? Number(iqParam) : 5;
-    var eqNum = hasScore ? Number(eqParam) : 9;
+    // [2026-11-11] 주소의 점수가 범위를 벗어나면(예: ?iq=999) 9990% 처럼 표시되던 문제 → 0~만점 사이 정수로 맞춥니다
+    var clampScore = function (v, max) { v = Math.round(Number(v)); return Math.min(max, Math.max(0, v)); };
+    var iqNum = hasScore ? clampScore(iqParam, IQEQ_MAX_IQ) : 5;
+    var eqNum = hasScore ? clampScore(eqParam, IQEQ_MAX_EQ) : 9;
     var iqPercent = Math.round((iqNum / IQEQ_MAX_IQ) * 100);
     var eqPercent = Math.round((eqNum / IQEQ_MAX_EQ) * 100);
 

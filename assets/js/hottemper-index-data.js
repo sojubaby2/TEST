@@ -32,7 +32,7 @@ const HOTTEMPERINDEX_QUESTIONS = [
     text: "애인과 사소한 걸로 투닥거린 다음 날 아침.",
     options: [
       { text: "자고 일어나니 왜 싸웠는지 기억 안 남", score: 0 },
-      { text: "눈뜨자마자 어제 얘기 다시 꺼내 2라운드", score: 2 },
+      { text: "어제 버럭한 게 미안해서 먼저 사과 톡 보냄", score: 2 },
       { text: "점심쯤 '밥 먹었어?' 톡 오면 풀린다", score: 1 },
     ],
   },

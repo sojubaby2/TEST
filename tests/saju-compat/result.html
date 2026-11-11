@@ -117,7 +117,7 @@
     var params = new URLSearchParams(window.location.search);
 
     function readPerson(suffix) {
-      var name = params.get("name" + suffix);
+      var name = (params.get("name" + suffix) || "").replace(/[<>&"'`]/g, "").slice(0, 20);
       var y = parseInt(params.get("y" + suffix), 10);
       var m = parseInt(params.get("m" + suffix), 10);
       var d = parseInt(params.get("d" + suffix), 10);

@@ -90,7 +90,7 @@ const JEALOUSYINDEX_MAX_SCORE = 20;
 
 const JEALOUSYINDEX_RESULTS = [
   {
-    id: 1, emoji: "🌊", title: "쿨内무심 마음", subtitle: "질투란 감정이 낯선 초연 타입",
+    id: 1, emoji: "🌊", title: "쿨내 무심형", subtitle: "질투란 감정이 낯선 초연 타입",
     min: 0, max: 4, color: "#0891B2",
     summary: "어지간한 일에는 마음이 크게 흔들리지 않는 편. 연인이나 친구가 다른 사람과 친하게 지내도 \"그럴 수 있지\" 하며 넘어가는 여유파야.",
     traits: ["별일 아닌 일에 잘 흔들리지 않는다", "관계에 대한 믿음이 기본값이다", "가끔은 너무 무심해 보인다는 말을 듣기도 한다"],

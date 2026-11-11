@@ -138,6 +138,26 @@
       place();
       new MutationObserver(place).observe(bar, { attributes: true, attributeFilter: ["style"] });
     }
+    // [2026-11-11] 보기 순서 섞기
+    //   점수가 가장 높은 보기가 늘 같은 자리(첫째 또는 둘째)에 있어서 "맨 위만 누르면 5번 결과"가 되던 테스트가 많았어요.
+    //   → 보기가 3개 이상이면 문제마다 순서를 섞어 보여줍니다. (IQ·신조어 퀴즈는 자체 순서를 쓰므로 제외)
+    if (slug !== "iqeq" && slug !== "slang-quiz") {
+      var mixing = false;
+      var mixOptions = function () {
+        if (mixing) return;
+        var kids = Array.prototype.slice.call(options.children);
+        if (kids.length < 3 || kids[0].getAttribute("data-qp-mixed")) return;
+        for (var i = kids.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1)), t = kids[i]; kids[i] = kids[j]; kids[j] = t;
+        }
+        mixing = true;
+        kids.forEach(function (k) { k.setAttribute("data-qp-mixed", "1"); options.appendChild(k); });
+        mixing = false;
+      };
+      mixOptions();
+      new MutationObserver(mixOptions).observe(options, { childList: true });
+    }
+
     var selfFeedback = slug === "slang-quiz";   // 정답/오답을 스스로 보여주는 퀴즈
     var passing = false;
 

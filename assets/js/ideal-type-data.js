@@ -98,7 +98,7 @@ const IDEALTYPE_RESULTS = [
     emoji: "😂",
     title: "웃긴 사람에게 끌리는 타입",
     subtitle: "같이 웃는 시간이 기준인 타입",
-    summary: "함께 있을 때 얼마나 즐거운지가 가장 중요한 타입이에요. 실제로 유머 코드가 맞는 관계는 갈등이 생겨도 회복이 빠릅니다. 웃음이 긴장을 풀어주니까요. 다만 진지한 이야기를 꺼낼 타이밍도 필요해요. 늘 웃기만 하면 깊은 대화가 미뤄집니다.",
+    summary: "함께 있을 때 얼마나 즐거운지가 가장 중요한 타입이에요. 유머 코드가 맞으면 갈등이 생겨도 금방 풀리곤 해요. 웃음이 긴장을 풀어주니까요. 다만 진지한 이야기를 꺼낼 타이밍도 필요해요. 늘 웃기만 하면 깊은 대화가 미뤄집니다.",
     traits: ["유머 코드가 맞는지를 중요하게 봄", "같이 웃은 기억이 오래 남음", "지루한 대화를 견디기 어려워함"],
     color: "#F59E0B",
     compat: {
@@ -137,7 +137,7 @@ const IDEALTYPE_RESULTS = [
     emoji: "🌳",
     title: "한결같은 사람에게 끌리는 타입",
     subtitle: "변하지 않는 것에서 안심하는 타입",
-    summary: "화려함보다 꾸준함에 마음이 놓이는 타입이에요. 실제로 관계 만족도를 가장 잘 예측하는 요인이 예측 가능성과 신뢰라는 점에서, 아주 현실적인 기준입니다. 다만 안정만 찾다 보면 시작 자체를 미루게 될 수 있어요. 확신은 대개 만나본 뒤에 생깁니다.",
+    summary: "화려함보다 꾸준함에 마음이 놓이는 타입이에요. 꾸준함과 신뢰는 오래 가는 관계의 든든한 바탕이라는 점에서, 아주 현실적인 기준입니다. 다만 안정만 찾다 보면 시작 자체를 미루게 될 수 있어요. 확신은 대개 만나본 뒤에 생깁니다.",
     traits: ["꾸준함과 신뢰를 최우선으로 봄", "들쭉날쭉한 관계를 힘들어함", "관계를 길게 보고 시작함"],
     color: "#15803D",
     compat: {
@@ -152,15 +152,14 @@ function getIdealTypeById(id) {
 }
 
 function tallyToIdealTypeResult(tally) {
-  let best = null;
+  // [2026-11-11] 동점 고르게: 예전에는 동점이면 목록 앞쪽 유형이 무조건 이겨서 첫 유형이 마지막 유형보다 2.7배 자주 나왔어요.
+  //   이제 동점인 유형들 가운데 답 모양(유형별 득표 수)에 따라 골고루 하나가 정해집니다. 같은 답이면 늘 같은 결과예요.
+  const order = ["warm", "funny", "cool", "free", "steady"];
   let bestCount = -1;
-  const order = ["warm", "funny", "cool", "free", "steady"]; // 동점 시 우선순위
-  order.forEach((key) => {
-    const count = tally[key] || 0;
-    if (count > bestCount) {
-      bestCount = count;
-      best = key;
-    }
-  });
+  order.forEach((key) => { bestCount = Math.max(bestCount, tally[key] || 0); });
+  const tied = order.filter((key) => (tally[key] || 0) === bestCount);
+  let mix = 7;
+  order.forEach((key, i) => { mix = (mix * 31 + (tally[key] || 0) * (i + 3)) % 9973; });
+  const best = tied[mix % tied.length];
   return getIdealTypeById(best);
 }

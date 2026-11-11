@@ -395,14 +395,14 @@ const SajuReading = (function () {
     paras.push(
       "격국은 <b>월지가 일간에게 어떤 십신이 되는가</b>로 사주의 큰 틀을 잡는 분류입니다. " +
       "월지는 계절의 기운을 쥔 가장 힘센 자리라, 거기서 사주의 성격을 읽는 것이죠. " +
-      "당신의 월지 " + a.pillars.month.charAt(1) + "는 일간 " + a.dayStem +
-      "에게 <b>" + gy.god + "</b>이 되므로 <b>" + gy.name + "</b>입니다."
+      "당신의 월지 " + a.pillars.month.charAt(1) + eunNeun(a.pillars.month.charAt(1)) + " 일간 " + a.dayStem +
+      "에게 <b>" + gy.god + "</b>" + iGa(gy.god) + " 되므로 <b>" + gy.name + "</b>입니다."
     );
     if (meta) {
       paras.push(meta.text);
     } else {
       paras.push(
-        "월지가 " + gy.god + "이 되는 구조입니다. " +
+        "월지가 " + gy.god + iGa(gy.god) + " 되는 구조입니다. " +
         (GOD[gy.god] ? GOD[gy.god].mean + "의 영역이 이 사주의 중심에 놓입니다." : "")
       );
     }
@@ -592,6 +592,13 @@ const SajuReading = (function () {
         text:"깨뜨리는 관계입니다. 흐름이 한 번 끊겼다 다시 이어지는 모양으로 읽습니다." });
     });
 
+    // 같은 종류가 여러 개 잡히면 같은 설명이 줄줄이 반복되므로, 두 번째부터는 짧게 씁니다
+    const seenKind = {};
+    items.forEach(function (it) {
+      if (seenKind[it.kind]) it.text = "위와 같은 <b>" + it.kind + "</b> 관계가 하나 더 있습니다. 같은 성격이 두 군데에서 겹쳐 그만큼 또렷해져요.";
+      seenKind[it.kind] = true;
+    });
+
     const intro = items.length
       ? "지지끼리는 서로 끌어당기기도 하고 부딪히기도 합니다. 당신의 사주에서는 아래 관계가 잡힙니다."
       : "지지 사이에 뚜렷한 합이나 충이 잡히지 않습니다. 글자들이 서로 간섭하지 않고 제 자리를 지키는 구조예요. 큰 쏠림도 큰 충돌도 적은 편입니다.";
@@ -678,8 +685,7 @@ const SajuReading = (function () {
       if (it.stemGod && GOD[it.stemGod]) {
         const mean = GOD[it.stemGod].mean;
         now.push(
-          "이 시기에는 " + mean + gwaWa(mean) + " 관련된 일이 전면에 나오는 흐름입니다. " +
-          GOD[it.stemGod].many
+          "이 시기에는 <b>" + mean + "</b>" + gwaWa(mean) + " 관련된 일이 전면에 나오는 흐름입니다."
         );
       }
       if (it.branchGod && GOD[it.branchGod] && it.branchGod !== it.stemGod) {
@@ -848,27 +854,130 @@ const SajuReading = (function () {
   }
 
   /* ---------------- 대운별 한 줄 ---------------- */
+  /* 10년 구간마다 '무슨 10년인지'를 서로 다른 말로 풀어줍니다.
+     (예전에는 모든 구간이 같은 틀의 문장이라 읽으면 다 같은 말처럼 보였어요)
+     천간 십신 = 그 10년의 주제, 지지 십신 = 밑바탕, 십이운성 = 기운의 세기,
+     그리고 보약/부담이 되는 기운이 앞 5년에 오는지 뒤 5년에 오는지까지 짚습니다. */
+  const DECADE_GOD = {
+    비견:"<b>내 힘으로 서는 10년</b>입니다. 독립하거나 내 이름을 걸고 움직이는 일이 늘고, 또래·동료와 어깨를 겨룰 일이 많아요.",
+    겁재:"<b>사람과 경쟁이 함께 몰려오는 10년</b>입니다. 같이 벌이는 일이 생기는 만큼 몫을 나누는 문제도 따라오니, 돈 관계는 선을 분명히 해 두는 게 좋아요.",
+    식신:"<b>하고 싶은 일을 꾸준히 풀어내는 10년</b>입니다. 재주가 밥벌이로 이어지기 쉽고, 생활에 여유가 붙는 흐름이에요.",
+    상관:"<b>재능이 밖으로 터져 나오는 10년</b>입니다. 새 판을 벌이거나 틀을 바꾸고 싶어지고, 그만큼 윗사람·규칙과 부딪히기 쉬워요.",
+    편재:"<b>활동 반경이 넓어지는 10년</b>입니다. 사람과 돈이 크게 오가서 기회가 많은 대신, 벌인 만큼 관리할 일도 커집니다.",
+    정재:"<b>차곡차곡 쌓이는 10년</b>입니다. 수입과 생활이 자리를 잡고, 성실하게 한 만큼 남는 흐름이에요.",
+    편관:"<b>무거운 일을 맡는 10년</b>입니다. 압박과 책임이 커지지만, 그걸 버텨내면 자리와 실력이 함께 올라갑니다.",
+    정관:"<b>자리와 평판이 잡히는 10년</b>입니다. 조직·계약·자격처럼 공식적인 틀 안에서 인정받는 일이 생겨요.",
+    편인:"<b>안으로 파고드는 10년</b>입니다. 남들과 다른 공부나 전문 분야에 마음이 가고, 방향을 다시 잡는 시기가 되기도 합니다.",
+    정인:"<b>배우고 도움받는 10년</b>입니다. 공부·자격·문서와 인연이 깊고, 윗사람이나 가족의 뒷받침이 들어오는 흐름이에요.",
+  };
+  const DECADE_BASE = {
+    비견:"밑바탕에는 '내 방식대로 하겠다'는 고집이 깔립니다.",
+    겁재:"밑바탕에는 사람에게 쓰는 돈과 시간이 깔립니다.",
+    식신:"밑바탕에는 먹고 즐기는 여유가 깔립니다.",
+    상관:"밑바탕에는 답답한 걸 못 참는 마음이 깔립니다.",
+    편재:"밑바탕에는 움직여야 풀리는 현실 감각이 깔립니다.",
+    정재:"밑바탕에는 살림을 챙기는 꼼꼼함이 깔립니다.",
+    편관:"밑바탕에는 긴장을 놓지 못하는 책임감이 깔립니다.",
+    정관:"밑바탕에는 약속과 체면을 지키려는 마음이 깔립니다.",
+    편인:"밑바탕에는 혼자 생각을 굴리는 시간이 깔립니다.",
+    정인:"밑바탕에는 기대고 쉴 수 있는 자리가 깔립니다.",
+  };
+  // 같은 밑바탕이 두 구간에 걸쳐 나올 때 쓰는 두 번째 말투
+  const DECADE_BASE2 = {
+    비견:"속으로는 남에게 기대지 않고 버티려는 마음이 이어집니다.",
+    겁재:"속으로는 사람 사이에서 내 몫을 챙기는 문제가 이어집니다.",
+    식신:"속으로는 일상의 작은 즐거움을 챙기는 여유가 이어집니다.",
+    상관:"속으로는 하고 싶은 말을 삼키지 못하는 기질이 이어집니다.",
+    편재:"속으로는 기회를 좇아 바삐 움직이는 생활이 이어집니다.",
+    정재:"속으로는 알뜰하게 지키고 모으는 습관이 이어집니다.",
+    편관:"속으로는 맡은 일의 무게를 혼자 견디는 시간이 이어집니다.",
+    정관:"속으로는 반듯하게 보이려는 마음가짐이 이어집니다.",
+    편인:"속으로는 남과 다른 길을 궁리하는 버릇이 이어집니다.",
+    정인:"속으로는 배우고 보살핌받는 인연이 이어집니다.",
+  };
+  const DECADE_STAGE = {
+    장생:"기운은 새로 싹트는 단계라 시작하는 일에 힘이 붙어요.",
+    목욕:"기운은 씻기는 단계라 마음과 환경이 자주 바뀝니다.",
+    관대:"기운은 옷을 갖춰 입는 단계라 바깥으로 나설 준비가 됩니다.",
+    건록:"기운이 제 발로 서는 단계라 혼자 힘으로 해내는 일이 많아요.",
+    제왕:"기운이 꼭대기에 오른 단계라 힘은 가장 세지만 고집을 조심해야 합니다.",
+    쇠:"기운이 한 걸음 물러서는 단계라 속도보다 노련함으로 가는 때예요.",
+    병:"기운이 약해지는 단계라 일을 줄이고 몸을 돌보는 게 이득입니다.",
+    사:"기운이 멎는 단계라 벌이기보다 정리하고 생각하는 쪽이 맞아요.",
+    묘:"기운을 갈무리하는 단계라 모으고 지키는 일에 어울립니다.",
+    절:"기운이 한 번 끊기는 단계라 옛것을 놓고 새 판을 짜게 됩니다.",
+    태:"기운이 다시 깃드는 단계라 아직 드러나지 않는 준비가 이어져요.",
+    양:"기운이 길러지는 단계라 조용히 실력을 키우기 좋습니다.",
+  };
+
   function daeunNotes(a) {
     if (!a.daeun) return [];
     const ys = a.yongsin.primary;
+    const hh = (typeof SajuTopics !== "undefined" && SajuTopics.helpHurt)
+      ? SajuTopics.helpHurt(a) : { help: [ys], hurt: [], yong: ys };
     const curOrder = a.currentDaeun && a.currentDaeun.item ? a.currentDaeun.item.order : -1;
     const nowAge = a.currentDaeun ? a.currentDaeun.age : -1;
+    const flowSeen = {};
+    const baseSeen = {};
+    let lateSaid = false, earlySaid = false;
+    function side(el) {
+      if (!el) return 0;
+      if (hh.help.indexOf(el) !== -1) return 1;
+      if (hh.hurt.indexOf(el) !== -1) return -1;
+      return 0;
+    }
     return a.daeun.list.map(function (it) {
-      const parts = [];
-      if (it.stemGod && GOD[it.stemGod]) parts.push(GOD[it.stemGod].mean);
       const stemEl = STEM_OF(it.stem), branchEl = BRANCH_OF(it.branch);
       const hasYongsin = (stemEl === ys || branchEl === ys);
-      let text = parts.length ? parts[0] + "의 영역이 전면에 나오는 10년입니다." : "";
-      if (it.stage) text += " 일간은 " + it.stage + " 단계에 놓입니다.";
-      if (hasYongsin) text += " 도움이 되는 " + EL_LABEL[ys] + " 기운이 들어와 있어 흐름을 타기 수월한 구간이에요.";
+      const parts = [];
+      if (it.stemGod && DECADE_GOD[it.stemGod]) parts.push(DECADE_GOD[it.stemGod]);
+      if (it.branchGod && it.branchGod !== it.stemGod && DECADE_BASE[it.branchGod]) {
+        baseSeen[it.branchGod] = (baseSeen[it.branchGod] || 0) + 1;
+        if (baseSeen[it.branchGod] === 1) parts.push(DECADE_BASE[it.branchGod]);
+        else if (baseSeen[it.branchGod] === 2) parts.push(DECADE_BASE2[it.branchGod]);
+      }
+      if (it.stage && DECADE_STAGE[it.stage]) parts.push(DECADE_STAGE[it.stage]);
+
+      // 보약/부담이 되는 기운이 앞 5년(천간)에 오는지 뒤 5년(지지)에 오는지
+      const s1 = side(stemEl), s2 = side(branchEl);
+      // 같은 모양의 구간이 두 번 나와도 같은 문장이 되지 않게, 두 가지 말투를 번갈아 씁니다
+      const key = s1 + "|" + s2;
+      const FLOW = {
+        "1|1":  ["10년 내내 보약이 되는 기운이 들어와서, 전체 흐름 가운데 가장 밀어주는 구간에 듭니다.",
+                 "천간과 지지가 모두 내 편이라, 마음먹은 일을 길게 끌고 가기에 좋은 구간이에요.",
+                 "이 구간도 앞뒤로 순한 기운이 이어져, 쌓아 온 것을 넓히기에 알맞습니다."],
+        "-1|-1":["앞뒤 모두 부담이 되는 기운이라, 벌이기보다 지키는 쪽이 맞는 구간이에요.",
+                 "10년 내내 품이 드는 흐름이라, 무리한 확장을 피하고 체력을 아끼는 게 남는 구간입니다."],
+        "1|-1": ["앞 5년은 받쳐주고 뒤 5년은 품이 드는, 앞에서 벌어 뒤에서 지키는 구간입니다.",
+                 "초반의 순한 흐름이 후반에 꺾이는 모양이라, 좋을 때 여유분을 만들어 두는 게 요령이에요."],
+        "-1|1": ["앞 5년은 품이 들지만 뒤 5년에 보약이 되는 기운이 들어와, 갈수록 풀리는 구간입니다.",
+                 "초반의 고생이 후반에 보상받는 모양이라, 앞쪽에서 포기하지 않는 게 중요해요."],
+        "1|0":  ["앞 5년에 보약이 되는 " + EL_LABEL[stemEl] + " 기운이 들어와 초반이 더 수월합니다.",
+                 "시작하는 5년에 " + EL_LABEL[stemEl] + " 기운이 받쳐 줘서, 일을 벌인다면 앞쪽이 유리해요."],
+        "0|1":  ["뒤 5년에 보약이 되는 " + EL_LABEL[branchEl] + " 기운이 들어와 뒤로 갈수록 가벼워집니다.",
+                 "후반 5년에 " + EL_LABEL[branchEl] + " 기운이 받쳐 줘서, 결실은 뒤쪽에서 보는 구간이에요."],
+        "-1|0": ["앞 5년은 품이 더 들고, 후반으로 갈수록 숨이 트입니다.",
+                 "초반에 애쓸 일이 몰려 있고, 그 고비만 넘기면 뒤는 평탄한 편이에요."],
+        "0|-1": ["뒤 5년에 부담이 되는 기운이 들어오니, 초반에 미리 다져 두는 게 좋아요.",
+                 "앞쪽은 무난하고 후반에 짐이 늘어나는 모양이라, 큰 결정은 앞 5년 안에 하는 편이 낫습니다."],
+      };
+      if (FLOW[key]) {
+        flowSeen[key] = (flowSeen[key] || 0) + 1;
+        if (flowSeen[key] <= FLOW[key].length) parts.push(FLOW[key][flowSeen[key] - 1]);
+      }
+
+      if (it.from <= 12 && !earlySaid) { earlySaid = true; parts.push("어린 나이라 본인의 일보다 집안과 학교 분위기로 나타나는 구간이에요."); }
+      else if (it.from >= 73 && !lateSaid) { lateSaid = true; parts.push("이 나이대부터는 일보다 건강·가족·마음가짐 쪽으로 읽습니다."); }
+
       return {
         order: it.order, from: it.from, to: it.to,
         pillar: it.pillar, hanja: it.hanja,
+        stem: it.stem, branch: it.branch,
         stemGod: it.stemGod, branchGod: it.branchGod, stage: it.stage,
         isNow: it.order === curOrder,
         isPast: nowAge > it.to,
         hasYongsin: hasYongsin,
-        text: text.trim(),
+        text: parts.join(" "),
       };
     });
   }
@@ -909,7 +1018,7 @@ const SajuReading = (function () {
     [["자","오"],["축","미"],["인","신"],["묘","유"],["진","술"],["사","해"]].forEach(function (p) {
       if ((p[0] === branch && myBranches.indexOf(p[1]) !== -1) ||
           (p[1] === branch && myBranches.indexOf(p[0]) !== -1)) {
-        rel.push("올해의 지지 " + branch + "이(가) 사주의 지지와 <b>충</b>을 이룹니다. 변동과 이동이 잦아지는 해로 봤어요.");
+        rel.push("올해의 지지 " + branch + iGa(branch) + " 사주의 지지와 <b>충</b>을 이룹니다. 변동과 이동이 잦아지는 해로 봤어요.");
       }
     });
     if (a.gongmang.indexOf(branch) !== -1) {

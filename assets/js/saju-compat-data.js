@@ -147,8 +147,8 @@ function cpScoreItems(A, B, nameA, nameB) {
   var filled = 0, detail = [];
   order.forEach(function (e) {
     var a = A.elements.total[e] || 0, b = B.elements.total[e] || 0;
-    if (a === 0 && b >= 2) { filled++; detail.push(nameB + "님이 " + nameA + "님의 빈 " + EL_WORD_CP[e] + "을 채워줌"); }
-    if (b === 0 && a >= 2) { filled++; detail.push(nameA + "님이 " + nameB + "님의 빈 " + EL_WORD_CP[e] + "을 채워줌"); }
+    if (a === 0 && b >= 2) { filled++; detail.push(nameB + "님이 " + nameA + "님의 빈 " + EL_WORD_CP[e] + " 기운을 채워줌"); }
+    if (b === 0 && a >= 2) { filled++; detail.push(nameA + "님이 " + nameB + "님의 빈 " + EL_WORD_CP[e] + " 기운을 채워줌"); }
   });
   if (filled) {
     items.push({ key:"오행 보완", score:Math.min(12, filled * 6), good:true, label:filled + "가지",
@@ -210,7 +210,9 @@ function getSajuCompatResult(sajuA, sajuB, nameA, nameB) {
   // 원점수는 대략 -15 ~ 70 사이에 퍼지고, 가운데가 25 근처예요.
   // 이걸 늘려서 하위 5%가 38점, 상위 5%가 92점쯤 되도록 옮깁니다.
   // (이렇게 해야 '누구나 90점'이 되지 않고 점수가 뜻을 가집니다)
-  var score = Math.round(sum * 1.16 + 35);
+  // [2026-11-11] 예전 식(합×1.16+35)은 실제 하위 5%가 29~30점으로 떨어져 "노력이 필요한 궁합"이 3쌍 중 1쌍꼴로 나왔어요.
+  //   위 주석의 의도(하위 5%가 38점쯤)에 맞게 식을 고쳤습니다. 이제 그 비율이 4쌍 중 1쌍 아래로 내려갑니다.
+  var score = Math.round(sum * 1.0 + 42);
   if (score > 97) score = 97;
   if (score < 25) score = 25;
 
@@ -245,7 +247,7 @@ function getSajuCompatResult(sajuA, sajuB, nameA, nameB) {
   } else if (bad.length && bad[0].key === "기운 보급") {
     tip = "서로 채워주기 어려운 부분은 각자 밖에서 채우는 게 낫습니다. 상대에게 다 기대하지 않는 게 이 궁합의 지혜예요.";
   } else {
-    tip = "잘 맞는 조합일수록 당연하게 여기기 쉬워요. 좋은 점을 가끔 말로 꺼내보세요.";
+    tip = "서로 잘 맞는 점은 당연하게 여기기 쉬워요. 좋은 점을 가끔 말로 꺼내보세요.";
   }
 
   return {

@@ -24,7 +24,9 @@
 업데이트하기.bat     →  npx --yes wrangler deploy
 ```
 
-- **CI 가 없다.** `git push` 는 백업일 뿐 사이트에 아무 영향이 없다.
+- **2026-11-18 부터 `git push` 만 하면 배포된다.** Cloudflare Worker "test" 의 Builds 에 GitHub `sojubaby2/TEST`(main)를 연결했다
+  (배포 명령 `npx wrangler deploy`). 그 전에는 연결이 끊겨 있어 push 가 사이트에 반영되지 않았다.
+  `업데이트하기.bat` 은 예비 수단으로 남아 있다. **push 하지 않은 파일은 사이트에 올라가지 않는다.**
 - 배포는 사용자가 직접 실행한다. Cloudflare 인증은 브라우저 OAuth 로 처리하며,
   **Claude 는 Cloudflare API 토큰을 다루지 않는다.**
 - `.assetsignore` 에 `*.py`, `*.bat`, `content/`, `tools/` 가 들어 있다.

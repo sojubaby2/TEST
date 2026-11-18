@@ -129,3 +129,10 @@
   꿈해몽 결과 150쪽은 HTML 을 고치지 않고 `dream-fortune-data.js` 맨 아래 코드가 "장면별 풀이·기분별 풀이·해볼 일"을 붙이고 관련 꿈 목록을 다시 그린다.
   생년월일 궁합은 `getBirthCompatDetail()` 로 띠(삼합·육합·충·원진)·별자리 원소·나이 차이 풀이를 실제 계산해 보여준다.
   사주 궁합 환산식은 `합×1.0+42` 로 변경. 이름 바뀐 결과 3개의 og·card 그림은 제목 줄만 다시 그렸다(다음에 `make-test-images.ps1` 을 돌리면 자동으로 새 이름이 된다).
+
+## 2026-11-17 애드센스 "가치 없는 콘텐츠" 재거절 대응
+
+- `blog/dream-<갈래>.html` 10편 추가(animal, nature, people, body, action, spirit, object, food, place, hobby). 갈래별 꿈 15가지를 한 글에 모은 총정리이며 글마다 7,000~8,700자, 색인 대상이다(sitemap 172개).
+  꿈 본문은 `dream-fortune-data.js` 의 DREAM_LIST·DREAM_SCENES 에서 가져오고, 도입·읽는 법·자주 묻는 질문은 갈래마다 따로 썼다. 꿈 데이터를 고치면 이 10편도 다시 만들어야 한다.
+- 연결: `blog/index.html` 맨 위 카드 10장, `tests/dream-interpretation/index.html` 의 "갈래별 꿈해몽 총정리" 목록, 꿈 결과 화면의 "○○ 꿈해몽 15가지 한 번에 보기" 카드(`dream-fortune-data.js`).
+- `style.css` 맨 아래에 `.dream-tbl`·`.dream-tag`·`.dream-note` 추가.

@@ -3709,3 +3709,16 @@ body.tarot2 .site-header .logo-mark {
 .month-flow .mf-nowtag { padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 800; background: #1B1F3B; color: #fff; }
 .month-flow .mf-text { margin: 0; font-size: 14px; line-height: 1.7; color: #33374F; }
 @media (min-width: 900px) { .month-flow .mf-list { grid-template-columns: 1fr 1fr; } }
+
+/* ── 꿈해몽 총정리 글(blog/dream-*.html) ── */
+.legal .dream-tbl { width: 100%; min-width: 440px; border-collapse: collapse; margin: 0 0 20px; font-size: 14px; line-height: 1.6; }
+.legal .dream-tbl th, .legal .dream-tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line, #DADDEA); text-align: left; vertical-align: top; }
+.legal .dream-tbl th { background: var(--soft, #FFF4D1); font-weight: 800; white-space: nowrap; }
+.legal .dream-tbl td:first-child, .legal .dream-tbl td:nth-child(2) { white-space: nowrap; }
+.legal .dream-tag { display: inline-block; margin-left: 6px; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 800; vertical-align: middle; font-family: Pretendard, sans-serif; }
+.legal .dream-g { background: #FFF4D1; color: #1B1F3B; }
+.legal .dream-b { background: #FBE3DE; color: #9C2A16; }
+.legal .dream-m { background: #F2F3F8; color: #1B1F3B; }
+.legal h3[id] { scroll-margin-top: 16px; }
+.legal .dream-also { font-size: 13.5px; color: #5A5F7A; }
+.legal .dream-note { margin-top: 22px; padding: 14px 16px; border-radius: 12px; background: #F2F3F8; font-size: 13.5px; line-height: 1.75; color: #3B405E; }

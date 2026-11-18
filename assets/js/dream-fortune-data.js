@@ -2542,6 +2542,14 @@ function getDreamExtra(id) {
     html += '<div class="card"><p class="section-title" style="margin-top:0;">이 꿈을 꾼 뒤 이렇게 해보세요</p><ul style="margin:0;padding-left:20px;">';
     ex.tips.forEach(function (t) { html += '<li style="margin-bottom:8px;font-size:14px;line-height:1.75;color:var(--text-main);">' + t + "</li>"; });
     html += "</ul></div>";
+    // 같은 갈래 꿈 15가지를 모아 둔 총정리 글로 이어 줍니다
+    var guide = {"동물": "animal", "자연현상": "nature", "사람관계": "people", "신체": "body", "행동상황": "action", "초자연": "spirit", "사물": "object", "음식배설": "food", "장소": "place", "활동취미": "hobby"}[ex.dream.category];
+    var meta = getDreamCategoryMeta(ex.dream.category);
+    if (guide) {
+      html += '<a class="dream-result-item" href="../../blog/dream-' + guide + '.html"><div class="dream-result-emoji">📚</div>' +
+        '<div class="dream-result-info"><h3>' + ((meta && meta.label) || "") + ' 꿈해몽 15가지 한 번에 보기</h3>' +
+        "<p>비슷한 꿈의 뜻과 장면별 풀이를 한 글에 모았어요</p></div>" + '<div class="arrow">›</div></a>';
+    }
     box.innerHTML = html;
     after.parentNode.insertBefore(box, after.nextSibling);
 

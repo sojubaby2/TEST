@@ -150,3 +150,5 @@
 - **결과별 추가 카드**: 테스트 50종의 `*-data.js` 맨 아래 `window.QP_MORE = { 결과id: { m:[장면 3개], t:"한마디" } }` 를 `quiz-plus.js` 가 결과 화면의 "나와 잘 맞는 유형은?" 위에 카드(`.rs-more`)로 그린다. 테토·에겐, 소시오패스, 전생, 연애 유형, 괘 결과는 같은 카드가 HTML 에 직접 들어 있어 건너뛴다.
 - `quiz-plus.js` 의 결과 열쇠(rkey)가 `.html` 로 끝나는 주소만 알아봐서 실제 사이트(확장자 없는 주소)에서는 "같은 결과 비율"이 동작하지 않았다. 두 주소 모두 알아보게 고쳤다.
 - **새 테스트 `year-recap`(2026 연말 결산 테스트)**: 10문항·보기 2개·결과 5개(sprint, root, turn, rest, people). life-genre 와 같은 방식이고 new-test.ps1 로 만든 것이 아니라 직접 만든 HTML 이다. 그림(대표·결과·og·card)은 임시로 만든 것. 해가 바뀌면 연도 문구만 바꿔 다시 쓴다. 홈 문구는 75가지, sitemap 174개.
+- **새 테스트 `zombie-office`(회사에 좀비가 나타났다)**: 이야기형 12장면·보기 4개·결과 6개(leader, scout, maker, carer, planner, solo). joseon-job 의 quiz.html·결과 틀을 그대로 쓰고 데이터는 `zombie-office-data.js`(NT_DATA). 그림은 임시로 만든 것. 홈 문구는 76가지, sitemap 175개.
+- 혈액형·옛날 사람 결과는 이미 항목이 여러 개라 추가 카드를 넣지 않았다.

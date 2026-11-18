@@ -251,7 +251,37 @@
       }, 650 + 200);
     }
 
-    var rkey = (location.pathname.match(/result-([A-Za-z0-9-]+)\.html$/) || [])[1];
+    // [2026-11-18] 실제 사이트는 주소에서 .html 이 빠진 채로 열려요(/tests/x/result-1). 둘 다 알아보게 합니다.
+    var rkey = (location.pathname.match(/result-([A-Za-z0-9-]+?)(?:\.html)?$/) || [])[1];
+
+    // [2026-11-18] 결과마다 따로 쓴 "일상 장면 + 한마디" 카드. 내용은 각 테스트 data.js 맨 아래 QP_MORE 에 있어요.
+    //   HTML 에 이미 같은 카드(.rs-more, .mg-more)가 들어 있는 결과는 건너뜁니다.
+    try {
+      var more = rkey && window.QP_MORE && window.QP_MORE[rkey];
+      if (more && more.m && !document.querySelector(".rs-more, .mg-more")) {
+        var mc = el("div", "card rs-more");
+        var mt = el("p", "section-title", "일상에서 이런 순간에 티가 나요");
+        mt.style.marginTop = "0";
+        mc.appendChild(mt);
+        var mu = el("ul", "trait-list");
+        more.m.forEach(function (line) { mu.appendChild(el("li", null, line)); });
+        mc.appendChild(mu);
+        if (more.t) {
+          mc.appendChild(el("p", "section-title", "이 유형에게 건네는 한마디"));
+          var mp = el("p", null, more.t);
+          mp.style.margin = "0"; mp.style.fontSize = "15px";
+          mc.appendChild(mp);
+        }
+        var cs = document.getElementById("compatSection");
+        var before = cs && cs.previousElementSibling && /section-title/.test(cs.previousElementSibling.className) ? cs.previousElementSibling : cs;
+        if (before) before.parentNode.insertBefore(mc, before);
+        else {
+          var cards = document.querySelectorAll("main.wrap > .card");
+          var last = cards[cards.length - 1];
+          if (last) last.parentNode.insertBefore(mc, last.nextSibling);
+        }
+      }
+    } catch (e) {}
     var pulse = el("div", "qp-pulse");
     var anchor = document.querySelector(".index-card") || hero;
     anchor.parentNode.insertBefore(pulse, anchor.nextSibling);

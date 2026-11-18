@@ -72,7 +72,7 @@ const EMPATHYINDEX_QUESTIONS = [
     text: "유튜브 알고리즘에 손님 없는 가게를 혼자 지키는 노부부 사연이 떴다.",
     options: [
       { text: "보는 동안만 마음이 찡하다", score: 1 },
-      { text: "일주일째 그 가게 가는 길을 검색 중", score: 2 },
+      { text: "가게 위치를 찾아 두고 주말에 가 보기로 함", score: 2 },
       { text: "다 보고 바로 다음 쇼츠로 스와이프", score: 0 },
     ],
   },

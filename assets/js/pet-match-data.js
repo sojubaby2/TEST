@@ -34,7 +34,7 @@ const PETMATCH_QUESTIONS = [
     ],
   },
   {
-    text: "층간소음에 대한 나의 입장은?",
+    text: "집 안에서 들리는 소리, 내 취향은?",
     options: [
       { text: "물소리 말고는 고요해야 꿀잠 잔다", key: "fish" },
       { text: "아침마다 지저귀는 소리면 알람으로 딱", key: "bird" },

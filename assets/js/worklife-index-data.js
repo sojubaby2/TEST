@@ -5,11 +5,11 @@
 
 const WORKLIFEINDEX_QUESTIONS = [
   {
-    text: "밤 9시, 친구들과 치맥 중인데 회사 메신저 알림이 울렸다.",
+    text: "밤 9시, 친구들과 치맥 중인데 회사 메신저에 새 메시지가 왔다.",
     options: [
       { text: "바로 답장하고 파일까지 고쳐서 보냄", score: 0 },
       { text: "미리보기만 보고 급한 거 아니라 폰 뒤집음", score: 1 },
-      { text: "퇴근할 때 알림을 꺼 둬서 울릴 일이 없음", score: 2 },
+      { text: "퇴근하면서 알림을 꺼 둬서 온 줄도 모름", score: 2 },
     ],
   },
   {
@@ -47,7 +47,7 @@ const WORKLIFEINDEX_QUESTIONS = [
   {
     text: "휴가 둘째 날 수영장, 팀장에게 \"잠깐 통화 가능?\" 카톡이 왔다.",
     options: [
-      { text: "출국 전에 회사 단톡 알림을 이미 꺼 둠", score: 2 },
+      { text: "알림을 꺼 두고 와서 온 줄도 모르고 수영 중", score: 2 },
       { text: "읽고 급한 거 아닌 것만 확인한 뒤 다시 수영", score: 1 },
       { text: "선베드에서 노트북 펴고 화상회의 참석", score: 0 },
     ],

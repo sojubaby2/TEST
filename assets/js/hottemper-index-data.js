@@ -77,7 +77,7 @@ const HOTTEMPERINDEX_QUESTIONS = [
     ],
   },
   {
-    text: "어제 욱해서 단톡방에 보낸 메시지를 오늘 다시 읽어 봤다.",
+    text: "어제 단톡방에서 의견이 갈렸을 때 내가 보낸 메시지를 오늘 다시 읽어 봤다.",
     options: [
       { text: "다시 봐도 차분하다, 문제없음", score: 0 },
       { text: "'이걸 내가 썼다고?' 소름이 돋는다", score: 2 },

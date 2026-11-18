@@ -7,7 +7,7 @@ const CRYINDEX_QUESTIONS = [
   {
     text: "반려견 영화를 틀었다. 화면 속 강아지가 늙기 시작한다.",
     options: [
-      { text: "포스터만 봐도 이미 휴지 준비 완료", score: 2 },
+      { text: "강아지 걸음이 느려진 순간부터 이미 휴지 한 통", score: 2 },
       { text: "\"저거 CG겠지?\" 하며 과자 먹음", score: 0 },
       { text: "마지막 장면에서 코끝이 찡해짐", score: 1 },
     ],

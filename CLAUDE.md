@@ -138,3 +138,12 @@
   꿈 본문은 `dream-fortune-data.js` 의 DREAM_LIST·DREAM_SCENES 에서 가져오고, 도입·읽는 법·자주 묻는 질문은 갈래마다 따로 썼다. 꿈 데이터를 고치면 이 10편도 다시 만들어야 한다.
 - 연결: `blog/index.html` 맨 위 카드 10장, `tests/dream-interpretation/index.html` 의 "갈래별 꿈해몽 총정리" 목록, 꿈 결과 화면의 "○○ 꿈해몽 15가지 한 번에 보기" 카드(`dream-fortune-data.js`).
 - `style.css` 맨 아래에 `.dream-tbl`·`.dream-tag`·`.dream-note` 추가.
+
+## 2026-11-18 테스트 재검토 · 새 퀴즈
+
+- **주소**: Cloudflare 가 `.html` 주소를 확장자 없는 주소로 넘긴다(`/blog/lefty.html` → `/blog/lefty`). 그래서 canonical·og:url·sitemap·rss 의 사이트 주소는 `.html` 없이 적는다. 테스트 첫 화면은 `/tests/<슬러그>/`.
+- **새 테스트 `spelling-quiz`(맞춤법 능력고사)**: 52문항 중 12개(쉬움4·보통4·어려움4), 둘 중 고르기. 고르면 이유를 보여 주고 "다음 문제"를 눌러 넘어간다. 결과는 `result.html?score=&w=틀린문항번호(점으로 구분)` 로 틀린 문제를 다시 보여 준다. 그래서 `spelling-quiz-data.js` 의 문항 순서를 바꾸면 안 되고 새 문항은 맨 뒤에 붙인다. 둘 다 표준어인 말은 내지 않는다.
+  대표 그림(`titi/spelling-quiz*.webp`)과 og 그림은 티남이·티녀 그림이 아니라 임시로 만든 쪽지 그림이다. 홈 문구는 74가지.
+- `quiz-plus.js`: 스스로 정답을 보여 주는 퀴즈 목록에 `spelling-quiz` 추가(보기 섞기·자동 넘김 제외).
+- 질문 문장 손본 곳: 답정너 1번, 눈물 1번 보기, 욱 10번, 반려동물 5번, 워라밸 1·6번, 공감 9번 보기, 인복 5번. IQ/EQ 의 EQ 6문항은 상황형으로 다시 썼다(점수 배치는 그대로).
+- `my-gua` 결과 8쪽에 "일할 때 / 가까운 사이에서는 / 건네는 한마디" 카드(`.mg-more`)를 추가했다. 직접 고친 HTML 이다.

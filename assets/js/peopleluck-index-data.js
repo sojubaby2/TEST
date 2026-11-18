@@ -37,7 +37,7 @@ const PEOPLELUCKINDEX_QUESTIONS = [
     ],
   },
   {
-    text: "친구 소개로 처음 만난 사람과 술자리를 가졌다. 그런 인연은 대개",
+    text: "친구 소개로 처음 보는 사람과 어울린 자리, 돌이켜 보면 그런 인연은 대개",
     options: [
       { text: "그렇게 만난 사람이 지금 내 절친이다", score: 2 },
       { text: "괜히 나갔다 싶은 기억이 더 많다", score: 0 },

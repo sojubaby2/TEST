@@ -152,3 +152,9 @@
 - **새 테스트 `year-recap`(2026 연말 결산 테스트)**: 10문항·보기 2개·결과 5개(sprint, root, turn, rest, people). life-genre 와 같은 방식이고 new-test.ps1 로 만든 것이 아니라 직접 만든 HTML 이다. 그림(대표·결과·og·card)은 임시로 만든 것. 해가 바뀌면 연도 문구만 바꿔 다시 쓴다. 홈 문구는 75가지, sitemap 174개.
 - **새 테스트 `zombie-office`(회사에 좀비가 나타났다)**: 이야기형 12장면·보기 4개·결과 6개(leader, scout, maker, carer, planner, solo). joseon-job 의 quiz.html·결과 틀을 그대로 쓰고 데이터는 `zombie-office-data.js`(NT_DATA). 그림은 임시로 만든 것. 홈 문구는 76가지, sitemap 175개.
 - 혈액형·옛날 사람 결과는 이미 항목이 여러 개라 추가 카드를 넣지 않았다.
+
+## 2026-11-25 색인 점검
+
+- 실제 사이트에서 sitemap 175개 주소를 전부 열어 확인: 모두 200, 넘어감 없음, noindex 없음, canonical 일치. robots.txt 는 Cloudflare 가 관리하는 내용이며 Googlebot 과 애드센스 수집기는 허용 상태(AI 수집기만 차단).
+- 홈(`index.html`)과 읽을거리 목록(`blog/index.html`)의 사이트 안 링크를 `.html` 없는 주소로 바꿨다(홈의 뽑기 목록 POOL 포함). 다른 화면의 링크는 아직 `.html` 이라 한 번 넘어간다.
+  이 두 파일은 컴퓨터에서 파일로 직접 열면 링크가 안 열린다. 실제 사이트에서만 확인할 것.

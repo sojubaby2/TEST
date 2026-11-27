@@ -7,9 +7,9 @@
 | 경로 | 내용 |
 |---|---|
 | `index.html` | 홈. 2026-10-27 4차 개편 "팔괘" 디자인(큰 제목 "오늘, 나를 알아볼괘"). 휴대폰은 위에 붙는 가로 탭 + 아래 고정 메뉴(골라보기·찾기·아무거나·읽을거리), PC는 왼쪽 고정 주제 메뉴 + 오른쪽 3열 카드. 주제 8개를 주역 팔괘(막대 3줄)로 표시, 오방색(노랑 #FFC93C·빨강 #C9381F·파랑 #2450D8·남색 #1B1F3B), 제목 글꼴 Gaegu(구글폰트)+본문 Pretendard, 히어로에 직접 그린 티남이·티녀(`assets/img/home/*.webp`), "괘 뽑기" 버튼. 홈 전용 스타일은 파일 안 `<style>` 에 `body.home4` 범위로만 있음(공용 style.css 미수정). 새 테스트 추가 시 홈 탭 목록에도 직접 넣어야 함 |
-| `tests/` | 테스트 73종. 각 폴더에 `index.html` + `result*.html` |
+| `tests/` | 테스트 84종. 각 폴더에 `index.html` + `result*.html` |
 | `assets/css/test-skin.css`, `assets/js/quiz-plus.js` | 2026-10-28 테스트 화면 새 옷. 문제형 테스트 57종(시작·문제·결과 화면)에 `<body class="qp">` + 이 두 파일을 붙임. 홈과 같은 팔괘·오방색·Gaegu 디자인, 이름 넣기(기기에만 저장), 고른 답 표시, "결과 뽑는 중" 화면, 같은 결과 비율, 재밌어요/정확해요. 결과 히어로 색은 `style="--rc:#색"` 으로 줌. 사주·타로·관상 등 나머지 13종은 아직 옛 디자인 |
-| `blog/` | 블로그 83편 + `index.html` 목록 |
+| `blog/` | 블로그 99편 + `index.html` 목록 |
 | `assets/js/`, `assets/css/`, `assets/img/` | 공용 자원 |
 | `generate_*.py` (루트) | 결과 페이지·이미지 생성 스크립트 |
 | `content/`, `tools/` | 작업용. **사이트로 배포되지 않음** |
@@ -158,3 +158,23 @@
 - 실제 사이트에서 sitemap 175개 주소를 전부 열어 확인: 모두 200, 넘어감 없음, noindex 없음, canonical 일치. robots.txt 는 Cloudflare 가 관리하는 내용이며 Googlebot 과 애드센스 수집기는 허용 상태(AI 수집기만 차단).
 - 홈(`index.html`)과 읽을거리 목록(`blog/index.html`)의 사이트 안 링크를 `.html` 없는 주소로 바꿨다(홈의 뽑기 목록 POOL 포함). 다른 화면의 링크는 아직 `.html` 이라 한 번 넘어간다.
   이 두 파일은 컴퓨터에서 파일로 직접 열면 링크가 안 열린다. 실제 사이트에서만 확인할 것.
+
+## 2026-11-27 새 테스트 8종 · 읽을거리 6편
+
+홈 문구는 84가지, sitemap 189개(테스트 8 + 글 6 추가). 새 테스트는 홈의 "새로 나온" 탭 맨 위와 뽑기 목록(POOL)에 넣었다. 홈 탭의 "○개" 숫자는 손으로 적는 값이라 카드 수가 바뀌면 같이 고쳐야 한다.
+
+- **유형 테스트 5종** (10문항·보기 2개·결과 5개·유형마다 4번 등장, life-genre 방식. 직접 만든 HTML):
+  `xmas-role`(크리스마스 캐릭터: santa, rudolph, tree, snowman, elf), `resolution-type`(새해 계획 유형: starter, steady, planner, declare, free),
+  `spending-type`(소비 유형: value, flex, exp, saver, giver), `bread-type`(나는 어떤 빵일까: sikppang, croissant, saltbread, danpat, baguette),
+  `mood-color`(무드 컬러: red, blue, yellow, green, purple).
+- **이야기형 2종** (12장면·보기 4개·결과 6개·유형마다 8번 등장, joseon-job 방식 NT_DATA):
+  `lotto-win`(로또 1등에 당첨됐다: quiet, giver, builder, traveler, keeper, worker), `island-survival`(무인도에 떨어졌다: build, hunt, explore, signal, cheer, settle).
+  이야기 속 이름은 묻지 않는다. 다른 테스트에서 저장한 `localStorage["arabol:name"]` 이 있을 때만 불러 준다.
+- **퀴즈 1종** `idiom-quiz`(속담·사자성어 퀴즈): 48문항 중 12개(쉬움4·보통4·어려움4). `spelling-quiz` 와 같은 틀이라 `idiom-quiz-data.js` 안의 이름도 `SPELL_*` 그대로다. 문항 순서를 바꾸지 말고 새 문항은 맨 뒤에. `quiz-plus.js` 의 스스로 채점하는 퀴즈 목록에 추가했다.
+- 새 테스트의 화면 안 링크는 처음부터 `.html` 없는 주소다(`quiz`, `./`, `../슬러그/`). 컴퓨터에서 파일로 직접 열면 링크가 안 열리니 실제 사이트에서 확인한다.
+- 그림(대표·아이콘·결과·og·card)은 전부 이모지로 만든 임시 그림이다. 티남이·티녀 그림으로 바꾸려면 같은 파일 이름으로 덮어쓰면 된다.
+- **고친 것**: `zombie-office` 의 문제·결과 화면 7개에 장면 딱지·한마디·막대그래프 꾸밈(`<style>` 의 `.nt-*`)이 빠져 있어 넣었다. 이야기형 테스트를 새로 만들 때는 joseon-job 처럼 `<head>` 에 이 꾸밈을 꼭 넣는다(퀴즈형은 spelling-quiz 의 `.sp-*`).
+  `main.js` 의 "이 테스트도 해 봐요" 추천 링크가 `/index.html` 로 끝나 한 번 넘어가던 것을 `/` 로 바꿨다.
+- **읽을거리 6편**(2,700~3,200자): `three-day-resolve`(작심삼일), `santa-origin`(산타의 유래), `impulse-buying`(충동구매), `idiom-stories`(사자성어 옛이야기), `lotto-odds`(로또 확률), `bread-names`(빵 이름의 어원). 각 글은 관련 새 테스트와 서로 링크한다. `blog/index.html` 맨 위와 `rss.xml` 에 추가.
+  로또 글의 확률은 계산값이다(45개 중 6개 = 8,145,060). 소비·로또 글과 테스트는 재미용이며 돈 관리 조언을 담지 않는다.
+- 기존 화면 9곳의 "함께 보면 좋아요"에 새 테스트 링크를 넣었다(lotto-number, year-recap, slang-quiz, spelling-quiz, joseon-job, zombie-office, food-type, planner-index, stingy-index).

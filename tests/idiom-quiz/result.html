@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1329092235174593"
+     crossorigin="anonymous"></script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>나의 속담·사자성어 퀴즈 결과는? | 알아볼괘</title>
+<meta name="robots" content="noindex" />
+<meta name="description" content="속담·사자성어 퀴즈 결과" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="알아볼괘" />
+<meta property="og:title" content="나의 속담·사자성어 퀴즈 결과는?" />
+<meta property="og:description" content="소 잃고 ○○○ 고친다? 너도 12문제로 실력을 확인해 봐!" />
+<meta property="og:image" content="https://arabol.co.kr/assets/img/og/idiom-quiz-intro.png" />
+<meta property="og:url" content="https://arabol.co.kr/tests/idiom-quiz/" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📜</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap" />
+<link rel="stylesheet" href="../../assets/css/test-skin.css" />
+<style>
+  .sp-review { list-style: none; margin: 0; padding: 0; }
+  .sp-review li { padding: 14px 0; border-bottom: 2px dashed #DADDEA; }
+  .sp-review li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .sp-review li:first-child { padding-top: 4px; }
+  .sp-review .sp-sent { margin: 0 0 6px; font-size: 16px; font-weight: 800; line-height: 1.6; color: #1B1F3B; word-break: keep-all; }
+  .sp-review .sp-sent b { background: #FFC93C; border-radius: 3px; }
+  .sp-review .sp-x { margin: 0 0 6px; font-size: 13.5px; color: #9C2A16; }
+  .sp-review .sp-x s { text-decoration-thickness: 2px; }
+  .sp-review .sp-y { margin: 0; font-size: 14.5px; line-height: 1.7; color: #3B405E; word-break: keep-all; }
+</style>
+</head>
+<body class="qp">
+
+<header class="site-header">
+  <a class="logo" href="../../"><span class="logo-mark">☰</span> 알아볼괘</a>
+</header>
+
+<main class="wrap">
+  <div id="errorBox" style="display:none;">
+    <div class="card">
+      <p style="margin:0;font-size:14px;">결과를 찾을 수 없어요. 퀴즈를 다시 풀어 주세요.</p>
+    </div>
+    <a class="btn btn-primary" href="./" style="margin-top:16px;">다시 풀기</a>
+  </div>
+
+  <div id="resultBox" style="display:none;">
+    <div class="result-hero" id="resultHero">
+      <div class="emoji" id="resultEmoji"></div>
+      <h1 id="resultTitle"></h1>
+      <p class="subtitle" id="resultSubtitle"></p>
+    </div>
+
+    <div class="card index-card">
+      <p class="index-title">퀴즈 점수</p>
+      <p class="index-percent" id="indexPercent">-</p>
+      <div class="index-gauge-outer">
+        <div class="index-gauge-inner" id="indexGauge" style="width:0%;"></div>
+      </div>
+      <p class="index-sub" id="indexSub"></p>
+    </div>
+
+    <div class="card">
+      <p style="margin:0;font-size:15px;" id="gradeDesc"></p>
+    </div>
+
+    <p class="section-title" style="margin-top:28px;" id="reviewTitle"></p>
+    <div class="card">
+      <p style="margin:0 0 6px;font-size:13.5px;color:var(--text-sub);" id="reviewNote"></p>
+      <ul class="sp-review" id="reviewList"></ul>
+    </div>
+
+    <div class="btn-row" style="margin-top:24px;">
+      <button class="btn btn-primary" id="shareBtn" type="button">결과 공유하기</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" id="copyBtn" type="button">🔗 링크 복사</button>
+    </div>
+
+    <a class="btn btn-secondary" href="quiz" style="margin-top:20px;">🔄 다른 문제로 다시 풀기</a>
+    <a class="btn btn-secondary" href="../spelling-quiz/">✏️ 맞춤법 능력고사도 풀어 보기</a>
+    <a class="btn btn-secondary" href="../../">🏠 다른 테스트 보러가기</a>
+  </div>
+
+  <p class="notice">
+    📜 속담은 표준국어대사전에 실린 형태를 기준으로 했어요. 재미로 풀어 보는 퀴즈이며 공인 시험이 아닙니다.
+  </p>
+
+  <div class="footer">
+    <p><a href="../../privacy">개인정보처리방침</a> · <a href="../../terms">이용약관</a></p>
+  </div>
+</main>
+
+<script src="../../assets/js/idiom-quiz-data.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var scoreParam = params.get("score");
+    var score = scoreParam !== null && scoreParam !== "" && !isNaN(Number(scoreParam)) ? Number(scoreParam) : null;
+    var total = SPELL_TOTAL;
+    var errorBox = document.getElementById("errorBox");
+    var resultBox = document.getElementById("resultBox");
+    if (score === null) { errorBox.style.display = "block"; return; }
+    score = Math.max(0, Math.min(total, Math.round(score)));
+
+    // 틀린 문제 번호 (주소의 w=3.17.40). 숫자가 아니거나 범위를 벗어난 값은 버립니다.
+    var wrong = [];
+    (params.get("w") || "").split(".").forEach(function (v) {
+      var n = Number(v);
+      if (v !== "" && Number.isInteger(n) && n >= 0 && n < SPELL_QUESTIONS.length && wrong.indexOf(n) === -1) wrong.push(n);
+    });
+    wrong = wrong.slice(0, total);
+
+    var tier = getSpellTier(score);
+    resultBox.style.display = "block";
+    document.getElementById("resultHero").style.setProperty("--rc", tier.color);
+    document.getElementById("resultEmoji").textContent = tier.emoji;
+    document.getElementById("resultTitle").textContent = tier.title;
+    document.getElementById("resultSubtitle").textContent = tier.subtitle;
+
+    var percent = Math.round((score / total) * 100);
+    var indexPercent = document.getElementById("indexPercent");
+    var indexGauge = document.getElementById("indexGauge");
+    indexPercent.textContent = score + " / " + total;
+    indexPercent.style.color = tier.color;
+    indexGauge.style.background = tier.color;
+    requestAnimationFrame(function () { indexGauge.style.width = percent + "%"; });
+    document.getElementById("indexSub").textContent = "정답률 " + percent + "% · 찍어도 평균 6개쯤은 맞는 퀴즈예요";
+    document.getElementById("gradeDesc").textContent = tier.desc;
+
+    // 틀린 문제 다시 보기. 다 맞혔거나 번호가 없으면 어려운 문항 3개를 보여 줍니다.
+    var list = document.getElementById("reviewList");
+    var show = wrong, isWrongList = wrong.length > 0;
+    if (!isWrongList) {
+      var hard = [];
+      SPELL_QUESTIONS.forEach(function (q, i) { if (q.diff === 3) hard.push(i); });
+      show = spellShuffle(hard).slice(0, 3);
+    }
+    document.getElementById("reviewTitle").textContent = isWrongList ? "틀린 문제 다시 보기" : "이것도 알아 두면 좋아요";
+    document.getElementById("reviewNote").textContent = isWrongList
+      ? "노란 칸이 정답이에요. 뜻풀이를 한 번 읽어 두면 다음엔 안 틀려요."
+      : "많은 사람이 헷갈리는 말 세 가지를 골랐어요.";
+    show.forEach(function (i) {
+      var q = SPELL_QUESTIONS[i];
+      var li = document.createElement("li");
+      var sent = document.createElement("p"); sent.className = "sp-sent"; sent.innerHTML = fillSpell(q.q, q.correct, true);
+      var x = document.createElement("p"); x.className = "sp-x";
+      var s = document.createElement("s"); s.textContent = q.wrong;
+      x.appendChild(document.createTextNode("헷갈린 보기: ")); x.appendChild(s);
+      var y = document.createElement("p"); y.className = "sp-y"; y.textContent = q.why;
+      li.appendChild(sent); li.appendChild(x); li.appendChild(y);
+      list.appendChild(li);
+    });
+
+    document.getElementById("shareBtn").addEventListener("click", function () {
+      shareCurrentPage(
+        "속담·사자성어 퀴즈 결과: '" + tier.title + "' " + tier.emoji + " (" + score + "/" + total + "점)",
+        "소 잃고 ○○○ 고친다? 너도 12문제로 실력을 확인해 봐!"
+      );
+    });
+    document.getElementById("copyBtn").addEventListener("click", function () { copyLinkToClipboard(); });
+  })();
+</script>
+
+<script src="../../assets/js/quiz-plus.js"></script>
+</body>
+</html>

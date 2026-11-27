@@ -312,7 +312,7 @@ function injectHotRecommendations() {
   picks.forEach(function (t) {
     var a = document.createElement("a");
     a.className = "test-card";
-    a.href = "../../tests/" + t.slug + "/index.html";
+    a.href = "../../tests/" + t.slug + "/";
     a.innerHTML =
       '<div class="emoji">' +
       t.emoji +

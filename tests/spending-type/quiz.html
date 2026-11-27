@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1329092235174593"
+     crossorigin="anonymous"></script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>소비 유형 테스트 진행중... | 알아볼괘</title>
+<meta name="robots" content="noindex" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="알아볼괘" />
+<meta property="og:title" content="소비 유형 테스트" />
+<meta property="og:description" content="" />
+<meta property="og:image" content="https://arabol.co.kr/assets/img/og/spending-type-intro.png" />
+<meta property="og:url" content="https://arabol.co.kr/tests/spending-type/" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💳</text></svg>" />
+<link rel="stylesheet" href="../../assets/css/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap" />
+<link rel="stylesheet" href="../../assets/css/test-skin.css" />
+</head>
+<body class="qp">
+
+<header class="site-header">
+  <a class="logo" href="../../"><span class="logo-mark">☰</span> 알아볼괘</a>
+</header>
+
+<main class="wrap">
+  <div class="progress-outer">
+    <div class="progress-inner" id="progressBar" style="width:0%;"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">0 / 10</div>
+
+  <div class="card">
+    <div class="question-num" id="qNum">Q1</div>
+    <p class="question-text" id="qText"></p>
+    <div id="options"></div>
+  </div>
+</main>
+
+<script src="../../assets/js/spending-type-data.js"></script>
+<script>
+  let current = 0;
+  const tally = { value: 0, flex: 0, exp: 0, saver: 0, giver: 0 };
+
+  const qNum = document.getElementById("qNum");
+  const qText = document.getElementById("qText");
+  const optionsEl = document.getElementById("options");
+  const progressBar = document.getElementById("progressBar");
+  const progressLabel = document.getElementById("progressLabel");
+
+  function renderQuestion() {
+    const q = SPENDINGTYPE_QUESTIONS[current];
+    qNum.textContent = "Q" + (current + 1);
+    qText.textContent = q.text;
+    optionsEl.innerHTML = "";
+
+    q.options.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.className = "option-btn";
+      btn.type = "button";
+      btn.textContent = opt.text;
+      btn.addEventListener("click", () => selectOption(opt.key));
+      optionsEl.appendChild(btn);
+    });
+
+    const pct = Math.round((current / SPENDINGTYPE_QUESTIONS.length) * 100);
+    progressBar.style.width = pct + "%";
+    progressLabel.textContent = current + " / " + SPENDINGTYPE_QUESTIONS.length;
+  }
+
+  function selectOption(key) {
+    tally[key] = (tally[key] || 0) + 1;
+    current += 1;
+
+    if (current >= SPENDINGTYPE_QUESTIONS.length) {
+      progressBar.style.width = "100%";
+      progressLabel.textContent = SPENDINGTYPE_QUESTIONS.length + " / " + SPENDINGTYPE_QUESTIONS.length;
+      finishQuiz();
+      return;
+    }
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function finishQuiz() {
+    const result = tallyToSpendingTypeResult(tally);
+    const percent = Math.round(((tally[result.id] || 0) / SPENDINGTYPE_APPEARANCES) * 100);
+    const url = "result-" + result.id + ".html?percent=" + Math.min(percent, 100);
+    setTimeout(() => {
+      window.location.href = url;
+    }, window.QP_DELAY || 350);
+  }
+
+  renderQuestion();
+</script>
+
+<script src="../../assets/js/quiz-plus.js"></script>
+</body>
+</html>

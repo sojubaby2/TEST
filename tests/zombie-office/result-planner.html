@@ -25,6 +25,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap" />
 <link rel="stylesheet" href="../../assets/css/test-skin.css" />
+<style>
+.qp .nt-line { margin: 16px 0 0; padding: 18px 20px; border-radius: 18px; background: var(--ink); color: var(--paper); font-family: var(--hand); font-size: 26px; font-weight: 700; line-height: 1.3; text-align: center; word-break: keep-all; }
+.qp .nt-line::before { content: "이 유형의 한마디"; display: block; margin-bottom: 6px; font-family: "Pretendard Variable", Pretendard, sans-serif; font-size: 12px; font-weight: 700; color: var(--hwang); }
+.qp .mg-scene { display: inline-block; margin: 0 0 10px; padding: 4px 10px; border-radius: 8px; background: var(--hwang-soft); font-size: 13px; font-weight: 800; }
+.qp .mg-scene:empty { display: none; }
+.qp .nt-bars { display: grid; gap: 10px; margin-top: 8px; text-align: left; }
+.qp .nt-bar { display: grid; grid-template-columns: 104px 1fr 42px; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 800; line-height: 1.3; word-break: keep-all; }
+.qp .nt-bar-track { height: 16px; border: 2px solid var(--ink); border-radius: 999px; background: var(--mist); overflow: hidden; }
+.qp .nt-bar-fill { height: 100%; width: 0; background: var(--hwang); border-right: 2px solid var(--ink); transition: width .8s cubic-bezier(.3,.7,.3,1); }
+.qp .nt-bar.me .nt-bar-fill { background: var(--jeok); }
+.qp .nt-bar span:last-child { text-align: right; color: var(--sub); }
+</style>
 </head>
 <body class="qp">
 

@@ -6,7 +6,49 @@
   <description>심리테스트와 운세 뒤에 숨은 유래와 과학 이야기 - 알아볼괘</description>
   <language>ko</language>
   <atom:link href="https://arabol.co.kr/rss.xml" rel="self" type="application/rss+xml" />
-  <lastBuildDate>Sun, 04 Oct 2026 09:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Fri, 27 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <item>
+    <title>새해 계획은 왜 작심삼일로 끝날까</title>
+    <link>https://arabol.co.kr/blog/three-day-resolve</link>
+    <guid isPermaLink="true">https://arabol.co.kr/blog/three-day-resolve</guid>
+    <description>결심이 사흘을 못 가는 진짜 이유</description>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>산타는 왜 빨간 옷을 입을까</title>
+    <link>https://arabol.co.kr/blog/santa-origin</link>
+    <guid isPermaLink="true">https://arabol.co.kr/blog/santa-origin</guid>
+    <description>성 니콜라우스부터 루돌프까지</description>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>충동구매는 왜 하게 될까</title>
+    <link>https://arabol.co.kr/blog/impulse-buying</link>
+    <guid isPermaLink="true">https://arabol.co.kr/blog/impulse-buying</guid>
+    <description>줄 그은 정가와 마감 임박의 심리</description>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>사자성어에 숨은 옛이야기 7가지</title>
+    <link>https://arabol.co.kr/blog/idiom-stories</link>
+    <guid isPermaLink="true">https://arabol.co.kr/blog/idiom-stories</guid>
+    <description>새옹지마의 노인은 왜 태연했을까</description>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>로또 1등 확률, 얼마나 낮을까</title>
+    <link>https://arabol.co.kr/blog/lotto-odds</link>
+    <guid isPermaLink="true">https://arabol.co.kr/blog/lotto-odds</guid>
+    <description>814만분의 1을 계산으로 풀어 보기</description>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>빵 이름은 어디서 왔을까</title>
+    <link>https://arabol.co.kr/blog/bread-names</link>
+    <guid isPermaLink="true">https://arabol.co.kr/blog/bread-names</guid>
+    <description>빵, 크루아상, 바게트, 소금빵의 어원</description>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
   <item>
     <title>MBTI는 왜 이렇게 인기가 많을까?</title>
     <link>https://arabol.co.kr/blog/mbti-origin</link>
